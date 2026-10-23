@@ -7710,7 +7710,7 @@ function wrIns(b) { const ta = ce('wr-text'); const s = ta.selectionStart || ta.
 async function wrAI(sys, user, max, model) {
     const key = aiKey(); if (!key) throw { code: 'noai' };
     const c = new AbortController(), to = setTimeout(() => c.abort(), 80000); let r;
-    try { r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: model || LR_AI_MODEL, temperature: .2, max_tokens: max || 2600, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: user }] }) }); } finally { clearTimeout(to); }
+    try { r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: model || LR_AI_MODEL, temperature: .2, max_tokens: max || 2600, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: user }] }) }); } finally { clearTimeout(to); }
     if (!r.ok) throw { code: r.status === 401 ? 'key' : r.status === 429 ? 'quota' : r.status === 404 || r.status === 403 ? 'model' : 'upstream' };
     const j = await r.json(); return JSON.parse(j.choices[0].message.content);
 }
@@ -7899,7 +7899,7 @@ async function luxTTS(text, voice, style) {
     for (const model of ['gpt-4o-mini-tts', 'tts-1']) {
         const body = { model, voice: model === 'tts-1' && !LUX_T1.includes(voice) ? (/^(coral|sage)$/.test(voice) ? 'nova' : /^(ash)$/.test(voice) ? 'onyx' : 'alloy') : voice, input: text, response_format: 'mp3' };
         if (model === 'gpt-4o-mini-tts') body.instructions = 'British English accent unless told otherwise. ' + style + ' Speak like a real recording made for an English listening exam: natural rhythm, believable pauses and intonation, clear but not slow, never theatrical.'; else body.speed = .96;
-        try { const r = await fetch('https://api.openai.com/v1/audio/speech', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify(body) }); if (r.ok) { const b = await r.arrayBuffer(); luxCPut(ck, b); return b; } if (r.status === 401 || r.status === 429) throw { code: r.status === 401 ? 'key' : 'quota' }; } catch (e) { if (e && e.code) throw e; }
+        try { const r = await lrAIFetch('https://api.openai.com/v1/audio/speech', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify(body) }); if (r.ok) { const b = await r.arrayBuffer(); luxCPut(ck, b); return b; } if (r.status === 401 || r.status === 429) throw { code: r.status === 401 ? 'key' : 'quota' }; } catch (e) { if (e && e.code) throw e; }
     }
     throw 0;
 }
@@ -12242,7 +12242,7 @@ Learner name: ${(state.user.name || 'friend').split(' ')[0]}.`;
             const key = aiKey(); if (!key) throw { code: 'noai' };
             const body = { model: LR_AI_MODEL, temperature: .85, max_tokens: 420, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: lunaSystem() }].concat(LU.msgs.slice(-16)) };
             const c = new AbortController(), to = setTimeout(() => c.abort(), 45000); let r;
-            try { r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify(body) }); } finally { clearTimeout(to); }
+            try { r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify(body) }); } finally { clearTimeout(to); }
             if (!r.ok) throw { code: r.status === 401 ? 'key' : r.status === 429 ? 'quota' : 'upstream' };
             const j = await r.json(), raw = (j.choices && j.choices[0] && j.choices[0].message.content) || '';
             let o; try { o = JSON.parse(raw); } catch (e) { o = { say: raw.replace(/[{}"]/g, '').slice(0, 220), emotion: 'happy', note: '' }; }
@@ -12286,7 +12286,7 @@ Learner name: ${(state.user.name || 'friend').split(' ')[0]}.`;
             for (const [model, voice] of [['gpt-4o-mini-tts', 'coral'], ['tts-1', 'nova']]) {
                 const body = { model, voice, input: text, response_format: 'mp3' };
                 if (model === 'gpt-4o-mini-tts') body.instructions = LU_VOICE + (LU_EMO[emo] || LU_EMO.neutral).tts; else body.speed = .95;
-                try { const r = await fetch('https://api.openai.com/v1/audio/speech', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify(body) }); if (r.ok) return await r.arrayBuffer(); } catch (e) { }
+                try { const r = await lrAIFetch('https://api.openai.com/v1/audio/speech', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify(body) }); if (r.ok) return await r.arrayBuffer(); } catch (e) { }
             }
             throw 0;
         }
@@ -12436,7 +12436,7 @@ Learner name: ${(state.user.name || 'friend').split(' ')[0]}.`;
             for (const model of ['gpt-4o-mini-transcribe', 'whisper-1']) {
                 try {
                     const fd = new FormData(); fd.append('file', blob, 'speech.' + ext); fd.append('model', model); fd.append('language', 'en'); fd.append('response_format', 'json'); fd.append('prompt', 'A learner practising English speaking for IELTS with a friendly tutor.');
-                    const r = await fetch('https://api.openai.com/v1/audio/transcriptions', { method: 'POST', headers: { Authorization: 'Bearer ' + key }, body: fd });
+                    const r = await lrAIFetch('https://api.openai.com/v1/audio/transcriptions', { method: 'POST', headers: { Authorization: 'Bearer ' + key }, body: fd });
                     if (r.ok) { const j = await r.json(); text = (j.text || '').trim(); break; }
                 } catch (e) { }
             }
@@ -12463,7 +12463,7 @@ Learner name: ${(state.user.name || 'friend').split(' ')[0]}.`;
             try {
                 const key = aiKey(); if (!key) throw { code: 'noai' };
                 const sys = 'You are a strict but kind IELTS/CEFR speaking examiner. Judge ONLY the learner lines of this transcript (text from speech recognition, ignore punctuation/capitalisation). Respond ONLY with minified JSON: {"band":number(0-9,0.5 steps),"cefr":"A1|A2|B1|B2|C1|C2","fluency":number(0-9),"lexical":number(0-9),"grammar":number(0-9),"pronunciation":number(0-9, estimate, note it is inferred from text),"strengths":[string,string],"fixes":[string,string,string],"verdict":string(max 24 words, spoken aloud by the examiner to the learner, encouraging and honest, English only)}';
-                const r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: LR_AI_MODEL, temperature: .3, max_tokens: 600, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: tr }] }) });
+                const r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: LR_AI_MODEL, temperature: .3, max_tokens: 600, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: tr }] }) });
                 if (!r.ok) throw { code: r.status === 401 ? 'key' : r.status === 429 ? 'quota' : 'upstream' };
                 const j = await r.json(), o = JSON.parse(j.choices[0].message.content); const b = Math.max(0, Math.min(9, +o.band || 0));
                 const bar = (n, v) => `<div class="row"><b>${n}</b><s><i style="width:${Math.round((+v || 0) / 9 * 100)}%"></i></s><span>${(+v || 0).toFixed(1)}</span></div>`;
@@ -13021,7 +13021,7 @@ ALSO add to the JSON an array "vocab" with 8 objects {"w": a useful word or phra
         }
         async function rlAI(sys, usr, max, temp) {
             const key = aiKey(); if (!key) throw { code: 'noai' };
-            const r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: LR_AI_MODEL, temperature: temp, max_tokens: max, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: usr }] }) });
+            const r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: LR_AI_MODEL, temperature: temp, max_tokens: max, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: usr }] }) });
             if (!r.ok) throw { code: r.status === 401 ? 'key' : r.status === 429 ? 'quota' : 'upstream' };
             const j = await r.json(); return JSON.parse(j.choices[0].message.content);
         }
@@ -13093,7 +13093,7 @@ Respond ONLY with minified JSON: {"title":string,"topic":string (1-2 English wor
             const sys = rlGPrompt(topic, lv, ex, nP); let got = null, err = null;
             for (let tryN = 0; tryN < 2 && !got; tryN++) {
                 try {
-                    const r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: LR_AI_MODEL, temperature: tryN ? .5 : .75, max_tokens: 3800, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: 'Topic: ' + topic + '\nLevel: ' + lv + '\nStyle: ' + ex }] }) });
+                    const r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: LR_AI_MODEL, temperature: tryN ? .5 : .75, max_tokens: 3800, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: 'Topic: ' + topic + '\nLevel: ' + lv + '\nStyle: ' + ex }] }) });
                     if (!r.ok) throw { code: r.status === 401 ? 'key' : r.status === 429 ? 'quota' : 'upstream' };
                     const j = await r.json(); got = rlGClean(JSON.parse(j.choices[0].message.content), nP);
                 } catch (e) { err = e; if (e && (e.code === 'key' || e.code === 'quota')) break; }
@@ -17788,7 +17788,7 @@ async function gGtx(text, tl, sl) {
 async function gAIJson(sys, payload, maxTok) {
     const key = aiKey(); if (!key) throw { code: 'noai' };
     const c = new AbortController(), to = setTimeout(() => c.abort(), 45000); let r;
-    try { r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: LR_AI_MODEL, temperature: .2, max_tokens: maxTok || 2200, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: JSON.stringify(payload) }] }) }); } finally { clearTimeout(to); }
+    try { r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: LR_AI_MODEL, temperature: .2, max_tokens: maxTok || 2200, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: JSON.stringify(payload) }] }) }); } finally { clearTimeout(to); }
     if (!r.ok) throw { code: r.status }; const j = await r.json(); return JSON.parse(j.choices[0].message.content);
 }
 function gSrc(m) { return { def: m.definition || '', imp: m.importance || '', ielts: m.ielts || '', ex: (m.examples || []).map(e => e[0]), mk: (m.mistakes || []).map(x => String(x).split('→').pop().trim()), tips_uz: m.tips || [] }; }
@@ -17906,7 +17906,7 @@ async function gqGenerate(m, need) {
 Write exactly ${need} NEW multiple-choice fill-in-the-blank questions that test this exact topic. Each question: one natural sentence containing ___ for the missing word(s), 3 distinct options of which exactly one is correct, with plausible wrong options (typical learner mistakes). Vary the vocabulary, subjects, names, situations and sentence structures; mix easy, medium and hard; never reuse a sentence from this list: ${avoid || '(none)'}. Reply ONLY with JSON {"qs":[{"q":"sentence with ___","o":["opt","opt","opt"],"a":0}]} where a is the index 0-2 of the correct option.`;
     const c = new AbortController(), to = setTimeout(() => c.abort(), 45000);
     try {
-        const r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: LR_AI_MODEL, temperature: 1, max_tokens: 2400, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: 'Seed ' + Math.random().toString(36).slice(2, 8) }] }) });
+        const r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: LR_AI_MODEL, temperature: 1, max_tokens: 2400, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: 'Seed ' + Math.random().toString(36).slice(2, 8) }] }) });
         if (!r.ok) return 0; const j = await r.json(), o = JSON.parse(j.choices[0].message.content), add = [];
         (o.qs || []).forEach(x => { if (!x || typeof x.q !== 'string' || !/_{2,}/.test(x.q) || !Array.isArray(x.o) || x.o.length !== 3 || new Set(x.o.map(t => String(t).trim().toLowerCase())).size !== 3 || !(+x.a >= 0 && +x.a < 3)) return; const q = [x.q.trim(), String(x.o[0]), String(x.o[1]), String(x.o[2]), 'ABC'.charAt(+x.a)], k = gqKey(q); if (seenKeys.has(k)) return; seenKeys.add(k); add.push(q); });
         if (add.length) { const bank = gqLoad('lunarise_gq_bank_v1'); bank[m.id] = (bank[m.id] || []).concat(add).slice(-300); gqSave('lunarise_gq_bank_v1', bank); }
@@ -18588,7 +18588,7 @@ const mentorAvatarCache = {};
 
 
         /* ===================== AI STUDIO (ChatGPT) ===================== */
-        const LR_AI_PROXY = '';   // paste your Apps Script /exec URL (ai_proxy.gs) — the OpenAI key then stays on the server
+        const LR_AI_PROXY = 'https://script.google.com/macros/s/AKfycbwY-VB7aQA0Vtfb7c2qG1f16n2GYSEiPdPBLi7YWO5oat55cDexo009pzpeqWcBp2RE-w/exec';   // paste your Apps Script /exec URL (ai_proxy.gs) — the OpenAI key then stays on the server
         const LR_AI_MODEL = 'gpt-4o-mini';
         const LR_AI_KEY = '';   // public website: no key in the file. Use LR_AI_PROXY (ai_proxy.gs) or paste your own key in AI settings on your device.
         const AI_PROMPTS = {
@@ -18604,7 +18604,23 @@ const mentorAvatarCache = {};
             speaking: ['Start IELTS Speaking Part 1', 'Give me a Part 2 cue card', 'Ask me a Part 3 question about technology'],
             vocab: ['ubiquitous', 'resilient', 'Give me 5 words about environment', 'Words to replace “very good”']
         };
-        function aiKey() { try { return localStorage.getItem('lunarise_ai_key') || LR_AI_KEY || ''; } catch (e) { return LR_AI_KEY || ''; } }
+        function aiOwnKey() { try { return localStorage.getItem('lunarise_ai_key') || LR_AI_KEY || ''; } catch (e) { return LR_AI_KEY || ''; } }
+        function aiKey() { return aiOwnKey() || (LR_AI_PROXY ? 'proxy' : ''); }
+        function lrB64(blob) { return new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(',')[1] || ''); fr.onerror = rej; fr.readAsDataURL(blob); }); }
+        async function lrAIFetch(url, o) {
+            o = o || {};
+            if (aiOwnKey() || !LR_AI_PROXY) return fetch(url, o);
+            const p = { mode: 'raw', path: String(url).split('/v1/')[1] || '', device: promoDevice() };
+            if (typeof FormData !== 'undefined' && o.body instanceof FormData) {
+                const f = o.body.get('file'), fl = {}; o.body.forEach((v, n) => { if (n !== 'file') fl[n] = String(v); });
+                p.fields = fl; p.mime = (f && f.type) || 'audio/webm'; p.fname = (f && f.name) || 'speech.webm'; p.audio = f ? await lrB64(f) : '';
+            } else { try { p.body = JSON.parse(o.body || '{}'); } catch (e) { p.body = {}; } }
+            const r = await fetch(LR_AI_PROXY, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(p), signal: o.signal });
+            let j; try { j = await r.json(); } catch (e) { j = { ok: false, error: 'upstream' }; }
+            if (!j || !j.ok) { const e = (j && j.error) || 'upstream', st = e === 'key' ? 401 : (e === 'limit' || e === 'quota') ? 429 : e === 'model' ? 404 : 502; return new Response(JSON.stringify({ error: { code: e, message: e } }), { status: st, headers: { 'Content-Type': 'application/json' } }); }
+            if (j.b64) { const s = atob(j.b64), u = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return new Response(u, { status: 200, headers: { 'Content-Type': j.mime || 'audio/mpeg' } }); }
+            return new Response(j.json || '{}', { status: 200, headers: { 'Content-Type': 'application/json' } });
+        }
         function aiReady() { return !!(LR_AI_PROXY || aiKey()); }
         function aiCtx() { const l = aiLang(); return { name: (state.user.name || 'Student'), target: state.user.target || 'IELTS', lang: l, langName: trL(l).n, uz: l === 'uz' }; }
         function aiLangRule(mode, c) {
@@ -18637,7 +18653,7 @@ const mentorAvatarCache = {};
             const body = { model: LR_AI_MODEL, temperature: mode === 'writing' || mode === 'ocr' ? 0.2 : 0.7, max_tokens: mode === 'writing' ? 1500 : mode === 'ocr' ? 1400 : mode === 'tutor' ? 1800 : 700, messages: [{ role: 'system', content: sys }].concat(messages.slice(-12)) };
             if (mode === 'writing') body.response_format = { type: 'json_object' };
             const c = new AbortController(); const to = setTimeout(() => c.abort(), 60000);
-            let r; try { r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify(body) }); } finally { clearTimeout(to); }
+            let r; try { r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify(body) }); } finally { clearTimeout(to); }
             if (!r.ok) throw { code: r.status === 401 ? 'key' : r.status === 429 ? 'quota' : 'upstream' };
             const j = await r.json(); return (j.choices && j.choices[0] && j.choices[0].message.content) || '';
         }
@@ -19443,7 +19459,7 @@ Rules: exactly one correct answer; the wrong answers are plausible but clearly w
             let txt = ''; const key = typeof aiKey === 'function' ? aiKey() : '';
             if (key) {
                 const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 60000); let r;
-                try { r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: ctl.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: typeof LR_AI_MODEL !== 'undefined' ? LR_AI_MODEL : 'gpt-4o-mini', temperature: .8, max_tokens: 3800, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: 'You are an expert English teacher who writes quiz questions. Output strict JSON only.' }, { role: 'user', content: prompt }] }) }); } finally { clearTimeout(to); }
+                try { r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: ctl.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: typeof LR_AI_MODEL !== 'undefined' ? LR_AI_MODEL : 'gpt-4o-mini', temperature: .8, max_tokens: 3800, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: 'You are an expert English teacher who writes quiz questions. Output strict JSON only.' }, { role: 'user', content: prompt }] }) }); } finally { clearTimeout(to); }
                 if (!r.ok) throw { code: r.status === 401 ? 'key' : r.status === 429 ? 'quota' : 'upstream' }; const j = await r.json(); txt = j.choices[0].message.content;
             } else txt = await aiCall('tutor', [{ role: 'user', content: prompt }]);
             const m = /\{[\s\S]*\}/.exec(txt), j = JSON.parse(m ? m[0] : txt), seen = {};
@@ -20323,7 +20339,7 @@ window.WV_PAY = window.WV_PAY || { api: '', support: '' };
         if (!quick && !e.tr) { const L = trLang(); if (L && L !== 'en') { try { e.tr = await gGtx(w, L); e.trl = L; } catch (x) { } } }
         save(); return e;
     }
-    async function aiJSON(prompt) { const c = new AbortController(), to = setTimeout(() => c.abort(), 30000); try { const r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + aiKey() }, body: JSON.stringify({ model: typeof LR_AI_MODEL !== 'undefined' ? LR_AI_MODEL : 'gpt-4o-mini', temperature: .3, max_tokens: 200, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: 'You are a helpful English teacher. Reply with JSON only.' }, { role: 'user', content: prompt }] }) }); if (!r.ok) throw 0; const j = await r.json(); return JSON.parse(j.choices[0].message.content); } finally { clearTimeout(to); } }
+    async function aiJSON(prompt) { const c = new AbortController(), to = setTimeout(() => c.abort(), 30000); try { const r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + aiKey() }, body: JSON.stringify({ model: typeof LR_AI_MODEL !== 'undefined' ? LR_AI_MODEL : 'gpt-4o-mini', temperature: .3, max_tokens: 200, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: 'You are a helpful English teacher. Reply with JSON only.' }, { role: 'user', content: prompt }] }) }); if (!r.ok) throw 0; const j = await r.json(); return JSON.parse(j.choices[0].message.content); } finally { clearTimeout(to); } }
     function say(w) { try { const e = W().book[w]; if (e && e.au) { const a = new Audio(e.au); a.play().catch(() => tts(w)); return; } } catch (x) { } tts(w); }
     function tts(w) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-US'; u.rate = .85; const v = speechSynthesis.getVoices().find(x => /^en(-|_)(US|GB)/i.test(x.lang)); if (v) u.voice = v; speechSynthesis.speak(u); } catch (e) { } }
     async function define(w) {
@@ -21164,7 +21180,7 @@ const VOICE = (() => {
         for (const model of ['gpt-4o-mini-tts', 'tts-1']) {
             const body = model === 'tts-1' ? { model, voice: s.v1, input: text, response_format: 'mp3', speed: s.sp } : { model, voice: s.v, input: text, response_format: 'mp3', instructions: s.ins };
             let r; const c = typeof AbortController !== 'undefined' ? new AbortController() : null, to = setTimeout(() => c && c.abort(), 15000);
-            try { r = await fetch('https://api.openai.com/v1/audio/speech', { method: 'POST', signal: c ? c.signal : undefined, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify(body) }); }
+            try { r = await lrAIFetch('https://api.openai.com/v1/audio/speech', { method: 'POST', signal: c ? c.signal : undefined, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify(body) }); }
             catch (e) { clearTimeout(to); aiDown = Date.now() + 45000; return null; }
             clearTimeout(to);
             if (r.ok) { const b = await r.arrayBuffer().catch(() => null); if (b && b.byteLength > 300) return b; continue; }
@@ -23172,7 +23188,7 @@ const CHAR = (() => {
         const topic = S.deck === 'mix' ? 'a mix of grammar, vocabulary definitions, idioms/phrasal verbs and collocations' : DECKS[S.deck].n;
         try {
             const c = new AbortController(), to = setTimeout(() => c.abort(), 40000);
-            const r = await fetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model, temperature: 1, response_format: { type: 'json_object' }, max_tokens: 2600, messages: [{ role: 'system', content: 'You write quiz cards for adult English learners (B2–C1). Return ONLY JSON: {"cards":[{"deck":"gram|vocab|idiom|coll|fact","s":"one sentence","ok":true|false,"fix":"corrected sentence if ok is false, else empty","why":"max 12 words"}]}. Exactly half the cards must be wrong. Wrong sentences must contain ONE clear, common learner mistake (not spelling typos). Correct sentences must be 100% natural standard English. Keep each sentence under 16 words. Facts must be true/false general knowledge that is well established.' }, { role: 'user', content: `Make 24 new, varied cards about ${topic}. Random seed ${Date.now() % 9973}.` }] }) });
+            const r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model, temperature: 1, response_format: { type: 'json_object' }, max_tokens: 2600, messages: [{ role: 'system', content: 'You write quiz cards for adult English learners (B2–C1). Return ONLY JSON: {"cards":[{"deck":"gram|vocab|idiom|coll|fact","s":"one sentence","ok":true|false,"fix":"corrected sentence if ok is false, else empty","why":"max 12 words"}]}. Exactly half the cards must be wrong. Wrong sentences must contain ONE clear, common learner mistake (not spelling typos). Correct sentences must be 100% natural standard English. Keep each sentence under 16 words. Facts must be true/false general knowledge that is well established.' }, { role: 'user', content: `Make 24 new, varied cards about ${topic}. Random seed ${Date.now() % 9973}.` }] }) });
             clearTimeout(to); const j = await r.json(), txt = j.choices && j.choices[0] && j.choices[0].message.content, data = JSON.parse(txt || '{}');
             const cards = (data.cards || []).filter(x => x && typeof x.s === 'string' && x.s.length > 3 && x.s.length < 140 && typeof x.ok === 'boolean' && (x.ok || x.fix)).map((x, i) => ({ id: 1000 + i, d: DECKS[x.deck] ? x.deck : 'gram', s: x.s.trim(), ok: x.ok, fix: String(x.fix || '').trim(), why: String(x.why || '').trim() }));
             if (cards.length < 8) throw new Error('few');
