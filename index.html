@@ -2895,6 +2895,159 @@ body.lite .grx-title,body.lite .grx-logo{animation:none}
 @media (prefers-reduced-motion:reduce){.grx-scr.fresh>*,.grx-cd,.grx-logo,.grx-title{animation:none!important}}
 
 </style>
+<!--club:css--><style id="club-css">
+/* ===== Speaking Club ===== */
+#view-club,.cl-sheet-bg,.cl-incoming,#cl-float{--cl-ink:#e8edf7;--cl-mute:#94a3b8;--cl-line:rgba(148,163,184,.16);--cl-card:rgba(15,23,42,.66);--cl-me:#4f46e5;--cl-red:#d9465a;--cl-blue:#2c5cc5;--cl-paper:#f3eee2;--cl-pink:#1c2540;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--cl-ink)}
+#view-club button{font:inherit;color:inherit}
+.cl-wrap{max-width:760px;margin:0 auto}
+.cl-h{font-family:'Fraunces',Georgia,serif;font-weight:700;font-size:30px;line-height:1.08;letter-spacing:-.01em;margin:0}
+.cl-lead{color:var(--cl-mute);margin:6px 0 18px;font-size:15px;line-height:1.5}
+.cl-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:14px;border:0;background:#4f46e5;color:#fff!important;font-weight:800;font-size:15px;cursor:pointer;transition:transform .12s,filter .12s}
+.cl-btn:active{transform:scale(.97)}
+.cl-btn:focus-visible,.cl-room:focus-visible,.cl-ib:focus-visible,.cl-sh-b:focus-visible,.cl-mechip:focus-visible{outline:3px solid #a5b4fc;outline-offset:2px}
+.cl-btn-wide{width:100%}
+.cl-btn-ink{background:var(--cl-pink);color:var(--cl-paper)!important}
+.cl-btn-ghost{background:transparent;border:1px solid var(--cl-line);color:var(--cl-ink)!important}
+.cl-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.cl-note{text-align:center;padding:56px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--cl-mute)}
+.cl-spin{width:34px;height:34px;border-radius:50%;border:3px solid rgba(148,163,184,.25);border-top-color:#a5b4fc;animation:clspin 1s linear infinite}
+@keyframes clspin{to{transform:rotate(360deg)}}
+
+/* join */
+.cl-join{background:var(--cl-card);border:1px solid var(--cl-line);border-radius:24px;padding:24px 20px}
+.cl-f{display:block;margin:0 0 14px}
+.cl-f>span{display:block;font-size:13px;font-weight:700;color:var(--cl-mute);margin-bottom:6px}
+.cl-f input,.cl-f select{width:100%;min-height:48px;border-radius:14px;border:1px solid var(--cl-line);background:#0b1224;color:var(--cl-ink);padding:0 14px;font-size:16px}
+.cl-f input:focus,.cl-f select:focus{outline:none;border-color:#818cf8;box-shadow:0 0 0 3px rgba(129,140,248,.25)}
+.cl-lv{display:flex;gap:8px;flex-wrap:wrap}
+.cl-lv button{min-height:42px;padding:0 16px;border-radius:12px;border:1px solid var(--cl-line);background:#0b1224;font-weight:700;cursor:pointer}
+.cl-lv button.on{background:#4f46e5;border-color:#6366f1;color:#fff}
+.cl-rules{border-left:3px solid var(--cl-red);background:rgba(217,70,90,.08);border-radius:0 14px 14px 0;padding:12px 14px;margin:6px 0 12px;font-size:14px;line-height:1.5}
+.cl-rules ul{margin:6px 0 0;padding-left:18px;color:#cbd5e1}
+.cl-chk{display:flex;gap:10px;align-items:center;font-weight:700;font-size:14px;margin:4px 0 6px;cursor:pointer}
+.cl-chk input{width:20px;height:20px;accent-color:#6366f1}
+.cl-err{min-height:18px;color:#fda4af;font-size:13px;font-weight:700;margin:2px 0 10px}
+
+/* home */
+.cl-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:18px}
+.cl-sub{margin:6px 0 0;color:var(--cl-mute);font-size:14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.cl-sub b,#cl-total{color:var(--cl-ink);font-weight:800}
+.cl-dot{width:8px;height:8px;border-radius:50%;background:#34d399;box-shadow:0 0 0 0 rgba(52,211,153,.6);animation:clpulse 2s infinite}
+@keyframes clpulse{70%{box-shadow:0 0 0 8px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+.cl-off{color:#fbbf24;font-weight:700;margin-left:4px}
+.cl-mechip{flex:none;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:14px;border:1px solid var(--cl-line);background:var(--cl-card);cursor:pointer;max-width:48%}
+.cl-mechip span{font-size:20px}
+.cl-mechip b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cl-mechip small{font-size:11px;font-weight:800;color:#a5b4fc}
+.cl-post{border-radius:22px;padding:7px;background:repeating-linear-gradient(135deg,var(--cl-red) 0 13px,var(--cl-paper) 13px 20px,var(--cl-blue) 20px 33px,var(--cl-paper) 33px 40px);box-shadow:0 22px 50px -18px rgba(0,0,0,.6);margin-bottom:26px}
+.cl-post-in{background:var(--cl-paper);color:var(--cl-pink);border-radius:16px;padding:22px 18px 22px 22px;display:flex;align-items:center;gap:14px}
+.cl-post-t{flex:1;min-width:0}
+.cl-kick{margin:0 0 4px;font-size:12px;font-weight:800;color:var(--cl-red)}
+.cl-post h3{font-family:'Fraunces',Georgia,serif;font-size:25px;line-height:1.1;margin:0 0 8px;color:var(--cl-pink)}
+.cl-post p{margin:0 0 16px;font-size:14.5px;line-height:1.5;color:#3b4561}
+.cl-stamp{width:112px;height:112px;flex:none;color:var(--cl-blue);transform:rotate(-9deg);opacity:.9}
+.cl-sec{font-family:'Outfit',sans-serif;font-size:17px;font-weight:800;margin:0 0 10px}
+.cl-rooms{display:flex;flex-direction:column;gap:8px}
+.cl-room{display:flex;align-items:center;gap:12px;width:100%;padding:12px 14px;border-radius:16px;background:var(--cl-card);border:1px solid var(--cl-line);cursor:pointer;text-align:left;transition:border-color .15s,background .15s}
+.cl-room:hover{border-color:color-mix(in srgb,var(--h) 55%,transparent);background:rgba(30,41,59,.7)}
+.cl-tag{flex:none;min-width:46px;height:46px;padding:0 6px;border-radius:13px;display:grid;place-items:center;font-family:'Outfit',sans-serif;font-weight:900;font-size:14px;color:var(--h);background:color-mix(in srgb,var(--h) 16%,transparent);border:1px solid color-mix(in srgb,var(--h) 35%,transparent)}
+.cl-tag.sm{display:inline-grid;min-width:0;height:24px;padding:0 7px;border-radius:7px;font-size:11px;vertical-align:2px;margin-right:4px}
+.cl-rt{flex:1;min-width:0;display:flex;flex-direction:column}
+.cl-rt b{font-size:15.5px}
+.cl-rt small{color:var(--cl-mute);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cl-rn{flex:none;display:flex;align-items:center;gap:6px}
+.cl-rn em{font-style:normal;font-weight:800;font-size:13px;min-width:26px;height:26px;padding:0 7px;border-radius:99px;display:grid;place-items:center;background:rgba(52,211,153,.15);color:#6ee7b7}
+.cl-rn em.z{background:rgba(148,163,184,.12);color:var(--cl-mute)}
+.cl-flags{font-size:15px;letter-spacing:-3px}
+.cl-foot{color:var(--cl-mute);font-size:13px;line-height:1.5;margin:16px 2px 0}
+
+/* chat */
+.cl-chat{display:flex;flex-direction:column;height:70vh;min-height:320px;border-radius:22px;background:rgba(7,11,30,.94);border:1px solid var(--cl-line);overflow:hidden}
+.cl-bar{display:flex;align-items:center;gap:8px;padding:10px;border-bottom:1px solid var(--cl-line);background:rgba(15,23,42,.85)}
+.cl-bar-t{flex:1;min-width:0;display:flex;flex-direction:column}
+.cl-bar-t b{font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cl-bar-t small{color:var(--cl-mute);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cl-ib{flex:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--cl-line);background:rgba(30,41,59,.6);display:grid;place-items:center;cursor:pointer}
+.cl-ib svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cl-ib[disabled]{opacity:.35;cursor:not-allowed}
+.cl-callb.on{background:#dc2626;border-color:#ef4444}
+.cl-peer{flex:1;min-width:0;display:flex;align-items:center;gap:10px}
+.cl-peer>span:last-child{display:flex;flex-direction:column;min-width:0}
+.cl-peer b{font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cl-peer small{color:var(--cl-mute);font-size:12.5px}
+.cl-pflag{font-size:26px;line-height:1}
+.cl-msgs{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:3px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.cl-m{display:flex;gap:8px;align-items:flex-end;max-width:88%;margin-top:7px}
+.cl-m.cont{margin-top:0}
+.cl-m.me{align-self:flex-end;flex-direction:row-reverse}
+.cl-av{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:16px;background:hsl(var(--hu) 45% 22%)}
+.cl-m.cont .cl-av{background:transparent}
+.cl-b{min-width:0;background:#1e293b;border-radius:18px 18px 18px 6px;padding:7px 12px 6px}
+.cl-m.me .cl-b{background:var(--cl-me);border-radius:18px 18px 6px 18px}
+.cl-m.cont .cl-b{border-top-left-radius:6px}
+.cl-m.me.cont .cl-b{border-top-left-radius:18px;border-top-right-radius:6px}
+.cl-nm{display:block;border:0;background:none;padding:0;margin:0 0 1px;font-size:12.5px;font-weight:800;color:hsl(var(--hu) 80% 74%)!important;cursor:pointer;text-align:left}
+.cl-nm small{font-weight:700;color:var(--cl-mute);font-size:10.5px;margin-left:3px}
+.cl-b p{margin:0;font-size:15px;line-height:1.42;overflow-wrap:anywhere;white-space:pre-wrap}
+.cl-b time{float:right;font-size:10.5px;color:rgba(203,213,225,.6);margin:6px 0 -2px 10px}
+.cl-m.me .cl-b time{color:rgba(224,231,255,.7)}
+.cl-sys{align-self:center;max-width:92%;margin:10px 0 4px;font-size:12.5px;line-height:1.45;color:#cbd5e1;background:rgba(148,163,184,.12);padding:6px 12px;border-radius:12px;text-align:center}
+.cl-ice{display:flex;gap:8px;overflow-x:auto;padding:8px 10px 2px;scrollbar-width:none}
+.cl-ice::-webkit-scrollbar{display:none}
+.cl-ice button{flex:none;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;padding:7px 12px;border-radius:99px;border:1px dashed color-mix(in srgb,var(--h,#a5b4fc) 50%,transparent);background:transparent;color:#cbd5e1!important;cursor:pointer}
+.cl-in{display:flex;gap:8px;padding:10px;border-top:1px solid var(--cl-line);background:rgba(15,23,42,.9)}
+.cl-in input{flex:1;min-width:0;min-height:46px;border-radius:14px;border:1px solid var(--cl-line);background:#0b1224;color:var(--cl-ink);padding:0 14px;font-size:16px}
+.cl-in input:focus{outline:none;border-color:#818cf8}
+.cl-send{flex:none;width:46px;height:46px;border-radius:14px;border:0;background:#4f46e5;display:grid;place-items:center;cursor:pointer}
+.cl-send svg{width:20px;height:20px;fill:#fff}
+.cl-send[disabled],.cl-in input[disabled]{opacity:.45}
+.cl-icecard{display:flex;align-items:center;gap:8px;margin:0 10px;padding:9px 10px 9px 12px;border-radius:14px;background:rgba(243,238,226,.07);border:1px dashed rgba(243,238,226,.25)}
+.cl-ick{flex:none;font-size:11px;font-weight:800;color:#fca5a5}
+.cl-icq{flex:1;min-width:0;font-size:13.5px;line-height:1.35;color:#e2e8f0}
+.cl-icecard button{flex:none;min-height:34px;padding:0 12px;border-radius:10px;border:0;background:#334155;font-weight:800;font-size:13px;cursor:pointer}
+.cl-icecard .cl-ghost{background:transparent;border:1px solid var(--cl-line);width:34px;padding:0}
+.cl-endbar{padding:12px;text-align:center;border-top:1px solid var(--cl-line)}
+.cl-endbar p{margin:0 0 10px;color:#cbd5e1;font-weight:700}
+.cl-callbar{display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(90deg,rgba(22,163,74,.18),rgba(15,23,42,.9));border-bottom:1px solid rgba(52,211,153,.3)}
+.cl-callbar[hidden]{display:none}
+.cl-vu{--lv:0;width:14px;height:14px;border-radius:50%;background:#34d399;box-shadow:0 0 0 calc(var(--lv) * 9px) rgba(52,211,153,.35);transition:box-shadow .08s}
+.cl-cst{flex:1;font-weight:800;font-variant-numeric:tabular-nums}
+.cl-cbtn{min-height:38px;padding:0 14px;border-radius:12px;border:1px solid var(--cl-line);background:#1e293b;font-weight:800;font-size:13.5px;cursor:pointer;color:#e2e8f0}
+.cl-cbtn.on{background:#f59e0b;color:#1c1917;border-color:#f59e0b}
+.cl-cbtn.red{background:#dc2626;border-color:#dc2626;color:#fff}
+.cl-cbtn.green{background:#16a34a;border-color:#16a34a;color:#fff}
+
+/* partner search */
+.cl-search{text-align:center;padding:30px 16px 20px;display:flex;flex-direction:column;align-items:center}
+.cl-search h3{font-family:'Fraunces',Georgia,serif;font-size:24px;margin:22px 0 6px}
+.cl-search p{color:var(--cl-mute);margin:0 0 20px;max-width:360px;line-height:1.5}
+.cl-orbit{position:relative;width:220px;height:220px;border-radius:50%;border:1px dashed rgba(165,180,252,.35);background:radial-gradient(circle,rgba(7,11,30,.96) 0 62%,rgba(7,11,30,.75) 72%,rgba(7,11,30,0) 100%)}
+.cl-search{background:radial-gradient(ellipse at 50% 30%,rgba(7,11,30,.85),rgba(7,11,30,0) 70%);border-radius:24px}
+.cl-orbit::before{content:'';position:absolute;inset:38px;border-radius:50%;border:1px dashed rgba(165,180,252,.22)}
+.cl-core{position:absolute;inset:0;display:grid;place-items:center;font-size:52px;animation:clbob 2.4s ease-in-out infinite}
+.cl-orbit i{position:absolute;left:50%;top:50%;font-style:normal;font-size:22px;margin:-14px 0 0 -12px;transform:rotate(calc(var(--i) * 36deg)) translateY(-102px) rotate(calc(var(--i) * -36deg));animation:clorb 14s linear infinite;animation-delay:calc(var(--i) * -1.4s);opacity:.9}
+@keyframes clorb{from{transform:rotate(0deg) translateY(-102px) rotate(0deg)}to{transform:rotate(360deg) translateY(-102px) rotate(-360deg)}}
+@keyframes clbob{50%{transform:translateY(-6px)}}
+
+/* overlays (appended to body) */
+.cl-sheet-bg{position:fixed;inset:0;z-index:300;background:rgba(2,6,23,.62);display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px)}
+.cl-sheet{width:min(520px,100%);background:#0f172a;border:1px solid var(--cl-line);border-radius:22px 22px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px;animation:clup .2s ease-out}
+@keyframes clup{from{transform:translateY(30px);opacity:0}}
+.cl-sh-t{margin:2px 4px 6px;font-weight:800;font-size:16px;color:#e2e8f0}
+.cl-sh-b{min-height:50px;border-radius:14px;border:1px solid var(--cl-line);background:#1e293b;color:#e2e8f0;font:inherit;font-weight:700;font-size:15px;cursor:pointer;text-align:left;padding:0 16px}
+.cl-sh-b.red{color:#fda4af;border-color:rgba(244,63,94,.35)}
+.cl-sh-b.ghost{background:transparent;text-align:center}
+.cl-incoming{position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:310;width:min(460px,calc(100% - 24px));display:flex;align-items:center;gap:10px;padding:12px;border-radius:18px;background:#0f172a;border:1px solid rgba(52,211,153,.45);box-shadow:0 18px 50px rgba(0,0,0,.55);animation:clup .25s ease-out}
+.cl-incoming>div{flex:1;min-width:0;display:flex;flex-direction:column}
+.cl-incoming b{font-size:15px}
+.cl-incoming small{color:var(--cl-mute);font-size:12.5px}
+#cl-float{position:fixed;right:14px;bottom:84px;z-index:65;display:flex;align-items:center;gap:8px;max-width:calc(100% - 28px);padding:11px 16px;border-radius:99px;border:1px solid rgba(52,211,153,.45);background:#0f172a;color:#e2e8f0;font:700 14px 'Plus Jakarta Sans',sans-serif;box-shadow:0 12px 30px rgba(0,0,0,.5);cursor:pointer}
+#cl-float i{width:9px;height:9px;border-radius:50%;background:#34d399;animation:clpulse 2s infinite}
+@media (min-width:1024px){#cl-float{bottom:22px}}
+@media (max-width:420px){.cl-h{font-size:26px}.cl-post-in{padding:18px 14px 18px 16px}.cl-post h3{font-size:22px}.cl-stamp{width:84px;height:84px}.cl-mechip b{max-width:90px}}
+@media (prefers-reduced-motion:reduce){.cl-dot,.cl-core,.cl-orbit i,.cl-spin,#cl-float i{animation:none!important}.cl-sheet,.cl-incoming{animation:none}}
+@media (min-width:1024px){header nav .nav-btn{padding-left:.68rem!important;padding-right:.68rem!important;white-space:nowrap}}
+</style><!--/club:css-->
 </head>
 <body class="min-h-screen text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white" data-view="dashboard">
     <div id="lr-bg" aria-hidden="true">
@@ -2948,6 +3101,9 @@ body.lite .grx-title,body.lite .grx-logo{animation:none}
                 <button onclick="navigateTo('ai-chat')" class="nav-btn px-4 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-2" data-target="ai-chat">
                     <i class="fa-solid fa-robot text-emerald-400"></i> AI Tutor
                 </button>
+                <!--club:nav--><button onclick="navigateTo('club')" class="nav-btn px-4 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-2" data-target="club">
+                    <i class="fa-solid fa-earth-asia text-sky-400"></i> Club
+                </button><!--/club:nav-->
                 <button onclick="navigateTo('profile')" class="nav-btn px-4 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center gap-2" data-target="profile">
                     <i class="fa-solid fa-user text-pink-400"></i> Profile
                 </button>
@@ -3634,6 +3790,7 @@ body.lite .grx-title,body.lite .grx-logo{animation:none}
             </div>
         </section>
 
+        <!--club:view--><section id="view-club" class="view-panel hidden"><div id="club-root"></div></section><!--/club:view-->
         <section id="view-certificates" class="view-panel hidden"><div id="cert-root" class="space-y-5"></div></section>
         <section id="view-reading" class="view-panel hidden"><div id="rl-root" class="space-y-5"></div></section>
         <section id="view-profile" class="view-panel hidden space-y-5">
@@ -3763,6 +3920,9 @@ body.lite .grx-title,body.lite .grx-logo{animation:none}
         <button onclick="navigateTo('dashboard')" class="flex flex-col items-center gap-1 text-slate-400 hover:text-indigo-400">
             <i class="fa-solid fa-compass text-base"></i> Hub
         </button>
+        <!--club:mnav--><button onclick="navigateTo('club')" class="flex flex-col items-center gap-1 text-slate-400 hover:text-sky-400">
+            <i class="fa-solid fa-earth-asia text-base"></i> Club
+        </button><!--/club:mnav-->
         <button onclick="navigateTo('certificates')" class="flex flex-col items-center gap-1 text-slate-400 hover:text-amber-400">
             <i class="fa-solid fa-award text-base"></i> Exams
         </button>
@@ -5153,6 +5313,7 @@ if (typeof module !== 'undefined') module.exports = LunaChess;
             if (viewId === 'chess') chOpen();
             if (viewId === 'games') { try { gmRender(); } catch (e) { console.error(e); } } else { try { window.GRX && window.GRX.leaveAll && window.GRX.leaveAll(); } catch (e) {} }
             if (viewId === 'reading') rlOpen(); else rlLeave();
+            /*club*/try { if (viewId === 'club') CLUB.enter(); else if (window.CLUB) CLUB.away(); } catch (e) { console.error(e); }/*/club*/
             if (viewId !== 'certificates' && typeof vxHide === 'function') vxHide();
             if (viewId === 'certificates') { certStopAll(); cert.exam = null; cert.skill = null; certReset(); renderCert(); }
 
@@ -13311,6 +13472,7 @@ Respond ONLY with minified JSON: {"title":string,"topic":string (1-2 English wor
             { id: 'mentors', icon: 'fa-graduation-cap', g: 'linear-gradient(135deg,#6366f1,#4338ca)', c: 'rgba(99,102,241,.28)', title: 'Top Mentors', desc: 'English teachers on YouTube & Telegram.', go: "navigateTo('mentors')" },
             { id: 'ai', icon: 'fa-robot', g: 'linear-gradient(135deg,#22d3ee,#6366f1)', c: 'rgba(34,211,238,.28)', title: 'AI Tutor', desc: 'Chat, speaking practice and homework help in 12 languages.', w2: 1, live: () => 'Ask anything', go: "navigateTo('ai-chat')" },
             { id: 'games', icon: 'fa-gamepad', g: 'linear-gradient(135deg,#7c3aed,#ec4899)', c: 'rgba(167,139,250,.3)', title: 'Game Zone', desc: 'Galaxy Rush class quiz + Chess Arena.', isNew: 1, live: () => ((state.user.gamePts || 0) + ' pts'), go: "navigateTo('games')" },
+            /*club*/{ id: 'club', icon: 'fa-earth-asia', g: 'linear-gradient(135deg,#2c5cc5,#d9465a)', c: 'rgba(96,165,250,.3)', title: 'Speaking Club', desc: 'Chat and talk by voice with learners from other countries.', w2: 1, isNew: 1, live: () => 'Live chat rooms', go: "navigateTo('club')" },/*/club*/
                         { id: 'profile', icon: 'fa-user-astronaut', g: 'linear-gradient(135deg,#6366f1,#a855f7)', c: 'rgba(129,140,248,.3)', title: 'My Profile', desc: 'XP, badges, settings.', live: () => 'Level ' + pfStats().lvl, go: "navigateTo('profile')" },
             { id: 'reading', icon: 'fa-book-open-reader', g: 'linear-gradient(135deg,#f43f5e,#be123c)', c: 'rgba(244,63,94,.25)', title: 'Reading Lab', desc: 'Timed passages, tap-to-translate, instant feedback & AI help.', w2: 1, isNew: 1, live: () => { const s = rlStats(); return s.n ? s.n + ' read · ' + s.acc + '%' : rlAll().length + ' passages'; }, go: "navigateTo('reading')" }
         ];
@@ -23879,5 +24041,546 @@ window.kgLive = function () {
 /*MUSIC_END*/
 </script>
 
+<!--club:js--><script id="club-js">
+/* ============ LunaRise Speaking Club — live chat rooms + 1-to-1 partner chat & voice (Firebase RTDB + WebRTC) ============ */
+var LR_FB = {"apiKey": "AIzaSyA4D_KBRFrykfx4qcSn_PODHkM61mdKfPc", "authDomain": "lunarise-15899.firebaseapp.com", "databaseURL": "https://lunarise-15899-default-rtdb.europe-west1.firebasedatabase.app", "projectId": "lunarise-15899", "storageBucket": "lunarise-15899.firebasestorage.app", "messagingSenderId": "876506615446", "appId": "1:876506615446:web:042b38aa5308543d6d3cb7"};      // Firebase web config (public by design; protected by the database rules)
+var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.g. [{urls:'turn:…',username:'…',credential:'…'}]
+(function () {
+    'use strict';
+    const FBV = '10.14.1';
+    const ROOMS = [
+        { id: 'all', tag: 'All', name: 'Lobby', sub: 'Everyone, every level', h: '#a5b4fc' },
+        { id: 'a2', tag: 'A2', name: 'Starters', sub: 'Simple everyday English', h: '#6ee7b7' },
+        { id: 'b1', tag: 'B1', name: 'Talkers', sub: 'Daily life, travel and work', h: '#67e8f9' },
+        { id: 'b2', tag: 'B2', name: 'Debaters', sub: 'Opinions, news and ideas', h: '#fcd34d' },
+        { id: 'ielts', tag: 'IELTS', name: 'Speaking test', sub: 'Practise Parts 1, 2 and 3', h: '#f9a8d4' }
+    ];
+    const LV = ['A2', 'B1', 'B2', 'C1', 'IELTS'];
+    const CC = ('UZ Uzbekistan|AF Afghanistan|DZ Algeria|AR Argentina|AM Armenia|AU Australia|AT Austria|AZ Azerbaijan|BD Bangladesh|BY Belarus|BE Belgium|BR Brazil|CA Canada|CL Chile|CN China|CO Colombia|CZ Czechia|DK Denmark|EG Egypt|ET Ethiopia|FI Finland|FR France|GE Georgia|DE Germany|GH Ghana|GR Greece|HK Hong Kong|HU Hungary|IN India|ID Indonesia|IR Iran|IQ Iraq|IE Ireland|IL Israel|IT Italy|JP Japan|JO Jordan|KZ Kazakhstan|KE Kenya|KW Kuwait|KG Kyrgyzstan|LB Lebanon|MY Malaysia|MX Mexico|MN Mongolia|MA Morocco|NP Nepal|NL Netherlands|NZ New Zealand|NG Nigeria|NO Norway|PK Pakistan|PE Peru|PH Philippines|PL Poland|PT Portugal|QA Qatar|RO Romania|RU Russia|SA Saudi Arabia|SG Singapore|ZA South Africa|KR South Korea|ES Spain|LK Sri Lanka|SE Sweden|CH Switzerland|SY Syria|TW Taiwan|TJ Tajikistan|TZ Tanzania|TH Thailand|TN Tunisia|TR Türkiye|TM Turkmenistan|AE UAE|UA Ukraine|GB United Kingdom|US United States|VN Vietnam|YE Yemen|ZZ Another country')
+        .split('|').map(s => [s.slice(0, 2), s.slice(3)]);
+    const ICE = ['Where are you from? What is your city famous for?', 'Do you study or work? What do you do?', 'Why are you learning English?', 'What is a typical breakfast in your country?', 'What is your favourite place in your hometown?', 'What was the last film or series you really enjoyed?', 'If you could live in any country, which would you choose?', 'What is the biggest holiday in your country?', 'What do you usually do at the weekend?', 'Who is a person that inspires you?', 'What is the best advice you have ever received?', 'City or countryside — which do you prefer?', 'What new skill would you like to learn this year?', 'Which food from your country should I try first?', 'How do people celebrate weddings where you live?', 'What is the hardest thing about English for you?', 'Tell me about a trip you will never forget.', 'Is social media good or bad for young people?', 'Should university be free for everyone?', 'Would you rather work from home or in an office?', 'What music do you listen to when you study?', 'What is something tourists always get wrong about your country?'];
+    const ICE_SERVERS = [{ urls: ['stun:stun.l.google.com:19302', 'stun:stun1.l.google.com:19302'] }];
+    const LSK = 'lr_club_me', LSB = 'lr_club_blocked';
+
+    const C = { scr: 'off', db: null, uid: null, me: null, room: null, online: {}, call: null, rtc: null, pres: null, off: 0, skipped: [], timers: {} };
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+    const flag = (c) => (c && /^[A-Z]{2}$/.test(c) && c !== 'ZZ') ? String.fromCodePoint(...[...c].map(ch => 127397 + ch.charCodeAt(0))) : '🌍';
+    const cname = (c) => (CC.find(x => x[0] === c) || [0, 'another country'])[1];
+    const hue = (u) => { let h = 0; for (const ch of String(u)) h = (h * 31 + ch.charCodeAt(0)) % 360; return h; };
+    const hhmm = (t) => { const d = new Date(t || Date.now()); return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); };
+    const lsGet = (k, d) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
+    const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { } };
+    const cfg = () => { try { return (LR_FB && LR_FB.apiKey && LR_FB.databaseURL) ? LR_FB : null; } catch (e) { return null; } };
+    const toast = (m) => { try { showToast(m); } catch (e) { console.log(m); } };
+    const blocked = () => lsGet(LSB, []);
+    const root = () => $('club-root');
+
+    /* ---------- moderation ---------- */
+    const BAD = /(?<!\p{L})(?:f+u+c+k\p{L}*|sh[i1]t\p{L}*|b[i1]tch\p{L}*|a+s+h[o0]le\p{L}*|dickhead\p{L}*|puss(?:y|ies)|c+u+n+t\p{L}*|wh[o0]re\p{L}*|slut\p{L}*|bastard\p{L}*|n[i1]gg\p{L}*|faggot\p{L}*|retard\p{L}*|motherf\p{L}*|сук[аиеоу]\p{L}*|бля\p{L}*|хуй\p{L}*|хуе\p{L}*|пизд\p{L}*|еба\p{L}*|ёба\p{L}*|ебл\p{L}*|мудак\p{L}*|jalab\p{L}*|qanjiq\p{L}*|sikay\p{L}*|sikaman\p{L}*|sikib\p{L}*|onangni\p{L}*|dalbayob\p{L}*|qo['’`]?toq\p{L}*)/giu;
+    function scrub(t) {
+        return String(t || '')
+            .replace(/[\u0000-\u001f​-‏‪-‮]/g, ' ')
+            .replace(/\b[\w.+-]+@[\w-]+\.[\w.]+\b/g, '[email hidden]')
+            .replace(/\b(?:https?:\/\/|www\.)\S+/gi, '[link hidden]')
+            .replace(/\b[\w-]+\.(?:com|ru|uz|net|org|me|io|ly|gg|xyz|tk|app|site|online)(?:\/\S*)?/gi, '[link hidden]')
+            .replace(/(?:\+|\b)\d[\d\s().-]{6,}\d/g, '[number hidden]')
+            .replace(/(?<![\w])@[A-Za-z0-9_]{4,}/g, '[contact hidden]')
+            .replace(BAD, m => '•'.repeat(Math.min(m.length, 8)))
+            .replace(/\s{2,}/g, ' ').trim();
+    }
+
+    /* ---------- sounds ---------- */
+    let AC = null;
+    function tone(freqs, dur, vol) {
+        try {
+            AC = AC || new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === 'suspended') AC.resume();
+            const t0 = AC.currentTime;
+            freqs.forEach((f, i) => {
+                const o = AC.createOscillator(), g = AC.createGain(); o.type = 'sine'; o.frequency.value = f;
+                g.gain.setValueAtTime(0, t0 + i * dur); g.gain.linearRampToValueAtTime(vol || .12, t0 + i * dur + .02); g.gain.exponentialRampToValueAtTime(.0001, t0 + (i + 1) * dur);
+                o.connect(g).connect(AC.destination); o.start(t0 + i * dur); o.stop(t0 + (i + 1) * dur + .05);
+            });
+        } catch (e) { }
+    }
+    const ding = () => tone([660, 880], .14, .1);
+    const pop = () => tone([520], .08, .05);
+
+    /* ---------- firebase ---------- */
+    function load(src) { return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = () => rej(new Error('load ' + src)); document.head.appendChild(s); }); }
+    let initP = null;
+    function fbInit() {
+        if (initP) return initP;
+        initP = (async () => {
+            const c = cfg(); if (!c) throw { code: 'nocfg' };
+            if (!window.firebase || !window.firebase.database) {
+                const b = 'https://www.gstatic.com/firebasejs/' + FBV + '/';
+                await load(b + 'firebase-app-compat.js');
+                await load(b + 'firebase-auth-compat.js');
+                await load(b + 'firebase-database-compat.js');
+            }
+            if (!firebase.apps.length) firebase.initializeApp(c);
+            const auth = firebase.auth();
+            if (!auth.currentUser) {
+                await new Promise(res => { let un = null; const to = setTimeout(res, 3500); un = auth.onAuthStateChanged(u => { if (u) { clearTimeout(to); try { un && un(); } catch (e) { } res(); } }); });
+                if (!auth.currentUser) await auth.signInAnonymously();
+            }
+            C.uid = auth.currentUser.uid; C.db = firebase.database(); C.TS = firebase.database.ServerValue.TIMESTAMP;
+            C.db.ref('.info/serverTimeOffset').on('value', s => { C.off = +s.val() || 0; });
+            C.db.ref('.info/connected').on('value', s => { const was = C.conn; C.conn = !!s.val(); if (C.conn && was === false) reconnect(); paintConn(); });
+            C.db.ref('club/online').on('value', s => { C.online = s.val() || {}; paintOnline(); }, () => { });
+            return true;
+        })();
+        initP.catch(() => { initP = null; });
+        return initP;
+    }
+    function reconnect() {
+        const p = C.pres; C.pres = null; if (p) setPresence(p);
+        if (C.call && !C.call.ended) C.db.ref('club/calls/' + C.call.cid + '/end').onDisconnect().set(C.uid);
+        if (C.scr === 'search') { const q = C.db.ref('club/q/' + C.uid); q.onDisconnect().remove(); q.set({ n: C.me.n, c: C.me.c, l: C.me.l, t: C.TS }).catch(() => { }); }
+    }
+    function setPresence(room) {
+        if (!C.db || C.pres === room) return;
+        if (C.pres) { const r = C.db.ref('club/online/' + C.pres + '/' + C.uid); try { r.onDisconnect().cancel(); } catch (e) { } r.remove().catch(() => { }); }
+        C.pres = room || null; if (!room) return;
+        const r = C.db.ref('club/online/' + room + '/' + C.uid);
+        r.onDisconnect().remove().catch(() => { });
+        r.set({ n: C.me.n, c: C.me.c, l: C.me.l, t: C.TS }).catch(e => console.warn('presence', e));
+    }
+    function people(room) { const o = C.online[room] || {}; return Object.keys(o).filter(u => !blocked().includes(u)).map(u => Object.assign({ u }, o[u])); }
+    function totalOnline() { const s = new Set(); Object.keys(C.online || {}).forEach(r => Object.keys(C.online[r] || {}).forEach(u => s.add(u))); return s.size; }
+
+    /* ---------- screens ---------- */
+    function render() {
+        const el = root(); if (!el) return;
+        const s = C.scr;
+        el.innerHTML = s === 'nocfg' ? vNoCfg() : s === 'loading' ? vLoading() : s === 'error' ? vError() : s === 'join' ? vJoin() : s === 'room' ? vRoom() : s === 'search' ? vSearch() : s === 'pair' ? vPair() : vHome();
+        if (s === 'room' || s === 'pair') { fit(); const box = $('cl-msgs'); (C.buf || []).forEach(n => box.appendChild(n)); box.scrollTop = box.scrollHeight; }
+        if (s === 'pair') paintCall();
+        paintOnline(); paintConn();
+    }
+    function vNoCfg() { return `<div class="cl-wrap"><div class="cl-note"><h2 class="cl-h">Speaking Club</h2><p>Live chat with learners from other countries is opening soon.</p></div></div>`; }
+    function vLoading() { return `<div class="cl-wrap"><div class="cl-note"><div class="cl-spin" aria-hidden="true"></div><p>Connecting to the club…</p></div></div>`; }
+    function vError() { return `<div class="cl-wrap"><div class="cl-note"><h2 class="cl-h">Can't reach the club</h2><p>Check your internet connection and try again.</p><button class="cl-btn" onclick="CLUB.enter(true)">Try again</button></div></div>`; }
+    function vJoin() {
+        const m = C.me || {}; const u = (window.state && state.user) || {};
+        const n = m.n || (u.name && u.name !== 'Guest Learner' ? String(u.name).slice(0, 20) : '');
+        const guessC = m.c || (() => { const r = (navigator.language || '').split('-')[1]; return r && CC.some(x => x[0] === r.toUpperCase()) ? r.toUpperCase() : 'UZ'; })();
+        const lv = m.l || (/ielts/i.test(u.target || '') ? 'IELTS' : 'B1');
+        return `<div class="cl-wrap"><form class="cl-join" onsubmit="CLUB.join(event)">
+            <h2 class="cl-h">Speaking Club</h2>
+            <p class="cl-lead">Chat and talk in English with learners from other countries.</p>
+            <label class="cl-f"><span>Your name</span><input id="cl-n" maxlength="20" autocomplete="nickname" value="${esc(n)}" placeholder="e.g. Aziz" required></label>
+            <label class="cl-f"><span>Country</span><select id="cl-c">${CC.map(x => `<option value="${x[0]}"${x[0] === guessC ? ' selected' : ''}>${flag(x[0])} ${esc(x[1])}</option>`).join('')}</select></label>
+            <div class="cl-f"><span>Your English level</span><div class="cl-lv" role="radiogroup">${LV.map(x => `<button type="button" role="radio" aria-checked="${x === lv}" class="${x === lv ? 'on' : ''}" onclick="CLUB.pickLv(this)">${x}</button>`).join('')}</div></div>
+            <div class="cl-rules"><b>Club rules</b><ul><li>Speak English and be kind — everyone is learning.</li><li>Never share your phone number, address, social media or passwords.</li><li>Block or report anyone who makes you uncomfortable.</li><li>The club is for people aged 16 and over.</li></ul></div>
+            <label class="cl-chk"><input type="checkbox" id="cl-ok"${m.ok ? ' checked' : ''}> I agree to the club rules</label>
+            <p class="cl-err" id="cl-jerr" role="alert"></p>
+            <button class="cl-btn cl-btn-wide">${m.ok ? 'Save' : 'Join the club'}</button>
+        </form></div>`;
+    }
+    function stampSvg(c) {
+        return `<svg viewBox="0 0 120 120" class="cl-stamp" aria-hidden="true"><defs><path id="clsp" d="M60,60 m-41,0 a41,41 0 1,1 82,0 a41,41 0 1,1 -82,0"/></defs>
+            <circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="2 5" stroke-linecap="round"/>
+            <circle cx="60" cy="60" r="31" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <text font-size="10.5" font-weight="800" letter-spacing="2" fill="currentColor"><textPath href="#clsp" textLength="252">LUNARISE ✦ SPEAKING CLUB ✦</textPath></text>
+            <text x="60" y="71" text-anchor="middle" font-size="30">${flag(c)}</text></svg>`;
+    }
+    function vHome() {
+        return `<div class="cl-wrap cl-home">
+            <header class="cl-top"><div><h2 class="cl-h">Speaking Club</h2><p class="cl-sub"><i class="cl-dot"></i><span id="cl-total">0</span> <span id="cl-total-l">learners online</span><span class="cl-off" id="cl-conn" hidden>reconnecting…</span></p></div>
+                <button class="cl-mechip" onclick="CLUB.edit()" aria-label="Edit your club profile"><span>${flag(C.me.c)}</span><b>${esc(C.me.n)}</b><small>${esc(C.me.l)}</small></button></header>
+            <section class="cl-post"><div class="cl-post-in">
+                <div class="cl-post-t"><p class="cl-kick">One to one</p><h3>Talk with someone new</h3><p>We pair you with a learner from another country. Chat first, then call by voice when you're both ready.</p>
+                <button class="cl-btn cl-btn-ink" onclick="CLUB.find()">Find a partner</button></div>${stampSvg(C.me.c)}</div></section>
+            <h3 class="cl-sec">Group rooms</h3>
+            <div class="cl-rooms">${ROOMS.map(r => `<button class="cl-room" style="--h:${r.h}" onclick="CLUB.open('${r.id}')"><span class="cl-tag">${r.tag}</span><span class="cl-rt"><b>${esc(r.name)}</b><small>${esc(r.sub)}</small></span><span class="cl-rn" id="cl-rn-${r.id}"></span></button>`).join('')}</div>
+            <p class="cl-foot">Be kind, speak English, and keep your personal contacts private. Tap anyone's name to block or report them.</p>
+        </div>`;
+    }
+    function vRoom() {
+        const r = ROOMS.find(x => x.id === C.room) || ROOMS[0];
+        return `<div class="cl-wrap"><div class="cl-chat" style="--h:${r.h}">
+            <header class="cl-bar"><button class="cl-ib" onclick="CLUB.home()" aria-label="Back to the club"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+                <div class="cl-bar-t"><b><span class="cl-tag sm">${r.tag}</span> ${esc(r.name)}</b><small id="cl-here"></small></div>
+                <button class="cl-ib" onclick="CLUB.find()" aria-label="Find a 1-to-1 partner" title="Find a 1-to-1 partner"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><path d="M17 8v6M14 11h6"/></svg></button></header>
+            <div class="cl-msgs" id="cl-msgs" aria-live="polite"></div>
+            <div class="cl-ice" id="cl-ice">${pick3().map(q => `<button type="button" onclick="CLUB.fill(this)">${esc(q)}</button>`).join('')}</div>
+            ${inputBar()}
+        </div></div>`;
+    }
+    function inputBar(dis) { return `<form class="cl-in" onsubmit="CLUB.send(event)"><input id="cl-x" maxlength="300" autocomplete="off" enterkeyhint="send" placeholder="${dis ? 'Chat ended' : 'Message in English…'}"${dis ? ' disabled' : ''}><button class="cl-send" aria-label="Send"${dis ? ' disabled' : ''}><svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-2.5-6.5z"/></svg></button></form>`; }
+    function vSearch() {
+        const late = Date.now() - (C.searchT || 0) > 60000;
+        const fl = ['TR', 'BR', 'IN', 'KZ', 'VN', 'EG', 'ID', 'PL', 'MX', 'JP'];
+        return `<div class="cl-wrap"><div class="cl-search">
+            <div class="cl-orbit" aria-hidden="true"><span class="cl-core">${flag(C.me.c)}</span>${fl.map((c, i) => `<i style="--i:${i}">${flag(c)}</i>`).join('')}</div>
+            <h3>${late ? 'Still looking…' : 'Finding someone to talk to'}</h3>
+            <p id="cl-sline">${late ? 'Not many learners are free right now. Keep waiting, or say hi in a group room.' : 'This usually takes less than a minute.'}</p>
+            <div class="cl-row"><button class="cl-btn cl-btn-ghost" onclick="CLUB.cancel()">Cancel</button>${late ? `<button class="cl-btn" onclick="CLUB.cancel('all')">Go to the Lobby</button>` : ''}</div>
+        </div></div>`;
+    }
+    function vPair() {
+        const p = (C.call && C.call.peer) || {};
+        const ended = C.call && C.call.ended;
+        return `<div class="cl-wrap"><div class="cl-chat cl-pairchat">
+            <header class="cl-bar"><button class="cl-ib" onclick="CLUB.leave()" aria-label="Leave this chat"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+                <div class="cl-peer"><span class="cl-pflag">${flag(p.c)}</span><span><b>${esc(p.n || 'Partner')}</b><small>${esc(cname(p.c))}${p.l ? ', ' + esc(p.l) : ''}</small></span></div>
+                <button class="cl-ib cl-callb" id="cl-callb" onclick="CLUB.call()" aria-label="Voice call"${ended ? ' disabled' : ''}><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></button>
+                <button class="cl-ib" onclick="CLUB.menu()" aria-label="More options"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></button></header>
+            <div class="cl-callbar" id="cl-callbar" hidden></div>
+            <div class="cl-msgs" id="cl-msgs" aria-live="polite"></div>
+            ${ended ? `<div class="cl-endbar"><p>${esc(p.n || 'Your partner')} left the chat.</p><div class="cl-row"><button class="cl-btn" onclick="CLUB.next()">Find a new partner</button><button class="cl-btn cl-btn-ghost" onclick="CLUB.leave()">Back to the club</button></div></div>`
+                : `<div class="cl-icecard"><span class="cl-ick">Icebreaker</span><span class="cl-icq" id="cl-icq">${esc(C.iceQ || (C.iceQ = ICE[Math.floor(Math.random() * ICE.length)]))}</span><button type="button" onclick="CLUB.ask()">Ask</button><button type="button" class="cl-ghost" onclick="CLUB.ice()" aria-label="Another question">↻</button></div>`}
+            ${inputBar(ended)}
+        </div></div>`;
+    }
+    function pick3() { const a = ICE.slice().sort(() => Math.random() - .5); return a.slice(0, 3); }
+
+    /* ---------- painting helpers ---------- */
+    function paintOnline() {
+        const t = $('cl-total'); if (t) { const n = totalOnline(); t.textContent = n; const l = $('cl-total-l'); if (l) l.textContent = n === 1 ? 'learner online' : 'learners online'; }
+        ROOMS.forEach(r => {
+            const el = $('cl-rn-' + r.id); if (!el) return; const ps = people(r.id);
+            el.innerHTML = ps.length ? `<span class="cl-flags">${ps.slice(0, 4).map(p => flag(p.c)).join('')}</span><em>${ps.length}</em>` : `<em class="z">0</em>`;
+        });
+        const h = $('cl-here'); if (h && C.scr === 'room') { const ps = people(C.room); h.textContent = ps.length + ' here' + (ps.length ? ': ' + ps.slice(0, 6).map(p => flag(p.c)).join(' ') : ''); }
+    }
+    function paintConn() { const e = $('cl-conn'); if (e) e.hidden = C.conn !== false; }
+    function fit() {
+        const el = document.querySelector('#club-root .cl-chat'); if (!el) return;
+        const hdr = document.querySelector('body > header'); const hh = hdr ? hdr.getBoundingClientRect().height : 0;
+        const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+        const nav = document.querySelector('body > nav.lg\\:hidden'); let bottom = vh;
+        if (nav && getComputedStyle(nav).display !== 'none') { const t = nav.getBoundingClientRect().top; if (t > vh * .5) bottom = Math.min(vh, t); }
+        el.style.height = Math.max(320, Math.round(bottom - hh - 22)) + 'px';
+        const top = el.getBoundingClientRect().top + window.scrollY; window.scrollTo(0, Math.max(0, top - hh - 10));
+    }
+    function nearBottom(b) { return b.scrollHeight - b.scrollTop - b.clientHeight < 120; }
+    function pushNode(node) {
+        C.buf = C.buf || []; C.buf.push(node); if (C.buf.length > 160) C.buf.shift();
+        const b = $('cl-msgs'); if (!b) return; const stick = nearBottom(b) || node.classList.contains('me');
+        if (node.classList.contains('cl-m')) { const e0 = b.querySelector('.cl-empty'); if (e0) e0.remove(); C.buf = C.buf.filter(n => !n.classList.contains('cl-empty')); }
+        b.appendChild(node); while (b.children.length > 160) b.removeChild(b.firstChild);
+        if (stick) b.scrollTop = b.scrollHeight;
+    }
+    function msgNode(id, m, solo) {
+        const me = m.u === C.uid; const prev = C.lastAuthor === m.u && !solo; C.lastAuthor = m.u;
+        const d = document.createElement('div'); d.className = 'cl-m' + (me ? ' me' : '') + (prev ? ' cont' : ''); d.dataset.u = m.u; d.dataset.id = id;
+        const h = hue(m.u);
+        d.innerHTML = (me ? '' : `<span class="cl-av" style="--hu:${h}">${prev ? '' : flag(m.c)}</span>`) +
+            `<div class="cl-b">${prev || me ? '' : `<button class="cl-nm" style="--hu:${h}" onclick="CLUB.who('${esc(m.u)}')">${esc(m.n)} <small>${esc(m.l || '')}</small></button>`}<p>${esc(scrub(m.x))}<time>${hhmm(m.t)}</time></p></div>`;
+        return d;
+    }
+    function sysMsg(t) { const d = document.createElement('div'); d.className = 'cl-sys'; d.textContent = t; C.lastAuthor = null; pushNode(d); }
+
+    /* ---------- entering / leaving ---------- */
+    async function enter(force) {
+        hideFloat();
+        if (!cfg()) { C.scr = 'nocfg'; return render(); }
+        C.me = lsGet(LSK, null);
+        if (!C.me || !C.me.ok) { C.scr = 'join'; return render(); }
+        if (!force && (C.scr === 'room' || C.scr === 'pair' || C.scr === 'search') && C.db) return render();
+        C.scr = 'loading'; render();
+        try { await fbInit(); C.scr = 'home'; setPresence('home'); render(); }
+        catch (e) { C.scr = e && e.code === 'nocfg' ? 'nocfg' : 'error'; console.warn('club', e); render(); }
+    }
+    function away() {
+        if (C.scr === 'room') { leaveRoom(); C.scr = 'home'; setPresence(null); }
+        else if (C.scr === 'pair' || C.scr === 'search') showFloat();
+        else if (C.db) setPresence(null);
+    }
+    function join(e) {
+        e.preventDefault();
+        const n = scrub(($('cl-n').value || '').replace(/\s+/g, ' ').trim()).slice(0, 20);
+        const c = $('cl-c').value; const on = document.querySelector('.cl-lv .on'); const l = on ? on.textContent : 'B1';
+        const err = (t) => { const x = $('cl-jerr'); if (x) x.textContent = t; };
+        if (n.length < 2 || /[•\[\]]/.test(n)) return err('Please enter a real first name (2–20 letters).');
+        if (!$('cl-ok').checked) return err('Please agree to the club rules.');
+        C.me = { n, c, l, ok: 1 }; lsSet(LSK, C.me);
+        if (C.db && C.pres) { const p = C.pres; C.pres = null; setPresence(p); }
+        enter(true);
+    }
+    function pickLv(b) { b.parentNode.querySelectorAll('button').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-checked', x === b); }); }
+    function edit() { C.scr = 'join'; render(); }
+    function home() { if (C.scr === 'room') leaveRoom(); C.scr = 'home'; setPresence('home'); render(); window.scrollTo(0, 0); }
+
+    /* ---------- group rooms ---------- */
+    function open(id) {
+        if (!C.db) return enter();
+        if (C.call) return go('pair');
+        if (C.scr === 'search') stopSearch();
+        if (C.scr === 'room') leaveRoom();
+        C.room = id; C.scr = 'room'; C.buf = []; C.lastAuthor = null; render(); window.scrollTo(0, 0);
+        setPresence(id);
+        const q = C.db.ref('club/rooms/' + id + '/m').orderByChild('t').limitToLast(60); C.rq = q; let first = true; const t0 = Date.now();
+        q.on('child_added', s => {
+            const m = s.val(); if (!m || blocked().includes(m.u)) return;
+            pushNode(msgNode(s.key, m));
+            if (!first && m.u !== C.uid && Date.now() - t0 > 1500) pop();
+        }, () => { sysMsg('Could not open this room.'); });
+        setTimeout(() => { first = false; const b = $('cl-msgs'); if (b && !b.querySelector('.cl-m')) { sysMsg('No messages yet. Say hello 👋'); const l = b.lastElementChild; if (l) l.classList.add('cl-empty'); } }, 1200);
+    }
+    function leaveRoom() { if (C.rq) { C.rq.off(); C.rq = null; } C.room = null; C.buf = []; }
+    function fill(b) { const i = $('cl-x'); if (i) { i.value = b.textContent; i.focus(); } }
+    async function send(e) {
+        e.preventDefault(); const inp = $('cl-x'); if (!inp || inp.disabled) return;
+        const raw = inp.value.trim(); if (!raw) return;
+        if (Date.now() - (C.lastSend || 0) < 1300) return toast('Slow down a little 🙂');
+        const x = scrub(raw).slice(0, 300); if (!x) return;
+        C.lastSend = Date.now(); inp.value = '';
+        try {
+            if (C.scr === 'room' && C.room) {
+                const id = C.db.ref('club/rooms/' + C.room + '/m').push().key; const up = {};
+                up['rooms/' + C.room + '/m/' + id] = { u: C.uid, n: C.me.n, c: C.me.c, l: C.me.l, x, t: C.TS }; up['last/' + C.uid] = C.TS;
+                await C.db.ref('club').update(up);
+            } else if (C.scr === 'pair' && C.call && !C.call.ended) {
+                await C.db.ref('club/calls/' + C.call.cid + '/m').push({ u: C.uid, x, t: C.TS });
+            }
+        } catch (er) { console.warn('send', er); inp.value = raw; toast('Message not sent. Wait a moment and try again.'); }
+    }
+
+    /* ---------- partner matching ---------- */
+    async function find() {
+        if (!C.db) { await enter(); if (!C.db) return; }
+        if (C.call && !C.call.ended) return go('pair');
+        if (C.call) await endCall();
+        if (C.scr === 'room') leaveRoom();
+        if (C.scr === 'search') return;
+        C.scr = 'search'; C.searchT = Date.now(); render(); window.scrollTo(0, 0); setPresence('home');
+        const me = C.db.ref('club/q/' + C.uid);
+        try { await me.onDisconnect().remove(); await me.set({ n: C.me.n, c: C.me.c, l: C.me.l, t: C.TS }); }
+        catch (e) { console.warn('queue', e); toast('Could not start the search'); C.scr = 'home'; return render(); }
+        C.qm = me.child('m'); C.qm.on('value', s => { const v = s.val(); if (v && v !== 'x' && C.scr === 'search') joinCall(v); });
+        setTimeout(tryMatch, 300 + Math.random() * 500);
+        C.timers.m = setInterval(tryMatch, 3000 + Math.random() * 1500);
+        C.timers.late = setTimeout(() => { if (C.scr === 'search') render(); }, 61000);
+    }
+    function score(o) { return (o.c !== C.me.c ? 3 : 0) + (o.l === C.me.l ? 2 : 0); }
+    async function tryMatch() {
+        if (C.scr !== 'search' || C.matching) return; C.matching = true;
+        let claimed = false;
+        try {
+            const all = (await C.db.ref('club/q').once('value')).val() || {};
+            const now = Date.now() + C.off, bl = blocked();
+            // only the learner with the larger id starts a match, so two people never grab each other at the same moment
+            const cands = Object.keys(all).filter(u => u < C.uid && all[u] && !all[u].m && now - (all[u].t || 0) < 180000 && !bl.includes(u) && !C.skipped.includes(u))
+                .sort((a, b) => score(all[b]) - score(all[a]) || (all[a].t || 0) - (all[b].t || 0));
+            if (!cands.length || C.scr !== 'search') return;
+            const mine = await C.db.ref('club/q/' + C.uid + '/m').transaction(v => v === null ? 'x' : undefined);
+            if (!mine.committed) return; claimed = true;
+            for (const u of cands.slice(0, 4)) {
+                if (C.scr !== 'search') break;
+                const o = all[u], cid = C.db.ref('club/calls').push().key;
+                try { await C.db.ref('club/calls/' + cid + '/meta').set({ a: u, b: C.uid, t: C.TS, an: String(o.n || 'Learner').slice(0, 24), bn: C.me.n, ac: String(o.c || 'ZZ').slice(0, 3), bc: C.me.c, al: String(o.l || '').slice(0, 6), bl: C.me.l }); } catch (e) { continue; }
+                let ok = false; try { ok = (await C.db.ref('club/q/' + u + '/m').transaction(v => v === null ? cid : undefined)).committed; } catch (e) { }
+                if (ok) { claimed = false; joinCall(cid); return; }
+                C.db.ref('club/calls/' + cid).remove().catch(() => { });
+            }
+        } catch (e) { console.warn('match', e); }
+        finally {
+            if (claimed && C.scr === 'search') { try { await C.db.ref('club/q/' + C.uid + '/m').transaction(v => v === 'x' ? null : undefined); } catch (e) { } }
+            C.matching = false;
+        }
+    }
+    function stopSearch() {
+        clearInterval(C.timers.m); clearTimeout(C.timers.late);
+        if (C.qm) { C.qm.off(); C.qm = null; }
+        if (C.db) { const me = C.db.ref('club/q/' + C.uid); try { me.onDisconnect().cancel(); } catch (e) { } me.remove().catch(() => { }); }
+    }
+    function cancel(room) { stopSearch(); hideFloat(); if (room) { C.scr = 'home'; open(room); } else home(); }
+
+    /* ---------- 1-to-1 chat ---------- */
+    async function joinCall(cid) {
+        if (C.call && C.call.cid === cid) return;
+        stopSearch(); hideFloat();
+        const base = C.db.ref('club/calls/' + cid);
+        let meta = null;
+        for (let i = 0; i < 8 && !meta; i++) { try { meta = (await base.child('meta').once('value')).val(); } catch (e) { } if (!meta) await sleep(400); }
+        if (!meta) { toast('Could not reach your partner. Searching again…'); C.scr = 'home'; return find(); }
+        const k = meta.a === C.uid ? 'b' : 'a';
+        C.call = { cid, peer: { uid: meta[k], n: meta[k + 'n'], c: meta[k + 'c'], l: meta[k + 'l'] }, ended: false, subs: [] };
+        C.scr = 'pair'; C.buf = []; C.lastAuthor = null; C.iceQ = null; render(); window.scrollTo(0, 0);
+        setPresence('pair');
+        base.child('end').onDisconnect().set(C.uid).catch(() => { });
+        const p = C.call.peer;
+        sysMsg(`You're talking with ${p.n} from ${cname(p.c)} ${flag(p.c)}. Say hi!`); ding();
+        const mq = base.child('m').orderByChild('t').limitToLast(120);
+        mq.on('child_added', s => { const m = s.val(); if (!m) return; m.n = m.u === C.uid ? C.me.n : p.n; m.c = m.u === C.uid ? C.me.c : p.c; m.l = ''; pushNode(msgNode(s.key, m)); if (m.u !== C.uid) pop(); });
+        const eq = base.child('end'); eq.on('value', s => { const v = s.val(); if (v && v !== C.uid && C.call && !C.call.ended) partnerLeft(); });
+        const rq = base.child('rtc'); rq.on('value', s => rtcOnValue(s.val() || {}));
+        C.call.subs = [mq, eq, rq];
+        if (document.hidden) notifyAway('Partner found! ' + p.n + ' from ' + cname(p.c));
+    }
+    function partnerLeft() {
+        if (!C.call) return; C.call.ended = true; rtcStop(); hideIncoming();
+        const keep = C.buf; render(); C.buf = keep;
+        if (C.scr !== 'pair') showFloat();
+    }
+    async function endCall() {
+        const c = C.call; if (!c) return; C.call = null;
+        rtcStop(); hideIncoming();
+        (c.subs || []).forEach(q => { try { q.off(); } catch (e) { } });
+        const base = C.db.ref('club/calls/' + c.cid);
+        try { base.child('end').onDisconnect().cancel(); } catch (e) { }
+        try { if (c.ended) await base.remove(); else await base.child('end').set(C.uid); } catch (e) { }
+        if (c.peer && c.peer.uid) C.skipped = C.skipped.concat(c.peer.uid).slice(-20);
+        C.buf = [];
+    }
+    async function leave() { await endCall(); hideFloat(); home(); }
+    async function next() { await endCall(); C.scr = 'home'; find(); }
+    function go(s) { C.scr = s; render(); }
+    function ice() { C.iceQ = ICE[Math.floor(Math.random() * ICE.length)]; const e = $('cl-icq'); if (e) e.textContent = C.iceQ; }
+    function ask() { const i = $('cl-x'); if (i && !i.disabled) { i.value = C.iceQ || ''; i.focus(); } ice(); }
+
+    /* ---------- voice (WebRTC, signalling through the database) ---------- */
+    function rtcRef() { return C.db.ref('club/calls/' + C.call.cid + '/rtc'); }
+    async function getMic() {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error('nomic');
+        return navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
+    }
+    async function callStart() {
+        if (!C.call || C.call.ended) return;
+        if (C.rtc) return hang();
+        try { C.mic = await getMic(); } catch (e) { return toast('Allow microphone access to make a voice call.'); }
+        if (!C.call) return micOff();
+        C.rtc = { role: 'caller', seen: {}, pend: [], st: 'ringing' };
+        try { await rtcRef().set({ req: C.uid, t: C.TS }); } catch (e) { rtcStop(); return toast('Could not start the call.'); }
+        sysMsg('Calling ' + C.call.peer.n + '…'); paintCall();
+        C.rtc.to = setTimeout(() => { if (C.rtc && C.rtc.st === 'ringing') { sysMsg('No answer.'); hang(); } }, 40000);
+    }
+    function rtcOnValue(v) {
+        if (!C.call) return;
+        if (v.req && v.req !== C.uid && !v.acc && !v.hang && !C.rtc) showIncoming();
+        if (C.inc && (!v.req || v.hang || v.acc)) hideIncoming();
+        const r = C.rtc; if (!r) return;
+        if (v.hang || !v.req) { if (v.hang && v.hang !== C.uid) sysMsg(r.st === 'live' ? 'Call ended.' : r.role === 'caller' ? C.call.peer.n + ' declined the call.' : 'Call cancelled.'); rtcStop(); return; }
+        if (r.role === 'caller' && v.acc && !r.pc) { r.st = 'connecting'; paintCall(); makeOffer(); }
+        if (r.role === 'callee' && v.offer && !r.gotOffer) { r.gotOffer = true; takeOffer(JSON.parse(v.offer)); }
+        if (r.role === 'caller' && v.answer && !r.gotAns && r.pc) { r.gotAns = true; r.pc.setRemoteDescription(JSON.parse(v.answer)).then(flush).catch(e => console.warn(e)); }
+        const theirs = r.role === 'caller' ? v.cb : v.ca;
+        if (theirs) Object.keys(theirs).sort().forEach(k => { if (!r.seen[k]) { r.seen[k] = 1; try { addCand(JSON.parse(theirs[k])); } catch (e) { } } });
+    }
+    function makePc() {
+        const pc = new RTCPeerConnection({ iceServers: ICE_SERVERS.concat(Array.isArray(LR_TURN) ? LR_TURN : []) });
+        const r = C.rtc; r.pc = pc;
+        C.mic.getTracks().forEach(t => pc.addTrack(t, C.mic));
+        pc.onicecandidate = (e) => { if (e.candidate && C.call && C.rtc === r) rtcRef().child(r.role === 'caller' ? 'ca' : 'cb').push(JSON.stringify(e.candidate)).catch(() => { }); };
+        pc.ontrack = (e) => { let a = $('cl-audio'); if (!a) { a = document.createElement('audio'); a.id = 'cl-audio'; a.autoplay = true; a.setAttribute('playsinline', ''); document.body.appendChild(a); } a.srcObject = e.streams[0]; a.play().catch(() => { }); meter(e.streams[0]); };
+        pc.onconnectionstatechange = () => {
+            if (C.rtc !== r) return; const s = pc.connectionState;
+            if (s === 'connected' && r.st !== 'live') { r.st = 'live'; r.t0 = Date.now(); clearTimeout(r.fail); paintCall(); sysMsg('Voice call connected 🎙️'); }
+            if (s === 'failed') { sysMsg('Voice could not connect on this network. You can keep chatting by text.'); hang(); }
+        };
+        r.fail = setTimeout(() => { if (C.rtc === r && r.st !== 'live') { sysMsg('Voice could not connect. You can keep chatting by text.'); hang(); } }, 30000);
+        return pc;
+    }
+    async function makeOffer() { try { const pc = makePc(); const o = await pc.createOffer({ offerToReceiveAudio: true }); await pc.setLocalDescription(o); await rtcRef().update({ offer: JSON.stringify(pc.localDescription) }); } catch (e) { console.warn(e); hang(); } }
+    async function takeOffer(o) { try { const pc = C.rtc.pc; await pc.setRemoteDescription(o); const a = await pc.createAnswer(); await pc.setLocalDescription(a); await rtcRef().update({ answer: JSON.stringify(pc.localDescription) }); flush(); } catch (e) { console.warn(e); hang(); } }
+    function addCand(c) { const r = C.rtc; if (!r) return; if (r.pc && r.pc.remoteDescription) r.pc.addIceCandidate(c).catch(() => { }); else r.pend.push(c); }
+    function flush() { const r = C.rtc; if (!r || !r.pc) return; r.pend.splice(0).forEach(c => r.pc.addIceCandidate(c).catch(() => { })); }
+    async function accept() {
+        hideIncoming(); if (!C.call || C.rtc) return;
+        try { C.mic = await getMic(); } catch (e) { toast('Allow microphone access to answer.'); return decline(); }
+        C.rtc = { role: 'callee', seen: {}, pend: [], st: 'connecting' }; makePc(); paintCall();
+        try { await rtcRef().update({ acc: C.uid }); } catch (e) { hang(); }
+        const v = C.call && C.lastRtc; if (v) rtcOnValue(v);
+    }
+    function decline() { hideIncoming(); if (C.call) rtcRef().update({ hang: C.uid }).catch(() => { }); }
+    function hang() { if (C.call && C.rtc) rtcRef().update({ hang: C.uid }).catch(() => { }); if (C.rtc && C.rtc.st === 'live') sysMsg('Call ended.'); rtcStop(); }
+    function micOff() { if (C.mic) { C.mic.getTracks().forEach(t => t.stop()); C.mic = null; } }
+    function rtcStop() {
+        const r = C.rtc; C.rtc = null;
+        if (r) { clearTimeout(r.to); clearTimeout(r.fail); try { r.pc && r.pc.close(); } catch (e) { } }
+        micOff(); const a = $('cl-audio'); if (a) { a.srcObject = null; }
+        if (C.meterRaf) cancelAnimationFrame(C.meterRaf); C.meterRaf = 0;
+        paintCall();
+    }
+    function mute() { if (!C.mic) return; const t = C.mic.getAudioTracks()[0]; if (!t) return; t.enabled = !t.enabled; paintCall(); }
+    function meter(stream) {
+        try {
+            AC = AC || new (window.AudioContext || window.webkitAudioContext)(); const an = AC.createAnalyser(); an.fftSize = 256;
+            AC.createMediaStreamSource(stream).connect(an); const d = new Uint8Array(an.frequencyBinCount);
+            const loop = () => { an.getByteFrequencyData(d); let s = 0; for (const x of d) s += x; const lv = Math.min(1, s / d.length / 60); const e = $('cl-vu'); if (e) e.style.setProperty('--lv', lv.toFixed(2)); C.meterRaf = requestAnimationFrame(loop); };
+            loop();
+        } catch (e) { }
+    }
+    function paintCall() {
+        const bar = $('cl-callbar'), btn = $('cl-callb'); const r = C.rtc;
+        if (btn) btn.classList.toggle('on', !!r);
+        if (!bar) return;
+        if (!r) { bar.hidden = true; bar.innerHTML = ''; clearInterval(C.timers.clock); return; }
+        bar.hidden = false;
+        const muted = C.mic && C.mic.getAudioTracks()[0] && !C.mic.getAudioTracks()[0].enabled;
+        const label = r.st === 'live' ? '<span id="cl-clock">0:00</span>' : r.st === 'ringing' ? 'Ringing…' : 'Connecting…';
+        bar.innerHTML = `<span class="cl-vu" id="cl-vu"></span><span class="cl-cst">${label}</span>
+            <button class="cl-cbtn${muted ? ' on' : ''}" onclick="CLUB.mute()" aria-label="${muted ? 'Unmute' : 'Mute'}">${muted ? 'Unmute' : 'Mute'}</button>
+            <button class="cl-cbtn red" onclick="CLUB.hang()">End call</button>`;
+        clearInterval(C.timers.clock);
+        if (r.st === 'live') C.timers.clock = setInterval(() => { const e = $('cl-clock'); if (!e || !C.rtc) return clearInterval(C.timers.clock); const s = Math.floor((Date.now() - C.rtc.t0) / 1000); e.textContent = Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }, 500);
+    }
+    function showIncoming() {
+        if (C.inc || !C.call) return;
+        const d = document.createElement('div'); d.className = 'cl-incoming'; d.setAttribute('role', 'alertdialog'); d.setAttribute('aria-label', 'Incoming voice call');
+        d.innerHTML = `<span class="cl-pflag">${flag(C.call.peer.c)}</span><div><b>${esc(C.call.peer.n)}</b><small>wants to talk by voice</small></div><button class="cl-cbtn green" onclick="CLUB.accept()">Accept</button><button class="cl-cbtn red" onclick="CLUB.decline()">Decline</button>`;
+        document.body.appendChild(d); C.inc = d;
+        const ring = () => { if (C.inc) tone([740, 990, 740], .16, .09); }; ring(); C.timers.ring = setInterval(ring, 1800);
+        if (document.hidden) notifyAway(C.call.peer.n + ' is calling you');
+    }
+    function hideIncoming() { clearInterval(C.timers.ring); if (C.inc) { C.inc.remove(); C.inc = null; } }
+
+    /* ---------- block / report ---------- */
+    function who(u) {
+        if (u === C.uid) return;
+        const node = document.querySelector(`#cl-msgs .cl-m[data-u="${CSS.escape(u)}"] .cl-nm`);
+        const name = node ? node.childNodes[0].textContent.trim() : (C.call && C.call.peer.uid === u ? C.call.peer.n : 'this learner');
+        sheet(`<p class="cl-sh-t">${esc(name)}</p>
+            <button class="cl-sh-b" onclick="CLUB.block('${esc(u)}')">Block — hide their messages</button>
+            <button class="cl-sh-b red" onclick="CLUB.report('${esc(u)}')">Report and block</button>
+            <button class="cl-sh-b ghost" onclick="CLUB.closeSheet()">Cancel</button>`);
+    }
+    function menu() {
+        if (!C.call) return; const p = C.call.peer;
+        sheet(`<p class="cl-sh-t">${flag(p.c)} ${esc(p.n)}</p>
+            <button class="cl-sh-b" onclick="CLUB.closeSheet();CLUB.next()">Next partner</button>
+            <button class="cl-sh-b" onclick="CLUB.block('${esc(p.uid)}')">Block</button>
+            <button class="cl-sh-b red" onclick="CLUB.report('${esc(p.uid)}')">Report and block</button>
+            <button class="cl-sh-b ghost" onclick="CLUB.closeSheet()">Cancel</button>`);
+    }
+    function sheet(html) { closeSheet(); const bg = document.createElement('div'); bg.className = 'cl-sheet-bg'; bg.id = 'cl-sheet'; bg.onclick = (e) => { if (e.target === bg) closeSheet(); }; bg.innerHTML = `<div class="cl-sheet" role="dialog" aria-modal="true">${html}</div>`; document.body.appendChild(bg); const f = bg.querySelector('button'); if (f) f.focus(); }
+    function closeSheet() { const s = $('cl-sheet'); if (s) s.remove(); }
+    function block(u, silent) {
+        closeSheet(); const b = blocked(); if (!b.includes(u)) { b.push(u); lsSet(LSB, b.slice(-300)); }
+        document.querySelectorAll(`#cl-msgs .cl-m[data-u="${CSS.escape(u)}"]`).forEach(n => n.remove());
+        C.buf = (C.buf || []).filter(n => !(n.dataset && n.dataset.u === u));
+        if (!silent) toast('Blocked. You will not see them again.');
+        if (C.call && C.call.peer.uid === u) leave();
+        paintOnline();
+    }
+    async function report(u) {
+        closeSheet();
+        const lines = [...document.querySelectorAll(`#cl-msgs .cl-m[data-u="${CSS.escape(u)}"] p`)].slice(-8).map(p => p.firstChild ? p.firstChild.textContent : '').join(' | ');
+        const where = C.scr === 'room' ? 'room:' + C.room : C.call ? 'pair:' + C.call.cid : C.scr;
+        try { await C.db.ref('club/reports').push({ by: C.uid, who: String(u).slice(0, 40), x: (where + ' — ' + lines).slice(0, 1200), t: C.TS }); } catch (e) { console.warn('report', e); }
+        toast('Thank you. We received your report.'); block(u, true);
+    }
+
+    /* ---------- while the user is elsewhere in the app ---------- */
+    function showFloat() {
+        if (!C.call && C.scr !== 'search') return hideFloat();
+        let f = $('cl-float'); if (!f) { f = document.createElement('button'); f.id = 'cl-float'; f.onclick = () => { try { navigateTo('club'); } catch (e) { } }; document.body.appendChild(f); }
+        f.innerHTML = C.call ? `<i></i>${C.call.ended ? 'Chat ended — open' : 'Chat with ' + esc(C.call.peer.n)}` : `<i></i>Finding a partner…`;
+    }
+    function hideFloat() { const f = $('cl-float'); if (f) f.remove(); }
+    function notifyAway(t) { try { const o = document.title; document.title = '● ' + t; const back = () => { document.title = o; document.removeEventListener('visibilitychange', back); }; document.addEventListener('visibilitychange', back); } catch (e) { } }
+
+    window.addEventListener('resize', () => { if (C.scr === 'room' || C.scr === 'pair') fit(); });
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', () => { if (C.scr === 'room' || C.scr === 'pair') { fit(); const b = $('cl-msgs'); if (b) b.scrollTop = b.scrollHeight; } });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(); });
+
+    window.CLUB = { enter, away, join, pickLv, edit, home, open, fill, send, find, cancel, leave, next, ice, ask, call: callStart, accept, decline, hang, mute, who, menu, block, report, closeSheet, _C: C, _scrub: scrub };
+})();
+</script><!--/club:js-->
 </body>
 </html>
