@@ -4176,6 +4176,80 @@ body.mw-lock{overflow:hidden}
 .mwfc-done p{margin:0;color:var(--dx-mute);font-size:15.5px}
 .mwfc-done p b{color:var(--dx-ink)}
 .mwfc-dbtn{display:flex;flex-direction:column;gap:8px;width:min(100%,380px);margin-top:12px}
+/* Flashcards: 12 languages */
+.mwfc .mwfc-card{background:none!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border-radius:30px!important;max-height:min(62vh,calc(100dvh - 330px));min-height:290px}
+.mwfc-mode{display:inline-flex;align-items:center;gap:5px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.mwfc-mode em{font-style:normal;opacity:.55}
+.mwfc-stage{gap:12px}
+.mwfc-tip{font-size:12.5px;transition:opacity .2s}
+.mwfc-tip.off{opacity:0}
+.mwfc-card .f{overflow:hidden}
+.mwfc-lab{display:inline-flex;align-items:center;gap:7px;padding:5px 12px 5px 8px;border-radius:99px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);font-size:13px;line-height:1}
+.mwfc-lab i{font-style:normal;font-size:16px}
+.mwfc-lab b{font-weight:800;color:#fff;letter-spacing:.01em}
+.mwfc-card .back .mwfc-lab{background:rgba(3,39,26,.35);border-color:rgba(191,243,220,.25)}
+.mwfc-card h3.tr{font-size:clamp(28px,8.4vw,42px);color:#eafff6}
+.mwfc-card .front h3.tr{color:#fff}
+.mwfc-card h3.tr:is(:lang(zh-CN),:lang(ja),:lang(ko)),.mwfc-card h3.tr[dir=rtl]{font-family:system-ui,'Segoe UI',sans-serif;font-weight:800;letter-spacing:0;line-height:1.25}
+.mwfc-rom{margin-top:-6px;font-style:normal;color:#bff3dc;font-size:14px;font-weight:600;letter-spacing:.02em}
+.mwfc-card .front .mwfc-rom{color:var(--dx-mute)}
+.mwfc-alts{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:32ch}
+.mwfc-alts span{padding:4px 10px;border-radius:99px;background:rgba(3,39,26,.35);border:1px solid rgba(191,243,220,.2);color:#d5f7e8;font-size:13px;font-weight:700}
+.mwfc-card small.en{font-size:13px;letter-spacing:.02em}
+.mwfc-card .def{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.mwfc-card .ex{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.mwfc-sk{display:block;width:62%;height:40px;border-radius:14px;background:linear-gradient(90deg,rgba(255,255,255,.06),rgba(255,255,255,.18),rgba(255,255,255,.06));background-size:200% 100%;animation:mwfcSk 1.2s linear infinite}
+.mwfc-sk.sm{display:inline-block;width:88px;height:16px;border-radius:8px}
+@keyframes mwfcSk{to{background-position:-200% 0}}
+.mwfc-off{margin:0;max-width:26ch;color:#e4fff4;font-size:15px;line-height:1.5}
+.mwfc-card .front .mwfc-off{color:var(--dx-ink)}
+/* language strip under the card */
+.mwfc-lbar{display:flex;align-items:center;gap:8px;width:min(100%,420px)}
+.mwfc-langs{position:relative;flex:1;min-width:0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:3px 2px;scroll-behavior:smooth}
+.mwfc-langs[data-f=r]{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent)}
+.mwfc-langs[data-f=l]{-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px);mask-image:linear-gradient(90deg,transparent,#000 26px)}
+.mwfc-langs[data-f=lr]{-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent)}
+.mwfc-langs::-webkit-scrollbar{display:none}
+.mwfc-langs button{flex:none;display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 12px 0 9px;border-radius:99px;border:1px solid var(--dx-line);background:rgba(255,255,255,.05);color:var(--dx-mute);font:800 12.5px 'Plus Jakarta Sans',sans-serif;letter-spacing:.04em;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .15s}
+.mwfc-langs button i{font-style:normal;font-size:17px;line-height:1}
+.mwfc-langs button:hover{color:var(--dx-ink);border-color:rgba(233,215,255,.28)}
+.mwfc-langs button:active{transform:scale(.94)}
+.mwfc-langs button.on{color:#2b1503;background:linear-gradient(135deg,var(--dx-amb),var(--dx-tang));border-color:transparent;letter-spacing:0;box-shadow:0 8px 20px -10px rgba(251,146,60,.85)}
+.mwfc-all{flex:none;display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 13px 0 11px;border-radius:99px;border:1px solid rgba(110,231,183,.35);background:rgba(110,231,183,.1);color:#bff3dc;font:800 12.5px 'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:background .2s}
+.mwfc-all:hover{background:rgba(110,231,183,.18)}
+.mwfc-all svg{width:16px;height:16px}
+/* all-languages sheet */
+.mwfc-sh{position:absolute;inset:0;z-index:5;display:flex;align-items:flex-end;justify-content:center}
+.mwfc-sh[hidden]{display:none}
+.mwfc-sh-bg{position:absolute;inset:0;background:rgba(8,4,16,.62);opacity:0;transition:opacity .25s}
+.mwfc-sh-p{position:relative;width:min(100%,560px);max-height:min(84%,720px);display:flex;flex-direction:column;border-radius:28px 28px 0 0;background:linear-gradient(180deg,#2b1e46,#1a1230 60%);border:1px solid var(--dx-line);border-bottom:0;box-shadow:0 -24px 60px -20px rgba(0,0,0,.8);transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.9,.25,1);padding-bottom:env(safe-area-inset-bottom)}
+.mwfc-sh.in .mwfc-sh-bg{opacity:1}
+.mwfc-sh.in .mwfc-sh-p{transform:none}
+.mwfc-sh-p::before{content:'';position:absolute;top:8px;left:50%;width:40px;height:5px;margin-left:-20px;border-radius:9px;background:rgba(255,255,255,.22)}
+.mwfc-sh-h{display:flex;align-items:center;gap:12px;padding:24px 18px 12px}
+.mwfc-sh-h>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.mwfc-sh-h b{font:900 28px/1.1 'Outfit',sans-serif;overflow-wrap:anywhere}
+.mwfc-sh-h small{color:var(--dx-mute);font-size:13px;font-weight:700}
+.mwfc-sh-l{overflow-y:auto;overscroll-behavior:contain;padding:4px 12px 16px;display:flex;flex-direction:column;gap:6px}
+.mwfc-lr{display:grid;grid-template-columns:auto auto minmax(0,1fr) 24px;align-items:center;gap:12px;width:100%;min-height:62px;padding:9px 12px;border-radius:18px;border:1px solid transparent;background:rgba(255,255,255,.04);color:var(--dx-ink);text-align:left;cursor:pointer;transition:background .15s,border-color .15s}
+.mwfc-lr:hover{background:rgba(255,255,255,.08)}
+.mwfc-lr .fl{font-style:normal;font-size:24px;line-height:1}
+.mwfc-lr .nm{display:flex;flex-direction:column;gap:1px;min-width:84px}
+.mwfc-lr .nm b{font:800 14.5px 'Plus Jakarta Sans',sans-serif}
+.mwfc-lr .nm small{color:var(--dx-mute);font-size:12px;font-weight:600}
+.mwfc-lr .tx{min-width:0;display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right;font:800 17px/1.25 'Outfit',system-ui,sans-serif;color:#fff;overflow-wrap:anywhere}
+.mwfc-lr .tx[dir=rtl]{align-items:flex-start;font-family:system-ui,'Segoe UI',sans-serif}
+.mwfc-lr .tx:is(:lang(zh-CN),:lang(ja),:lang(ko)){font-family:system-ui,sans-serif}
+.mwfc-lr .tx small{font:600 12px 'Plus Jakarta Sans',sans-serif;color:var(--dx-mute)}
+.mwfc-lr .ck{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--dx-line);color:transparent;transition:background .2s,border-color .2s}
+.mwfc-lr .ck svg{width:14px;height:14px;stroke-width:3}
+.mwfc-lr.on{background:rgba(251,191,36,.1);border-color:rgba(251,191,36,.45)}
+.mwfc-lr.on .ck{background:linear-gradient(135deg,var(--dx-amb),var(--dx-tang));border-color:transparent;color:#2b1503}
+.mwfc-na{font:600 13px 'Plus Jakarta Sans',sans-serif;color:var(--dx-mute);font-style:normal}
+.mwfc :is(.mwfc-langs button,.mwfc-all,.mwfc-lr,.mwfc-mode):focus-visible{outline:2px solid var(--dx-amb)!important;outline-offset:2px}
+@media (min-width:700px){.mwfc-sh{align-items:center}.mwfc-sh-p{border-radius:28px;border-bottom:1px solid var(--dx-line);transform:translateY(24px) scale(.97);opacity:0;transition:transform .28s cubic-bezier(.2,.9,.25,1),opacity .2s}.mwfc-sh.in .mwfc-sh-p{opacity:1}.mwfc-sh-p::before{display:none}}
+@media (max-height:700px){.mwfc-card .def{-webkit-line-clamp:2}.mwfc-card .ex{display:none}.mwfc-tip{display:none}}
+@media (prefers-reduced-motion:reduce){.mwfc-sk{animation:none}.mwfc-sh-p,.mwfc-sh-bg,.mwfc-langs{transition:none;scroll-behavior:auto}}
 
 /* Hub groups */
 #hb-bento.hg-wrap{display:flex!important;flex-direction:column;gap:18px;grid-template-columns:none}
@@ -4354,7 +4428,7 @@ body>nav .lq-lens{border-radius:24px}
 .view-panel{contain:none!important}
 .view-panel:not(.hidden){animation-fill-mode:backwards!important}
 /* ---------- the glass material ---------- */
-:is(.hb-card,.glass-card,.pf-card,.pf-stat,.dx-box,.dx-wod,.rl-card,.rl-stat,.rl-langcard,.rl-ai,.ai-langcard,.ai-comp,.grammar-topic-card,.grammar-smart-card,.grammar-toolbar,.cl-join,.cl-rules,.st-card,.ax-card,.tr-card,.ch-card,.lx-panel,.sh-card,.tg-card,.mwfc-card,.spk-card,.shv-card,.vy-card,.grammar-stat){
+:is(.hb-card,.glass-card,.pf-card,.pf-stat,.dx-box,.dx-wod,.rl-card,.rl-stat,.rl-langcard,.rl-ai,.ai-langcard,.ai-comp,.grammar-topic-card,.grammar-smart-card,.grammar-toolbar,.cl-join,.cl-rules,.st-card,.ax-card,.tr-card,.ch-card,.lx-panel,.sh-card,.tg-card,.spk-card,.shv-card,.vy-card,.grammar-stat){
  background:radial-gradient(360px circle at var(--mx,-600px) var(--my,-600px),rgba(255,255,255,.09),transparent 62%),radial-gradient(130% 80% at 0% 0%,rgba(255,255,255,.085),transparent 48%),linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015) 52%,rgba(255,255,255,.03)),var(--lq-tint)!important;
  border:1px solid var(--lq-line)!important;
  -webkit-backdrop-filter:blur(var(--lq-blur)) saturate(170%)!important;backdrop-filter:blur(var(--lq-blur)) saturate(170%)!important;
@@ -4413,7 +4487,7 @@ body>nav .lq-lens{border-radius:24px}
 .lr-lsbox,.rl-sheet{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.02) 40%),rgba(12,15,36,.7)!important;-webkit-backdrop-filter:blur(28px) saturate(180%)!important;backdrop-filter:blur(28px) saturate(180%)!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 30px 70px -20px rgba(0,0,0,.8)!important}
 /* ---------- slower devices: cards keep the glass look without live blur ---------- */
 :is(body.lq-noblur,body.fx-off){--lq-tint:rgba(13,17,38,.8)}
-:is(body.lq-noblur,body.fx-off) :is(.hb-card,.glass-card,.pf-card,.pf-stat,.dx-box,.dx-wod,.rl-card,.rl-stat,.rl-langcard,.rl-ai,.ai-langcard,.ai-comp,.grammar-topic-card,.grammar-smart-card,.grammar-toolbar,.cl-join,.cl-rules,.st-card,.ax-card,.tr-card,.ch-card,.lx-panel,.sh-card,.tg-card,.mwfc-card,.spk-card,.shv-card,.vy-card,.grammar-stat,.pf-btn,.hb-task,.grammar-action,.grammar-tool-btn,.dx-pill,.dx-mine,.dx-save,.rl-seg,.rl-dice,.pf-opt,.st-b,.gc-chip,.gl-chip,.dx-chip,.rl-chip,.ai-chip,.hb-chip,.lx-chip,.tr-chip,.ce-pill,.st-pre button,.st-snd button){-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+:is(body.lq-noblur,body.fx-off) :is(.hb-card,.glass-card,.pf-card,.pf-stat,.dx-box,.dx-wod,.rl-card,.rl-stat,.rl-langcard,.rl-ai,.ai-langcard,.ai-comp,.grammar-topic-card,.grammar-smart-card,.grammar-toolbar,.cl-join,.cl-rules,.st-card,.ax-card,.tr-card,.ch-card,.lx-panel,.sh-card,.tg-card,.spk-card,.shv-card,.vy-card,.grammar-stat,.pf-btn,.hb-task,.grammar-action,.grammar-tool-btn,.dx-pill,.dx-mine,.dx-save,.rl-seg,.rl-dice,.pf-opt,.st-b,.gc-chip,.gl-chip,.dx-chip,.rl-chip,.ai-chip,.hb-chip,.lx-chip,.tr-chip,.ce-pill,.st-pre button,.st-snd button){-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 :is(body.lq-noblur,body.fx-off) :is(.hb-hero,.grammar-hero,.pf-hero,.rl-hero,.gm-hero,.ce-hero){-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background-color:rgba(13,16,40,.8)!important}
 /* ---------- keyboard focus ---------- */
 :is(button,a,[role=button],input,select,textarea):focus-visible{outline:2px solid color-mix(in srgb,var(--lq-acc3) 80%,white)!important;outline-offset:2px}
@@ -29564,52 +29638,145 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     window.lxSavedClose = function () { MWX.close(); };
 
     /* ================= Flashcards ================= */
-    const FC = { q: [], total: 0, first: 0, seen: {}, rev: false };
+    const FC = { q: [], total: 0, first: 0, seen: {}, rev: false, seq: 0, sheet: false, cur: null };
+    I.globe = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>';
+    /* the 12 languages a saved word can be shown in */
+    const FCL = [
+        { c: 'uz', n: 'Uzbek', nat: 'Oʻzbekcha', f: '🇺🇿', sp: 'uz-UZ' },
+        { c: 'ru', n: 'Russian', nat: 'Русский', f: '🇷🇺', sp: 'ru-RU' },
+        { c: 'tr', n: 'Turkish', nat: 'Türkçe', f: '🇹🇷', sp: 'tr-TR' },
+        { c: 'kk', n: 'Kazakh', nat: 'Қазақ тілі', f: '🇰🇿', sp: 'kk-KZ' },
+        { c: 'tg', n: 'Tajik', nat: 'Тоҷикӣ', f: '🇹🇯', sp: 'tg-TJ' },
+        { c: 'ko', n: 'Korean', nat: '한국어', f: '🇰🇷', sp: 'ko-KR', rom: 1 },
+        { c: 'zh-CN', n: 'Chinese', nat: '中文', f: '🇨🇳', sp: 'zh-CN', rom: 1 },
+        { c: 'ja', n: 'Japanese', nat: '日本語', f: '🇯🇵', sp: 'ja-JP', rom: 1 },
+        { c: 'ar', n: 'Arabic', nat: 'العربية', f: '🇸🇦', sp: 'ar-SA', rtl: 1, rom: 1 },
+        { c: 'de', n: 'German', nat: 'Deutsch', f: '🇩🇪', sp: 'de-DE' },
+        { c: 'fr', n: 'French', nat: 'Français', f: '🇫🇷', sp: 'fr-FR' },
+        { c: 'es', n: 'Spanish', nat: 'Español', f: '🇪🇸', sp: 'es-ES' }
+    ];
+    const lcode = (L) => L.c.split('-')[0].toUpperCase();
+    function fcLang() { const u = U(); let c = u.fcLang; if (!FCL.some(l => l.c === c)) c = (u.prefs || {}).lang === 'ru' ? 'ru' : 'uz'; return FCL.find(l => l.c === c); }
+    /* translations are kept on the phone, so words seen once also work offline */
+    let fcCache = {}; try { fcCache = JSON.parse(localStorage.getItem('lr_fc_tr') || '{}') || {}; } catch (e) { fcCache = {}; }
+    let fcSaveT = 0; const fcBusy = {};
+    function fcPersist() { clearTimeout(fcSaveT); fcSaveT = setTimeout(() => { try { const ks = Object.keys(fcCache); if (ks.length > 1600) ks.slice(0, ks.length - 1200).forEach(k => delete fcCache[k]); localStorage.setItem('lr_fc_tr', JSON.stringify(fcCache)); } catch (e) { } }, 500); }
+    function fcHit(w, c) { const k = c + '|' + String(w).toLowerCase(); if (fcCache[k]) return fcCache[k]; if (c === 'uz') { const m = uzOf(w); if (m) return { m, a: [] }; } return null; }
+    async function getJ(url, ms) { const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), ms); try { const r = await fetch(url, { signal: ctl.signal }); return await r.json(); } finally { clearTimeout(to); } }
+    async function fcNet(w, c) {
+        try {
+            const d = await getJ('https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=' + encodeURIComponent(c) + '&dt=t&dt=bd&dt=rm&q=' + encodeURIComponent(w), 6500);
+            const ch = d[0] || [], m = ch.filter(x => x && x[0] != null).map(x => x[0]).join('').trim(); if (!m) throw 0;
+            const rm = (ch.find(x => x && x[0] == null && x[2]) || [])[2] || '', a = [];
+            (d[1] || []).forEach(g => (g[1] || []).forEach(x => { if (x && x.toLowerCase() !== m.toLowerCase() && !a.includes(x)) a.push(x); }));
+            return { m, a: a.slice(0, 4), r: String(rm) };
+        } catch (e) {
+            try {
+                const d = await getJ('https://api.mymemory.translated.net/get?langpair=en|' + encodeURIComponent(c) + '&q=' + encodeURIComponent(w), 7000), t = d && d.responseData && d.responseData.translatedText;
+                return t && !/MYMEMORY WARNING/i.test(t) ? { m: String(t).trim(), a: [] } : null;
+            } catch (e2) { return null; }
+        }
+    }
+    function fcTr(w, c) {
+        const k = c + '|' + String(w).toLowerCase(), hit = fcHit(w, c); if (hit) return Promise.resolve(hit); if (fcBusy[k]) return fcBusy[k];
+        const own = (t) => t && t.main ? { m: String(t.main).trim(), a: (t.alts || []).filter(x => typeof x === 'string' && x.toLowerCase() !== String(t.main).toLowerCase()).slice(0, 4) } : null;
+        return fcBusy[k] = (async () => {
+            let r = null;
+            try { if (c === 'uz') r = own(await translateToUz(w)); else if (c === 'ru') r = own(await translateToRu(w)); } catch (e) { }
+            if (!r) r = await fcNet(w, c);
+            delete fcBusy[k]; if (r && r.m) { fcCache[k] = r; fcPersist(); } return r && r.m ? r : null;
+        })();
+    }
+    let fcVoices = [];
+    const fcVoiceLoad = () => { try { fcVoices = speechSynthesis.getVoices() || []; } catch (e) { } };
+    try { fcVoiceLoad(); speechSynthesis.addEventListener('voiceschanged', fcVoiceLoad); } catch (e) { }
+    const voiceFor = (L) => { const p = L.c.split('-')[0].toLowerCase(); return fcVoices.find(v => String(v.lang).toLowerCase().replace('_', '-').startsWith(p)); };
     function fcEl() {
         let v = $('mwfc'); if (v) return v;
         v = document.createElement('div'); v.id = 'mwfc'; v.className = 'mwfc'; v.setAttribute('role', 'dialog'); v.setAttribute('aria-label', 'Flashcards');
-        v.innerHTML = `<div class="mwfc-top"><button class="mw-ib" onclick="FCX.close()" aria-label="Close">${I.x}</button><div class="mwfc-prog"><i id="fc2-bar"></i></div><span id="fc2-n" class="mwfc-n"></span><button class="mwfc-mode" id="fc2-mode" onclick="FCX.mode()"></button></div>
-            <div class="mwfc-stage" id="fc2-stage"><div class="mwfc-card" id="fc2-card" onclick="FCX.flip()"><div class="f front" id="fc2-front"></div><div class="f back" id="fc2-back"></div></div><p class="mwfc-tip" id="fc2-tip">Tap the card to see the answer · swipe right if you know it</p></div>
+        v.innerHTML = `<div class="mwfc-top"><button class="mw-ib" onclick="FCX.close()" aria-label="Close">${I.x}</button><div class="mwfc-prog"><i id="fc2-bar"></i></div><span id="fc2-n" class="mwfc-n"></span><button class="mwfc-mode" id="fc2-mode" onclick="FCX.mode()" aria-label="Switch which side shows first"></button></div>
+            <div class="mwfc-stage" id="fc2-stage"><div class="mwfc-card" id="fc2-card" onclick="FCX.flip()"><div class="f front" id="fc2-front"></div><div class="f back" id="fc2-back"></div></div>
+                <div class="mwfc-lbar"><div class="mwfc-langs" id="fc2-langs" role="radiogroup" aria-label="Translation language"></div><button class="mwfc-all" id="fc2-all" onclick="FCX.all()" aria-label="See this word in all 12 languages">${I.globe}<span>All 12</span></button></div>
+                <p class="mwfc-tip" id="fc2-tip">Tap the card to flip · swipe right if you know it</p></div>
             <div class="mwfc-acts" id="fc2-acts"><button class="mwfc-b no" onclick="FCX.answer(false)">${I.x}<span>Again</span></button><button class="mwfc-b yes" onclick="FCX.answer(true)">${I.check}<span>I know it</span></button></div>
-            <div class="mwfc-done" id="fc2-done" hidden></div>`;
+            <div class="mwfc-done" id="fc2-done" hidden></div>
+            <div class="mwfc-sh" id="fc2-sh" hidden><div class="mwfc-sh-bg" onclick="FCX.sheetClose()"></div><div class="mwfc-sh-p" role="dialog" aria-modal="true" aria-labelledby="fc2-sh-t"><div class="mwfc-sh-h"><div><b id="fc2-sh-t"></b><small>in 12 languages · tap one to use it on your cards</small></div><button class="mw-ib sm" onclick="FCX.sheetClose()" aria-label="Close">${I.x}</button></div><div class="mwfc-sh-l" id="fc2-sh-l"></div></div></div>`;
         document.body.appendChild(v);
         const card = v.querySelector('#fc2-card'); let x0 = null, dx = 0;
-        card.addEventListener('pointerdown', e => { x0 = e.clientX; dx = 0; card.setPointerCapture && card.setPointerCapture(e.pointerId); });
+        card.addEventListener('pointerdown', e => { if (e.target.closest && e.target.closest('button')) return; x0 = e.clientX; dx = 0; card.setPointerCapture && card.setPointerCapture(e.pointerId); });
         card.addEventListener('pointermove', e => { if (x0 == null) return; dx = e.clientX - x0; if (Math.abs(dx) > 6) { card.style.transform = `translateX(${dx}px) rotate(${dx / 18}deg)`; card.dataset.sw = dx > 40 ? 'yes' : dx < -40 ? 'no' : ''; } });
         const up = () => { if (x0 == null) return; const d = dx; x0 = null; card.style.transform = ''; card.dataset.sw = ''; if (Math.abs(d) > 90) { card.dataset.skipClick = '1'; FCX.answer(d > 0); setTimeout(() => { card.dataset.skipClick = ''; }, 50); } else if (Math.abs(d) > 6) { card.dataset.skipClick = '1'; setTimeout(() => { card.dataset.skipClick = ''; }, 50); } };
         card.addEventListener('pointerup', up); card.addEventListener('pointercancel', up);
+        const lb = v.querySelector('#fc2-langs'); lb.addEventListener('scroll', () => fcFade(lb), { passive: true });
         return v;
     }
-    async function fcShow() {
+    function fcStrip() {
+        const L = fcLang(), box = $('fc2-langs'); if (!box) return;
+        box.innerHTML = FCL.map(l => { const on = l.c === L.c; return `<button role="radio" aria-checked="${on}" class="${on ? 'on' : ''}" onclick="FCX.lang('${l.c}')" aria-label="${l.n}" title="${l.n}"><i>${l.f}</i><span>${on ? esc(l.n) : lcode(l)}</span></button>`; }).join('');
+        const on = box.querySelector('.on'); if (on) box.scrollLeft = Math.max(0, on.offsetLeft - (box.clientWidth - on.offsetWidth) / 2);
+        fcFade(box);
+    }
+    function fcFade(box) { const x = box.scrollLeft, l = x > 4, r = x + box.clientWidth < box.scrollWidth - 4; box.dataset.f = (l ? 'l' : '') + (r ? 'r' : ''); }
+    async function fcShow(keep) {
         const w = FC.q[0], front = $('fc2-front'), back = $('fc2-back'), card = $('fc2-card'); if (!w) return;
-        card.classList.remove('flip'); $('fc2-tip').hidden = false;
+        const L = fcLang(), seq = ++FC.seq;
+        if (!keep) { card.classList.remove('flip'); $('fc2-tip').classList.remove('off'); }
         const done = FC.total - FC.q.length; $('fc2-bar').style.width = (done / FC.total * 100) + '%'; $('fc2-n').textContent = (done + 1) + ' / ' + FC.total;
-        $('fc2-mode').textContent = FC.rev ? 'UZ → EN' : 'EN → UZ';
-        const st = status(w); const tag = `<span class="mwfc-tag ${st}">${st === 'known' ? 'Known' : st === 'learning' ? 'Learning' : 'New'}</span>`;
-        let uz = uzOf(w);
-        const paint = () => {
-            let e = null; try { e = engCache[w.toLowerCase()] || offlineWords[w.toLowerCase()]; } catch (x) { }
-            const def = e && e.def ? e.def : ''; let ex = ''; try { ex = lifeExamples(w, (e && e.pos) || guessPos(w, { main: uz }))[0]; } catch (x) { }
-            const wordSide = `${tag}<h3>${esc(w)}</h3><button class="dx-pill" data-w="${esc(w)}" onclick="event.stopPropagation();lxSay(this.dataset.w,'en-GB')">${I.play}Listen</button>`;
-            const uzSide = `${tag}<h3 class="uz">${esc(uz || '…')}</h3><small>Uzbek</small>`;
-            front.innerHTML = FC.rev ? uzSide : wordSide;
-            back.innerHTML = (FC.rev ? `<h3>${esc(w)}</h3><button class="dx-pill" data-w="${esc(w)}" onclick="event.stopPropagation();lxSay(this.dataset.w,'en-GB')">${I.play}Listen</button>` : `<h3 class="uz">${esc(uz || 'Translation unavailable offline')}</h3><small>${esc(w)}</small>`) + (def ? `<p class="def">${esc(def)}</p>` : '') + (ex ? `<p class="ex">“${esc(ex)}”</p>` : '');
+        $('fc2-mode').innerHTML = FC.rev ? `${lcode(L)}<em>→</em>EN` : `EN<em>→</em>${lcode(L)}`;
+        fcStrip();
+        const st = status(w), tag = `<span class="mwfc-tag ${st}">${st === 'known' ? 'Known' : st === 'learning' ? 'Learning' : 'New'}</span>`;
+        let e = null; try { e = engCache[w.toLowerCase()] || offlineWords[w.toLowerCase()]; } catch (x) { }
+        const def = e && e.def ? e.def : ''; let ex = ''; try { ex = lifeExamples(w, (e && e.pos) || guessPos(w, { main: uzOf(w) }))[0]; } catch (x) { }
+        const more = (def ? `<p class="def">${esc(def)}</p>` : '') + (ex ? `<p class="ex">“${esc(ex)}”</p>` : '');
+        const listenEn = `<button class="dx-pill" data-w="${esc(w)}" onclick="event.stopPropagation();lxSay(this.dataset.w,'en-GB')">${I.play}Listen</button>`;
+        const lab = `<span class="mwfc-lab"><i>${L.f}</i><b>${esc(L.n)}</b></span>`;
+        const paint = (t, mode) => {
+            const dir = L.rtl ? ' dir="rtl"' : '';
+            const main = t ? `<h3 class="tr"${dir} lang="${L.c}">${esc(t.m)}</h3>${t.r && L.rom ? `<i class="mwfc-rom">${esc(t.r)}</i>` : ''}`
+                : mode === 'load' ? `<span class="mwfc-sk" role="status" aria-label="Loading the translation"></span>`
+                : `<p class="mwfc-off">The ${esc(L.n)} translation needs the internet.</p><button class="dx-pill" onclick="event.stopPropagation();FCX.retry()">Try again</button>`;
+            const alts = t && t.a && t.a.length ? `<div class="mwfc-alts"${dir}>${t.a.slice(0, 3).map(a => `<span>${esc(a)}</span>`).join('')}</div>` : '';
+            const sayT = t && voiceFor(L) ? `<button class="dx-pill" onclick="event.stopPropagation();FCX.sayTr()">${I.play}Listen</button>` : '';
+            front.innerHTML = FC.rev ? `${tag}${lab}${main}${sayT}` : `${tag}<h3>${esc(w)}</h3>${listenEn}`;
+            back.innerHTML = FC.rev ? `<span class="mwfc-lab"><i>🇬🇧</i><b>English</b></span><h3>${esc(w)}</h3>${listenEn}${more}`
+                : `${lab}${main}${alts}${sayT}<small class="en">${esc(w)}</small>${more}`;
+            FC.cur = t || null;
         };
-        paint();
-        if (!uz) { try { const t = await translateToUz(w); if (FC.q[0] !== w) return; uz = t && t.main || ''; paint(); } catch (e) { } }
-        try { if (!FC.rev && (U().prefs || {}).autoSpeak !== false) say(w, 'en-GB'); } catch (e) { }
+        const hit = fcHit(w, L.c); paint(hit, hit ? '' : 'load');
+        if (!keep) { try { if (!FC.rev && (U().prefs || {}).autoSpeak !== false) say(w, 'en-GB'); } catch (x) { } }
+        if (!hit) { const t = await fcTr(w, L.c); if (seq !== FC.seq) return; paint(t, t ? '' : 'fail'); }
+        if (FC.q[1]) fcTr(FC.q[1], L.c);
+    }
+    function trCell(t, l) { return t ? esc(t.m) + (t.r && l.rom ? `<small>${esc(t.r)}</small>` : '') : '<em class="mwfc-na">Needs internet</em>'; }
+    function fcSheetPaint() {
+        const w = FC.q[0], L = fcLang(), list = $('fc2-sh-l'); if (!w || !list) return;
+        $('fc2-sh-t').textContent = w;
+        list.innerHTML = FCL.map(l => { const t = fcHit(w, l.c), on = l.c === L.c; return `<button class="mwfc-lr${on ? ' on' : ''}" data-c="${l.c}" aria-pressed="${on}" onclick="FCX.pick('${l.c}')"><i class="fl">${l.f}</i><span class="nm"><b>${esc(l.n)}</b><small>${esc(l.nat)}</small></span><span class="tx"${l.rtl ? ' dir="rtl"' : ''} lang="${l.c}">${t ? trCell(t, l) : '<em class="mwfc-sk sm"></em>'}</span><span class="ck">${I.check}</span></button>`; }).join('');
+        FCL.forEach(l => { if (fcHit(w, l.c)) return; fcTr(w, l.c).then(t => { if (!FC.sheet || FC.q[0] !== w) return; const c = list.querySelector(`[data-c="${l.c}"] .tx`); if (c) c.innerHTML = trCell(t, l); }); });
+    }
+    function fcSheetClose(back) {
+        const s = $('fc2-sh'); if (!s || !FC.sheet) return; FC.sheet = false; s.classList.remove('in');
+        setTimeout(() => { if (!FC.sheet) s.hidden = true; }, 280); if (back !== false) { const b = $('fc2-all'); if (b) b.focus({ preventScroll: true }); }
     }
     window.FCX = {
-        flip() { const c = $('fc2-card'); if (c.dataset.skipClick) return; c.classList.toggle('flip'); $('fc2-tip').hidden = true; if (FC.rev && c.classList.contains('flip')) say(FC.q[0], 'en-GB'); },
+        flip() { const c = $('fc2-card'); if (c.dataset.skipClick) return; c.classList.toggle('flip'); $('fc2-tip').classList.add('off'); if (FC.rev && c.classList.contains('flip')) say(FC.q[0], 'en-GB'); },
         mode() { FC.rev = !FC.rev; fcShow(); },
+        lang(c) { if (!FCL.some(l => l.c === c)) return; U().fcLang = c; save(); fcShow(true); },
+        pick(c) { FCX.lang(c); if (FC.sheet) { document.querySelectorAll('#fc2-sh-l .mwfc-lr').forEach(b => { const on = b.dataset.c === c; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); }); setTimeout(() => fcSheetClose(), 220); } },
+        retry() { fcShow(true); },
+        sayTr() { const t = FC.cur, L = fcLang(); if (!t) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t.m); u.lang = L.sp; const v = voiceFor(L); if (v) u.voice = v; u.rate = .9; speechSynthesis.speak(u); } catch (e) { } },
+        all() { const s = $('fc2-sh'); if (!s || !FC.q[0]) return; FC.sheet = true; s.hidden = false; fcSheetPaint(); requestAnimationFrame(() => { s.classList.add('in'); const on = s.querySelector('.mwfc-lr.on'); if (on) { on.focus({ preventScroll: true }); on.scrollIntoView({ block: 'nearest' }); } }); },
+        sheetClose() { fcSheetClose(); },
+        sheetOpen() { return FC.sheet; },
         answer(k) {
+            if (FC.sheet) fcSheetClose(false);
             const w = FC.q.shift(); if (!w) return; const u = U(); u.known = u.known || []; u.mwSeen = u.mwSeen || [];
             if (!u.mwSeen.includes(w)) u.mwSeen.push(w);
             if (k) { if (!FC.seen[w]) FC.first++; if (!u.known.includes(w)) u.known.push(w); } else { FC.q.push(w); u.known = u.known.filter(x => x !== w); }
             FC.seen[w] = true; try { u.fcDate = dayKey(); } catch (e) { } save();
             const c = $('fc2-card'); c.classList.add(k ? 'go-r' : 'go-l'); setTimeout(() => { c.classList.remove('go-r', 'go-l'); if (!FC.q.length) return fcFinish(); fcShow(); }, 220);
         },
-        close() { const v = $('mwfc'); if (v) v.classList.remove('open'); document.body.classList.remove('mw-lock'); const m = $('mw'); if (m && m.classList.contains('open')) { document.body.classList.add('mw-lock'); mwPaint(); } try { renderHub(); } catch (e) { } },
+        close() { if (FC.sheet) fcSheetClose(false); const v = $('mwfc'); if (v) v.classList.remove('open'); document.body.classList.remove('mw-lock'); const m = $('mw'); if (m && m.classList.contains('open')) { document.body.classList.add('mw-lock'); mwPaint(); } try { renderHub(); } catch (e) { } },
         again(only) { window.fcOpen(only); }
     };
     function fcFinish() {
@@ -29624,12 +29791,12 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         let words = saved().slice(); if (only === 'todo') { const k = known().map(x => x.toLowerCase()); words = words.filter(w => !k.includes(w.toLowerCase())); if (!words.length) words = saved().slice(); }
         if (!words.length) { toast('Save some words first — search a word and tap Save'); try { showSavedWords(); } catch (e) { } return; }
         for (let i = words.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [words[i], words[j]] = [words[j], words[i]]; }
-        FC.q = words; FC.total = words.length; FC.first = 0; FC.seen = {};
-        const v = fcEl(); $('fc2-stage').hidden = false; $('fc2-acts').hidden = false; $('fc2-done').hidden = true; v.classList.add('open'); document.body.classList.add('mw-lock'); fcShow();
+        FC.q = words; FC.total = words.length; FC.first = 0; FC.seen = {}; fcVoiceLoad();
+        const v = fcEl(); if (FC.sheet) fcSheetClose(false); $('fc2-stage').hidden = false; $('fc2-acts').hidden = false; $('fc2-done').hidden = true; v.classList.add('open'); document.body.classList.add('mw-lock'); fcShow();
     };
     window.fcClose = function () { FCX.close(); };
     document.addEventListener('keydown', (e) => {
-        const f = $('mwfc'); if (f && f.classList.contains('open')) { if (e.key === 'Escape') FCX.close(); else if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); FCX.flip(); } else if (e.key === 'ArrowRight') FCX.answer(true); else if (e.key === 'ArrowLeft') FCX.answer(false); return; }
+        const f = $('mwfc'); if (f && f.classList.contains('open')) { if (FCX.sheetOpen()) { if (e.key === 'Escape') FCX.sheetClose(); return; } const ui = e.target && e.target.closest && e.target.closest('.mwfc-lbar,.mwfc-top,.mwfc-done'); if (e.key === 'Escape') FCX.close(); else if (ui) return; else if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); FCX.flip(); } else if (e.key === 'ArrowRight') FCX.answer(true); else if (e.key === 'ArrowLeft') FCX.answer(false); return; }
         const m = $('mw'); if (m && m.classList.contains('open') && e.key === 'Escape') MWX.close();
     });
 
