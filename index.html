@@ -4954,7 +4954,7 @@ void main(){
 
             <div class="grid lg:grid-cols-2 gap-4">
                 <div class="hb-card">
-                    <div class="hb-h"><i class="fa-solid fa-bolt text-amber-400"></i> Quick lookup <small>EN → UZ · RU</small></div>
+                    <div class="hb-h"><i class="fa-solid fa-bolt text-amber-400"></i> Quick lookup <small>EN → 12 languages</small></div>
                     <div class="hb-input"><i class="fa-solid fa-magnifying-glass text-slate-500"></i><input id="hb-q" type="text" placeholder="Type any English word..." autocomplete="off" onkeydown="if(event.key==='Enter')hubLookup()"><button onclick="hubLookup()" class="pf-btn primary" style="padding:9px 14px">Go</button></div>
                     <div id="hb-res"></div>
                     <div class="mt-3"><div class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-2">Recent</div><div id="hb-recent" class="flex flex-wrap gap-2"></div></div>
@@ -29770,6 +29770,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     const fcVoiceLoad = () => { try { fcVoices = speechSynthesis.getVoices() || []; } catch (e) { } };
     try { fcVoiceLoad(); speechSynthesis.addEventListener('voiceschanged', fcVoiceLoad); } catch (e) { }
     const voiceFor = (L) => { const p = L.c.split('-')[0].toLowerCase(); return fcVoices.find(v => String(v.lang).toLowerCase().replace('_', '-').startsWith(p)); };
+    window.LRW = { langs: FCL, lang: fcLang, tr: fcTr, hit: fcHit, voice: voiceFor, code: lcode, save };
     function fcEl() {
         let v = $('mwfc'); if (v) return v;
         v = document.createElement('div'); v.id = 'mwfc'; v.className = 'mwfc'; v.setAttribute('role', 'dialog'); v.setAttribute('aria-label', 'Flashcards');
@@ -29906,7 +29907,151 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     try { const hv = $('view-dashboard'); if (hv && !hv.classList.contains('hidden')) window.renderHub(); } catch (e) { }
     try { const dv = $('view-dictionary'); if (dv && !dv.classList.contains('hidden')) window.lxHome(); } catch (e) { }
 })();
-</script><!--/ux:js-->
+</script>
+<script id="lrw-js">
+/* ===== Word languages: the 12 flashcard languages also in the Dictionary word card and the Hub's Quick lookup ===== */
+(function () {
+    'use strict';
+    const W = window.LRW; if (!W) return;
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+    const U = () => { try { return state.user || {}; } catch (e) { return {}; } };
+    const IC = {
+        play: '<svg viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4zM15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/></svg>',
+        globe: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>',
+        check: '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+        x: '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>'
+    };
+    const byC = (c) => W.langs.find(l => l.c === c);
+    /* the extra language: the last one picked here, else the flashcard language, else the first one not already shown */
+    function pickFrom(others) { const u = U(), fl = W.lang(); const want = [u.xLang, fl && fl.c].find(c => others.some(l => l.c === c)); return others.find(l => l.c === want) || others[0]; }
+    function chip(l, on, ctx) { return `<button role="radio" aria-checked="${on}" class="${on ? 'on' : ''}" onclick="LRWX.pick('${l.c}','${ctx}')" aria-label="${l.n}" title="${l.n}"><i>${l.f}</i><span>${on ? esc(l.n) : W.code(l)}</span></button>`; }
+    function center(strip) { if (!strip) return; const on = strip.querySelector('.on'); if (on) strip.scrollLeft = Math.max(0, on.offsetLeft - (strip.clientWidth - on.offsetWidth) / 2); fade(strip); }
+    function fade(strip) { const x = strip.scrollLeft; strip.dataset.f = (x > 4 ? 'l' : '') + (x + strip.clientWidth < strip.scrollWidth - 4 ? 'r' : ''); }
+    function body(t, L, w, mode) {
+        const dir = L.rtl ? ' dir="rtl"' : '';
+        const head = `<div class="lrw-lh"><span class="lrw-lab"><i>${L.f}</i><b>${esc(L.n)}</b><small>${esc(L.nat)}</small></span>${t && W.voice(L) ? `<button class="lrw-say" data-t="${esc(t.m)}" onclick="LRWX.say(this.dataset.t,'${L.c}')" aria-label="Listen in ${L.n}">${IC.play}</button>` : ''}</div>`;
+        if (!t) return head + (mode === 'load' ? '<span class="lrw-sk" role="status" aria-label="Loading the translation"></span>'
+            : `<p class="lrw-off">The ${esc(L.n)} translation needs the internet. <button class="lrw-retry" onclick="LRWX.retry(this)">Try again</button></p>`);
+        return head + `<p class="lrw-main"${dir} lang="${L.c}">${esc(t.m)}</p>${t.r && L.rom ? `<p class="lrw-rom">${esc(t.r)}</p>` : ''}${t.a && t.a.length ? `<div class="lrw-alts"${dir}>${t.a.slice(0, 4).map(a => `<span>${esc(a)}</span>`).join('')}</div>` : ''}`;
+    }
+    async function fill(out, w, L) {
+        if (!out) return; const seq = String((+out.dataset.seq || 0) + 1); out.dataset.seq = seq;
+        const hit = W.hit(w, L.c); out.innerHTML = body(hit, L, w, hit ? '' : 'load');
+        if (!hit) { const t = await W.tr(w, L.c); if (out.dataset.seq !== seq || !out.isConnected) return; out.innerHTML = body(t, L, w, t ? '' : 'fail'); }
+    }
+    /* ---------- Dictionary word card: "More languages" right under the Uzbek / Russian cards ---------- */
+    function dictShown() { const lg = (U().prefs || {}).lang || 'both', cur = window.lxCurUx || {}, out = []; if (lg !== 'ru' && cur.uz && cur.uz.main) out.push('uz'); if (lg !== 'uz' && cur.ru && cur.ru.main) out.push('ru'); return out; }
+    function dictPanel() {
+        const cur = window.lxCurUx, box = $('dict-result-container'); if (!cur || !cur.word || !box || !box.querySelector('.dx-card')) return;
+        const old = $('lrw-dx'); if (old) old.remove();
+        const shown = dictShown(), others = W.langs.filter(l => !shown.includes(l.c)), L = pickFrom(others), w = cur.word;
+        const sec = document.createElement('section'); sec.className = 'dx-box lrw-box'; sec.id = 'lrw-dx'; sec.dataset.w = w;
+        sec.innerHTML = `<div class="dx-bh"><h4>${IC.globe}More languages</h4><button class="dx-link" onclick="LRWX.all(document.getElementById('lrw-dx').dataset.w)">See all ${W.langs.length}</button></div>
+            <div class="lrw-strip" role="radiogroup" aria-label="Translation language">${others.map(l => chip(l, l.c === L.c, 'dx')).join('')}</div>
+            <div class="lrw-out" id="lrw-dx-out" aria-live="polite"></div>`;
+        const anchor = box.querySelector('.dx-trs') || box.querySelector('.dx-card'); anchor.after(sec);
+        const st = sec.querySelector('.lrw-strip'); st.addEventListener('scroll', () => fade(st), { passive: true }); center(st);
+        fill($('lrw-dx-out'), w, L);
+    }
+    /* ---------- Hub Quick lookup: one more language under Uzbek and Russian ---------- */
+    function quickLine() {
+        const res = document.querySelector('#hb-res .hb-res'); if (!res || res.querySelector('.text-rose-300')) return;
+        const wEl = res.querySelector('.text-xl'); const w = wEl ? wEl.textContent.trim() : ''; if (!w) return;
+        const old = $('lrw-qk'); if (old) old.remove();
+        const others = W.langs.filter(l => l.c !== 'uz' && l.c !== 'ru'), L = pickFrom(others);
+        const card = res.closest('.hb-card'); if (card) card.style.minWidth = '0';
+        const d = document.createElement('div'); d.id = 'lrw-qk'; d.className = 'lrw-qk'; d.dataset.w = w;
+        d.innerHTML = `<div class="lrw-strip sm" role="radiogroup" aria-label="Translation language">${others.map(l => chip(l, l.c === L.c, 'qk')).join('')}</div><div class="lrw-out sm" id="lrw-qk-out" aria-live="polite"></div>`;
+        const acts = res.querySelector('.flex.flex-wrap.gap-2.mt-3'); if (acts) acts.before(d); else res.appendChild(d);
+        if (acts && !acts.querySelector('.lrw-allb')) acts.insertAdjacentHTML('beforeend', `<button class="pf-btn lrw-allb" onclick="LRWX.all(document.getElementById('lrw-qk').dataset.w)">${IC.globe}All ${W.langs.length}</button>`);
+        const st = d.querySelector('.lrw-strip'); st.addEventListener('scroll', () => fade(st), { passive: true }); center(st);
+        fill($('lrw-qk-out'), w, L);
+    }
+    function refresh(ctx) {
+        if (ctx !== 'qk' && $('lrw-dx')) { const sec = $('lrw-dx'), shown = dictShown(), others = W.langs.filter(l => !shown.includes(l.c)), L = pickFrom(others); sec.querySelector('.lrw-strip').innerHTML = others.map(l => chip(l, l.c === L.c, 'dx')).join(''); center(sec.querySelector('.lrw-strip')); fill($('lrw-dx-out'), sec.dataset.w, L); }
+        if (ctx !== 'dx' && $('lrw-qk')) { const d = $('lrw-qk'), others = W.langs.filter(l => l.c !== 'uz' && l.c !== 'ru'), L = pickFrom(others); d.querySelector('.lrw-strip').innerHTML = others.map(l => chip(l, l.c === L.c, 'qk')).join(''); center(d.querySelector('.lrw-strip')); fill($('lrw-qk-out'), d.dataset.w, L); }
+    }
+    /* ---------- "See all 12" sheet ---------- */
+    let sheetWord = '', sheetOpen = false;
+    function sheet() {
+        let s = $('lrw-sh'); if (s) return s;
+        s = document.createElement('div'); s.id = 'lrw-sh'; s.className = 'mwfc-sh lrw-sh'; s.hidden = true;
+        s.innerHTML = `<div class="mwfc-sh-bg" onclick="LRWX.close()"></div><div class="mwfc-sh-p" role="dialog" aria-modal="true" aria-labelledby="lrw-sh-t"><div class="mwfc-sh-h"><div><b id="lrw-sh-t"></b><small>in ${W.langs.length} languages · tap one to show it first</small></div><button class="lrw-x" onclick="LRWX.close()" aria-label="Close">${IC.x}</button></div><div class="mwfc-sh-l" id="lrw-sh-l"></div></div>`;
+        document.body.appendChild(s); return s;
+    }
+    function cell(t, l) { return t ? esc(t.m) + (t.r && l.rom ? `<small>${esc(t.r)}</small>` : '') : '<em class="mwfc-na">Needs internet</em>'; }
+    function paintSheet() {
+        const list = $('lrw-sh-l'), w = sheetWord; if (!list) return; $('lrw-sh-t').textContent = w;
+        const cur = U().xLang || pickFrom(W.langs.filter(l => l.c !== 'uz' && l.c !== 'ru')).c;
+        list.innerHTML = W.langs.map(l => { const t = W.hit(w, l.c), on = l.c === cur; return `<button class="mwfc-lr${on ? ' on' : ''}" data-c="${l.c}" aria-pressed="${on}" onclick="LRWX.pick('${l.c}','sh')"><i class="fl">${l.f}</i><span class="nm"><b>${esc(l.n)}</b><small>${esc(l.nat)}</small></span><span class="tx"${l.rtl ? ' dir="rtl"' : ''} lang="${l.c}">${t ? cell(t, l) : '<em class="mwfc-sk sm"></em>'}</span><span class="ck">${IC.check}</span></button>`; }).join('');
+        W.langs.forEach(l => { if (W.hit(w, l.c)) return; W.tr(w, l.c).then(t => { if (!sheetOpen || sheetWord !== w) return; const c = list.querySelector(`[data-c="${l.c}"] .tx`); if (c) c.innerHTML = cell(t, l); }); });
+    }
+    function closeSheet() { const s = $('lrw-sh'); if (!s || !sheetOpen) return; sheetOpen = false; s.classList.remove('in'); setTimeout(() => { if (!sheetOpen) s.hidden = true; }, 280); }
+    window.LRWX = {
+        pick(c, ctx) {
+            if (!byC(c)) return;
+            if (c !== 'uz' && c !== 'ru') { U().xLang = c; try { W.save(); } catch (e) { } }
+            if (ctx === 'sh') { document.querySelectorAll('#lrw-sh-l .mwfc-lr').forEach(b => { const on = b.dataset.c === c; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); }); refresh(); setTimeout(closeSheet, 220); return; }
+            refresh(ctx);
+        },
+        all(w) { if (!w) return; const s = sheet(); sheetWord = w; sheetOpen = true; s.hidden = false; paintSheet(); requestAnimationFrame(() => { s.classList.add('in'); const on = s.querySelector('.mwfc-lr.on') || s.querySelector('.mwfc-lr'); if (on) { on.focus({ preventScroll: true }); on.scrollIntoView({ block: 'nearest' }); } }); },
+        close: closeSheet,
+        say(t, c) { const L = byC(c); if (!L || !t) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = L.sp; const v = W.voice(L); if (v) u.voice = v; u.rate = .9; speechSynthesis.speak(u); } catch (e) { } },
+        retry(btn) { refresh(btn && btn.closest('#lrw-qk') ? 'qk' : 'dx'); }
+    };
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && sheetOpen) { e.stopPropagation(); closeSheet(); } }, true);
+    const R = window.renderWordCard;
+    if (typeof R === 'function') window.renderWordCard = function () { const r = R.apply(this, arguments); try { dictPanel(); } catch (e) { console.warn('[lrw]', e); } return r; };
+    const H = window.hubLookup;
+    if (typeof H === 'function') window.hubLookup = async function () { const r = await H.apply(this, arguments); try { quickLine(); } catch (e) { console.warn('[lrw]', e); } return r; };
+    try { if (window.lxCurUx && $('dict-result-container') && $('dict-result-container').querySelector('.dx-card')) dictPanel(); } catch (e) { }
+})();
+</script>
+<style id="lrw-css">
+.lrw-sh{--dx-s0:#130c20;--dx-s1:#1c1430;--dx-s2:#271b40;--dx-line:rgba(233,215,255,.12);--dx-ink:#f8f2ff;--dx-mute:#b9a9d6;--dx-amb:#fbbf24;--dx-tang:#fb923c;color:var(--dx-ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+.lrw-sh.mwfc-sh{position:fixed;z-index:6200}
+.lrw-sh svg,.lrw-box svg,.lrw-qk svg,.lrw-allb svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.lrw-x{flex:none;width:40px;height:40px;border-radius:12px;border:1px solid var(--dx-line);background:rgba(255,255,255,.06);color:var(--dx-ink);display:grid;place-items:center;cursor:pointer}
+.lrw-strip{position:relative;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 4px;scroll-behavior:smooth}
+.lrw-strip::-webkit-scrollbar{display:none}
+.lrw-strip[data-f=r]{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent)}
+.lrw-strip[data-f=l]{-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px);mask-image:linear-gradient(90deg,transparent,#000 26px)}
+.lrw-strip[data-f=lr]{-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent)}
+.lrw-strip button{flex:none;display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 12px 0 9px;border-radius:99px;border:1px solid var(--dx-line,rgba(255,255,255,.14));background:rgba(255,255,255,.05);color:var(--dx-mute,#a5b4cf);font:800 12.5px 'Plus Jakarta Sans',sans-serif;letter-spacing:.04em;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .15s}
+.lrw-strip button i{font-style:normal;font-size:17px;line-height:1}
+.lrw-strip button:hover{color:#fff;border-color:rgba(255,255,255,.28)}
+.lrw-strip button:active{transform:scale(.94)}
+.lrw-strip button.on{color:#2b1503;background:linear-gradient(135deg,#fbbf24,#fb923c);border-color:transparent;letter-spacing:0;box-shadow:0 8px 20px -10px rgba(251,146,60,.85)}
+.lrw-strip.sm button{height:34px;padding:0 11px 0 8px;font-size:12px}
+.lrw-out{margin-top:10px;padding:14px 16px;border-radius:18px;background:linear-gradient(160deg,rgba(251,191,36,.09),rgba(255,255,255,.02) 70%);border:1px solid rgba(251,191,36,.26);min-height:96px}
+.lrw-out.sm{min-height:0;padding:12px 14px;border-radius:16px;margin-top:8px}
+.lrw-lh{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.lrw-lab{display:inline-flex;align-items:baseline;gap:7px;font-size:13px;color:var(--dx-mute,#a5b4cf)}
+.lrw-lab i{font-style:normal;font-size:16px;align-self:center}
+.lrw-lab b{color:#fff;font-weight:800}
+.lrw-lab small{font-size:12px;font-weight:600;opacity:.85}
+.lrw-say{flex:none;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#fff;display:grid;place-items:center;cursor:pointer}
+.lrw-say svg{width:16px;height:16px}
+.lrw-main{margin:6px 0 0;font:800 24px/1.25 'Outfit',system-ui,sans-serif;color:#fff;overflow-wrap:anywhere}
+.lrw-out.sm .lrw-main{font-size:19px}
+.lrw-main[dir=rtl],.lrw-main:is(:lang(zh-CN),:lang(ja),:lang(ko)){font-family:system-ui,'Segoe UI',sans-serif;letter-spacing:0}
+.lrw-rom{margin:2px 0 0;color:#fde68a;font-size:13.5px;font-weight:600;letter-spacing:.02em}
+.lrw-alts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.lrw-alts span{padding:4px 10px;border-radius:99px;background:rgba(255,255,255,.07);font-size:13px;color:#f1e6ff}
+.lrw-sk{display:block;width:58%;height:30px;margin-top:10px;border-radius:12px;background:linear-gradient(90deg,rgba(255,255,255,.06),rgba(255,255,255,.18),rgba(255,255,255,.06));background-size:200% 100%;animation:mwfcSk 1.2s linear infinite}
+.lrw-off{margin:8px 0 0;color:#e8defa;font-size:14px;line-height:1.5}
+.lrw-retry{border:0;background:none;color:#fbbf24;font:800 13.5px 'Plus Jakarta Sans',sans-serif;cursor:pointer;padding:2px}
+.lrw-qk{margin-top:12px}
+:is(.hb-input,.dx-search,.rl-search) :is(input,textarea):focus-visible{outline:0!important}
+.hb-card:has(#hb-res){min-width:0}
+#hb-res,#hb-res .hb-res,.lrw-qk,.lrw-box{min-width:0;max-width:100%}
+.lrw-allb{display:inline-flex;align-items:center;gap:6px}
+.lrw-allb svg{width:15px;height:15px}
+:is(.lrw-strip button,.lrw-say,.lrw-x,.lrw-retry):focus-visible{outline:2px solid #fbbf24!important;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.lrw-sk{animation:none}.lrw-strip{scroll-behavior:auto}}
+</style>
+<!--/ux:js-->
 <!--glfix:js--><script id="glfix-js">
 /* ===== Grammar + AI Tutor fixes: visible category chips, language pickers on phones, fresh AI tests ===== */
 (function () {
