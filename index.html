@@ -16,9 +16,19 @@
     <meta property="og:description" content="Learn English for IELTS and CEFR with LunaRise: grammar lessons, a smart dictionary with Uzbek and Russian translation, reading and listening practice, shadowing videos, an AI tutor and 3D learning games.">
     <meta name="twitter:card" content="summary">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M40 14a20 20 0 1 0 10 34A16 16 0 1 1 40 14z' fill='%23fde68a'/%3E%3C/svg%3E">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="lr-tw-boot">
+    /* Tailwind styles: the first visit builds them with the Tailwind CDN and keeps a copy on this device.
+       Later visits use that copy at once (no download, no in-browser build); a new site version builds a fresh copy. */
+    (function () {
+        var V = 'tw3-9ceed7cf76', css = null;
+        try { if (localStorage.getItem('lr_tw_v') === V) css = localStorage.getItem('lr_tw_css'); } catch (e) { }
+        window.__twV = V;
+        if (css && css.length > 1500) { var st = document.createElement('style'); st.id = 'lr-tw'; st.textContent = css; document.head.appendChild(st); window.__twSnap = 1; }
+        else document.write('<script src="https://cdn.tailwindcss.com"><\/script>');
+    })();
+    </script>
     <script>
-        tailwind.config = {
+        window.__twCfg = {
             darkMode: 'class',
             theme: {
                 extend: {
@@ -64,11 +74,13 @@
                 }
             }
         }
+        if (window.tailwind && !window.__twSnap) tailwind.config = window.__twCfg;
+        else if (!window.__twSnap) { var tw2 = document.createElement('script'); tw2.src = 'https://cdn.tailwindcss.com'; tw2.onload = function () { try { tailwind.config = window.__twCfg; } catch (e) { } }; document.head.appendChild(tw2); }
     </script>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <style>
         body {
@@ -3945,7 +3957,7 @@ body.spk-lock{overflow:hidden}
 .sc-hubbadge{position:absolute;top:10px;right:10px;z-index:3;min-width:22px;height:22px;padding:0 7px;border-radius:11px;background:#f43f5e;color:#fff;font:800 11.5px/22px 'Plus Jakarta Sans',sans-serif;font-style:normal;text-align:center;box-shadow:0 0 0 2px rgba(13,17,40,.9),0 6px 14px -4px rgba(244,63,94,.8)}
 @media (prefers-reduced-motion:reduce){.sc-orb-ring,.sc-orb .sc-av,.sc-radar>i,.sc-radar>span,.sc-live,.sc-m,.sc-round.pulse svg,.sc-call-av>i{animation:none!important}}
 /* polish: keep the app-wide focus ring off fields that already show focus on their wrapper */
-#view-club .sc-comp textarea:is(:focus,:focus-visible),#view-club .sc-search input:is(:focus,:focus-visible){outline:0!important;box-shadow:none!important;border:0!important;background:none!important}
+#view-club .sc-comp textarea,#view-club .sc-comp textarea:is(:focus,:focus-visible),#view-club .sc-search input,#view-club .sc-search input:is(:focus,:focus-visible){outline:0!important;box-shadow:none!important;border:0!important;background:none!important;border-radius:0!important;padding-left:0!important;padding-right:0!important}
 #view-club .sc-search{transition:border-color .2s,box-shadow .2s}
 #view-club .sc-search:focus-within{border-color:color-mix(in srgb,var(--sc-acc3) 60%,white);box-shadow:0 0 0 4px color-mix(in srgb,var(--sc-acc3) 18%,transparent)}
 #view-club .sc-search input::-webkit-search-cancel-button{filter:invert(1) opacity(.6)}
@@ -3953,6 +3965,14 @@ body.spk-lock{overflow:hidden}
   .sc-pane{height:clamp(480px,calc(100vh - 310px),920px);height:clamp(480px,calc(100dvh - 310px),920px);min-height:0}
   .sc-chats>.sc-list{max-height:clamp(480px,calc(100vh - 310px),920px);max-height:clamp(480px,calc(100dvh - 310px),920px);overflow:auto;overscroll-behavior:contain;scrollbar-width:thin}
 }
+/* voice notes: loading, sending and failed states */
+.sc-voice.ld .sc-vplay svg{opacity:0}
+.sc-voice.ld .sc-vplay{position:relative}
+.sc-voice.ld .sc-vplay::after{content:"";position:absolute;inset:11px;border-radius:50%;border:2.5px solid currentColor;border-right-color:transparent;animation:scSpin .7s linear infinite}
+.sc-m.pend .sc-voice{opacity:.72}
+.sc-m.pend .sc-meta::before{content:"Sending…";margin-right:6px;font-weight:700;opacity:.8}
+.sc-m.fail .sc-meta::before{content:"Not sent";margin-right:6px;font-weight:800;color:#fda4af}
+.sc-comp.rec-wait .sc-recdot{animation:none;opacity:.4}
 </style><!--/club:css-->
 <!--ux:css--><style id="ux-css">
 /* ===== UX pack ===== */
@@ -4511,8 +4531,18 @@ body>nav .lq-lens{border-radius:24px}
 .lq-credit{margin:26px auto 4px;max-width:640px;padding:0 16px;text-align:center;font-size:10.5px;line-height:1.5;color:rgba(203,213,225,.5)}.lq-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
 @media (prefers-reduced-motion:reduce){.lq-lens,.lq-toast{transition:none!important;animation:none!important}}
 </style>
+<style id="perf-css">
+/* speed pack: on phones, tablets and lite computers, endless repaint-heavy animations stop (transform/opacity ones stay) */
+:is(html.lite,body.lite,body.lq-noblur) :is(.ob-grad,.pf-banner,.pf-xpbar>div,.kgc-road,.kgc-grid,.gm-sun,.gm-orb i,#hb-name,#hb-xpfill,#hb-mis-bar,#pf-xpfill),
+:is(html.lite,body.lite,body.lq-noblur) :is(.ob-btn,.ce-exam)::after{animation:none!important}
+/* closed sheets and drawers never keep a live blur layer */
+.pf-scrim:not(.open),.pf-drawer:not(.open),.pf-sheetw:not(.open),.pf-sheetw:not(.open) *{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+</style>
 </head>
 <body class="min-h-screen text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white" data-view="dashboard">
+<script id="lr-tw-pos">(function () { try { var st = document.getElementById('lr-tw'), p = localStorage.getItem('lr_tw_pos'); if (!st || !p) return; var h = document.head, kids = h.children;
+    for (var i = 0; i < kids.length; i++) { var el = kids[i]; if (el === st) continue; var s = el.tagName + '#' + (el.id || '') + '|' + (el.getAttribute('src') || el.getAttribute('href') || (el.textContent || '').replace(/\s+/g, ' ').slice(0, 60));
+        if (s === p) { if (el.nextElementSibling !== st) h.insertBefore(st, el.nextElementSibling); return; } } } catch (e) { } })();</script>
     <div id="lr-bg" aria-hidden="true">
         <div class="lb-base"></div><div class="lb-blob b1"></div><div class="lb-blob b2"></div><div class="lb-blob b3"></div>
         <div class="lb-floor"><div class="lb-plane"></div></div>
@@ -4642,9 +4672,16 @@ void main(){
         const cv = document.createElement('canvas'); cv.className = 'lq-earth-cv'; cv.setAttribute('aria-hidden', 'true');
         const gl = cv.getContext('webgl2', { alpha: false, antialias: false, depth: false, stencil: false, premultipliedAlpha: false, preserveDrawingBuffer: !!window.__lqPDB, powerPreference: 'high-performance' });
         if (!gl) return false;
-        const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o)); return o; };
-        const pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(pr);
-        if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(pr));
+        const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); return o; };
+        const vsO = sh(gl.VERTEX_SHADER, VS), fsO = sh(gl.FRAGMENT_SHADER, FS);
+        const pr = gl.createProgram(); gl.attachShader(pr, vsO); gl.attachShader(pr, fsO); gl.linkProgram(pr);
+        /* the big shader compiles in the background so the page can show first */
+        const fail = (why) => { console.warn('[lq-earth]', why); try { cv.remove(); } catch (x) { } document.body.classList.remove('lq-earth'); if (window.spaceScene2D) window.spaceScene2D(); };
+        const go = () => { if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return fail(gl.getShaderInfoLog(fsO) || gl.getProgramInfoLog(pr) || 'link'); try { rest(); } catch (e) { fail(e); } };
+        const par = gl.getExtension('KHR_parallel_shader_compile');
+        if (par) { const poll = () => { if (gl.isContextLost()) return; if (gl.getProgramParameter(pr, par.COMPLETION_STATUS_KHR)) go(); else setTimeout(poll, 50); }; setTimeout(poll, 30); } else setTimeout(go, 60);
+        return true;
+        function rest() {
         gl.useProgram(pr);
         const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
         const aP = gl.getAttribLocation(pr, 'aP'); gl.enableVertexAttribArray(aP); gl.vertexAttribPointer(aP, 2, gl.FLOAT, false, 0, 0);
@@ -4667,7 +4704,7 @@ void main(){
             try { gl.texImage2D(gl.TEXTURE_2D, 0, fmt === 'r' ? gl.R8 : gl.RGB8, fmt === 'r' ? gl.RED : gl.RGB, gl.UNSIGNED_BYTE, img); } catch (e) { return false; }
             if (gl.getError() !== gl.NO_ERROR) return false;
             if (name !== 'mw') { gl.generateMipmap(gl.TEXTURE_2D); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR); if (aniso) gl.texParameterf(gl.TEXTURE_2D, aniso.TEXTURE_MAX_ANISOTROPY_EXT, Math.min(8, gl.getParameter(aniso.MAX_TEXTURE_MAX_ANISOTROPY_EXT))); }
-            lvl[name] = level; need = true; return true;
+            lvl[name] = level; need = true; wake(); return true;
         }
         function load(srcs) {
             return new Promise((res, rej) => { let i = 0; const next = () => { if (i >= srcs.length) return rej(new Error('img')); const im = new Image(); const s = srcs[i++]; if (!/^data:/.test(s)) im.crossOrigin = 'anonymous'; im.decoding = 'async'; im.onload = () => res(im); im.onerror = next; im.src = s; }; next(); });
@@ -4678,7 +4715,7 @@ void main(){
         const srcOf = f => local ? [HOST + f] : [f, HOST + f];
         let texReady = 0, texFade = 0;
         Promise.all([load([EMB.day]).then(im => upload('day', im, 0, 'rgb', 1)), load([EMB.fx]).then(im => upload('fx', im, 1, 'r', 1)), load([EMB.mw]).then(im => upload('mw', im, 2, 'r', 1))])
-            .then(() => { texReady = 1; need = true; }).catch(() => { texReady = 1; })
+            .then(() => { texReady = 1; need = true; wake(); }).catch(() => { texReady = 1; wake(); })
             .then(() => new Promise(r => setTimeout(r, coarse ? 1800 : 900)))
             .then(() => {
                 const tryUp = (f, name, unit, fmt) => load(srcOf(f)).then(im => { if (!upload(name, im, unit, fmt, 2)) { /* cross-origin block: ignore */ } }).catch(() => { });
@@ -4703,7 +4740,7 @@ void main(){
         const keys = ['az', 'el', 'roll', 'exp'];
         function snap() { const o = {}; keys.forEach(k => o[k] = cur[k]); ['D', 'ex', 'ey'].forEach(k => o[k] = cur[k].slice()); return o; }
         function shot(name, now) {
-            const s = SH[name] || SH._; if (s === to) return; from = snap(); to = s; tStart = now; shotName = name; need = true;
+            const s = SH[name] || SH._; if (s === to) return; from = snap(); to = s; tStart = now; shotName = name; need = true; wake();
         }
         function lerpShot(now) {
             let k = Math.min(1, Math.max(0, (now - tStart) / tDur)); k = k * k * (3 - 2 * k); k = k * k * (3 - 2 * k);
@@ -4711,11 +4748,15 @@ void main(){
             cur = o; return k < 1;
         }
         let W = 0, H = 0, scale = 1, need = true;
+        /* phones, tablets and slower computers: draw only when something changes (page switch, sharper photo, resize).
+           The planet turns so slowly that a still picture looks the same, and the phone stays cool and smooth. */
+        let calm = coarse || iOS || document.documentElement.classList.contains('lite'), asleep = false;
+        function wake() { if (asleep) { asleep = false; requestAnimationFrame(frame); } }
         const DPR = Math.min(window.devicePixelRatio || 1, 2.5);
         let maxScale = coarse ? Math.min(DPR, 1.5) : Math.min(DPR, 1.6), minScale = .5; scale = coarse ? Math.min(DPR, 1.25) : Math.min(DPR, 1.35);
         function resize() {
             const w = Math.max(1, innerWidth), h = Math.max(1, innerHeight);
-            W = Math.round(w * scale); H = Math.round(h * scale); if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; } gl.viewport(0, 0, W, H); need = true;
+            W = Math.round(w * scale); H = Math.round(h * scale); if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; } gl.viewport(0, 0, W, H); need = true; wake();
         }
         let px = 0, py = 0, tpx = 0, tpy = 0, scrollK = 0;
         if (!coarse) addEventListener('pointermove', e => { tpx = e.clientX / innerWidth - .5; tpy = e.clientY / innerHeight - .5; }, { passive: true });
@@ -4778,12 +4819,15 @@ void main(){
             if (first) { first = false; requestAnimationFrame(() => cv.classList.add('on')); }
         }
         function frame(now) {
-            requestAnimationFrame(frame); if (lost) return;
+            if (lost) return;
             const moving = lerpShot(now / 1000);
-            if (texReady && texFade < 1) { texFade = Math.min(1, texFade + .04); need = true; }
-            const still = reduce || document.body.classList.contains('fx-off');
+            if (texReady && texFade < 1) { texFade = Math.min(1, texFade + (calm ? .1 : .04)); need = true; }
+            if (calm && !first && ((!need && !moving) || paused())) { asleep = true; prev = 0; return; }
+            requestAnimationFrame(frame);
+            const still = calm || reduce || document.body.classList.contains('fx-off');
             if (paused() || (still && !need && !moving)) { prev = 0; return; }
             if (now - scrolling < 180 && !first) { prev = 0; return; }
+            if (calm && moving && now - last < 32) return;
             const lookAround = Math.abs(tpx - px) + Math.abs(tpy - py) > .002;
             const iv = document.querySelector('#grammar-lesson-modal:not(.hidden),.pf-drawer.open,#mu-modal.open,.ai-hist.open,.st-ov') ? 160 : lookAround ? IVF : IV;
             if (now - last < iv - 2 && !moving) return;
@@ -4792,8 +4836,10 @@ void main(){
             px += (tpx - px) * .05; py += (tpy - py) * .05;
             draw(now);
             ema = ema ? ema * .94 + raw * .06 : raw;
-            if (iv === IV && ema > IV * 1.6 && scale > minScale) { if (++slow > 45) { scale = Math.max(minScale, scale * .84); slow = 0; ema = IV; resize(); } } else slow = Math.max(0, slow - 1);
+            if (!calm && iv === IV && ema > IV * 1.6) { if (++slow > 45) { slow = 0; ema = IV; if (scale > minScale) { scale = Math.max(minScale, scale * .84); resize(); } else calm = true; } } else slow = Math.max(0, slow - 1);
         }
+        if (calm) tDur = 1.8;
+        document.addEventListener('visibilitychange', () => { if (!document.hidden) wake(); });
         T = 0; requestAnimationFrame(frame);
         /* camera follows the page you open; registration shows the big sunrise */
         const obs = () => { const ob = document.getElementById('modal-onboarding'); const hero = ob && !ob.classList.contains('hidden'); shot(hero ? 'hero' : (document.body.dataset.view || 'dashboard'), performance.now() / 1000); };
@@ -4802,8 +4848,8 @@ void main(){
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', hookOb); else hookOb();
         const sp = { draw: t => { if (typeof t === 'number') T = t; frameUniforms(T); gl.drawArrays(gl.TRIANGLES, 0, 3); }, rebuild: resize, get Q() { return scale; }, warp: () => { }, mode: m => { if (m === 'hero') shot('hero', performance.now() / 1000); }, shot: () => { } };
         window.__sp = sp;
-        window.__lqe = { shot: (n, inst) => { shot(n, inst ? -99 : performance.now() / 1000); lerpShot(performance.now() / 1000); }, setT: t => { T = t; need = true; }, render: () => { lerpShot(performance.now() / 1000); frameUniforms(T); gl.drawArrays(gl.TRIANGLES, 0, 3); }, read: (x, y) => { frameUniforms(T); gl.drawArrays(gl.TRIANGLES, 0, 3); const o = new Uint8Array(4); gl.readPixels(Math.round(x * W), Math.round(y * H), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, o); return Array.from(o); }, get scale() { return scale; }, set scale(v) { scale = v; resize(); }, lvl, get fade() { return texFade; }, set fade(v) { texFade = v; } };
-        return true;
+        window.__lqe = { get calm() { return calm; }, set calm(v) { calm = !!v; wake(); }, shot: (n, inst) => { shot(n, inst ? -99 : performance.now() / 1000); lerpShot(performance.now() / 1000); }, setT: t => { T = t; need = true; }, render: () => { lerpShot(performance.now() / 1000); frameUniforms(T); gl.drawArrays(gl.TRIANGLES, 0, 3); }, read: (x, y) => { frameUniforms(T); gl.drawArrays(gl.TRIANGLES, 0, 3); const o = new Uint8Array(4); gl.readPixels(Math.round(x * W), Math.round(y * H), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, o); return Array.from(o); }, get scale() { return scale; }, set scale(v) { scale = v; resize(); }, lvl, get fade() { return texFade; }, set fade(v) { texFade = v; } };
+        }
     }
 })();
 
@@ -8618,14 +8664,16 @@ function spaceGL() {
             const lite = () => document.body.classList.contains('lite');
             function applyQ() { const dpr = window.devicePixelRatio || 1; DPR = Q === 0 ? Math.min(dpr, 2) : Q === 1 ? Math.min(dpr, 1.25) : 1; IV = Q === 0 ? (coarse ? 33 : 20) : Q === 1 ? 40 : 66; }
             let ema = 8, lastW = 0, lastH = 0, rt = 0, still = false, slow = 0;
-            function rebuild() { applyQ(); build(); lastW = innerWidth; lastH = innerHeight; draw(T, 0); }
+            function rebuild() { applyQ(); build(); lastW = innerWidth; lastH = innerHeight; draw(T, 0); still = false; if (nap) { nap = false; requestAnimationFrame(frame); } }
             window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (Math.abs(innerWidth - lastW) > 40 || Math.abs(innerHeight - lastH) > lastH * .25) rebuild(); }, 200); });
             const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
             let prev = 0;
+            let nap = false;
             function frame(ts) {
+                if (still && !document.hidden && (coarse || document.documentElement.classList.contains('lite'))) { nap = true; return; }
                 requestAnimationFrame(frame);
                 if (document.hidden || window.__spPause) { prev = 0; return; }
-                if (reduce || document.body.classList.contains('fx-off') || /^(games|chess)$/.test(document.body.dataset.view || '')) { if (!still) { still = true; draw(T, 0); } prev = 0; return; } still = false;
+                if (reduce || coarse || document.documentElement.classList.contains('lite') || document.body.classList.contains('fx-off') || /^(games|chess)$/.test(document.body.dataset.view || '')) { if (!still) { still = true; draw(T, 0); } prev = 0; return; } still = false;
                 if (ts - prev < IV - 2) return; const dt = prev ? Math.min((ts - prev) / 1000, .1) : .033; prev = ts; T += dt;
                 const a = performance.now(); draw(T, dt); const c = performance.now() - a; ema = ema * .9 + c * .1;
                 if (ema > (Q === 0 ? 13 : 20) && Q < 2) { if (++slow > 20) { Q++; slow = 0; ema = 8; rebuild(); } } else slow = 0;
@@ -19729,6 +19777,7 @@ async function gTitles(lang) {
     return map;
 }
 function gDecorate() {
+    { const gv = document.getElementById('view-grammar'); if (gv && gv.classList.contains('hidden')) { gDecorate.later = 1; return; } gDecorate.later = 0; }
     const lang = gLang(), meta = gMeta(); const grid = document.getElementById('grammar-modules-grid'); if (!grid) return;
     gTitles(lang).then(map => {
         if (lang !== gLang()) return;
@@ -27647,8 +27696,9 @@ window.kgLive = function () {
     window.muTab = function (t) { build(); $('mu-q').value = ''; $('mu-qx').style.display = 'none'; ({ disc: discover, fav: favs, rec: recent, pl: playlists, queue: queueView })[t](); };
     window.muQuick = function (q) { muOpen(); $('mu-q').value = q; search(q); };
     document.addEventListener('keydown', e => { const m = $('mu-modal'); if (e.key === 'Escape' && m && m.classList.contains('open')) muClose(); });
-    document.addEventListener('DOMContentLoaded', () => { build(); ui(); });
-    if (document.readyState !== 'loading') { build(); ui(); }
+    const muBoot = () => { const go = () => { build(); ui(); }; if ('requestIdleCallback' in window) requestIdleCallback(go, { timeout: 7000 }); else setTimeout(go, 3500); };
+    document.addEventListener('DOMContentLoaded', muBoot);
+    if (document.readyState !== 'loading') muBoot();
 })();
 /*MUSIC_END*/
 </script>
@@ -28741,7 +28791,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
             <div class="sc-msgs" id="sc-msgs" aria-live="polite"></div>
             ${ended ? `<div class="sc-endbar"><p>${esc(p.n || 'Your partner')} left the chat.</p><div class="sc-row center">${fr ? '' : `<button class="sc-btn ghost" onclick="CLUB.addFriend('${esc(u)}')">${I('addf')}<span>Add friend</span></button>`}<button class="sc-btn" onclick="CLUB.next()">Find a new partner</button></div></div>`
                 : `<div class="sc-icecard"><span class="sc-ick">Icebreaker</span><span class="sc-icq" id="sc-icq">${esc(C.iceQ || (C.iceQ = ICE[Math.floor(Math.random() * ICE.length)]))}</span><button type="button" onclick="CLUB.ask()">Ask</button><button type="button" class="sc-ghostb" onclick="CLUB.ice()" aria-label="Another question">${I('dice')}</button></div>`}
-            ${composer(ended ? { off: 'Chat ended' } : { max: 300, ph: 'Message in English…' })}
+            ${composer(ended ? { off: 'Chat ended' } : { max: 300, ph: 'Message in English…', voice: 1 })}
         </div></div>`;
     }
     function threadInner(u) {
@@ -28781,7 +28831,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
             C.lastAuthor = null; return d;
         }
         const cont = C.lastAuthor === m.u && m.t - (C.lastT || 0) < 300000; C.lastAuthor = m.u; C.lastT = m.t;
-        const d = document.createElement('div'); d.className = 'sc-m' + (me ? ' me' : '') + (cont ? ' cont' : ''); d.dataset.u = m.u; d.dataset.id = id; d.dataset.t = m.t || 0;
+        const d = document.createElement('div'); d.className = 'sc-m' + (me ? ' me' : '') + (cont ? ' cont' : '') + (me && C.pendIds && C.pendIds.has(id) ? ' pend' : ''); d.dataset.u = m.u; d.dataset.id = id; d.dataset.t = m.t || 0;
         const showAv = ctx === 'room' && !me;
         const name = ctx === 'room' && !me && !cont ? `<button class="sc-nm" style="--hu:${hue(m.u)}" onclick="CLUB.who('${esc(m.u)}')"><span data-nm="${esc(m.u)}">${esc(m.n || uinfo(m.u).n || 'Learner')}</span> <small>${flag(m.c || uinfo(m.u).c)} ${esc(m.l || '')}</small></button>` : '';
         const tick = me && ctx === 'dm' ? `<span class="sc-tk" aria-label="sent">${I('check')}${I('check')}</span>` : '';
@@ -28789,7 +28839,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         if (m.v) body = `<div class="sc-voice" data-vid="${esc(id)}"><button type="button" class="sc-vplay" onclick="CLUB.playV('${esc(id)}')" aria-label="Play voice message">${I('play')}</button><span class="sc-wave">${bars(m.w, id)}</span><time>${dur(m.d)}</time></div>`;
         else body = `<p>${esc(scrub(m.x)).replace(/\n/g, '<br>')}</p>`;
         d.innerHTML = (showAv ? `<span class="sc-mav">${cont ? '' : av(m.u, 32, { dot: false })}</span>` : '') + `<div class="sc-b">${name}${body}<span class="sc-meta"><time>${hhmm(m.t)}</time>${tick}</span></div>`;
-        if (m.v) { C.vnotes = C.vnotes || {}; C.vnotes[id] = { v: m.v, d: m.d }; }
+        if (m.v) { C.vnotes = C.vnotes || {}; C.vnotes[id] = { v: m.v, d: m.d, src: ctx === 'pair' ? 'callv' : 'dmv', cid: ctx === 'pair' ? (C.pair && C.pair.cid) : (C.th && C.th.cid) }; }
         if (ctx === 'room' && !me) ensureUser(m.u);
         return d;
     }
@@ -28806,13 +28856,26 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     }
 
     /* ---------- voice messages ---------- */
-    let player = null;
-    function playV(id) {
+    let player = null; const vurl = {};
+    async function vSrc(id, n) {
+        if (vurl[id]) return vurl[id];
+        let data = typeof n.v === 'string' && n.v.startsWith('data:') ? n.v : null;
+        if (!data && n.cid && C.db) { try { data = (await C.db.ref('club/' + n.src + '/' + n.cid + '/' + id).once('value')).val(); } catch (e) { data = null; } }
+        if (!data) return null;
+        try { const b = await (await fetch(data)).blob(); vurl[id] = URL.createObjectURL(b); } catch (e) { vurl[id] = data; }
+        return vurl[id];
+    }
+    async function playV(id) {
         const n = (C.vnotes || {})[id]; if (!n) return;
         const el = document.querySelector(`.sc-voice[data-vid="${CSS.escape(id)}"]`);
         if (player && player._id === id) { if (player.paused) player.play().catch(() => { }); else player.pause(); return; }
-        if (player) { player.pause(); const o = document.querySelector(`.sc-voice[data-vid="${CSS.escape(player._id)}"]`); if (o) { o.classList.remove('on'); o.style.removeProperty('--p'); o.querySelector('.sc-vplay').innerHTML = I('play'); } }
-        player = new Audio(n.v); player._id = id; player.preload = 'auto';
+        if (player) { player.pause(); const o = document.querySelector(`.sc-voice[data-vid="${CSS.escape(player._id)}"]`); if (o) { o.classList.remove('on'); o.style.removeProperty('--p'); o.querySelector('.sc-vplay').innerHTML = I('play'); } player = null; }
+        const btn = el && el.querySelector('.sc-vplay'); if (el && el.classList.contains('ld')) return;
+        if (el && !vurl[id]) el.classList.add('ld');
+        const src = await vSrc(id, n); if (el) el.classList.remove('ld');
+        if (!src) return toast('⚠ Could not load this voice message. Check your internet.');
+        if (player) player.pause();
+        player = new Audio(src); player._id = id; player.preload = 'auto';
         const set = (on) => { if (!el) return; el.classList.toggle('on', on); el.querySelector('.sc-vplay').innerHTML = on ? I('pause') : I('play'); };
         player.onplay = () => set(true); player.onpause = () => set(false);
         player.onended = () => { set(false); if (el) el.style.setProperty('--p', 0); const t = el && el.querySelector('time'); if (t) t.textContent = dur(n.d); player = null; };
@@ -28823,27 +28886,30 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     const REC = { mr: null, chunks: [], t0: 0, peaks: [], raf: 0, an: null, stream: null, mime: '' };
     function recMime() { const L = ['audio/mp4;codecs=mp4a.40.2', 'audio/mp4', 'audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus']; try { return L.find(t => window.MediaRecorder && MediaRecorder.isTypeSupported(t)) || ''; } catch (e) { return ''; } }
     async function rec() {
-        if (REC.mr) return; if (!window.MediaRecorder) return toast('⚠ Voice messages are not supported in this browser');
+        if (REC.mr || REC.starting) return; if (!window.MediaRecorder) return toast('⚠ Voice messages are not supported in this browser');
         if (C.vc) return toast('Finish the call first');
-        let s; try { s = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 } }); } catch (e) { return toast('⚠ Allow microphone access to record a voice message'); }
-        REC.stream = s; REC.mime = recMime(); REC.chunks = []; REC.peaks = []; REC.t0 = Date.now();
+        REC.starting = true; const comp0 = $('sc-comp');
+        if (comp0) { comp0.classList.add('recording', 'rec-wait'); comp0.insertAdjacentHTML('afterbegin', `<div class="sc-recbar" id="sc-recbar"><button type="button" class="sc-icb" onclick="CLUB.recCancel()" aria-label="Delete">${I('trash')}</button><i class="sc-recdot"></i><time id="sc-rect">0:00</time><span class="sc-recw" id="sc-recw"></span><span class="sc-rechint">Starting…</span></div>`); }
+        let s; try { s = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 } }); } catch (e) { REC.starting = false; recClean(); return toast('⚠ Allow microphone access to record a voice message'); }
+        if (!REC.starting) { s.getTracks().forEach(t => t.stop()); return; }
+        REC.starting = false; REC.stream = s; REC.mime = recMime(); REC.chunks = []; REC.peaks = []; REC.t0 = Date.now();
         try { REC.mr = new MediaRecorder(s, Object.assign(REC.mime ? { mimeType: REC.mime } : {}, { audioBitsPerSecond: 24000 })); } catch (e) { try { REC.mr = new MediaRecorder(s); } catch (x) { s.getTracks().forEach(t => t.stop()); return toast('⚠ Could not start recording'); } }
         REC.mr.ondataavailable = (e) => { if (e.data && e.data.size) REC.chunks.push(e.data); };
-        REC.mr.start(250);
-        const comp = $('sc-comp'); if (comp) { comp.classList.add('recording'); comp.insertAdjacentHTML('afterbegin', `<div class="sc-recbar" id="sc-recbar"><button type="button" class="sc-icb" onclick="CLUB.recCancel()" aria-label="Delete">${I('trash')}</button><i class="sc-recdot"></i><time id="sc-rect">0:00</time><span class="sc-recw" id="sc-recw"></span><span class="sc-rechint">Recording</span></div>`); }
+        REC.mr.start(1000);
+        const comp = $('sc-comp'); if (comp) { comp.classList.remove('rec-wait'); const h = comp.querySelector('.sc-rechint'); if (h) h.textContent = 'Recording'; if (!$('sc-recbar')) comp.insertAdjacentHTML('afterbegin', `<div class="sc-recbar" id="sc-recbar"><button type="button" class="sc-icb" onclick="CLUB.recCancel()" aria-label="Delete">${I('trash')}</button><i class="sc-recdot"></i><time id="sc-rect">0:00</time><span class="sc-recw" id="sc-recw"></span><span class="sc-rechint">Recording</span></div>`); }
         const sb = $('sc-sendb'); if (sb) sb.setAttribute('aria-label', 'Send voice message');
         try { const ac = actx(); const an = ac.createAnalyser(); an.fftSize = 512; ac.createMediaStreamSource(s).connect(an); REC.an = an; } catch (e) { }
-        const d = new Uint8Array(256); let last = 0;
+        const d = new Uint8Array(256); let lastS = -1; const tEl = $('sc-rect'), wEl = $('sc-recw');
         const loop = () => {
-            if (!REC.mr) return; const sec = (Date.now() - REC.t0) / 1000; const t = $('sc-rect'); if (t) t.textContent = dur(sec);
-            if (REC.an && Date.now() - last > 90) { last = Date.now(); REC.an.getByteTimeDomainData(d); let pk = 0; for (const x of d) pk = Math.max(pk, Math.abs(x - 128)); const v = Math.min(9, Math.round(pk / 12)); REC.peaks.push(v); const w = $('sc-recw'); if (w) { w.insertAdjacentHTML('beforeend', `<i style="--v:${Math.max(1, v)}"></i>`); while (w.children.length > 48) w.removeChild(w.firstChild); } }
+            if (!REC.mr) return; const sec = (Date.now() - REC.t0) / 1000; const whole = Math.floor(sec); if (whole !== lastS && tEl) { lastS = whole; tEl.textContent = dur(sec); }
+            if (REC.an) { REC.an.getByteTimeDomainData(d); let pk = 0; for (let i = 0; i < d.length; i += 2) { const a = Math.abs(d[i] - 128); if (a > pk) pk = a; } const v = Math.min(9, Math.round(pk / 12)); REC.peaks.push(v); if (wEl) { const b = document.createElement('i'); b.style.setProperty('--v', Math.max(1, v)); wEl.appendChild(b); if (wEl.childElementCount > 48) wEl.firstElementChild.remove(); } }
             if (sec >= 60) { recSend(); return; }
-            REC.raf = requestAnimationFrame(loop);
+            REC.raf = setTimeout(loop, 100);
         }; loop(); vib(12);
     }
     function recStop() { return new Promise(res => { const mr = REC.mr; if (!mr) return res(null); mr.onstop = () => res(new Blob(REC.chunks, { type: mr.mimeType || REC.mime || 'audio/webm' })); try { mr.stop(); } catch (e) { res(null); } }); }
-    function recClean() { cancelAnimationFrame(REC.raf); if (REC.stream) REC.stream.getTracks().forEach(t => t.stop()); REC.mr = null; REC.stream = null; REC.an = null; const b = $('sc-recbar'); if (b) b.remove(); const comp = $('sc-comp'); if (comp) comp.classList.remove('recording'); }
-    async function recCancel() { await recStop(); recClean(); }
+    function recClean() { clearTimeout(REC.raf); REC.starting = false; if (REC.stream) REC.stream.getTracks().forEach(t => t.stop()); REC.mr = null; REC.stream = null; REC.an = null; const b = $('sc-recbar'); if (b) b.remove(); const comp = $('sc-comp'); if (comp) comp.classList.remove('recording', 'rec-wait'); }
+    async function recCancel() { if (REC.starting) { REC.starting = false; return recClean(); } await recStop(); recClean(); }
     async function recSend() {
         if (!REC.mr) return; const secs = (Date.now() - REC.t0) / 1000; const blob = await recStop(); const peaks = REC.peaks.slice(); recClean();
         if (!blob || secs < .7) return toast('Hold on a bit longer to record');
@@ -28851,7 +28917,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         const url = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.onerror = () => r(null); fr.readAsDataURL(blob); });
         if (!url) return;
         const step = Math.max(1, Math.floor(peaks.length / 28)); const w = Array.from({ length: Math.min(28, Math.max(12, Math.ceil(peaks.length / step))) }, (_, i) => Math.max(1, Math.max(...peaks.slice(i * step, i * step + step).concat([1])))).join('');
-        sendDm({ v: url, d: Math.round(secs), w }, '🎤 Voice message');
+        sendVoice(url, Math.round(secs), w);
     }
 
     /* ================= navigation ================= */
@@ -29020,7 +29086,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         (c.subs || []).forEach(f => f());
         const base = C.db.ref('club/calls/' + c.cid);
         try { base.child('end').onDisconnect().cancel(); } catch (e) { }
-        try { if (c.ended) await base.remove(); else await base.child('end').set(C.uid); } catch (e) { }
+        try { if (c.ended) { const up = {}; up['calls/' + c.cid] = null; up['callv/' + c.cid] = null; await C.db.ref('club').update(up); } else await base.child('end').set(C.uid); } catch (e) { try { if (c.ended) await base.remove(); } catch (x) { } }
         if (c.peer && c.peer.uid) C.skipped = C.skipped.concat(c.peer.uid).slice(-20);
         resetMsgs();
     }
@@ -29114,16 +29180,29 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     function paintTicks() { const th = C.th; if (!th) return; const r = (th.read || {})[th.u] || 0; document.querySelectorAll('.sc-dm .sc-m.me').forEach(n => n.classList.toggle('seen', +n.dataset.t <= r)); }
     let tyLast = 0;
     function typing(t) { grow(t); if (!C.th || !C.db) return; if (Date.now() - tyLast > 2500 && t.value.trim()) { tyLast = Date.now(); const r = C.db.ref('club/dm/' + C.th.cid + '/ty/' + C.uid); r.set(C.TS).catch(() => { }); r.onDisconnect().remove().catch(() => { }); } }
+    /* voice notes: the audio goes to its own place and is downloaded only when someone presses play */
+    async function sendVoice(url, d, w) {
+        if (C.v === 'pair' && C.pair && !C.pair.ended) {
+            const cid = C.pair.cid, id = C.db.ref('club/calls/' + cid + '/m').push().key, up = {};
+            up['callv/' + cid + '/' + id] = url; up['calls/' + cid + '/m/' + id] = { u: C.uid, t: C.TS, v: 'r', d, w }; (C.pendIds = C.pendIds || new Set()).add(id);
+            try { await C.db.ref('club').update(up); markSent(id); } catch (e) { markSent(id, true); if (denied(e)) permWarn('voice'); else toast('⚠ Voice message not sent. Check your connection.'); }
+            return;
+        }
+        if (C.th) return sendDm({ v: 'r', d, w, vd: url }, '🎤 Voice message');
+        toast('Open a chat to send a voice message');
+    }
+    function markSent(id, bad) { if (C.pendIds) C.pendIds.delete(id); const n = document.querySelector(`.sc-m[data-id="${CSS.escape(id)}"]`); if (!n) return; n.classList.remove('pend'); n.classList.toggle('fail', !!bad); }
     async function sendDm(body, pv) {
         const th = C.th; if (!th || !C.db) return;
         if (!C.fr[th.u]) return toast('You need to be friends to chat');
         const id = C.db.ref('club/dm/' + th.cid + '/m').push().key, up = {};
+        if (body.vd) { up['dmv/' + th.cid + '/' + id] = body.vd; body = Object.assign({}, body); delete body.vd; (C.pendIds = C.pendIds || new Set()).add(id); }
         up['dm/' + th.cid + '/m/' + id] = Object.assign({ u: C.uid, t: C.TS }, body);
         up['dm/' + th.cid + '/ty/' + C.uid] = null; tyLast = 0;
         up['inbox/' + C.uid + '/' + th.cid] = { x: String(pv).slice(0, 80), t: C.TS, f: C.uid, n: 0 };
         const ib = 'inbox/' + th.u + '/' + th.cid + '/'; up[ib + 'x'] = String(pv).slice(0, 80); up[ib + 't'] = C.TS; up[ib + 'f'] = C.uid; up[ib + 'n'] = firebase.database.ServerValue.increment(1);
-        try { await C.db.ref('club').update(up); sent(); }
-        catch (e) { if (denied(e)) permWarn('chats'); else toast('⚠ Message not sent. Check your connection.'); }
+        try { await C.db.ref('club').update(up); sent(); markSent(id); }
+        catch (e) { markSent(id, true); if (denied(e)) permWarn('chats'); else toast('⚠ Message not sent. Check your connection.'); }
     }
     function filter(q) { C.q = q; paintConvs(); }
 
@@ -30104,8 +30183,9 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     /* if this device scrolls slowly with live blur, cards switch to tinted glass (header, tab bar and sheets keep blur) */
     function perfProbe() {
         const B = document.body; let rec = null; try { rec = JSON.parse(localStorage.getItem('lq_blur') || 'null'); } catch (e) { }
+        const coarse = matchMedia('(pointer:coarse)').matches;
+        if (coarse || document.documentElement.classList.contains('lite') || B.classList.contains('lite')) { B.classList.add('lq-noblur'); return; }
         if (rec && Date.now() - rec.t < 3 * 864e5) { B.classList.toggle('lq-noblur', !rec.ok); return; }
-        const coarse = matchMedia('(pointer:coarse)').matches; if (coarse && (navigator.hardwareConcurrency || 8) <= 4) B.classList.add('lq-noblur');
         let n = 0, slow = 0, last = 0, t0 = 0;
         const tick = t => { if (document.hidden) { last = 0; requestAnimationFrame(tick); return; } if (!t0) t0 = t; if (last) { n++; if (t - last > 34) slow++; } last = t;
             if (t - t0 < 4000) { requestAnimationFrame(tick); return; }
@@ -30123,5 +30203,65 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     window.LQ = { lenses, blur: on => { document.body.classList.toggle('lq-noblur', !on); try { localStorage.setItem('lq_blur', JSON.stringify({ ok: !!on, t: Date.now() })); } catch (e) { } } };
 })();
 </script><!--/lq:js-->
+<script id="perf-js">
+/* speed pack: keep lite mode and tinted glass in step */
+(function () {
+    const N = window.navigateTo; if (typeof N === 'function') window.navigateTo = function (v) { const r = N.apply(this, arguments); try { if (v === 'grammar' && window.gDecorate && gDecorate.later) setTimeout(gDecorate, 80); } catch (e) { } return r; };
+    const L = window.lrSetLite; if (typeof L === 'function') window.lrSetLite = function (v) { const r = L.apply(this, arguments); try { const coarse = matchMedia('(pointer:coarse)').matches; document.documentElement.classList.toggle('lite', !!v); document.body.classList.toggle('lq-noblur', !!v || coarse); if (window.__lqe) window.__lqe.calm = !!v || coarse; } catch (e) { } return r; };
+})();
+</script>
+<script id="lr-tw-keep">
+/* Tailwind copy: save it after the first visit; on later visits watch for classes the copy does not know and bring the CDN back if one appears */
+(function () {
+    const V = window.__twV; if (!V) return;
+    const SEED = '!bg !box !container !grid !h !hidden !items !left !list !m !mr !p !pr !row !snap !sr !text !top !w !z -float -h -p -right-1 -top-1 -top-3 -translate-x-1/2 -translate-y-1/2 -w -z absolute accent accent-color accent-indigo-500 align-items align-self animate animate-pulse-slow appearance aspect aspect-ratio backdrop backdrop-blur backdrop-blur-md backdrop-filter basis bg bg-amber-400 bg-amber-500/10 bg-emerald-500 bg-emerald-500/15 bg-fuchsia-500/15 bg-gradient-to-br bg-gradient-to-r bg-indigo-500 bg-indigo-500/15 bg-indigo-500/20 bg-rose-500 bg-rose-500/10 bg-rose-500/15 bg-sky-500/15 bg-slate-500/15 bg-slate-800 bg-slate-800/70 bg-slate-900 bg-slate-900/70 bg-slate-900/80 bg-slate-900/90 bg-slate-950 bg-slate-950/75 bg-slate-950/80 bg-slate-950/90 bg-slate-950/95 bg-violet-500/10 bg-violet-500/20 bg-white/10 bg-white/15 bg-white/20 bg-white/5 block blur border border-2 border-amber-400 border-amber-500/20 border-amber-500/30 border-b border-bottom border-bottom-color border-bottom-left-radius border-bottom-right-radius border-collapse border-color border-emerald-500/40 border-emerald-500/50 border-fuchsia-500/30 border-indigo-500 border-indigo-500/30 border-indigo-500/40 border-indigo-500/60 border-left border-left-color border-radius border-right border-right-color border-rose-500/30 border-rose-500/40 border-sky-500/40 border-slate-500/40 border-slate-700 border-slate-700/70 border-slate-800 border-slate-800/90 border-style border-t border-top border-top-color border-top-left-radius border-top-right-radius border-violet-400/15 border-violet-400/20 border-violet-500/20 border-violet-500/25 border-violet-500/30 border-violet-500/40 border-white/10 border-width bottom bottom-0 bottom/100 box box-shadow box-sizing break break-words brightness caption caret-color clear clip clip-path col col-span-full columns container content content-box content-visibility contents contrast cursor cursor-pointer decoration delay divide drop-shadow duration duration-300 duration-700 ease ease-in ease-in-out ease-out fill fill-in-the-blank filter fixed flex flex-1 flex-basis flex-col flex-direction flex-none flex-shrink flex-wrap float focus:border-amber-400 focus:border-indigo-400 focus:border-rose-500 focus:border-sky-500 focus:border-violet-500/70 focus:ring-2 focus:ring-4 focus:ring-indigo-500/40 focus:ring-violet-500/10 font font-awesome/6 font-black font-bold font-extrabold font-family font-medium font-mono font-semibold font-size font-style font-variant-numeric font-weight from from-amber-500/10 from-among from-since from-teal-400 from-violet-500/15 from-violet-500/20 gap gap-1 gap-1.5 gap-2 gap-3 gap-4 gap-5 gap-6 gap-fill grid grid-area grid-auto-flow grid-cols-1 grid-cols-2 grid-cols-4 grid-column grid-row grid-template-areas grid-template-columns grid-template-rows group-hover:bg-rose-500/20 group-hover:ring-rose-400/70 group-hover:text-rose-300 group-hover:text-violet-200 grow h h-10 h-11 h-12 h-16 h-2 h-2.5 h-44 h-7 h-8 h-9 h-full h-px hidden hover:-translate-y-1 hover:bg-emerald-400 hover:bg-slate-700 hover:bg-slate-800 hover:bg-white/10 hover:bg-white/15 hover:bg-white/20 hover:bg-white/25 hover:border-indigo-500/50 hover:border-rose-500/50 hover:border-violet-500/30 hover:from-violet-500/25 hover:text-amber-300 hover:text-amber-400 hover:text-indigo-300 hover:text-indigo-400 hover:text-pink-400 hover:text-rose-400 hover:text-violet-400 hover:text-white hover:to-indigo-500/20 hover:underline inline inline-block inline-flex inset inset-0 invert invisible isolation italic items items-center items-end items-start justify justify-around justify-between justify-center justify-content justify-end justify-items justify-self leading leading-6 leading-7 leading-none leading-relaxed leading-snug leading-tight left left-1/2 left-4 left-handed left-handed. left-handers left-handers. lg:flex lg:flex-row lg:gap-5 lg:grid-cols-2 lg:grid-cols-4 lg:grid-cols-[1fr_auto] lg:hidden lg:items-center lg:p-8 lg:px-8 lg:text-3xl lg:text-5xl lg:text-sm line-clamp-3 lining list list-disc list-style m max-h-48 max-h-[92vh] max-w-2xl max-w-3xl max-w-5xl max-w-7xl max-w-sm mb mb-1 mb-1.5 mb-2 mb-3 mb-4 mb-5 md:flex-row md:grid-cols-2 md:grid-cols-4 md:items-center min-h-[16px] min-h-[1rem] min-h-[42px] min-h-screen min-w-0 mix-blend-mode ml ml-1 ml-2 ml-auto mr mr-1 mr-2 mt mt-1 mt-2 mt-3 mt-4 mt-5 mt-6 mt-b-tg mt-b-yt mt-ind mt-tabs mt-tg mt-yt mx mx-auto my my-2 my-3 my-4 not-italic object object-cover object-fit opacity opacity-60 opacity-80 opacity-90 order origin outline outline-none outline-offset overflow overflow-hidden overflow-wrap overflow-x overflow-x-auto overflow-y overflow-y-auto overscroll-behavior p p-1.5 p-2.5 p-3 p-3.5 p-4 p-5 p-6 p-8 p-agl p-agr p-bl p-br p-hl p-hr p-sdl p-sdr pb pb-2 pb-4 pb-6 pl pl-11 pl-3 pl-5 place-items placeholder placeholder-slate-500 placeholder:text-slate-600 pointer-events pr pr-12 pr-2 pr-4 pt pt-4 pt-BR px px-2 px-2.5 px-3 px-3.5 px-4 px-5 px-6 py py-0.5 py-1 py-1.5 py-2 py-2.5 py-3 py-3.5 py-4 py-6 relative resize right right-1 right-2 right-3 right-4 right-hand ring ring-2 ring-indigo-500/40 ring-rose-500/30 rotate rounded rounded-2xl rounded-3xl rounded-[28px] rounded-full rounded-lg rounded-xl row row-gap saturate scale select selection:bg-indigo-500 selection:text-white self self-control self-esteem self-reinforcing self-start self-study shadow shadow-2xl shadow-indigo-500/20 shadow-indigo-500/30 shadow-lg shadow-xl shrink shrink-0 size sm:block sm:flex-row sm:grid-cols-2 sm:grid-cols-4 sm:h-48 sm:inline sm:items-center sm:items-end sm:justify-between sm:p-4 sm:p-6 sm:px-6 sm:px-8 sm:self-auto sm:text-2xl sm:text-4xl sm:text-base sm:text-sm sm:w-64 snap space-x-1 space-x-3 space-y-1 space-y-2 space-y-3 space-y-4 space-y-5 space-y-6 space-y-8 sr stacked static sticky stroke stroke-dasharray stroke-dashoffset stroke-linecap stroke-linejoin stroke-opacity stroke-width tab table text text-2xl text-3xl text-4xl text-5xl text-[10px] text-[11px] text-[9px] text-align text-amber-200 text-amber-300 text-amber-400 text-anchor text-base text-center text-cyan-200 text-cyan-300 text-cyan-400 text-decoration text-decoration-color text-decoration-thickness text-emerald-300 text-emerald-400 text-fuchsia-200 text-fuchsia-300 text-fuchsia-400 text-indigo-100/80 text-indigo-200 text-indigo-200/80 text-indigo-300 text-indigo-400 text-left text-lg text-orange-400 text-overflow text-pink-200 text-pink-300 text-pink-400 text-purple-100/80 text-rendering text-right text-rose-300 text-rose-400 text-shadow text-sky-100/80 text-sky-300 text-sky-400 text-slate-100 text-slate-200 text-slate-300 text-slate-400 text-slate-500 text-slate-600 text-slate-900 text-sm text-teal-400 text-to-speech text-transform text-underline-offset text-violet-200 text-violet-300 text-violet-400 text-white text-white/80 text-xl text-xs to to-amber-400/15 to-by to-clause to-clause. to-indigo-500 to-indigo-500/10 to-infinitiv to-infinitive to-infinitive. top top-0 top-1 top-1/2 top-4 top/100 touch touch-action tracking tracking-[.14em] tracking-[.15em] tracking-[.16em] tracking-[.2em] tracking-tight tracking-wider tracking-widest transform transform-box transform-only transform-origin transform-style transition transition-all transition-duration truncate underline uppercase via via-fuchsia-500/10 visible w w-10 w-11 w-12 w-16 w-44 w-7 w-8 w-9 w-[0%] w-full whitespace-nowrap will-change xl:flex-row xl:grid-cols-2 xl:grid-cols-3 xl:grid-cols-5 xl:items-end xl:justify-between xl:min-w-[310px] z z-10 z-20 z-40 z-50 z-[100] z-index';
+    const TW = /^(?:[a-z0-9-]+:|\[[^\]]+\]:)*!?-?(?:bg|text|p[xytrbl]?|m[xytrbl]?|w|h|size|min-w|max-w|min-h|max-h|flex|grid|gap(?:-[xy])?|space-[xy]|rounded(?:-[tblrse]{1,2})?|border(?:-[xytrbl])?|shadow|ring(?:-offset)?|opacity|from|via|to|font|leading|tracking|z|top|left|right|bottom|inset(?:-[xy])?|translate-[xy]|scale(?:-[xy])?|rotate|skew-[xy]|transition|duration|delay|ease|animate|items|justify(?:-items|-self)?|self|place-(?:content|items|self)|content|order|col(?:-span|-start|-end)?|row(?:-span|-start|-end)?|grid-cols|grid-rows|overflow(?:-[xy])?|overscroll(?:-[xy])?|whitespace|break|line-clamp|object|cursor|pointer-events|select|backdrop|blur|brightness|contrast|saturate|grayscale|invert|sepia|hue-rotate|drop-shadow|outline(?:-offset)?|divide(?:-[xy])?|aspect|fill|stroke|decoration|underline-offset|list|align|basis|grow|shrink|columns|auto-cols|auto-rows|origin|accent|caret|scroll-[mp][xytrbl]?|snap|touch|will-change|indent|placeholder|mix-blend|bg-blend|sr|not-sr|tabular|ordinal|slashed|lining|oldstyle|proportional|diagonal|stacked|clip|float|clear|box|isolation|appearance|resize|table|caption|tab|antialiased|subpixel|normal-case|not-italic|no-underline|line-through|overline|inline|hidden|block|visible|invisible|static|fixed|absolute|relative|sticky|truncate|uppercase|lowercase|capitalize|italic|underline|container|contents|flow-root|isolate|transform|filter|prose)(?:-|\/|$)/;
+    const cdnStyles = () => Array.from(document.querySelectorAll('style')).filter(s => s.id !== 'lr-tw' && s.textContent.length > 1500 && /--tw-|tailwindcss/.test(s.textContent.slice(0, 6000)));
+    const sig = el => !el ? '' : el.tagName + '#' + (el.id || '') + '|' + (el.getAttribute('src') || el.getAttribute('href') || (el.textContent || '').replace(/\s+/g, ' ').slice(0, 60));
+    const idle = (f, t) => ('requestIdleCallback' in window) ? requestIdleCallback(f, { timeout: t || 4000 }) : setTimeout(f, 1200);
+    function seedAndSave(done) {
+        if (!window.tailwind) return done && done(false);
+        const d = document.createElement('div'); d.id = 'lr-tw-seed'; d.hidden = true; d.className = SEED; document.body.appendChild(d);
+        setTimeout(() => {
+            let ok = false; const ss = cdnStyles();
+            if (ss.length) {
+                const css = ss.map(s => s.textContent).join('\n'), st = ss[0];
+                if (css.length > 1500 && css.indexOf('.hidden') >= 0) { try { localStorage.setItem('lr_tw_css', css); localStorage.setItem('lr_tw_pos', sig(st.previousElementSibling)); localStorage.setItem('lr_tw_v', V); ok = true; } catch (e) { } }
+            }
+            d.remove(); done && done(ok);
+        }, 1500);
+    }
+    if (!window.__twSnap) {   // first visit (or new version): the CDN is running, keep its result for next time
+        const go = () => idle(() => seedAndSave(), 5000);
+        if (document.readyState === 'complete') setTimeout(go, 2500); else addEventListener('load', () => setTimeout(go, 2500));
+        return;
+    }
+    // later visits: everything comes from the saved copy; only an unknown class brings the CDN back
+    const css = (document.getElementById('lr-tw') || {}).textContent || '';
+    const known = new Set(SEED.split(' ')); const re = /\.((?:\\.|[A-Za-z0-9_-])+)/g; let m;
+    while ((m = re.exec(css))) known.add(m[1].replace(/\\(.)/g, '$1'));
+    let loading = false, pend = [], self = [], timer = 0;
+    function need(t) { return t && !known.has(t) && TW.test(t); }
+    function one(el) { const cl = el.classList; if (!cl) return false; for (let i = 0; i < cl.length; i++) { const t = cl[i]; if (need(t)) { bringCdn(t); return true; } } return false; }
+    function check() {
+        timer = 0; const roots = pend, tops = self; pend = []; self = [];
+        for (const el of tops) if (el.isConnected && one(el)) return;
+        for (const r of roots) { if (!r.isConnected || !r.querySelectorAll) continue; if (one(r)) return; const els = r.querySelectorAll('[class]'); for (let i = 0; i < els.length; i++) if (one(els[i])) return; }
+    }
+    function bringCdn(why) {
+        if (loading) return; loading = true; mo.disconnect();
+        try { console.info('[tailwind] loading the CDN for', why); } catch (e) { }
+        const s = document.createElement('script'); s.src = 'https://cdn.tailwindcss.com';
+        s.onload = () => { try { tailwind.config = window.__twCfg; } catch (e) { } setTimeout(() => seedAndSave(), 1200); };
+        document.head.appendChild(s);
+    }
+    const mo = new MutationObserver(recs => {
+        for (const r of recs) { if (r.type === 'attributes') self.push(r.target); else for (const n of r.addedNodes) if (n.nodeType === 1) pend.push(n); }
+        if (!timer && (pend.length || self.length)) timer = setTimeout(check, 250);
+    });
+    const start = () => { pend.push(document.body); check(); mo.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['class'] }); };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
 </body>
 </html>
