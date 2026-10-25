@@ -15,6 +15,12 @@
     <meta property="og:title" content="LunaRise — Learn English for IELTS &amp; CEFR">
     <meta property="og:description" content="Learn English for IELTS and CEFR with LunaRise: grammar lessons, a smart dictionary with Uzbek and Russian translation, reading and listening practice, shadowing videos, an AI tutor and 3D learning games.">
     <meta name="twitter:card" content="summary">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="LunaRise">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Cpath d='M40 14a20 20 0 1 0 10 34A16 16 0 1 1 40 14z' fill='%23fde68a'/%3E%3C/svg%3E">
     <script id="lr-tw-boot">
     /* Tailwind styles: the first visit builds them with the Tailwind CDN and keeps a copy on this device.
@@ -3973,6 +3979,13 @@ body.spk-lock{overflow:hidden}
 .sc-m.pend .sc-meta::before{content:"Sending…";margin-right:6px;font-weight:700;opacity:.8}
 .sc-m.fail .sc-meta::before{content:"Not sent";margin-right:6px;font-weight:800;color:#fda4af}
 .sc-comp.rec-wait .sc-recdot{animation:none;opacity:.4}
+/* call alerts tip in Chats */
+.sc-atip{display:flex;align-items:center;gap:10px;margin:0 0 10px;padding:12px;border-radius:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--sc-acc) 22%,transparent),color-mix(in srgb,var(--sc-acc3) 12%,transparent));border:1px solid color-mix(in srgb,var(--sc-acc3) 35%,transparent)}
+.sc-atip>svg{flex:none;width:20px!important;height:20px!important;color:var(--sc-acc3)}
+.sc-atip>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.sc-atip b{font-size:13.5px;color:#fff}.sc-atip small{font-size:12px;color:var(--sc-mute);line-height:1.4}
+.sc-atip .sc-btn.sm{flex:none;min-height:36px;padding:0 14px}
+.sc-atip .sc-icb{flex:none;width:34px;height:34px}
 </style><!--/club:css-->
 <!--ux:css--><style id="ux-css">
 /* ===== UX pack ===== */
@@ -28528,6 +28541,8 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         on('club/inbox/' + C.uid, v => onInbox(v), 'chats');
         C.db.ref('club/ring/' + C.uid).on('value', s => onRing(s.val()), e => { if (denied(e)) permWarn('calls'); });
         document.addEventListener('visibilitychange', () => { if (!document.hidden) presence(); });
+        pushCfg().then(() => { pushRefresh(); if (C.v === 'shell' && C.tab === 'me') render(); });
+        wantCheck();
         return true;
     }
     function reconnect() {
@@ -28604,6 +28619,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     async function publishMe(withPhoto) {
         if (!C.db || !C.me) return;
         const m = C.me, pub = { n: m.n, c: m.c, l: m.l, b: m.b || '', w: m.w || 'all', av: m.a ? (m.av || 1) : 0, t: C.TS };
+        if (PUSH.on || pushWanted()) pub.pa = 1;
         try {
             if (withPhoto !== false) { if (m.a) await C.db.ref('club/av/' + C.uid).set(m.a); else await C.db.ref('club/av/' + C.uid).remove(); }
             await C.db.ref('club/users/' + C.uid).set(pub);
@@ -28666,7 +28682,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     }
     /* ---------- Chats ---------- */
     function tChats() {
-        return `<div class="sc-chats"><div class="sc-list">
+        return `<div class="sc-chats"><div class="sc-list">${alertsTip()}
                 <label class="sc-search">${I('search')}<input id="sc-q" type="search" placeholder="Search friends" autocomplete="off" oninput="CLUB.filter(this.value)" value="${esc(C.q || '')}"></label>
                 <div id="sc-reqs"></div><div id="sc-convs" class="sc-convs"></div></div>
                 <div class="sc-pane" id="sc-pane">${wide() ? `<div class="sc-pane-empty">${I('chat')}<h4>Your chats</h4><p>Pick a friend to send a message, a voice note or start a call.</p></div>` : ''}</div></div>`;
@@ -28722,6 +28738,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
             <div class="sc-set">
                 <div class="sc-setrow"><span><b>Who can call me</b><small>Friends always can</small></span><div class="sc-seg" role="radiogroup"><button role="radio" aria-checked="${m.w !== 'friends'}" class="${m.w !== 'friends' ? 'on' : ''}" onclick="CLUB.setW('all')">Everyone</button><button role="radio" aria-checked="${m.w === 'friends'}" class="${m.w === 'friends' ? 'on' : ''}" onclick="CLUB.setW('friends')">Friends</button></div></div>
                 <label class="sc-setrow"><span><b>Show me as online</b><small>Others can see you and call you</small></span><input type="checkbox" class="sc-sw" ${m.on !== false ? 'checked' : ''} onchange="CLUB.setOn(this.checked)"></label>
+                ${alertsRow()}
                 <button class="sc-setrow" onclick="CLUB.blockedList()"><span><b>Blocked learners</b><small>People you will not see again</small></span><em>${blocked().length}</em></button>
                 <button class="sc-setrow" onclick="CLUB.rules()"><span><b>Club rules and safety</b><small>How to stay safe in the club</small></span><em>›</em></button>
             </div></section>`;
@@ -29329,10 +29346,132 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         if (C.v === 'shell') render();
     }
 
+    /* ================= call alerts: reach friends even when LunaRise is closed =================
+       The phone keeps a push token in club/push/{uid}. When you call a friend, the call server (Apps Script)
+       checks that the call is real and sends a ringing alert; tapping it opens LunaRise and answers. */
+    const PUSH = { cfg: null, on: false, reg: null, tok: null, busy: false };
+    const LSP = 'lr_club_push';
+    const pushSupported = () => !!(window.isSecureContext && 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window);
+    const isIOS = () => /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const inApp = () => /Telegram|Instagram|FBAN|FBAV|Line\/|; wv\)/.test(navigator.userAgent);
+    const standalone = () => { try { return matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; } catch (e) { return false; } };
+    async function pushCfg() {
+        if (PUSH.cfg !== null) return PUSH.cfg;
+        try { PUSH.cfg = (await C.db.ref('club/cfg/push').once('value')).val() || false; } catch (e) { PUSH.cfg = false; }
+        return PUSH.cfg;
+    }
+    function tokKey(t) { let h = 0; for (let i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) | 0; return 'w' + (h >>> 0).toString(36) + t.length.toString(36); }
+    async function swReg() { if (PUSH.reg) return PUSH.reg; PUSH.reg = await navigator.serviceWorker.register('sw.js', { scope: './' }); return PUSH.reg; }
+    async function fcmToken(cfg) {
+        if (!firebase.messaging) await load('https://www.gstatic.com/firebasejs/' + FBV + '/firebase-messaging-compat.js');
+        await swReg(); const reg = await navigator.serviceWorker.ready;
+        return firebase.messaging().getToken({ vapidKey: cfg.vapid, serviceWorkerRegistration: reg });
+    }
+    async function pushSave(tok) {
+        const k = tokKey(tok), up = {};
+        up['push/' + C.uid + '/' + k] = { t: tok, at: C.TS, p: 'web' };
+        await C.db.ref('club').update(up);
+        PUSH.on = true; PUSH.tok = tok; lsSet(LSP, { k, tok, uid: C.uid, t: Date.now() });
+        try { await C.db.ref('club/users/' + C.uid + '/pa').set(1); } catch (e) { }
+    }
+    /* turned on with a tap (browsers ask for permission only after a tap) */
+    async function alertsOn() {
+        if (PUSH.busy) return;
+        if (!pushSupported()) return toast(isIOS() && !standalone() ? 'On iPhone: open LunaRise in Safari, tap Share → Add to Home Screen, open it from there, then turn this on' : inApp() ? 'Open LunaRise in Chrome to turn on call alerts' : '⚠ This browser cannot show call alerts. Try Chrome.');
+        if (!C.db) { await enter(); if (!C.db) return; }
+        const cfg = await pushCfg(); if (!cfg || !cfg.vapid) return toast('Call alerts are not set up on the server yet');
+        PUSH.busy = true; paintAlerts();
+        try {
+            const perm = await Notification.requestPermission();
+            if (perm !== 'granted') { toast(perm === 'denied' ? '⚠ Notifications are blocked for this site — allow them in the browser settings' : 'Call alerts stay off'); return; }
+            const tok = await fcmToken(cfg); if (!tok) throw new Error('no token');
+            await pushSave(tok); toast('🔔 Call alerts are on');
+        } catch (e) { console.warn('[club push]', e); toast(denied(e) ? '⚠ Call alerts need the new database rules' : '⚠ Could not turn on call alerts. Try again.'); }
+        finally { PUSH.busy = false; paintAlerts(); }
+    }
+    async function alertsOff() {
+        const s = lsGet(LSP, null);
+        try { if (s && s.k) await C.db.ref('club/push/' + C.uid + '/' + s.k).remove(); await C.db.ref('club/users/' + C.uid + '/pa').set(0); } catch (e) { }
+        try { if (firebase.messaging && PUSH.tok) await firebase.messaging().deleteToken(); } catch (e) { }
+        PUSH.on = false; PUSH.tok = null; lsSet(LSP, null); paintAlerts(); toast('Call alerts are off');
+    }
+    function alerts(on) { if (on) alertsOn(); else alertsOff(); }
+    /* alerts were turned on on this device by this learner (the profile keeps "pa" so friends can call while LunaRise is closed) */
+    function pushWanted() { const s = lsGet(LSP, null); return !!(s && s.uid === C.uid && pushSupported() && Notification.permission === 'granted'); }
+    /* every start: keep the token fresh (browsers rotate it now and then) */
+    async function pushRefresh() {
+        try {
+            const s = lsGet(LSP, null);
+            if (!pushSupported() || Notification.permission !== 'granted' || !s || s.uid !== C.uid) { PUSH.on = false; return; }
+            const cfg = await pushCfg(); if (!cfg) return;
+            PUSH.on = true; PUSH.tok = s.tok;
+            const tok = await fcmToken(cfg);
+            if (tok && tok !== s.tok) { try { await C.db.ref('club/push/' + C.uid + '/' + s.k).remove(); } catch (e) { } await pushSave(tok); }
+            else if (tok) { try { await C.db.ref('club/users/' + C.uid + '/pa').set(1); } catch (e) { } }
+        } catch (e) { console.warn('[club push] refresh', e); }
+        finally { paintAlerts(); }
+    }
+    async function pushCall(op, body) {
+        const cfg = await pushCfg(); if (!cfg || !cfg.server) return null;
+        try {
+            const idToken = await firebase.auth().currentUser.getIdToken();
+            const r = await fetch(cfg.server, { method: 'POST', body: JSON.stringify(Object.assign({ op, idToken }, body)) });
+            return await r.json();
+        } catch (e) { console.warn('[club push]', op, e); return null; }
+    }
+    /* the alert on this phone stops ringing as soon as the call is handled here */
+    function swStop(cid) {
+        if (!cid || !('serviceWorker' in navigator)) return;
+        navigator.serviceWorker.getRegistration().then(reg => { if (!reg) return; if (reg.active) reg.active.postMessage({ type: 'lr-stop', cid }); return reg.getNotifications({ tag: 'call-' + cid }).then(ns => ns.forEach(n => n.close())); }).catch(() => { });
+    }
+    function paintAlerts() {
+        const b = $('sc-alerts'); if (b) { b.checked = PUSH.on; b.disabled = PUSH.busy; }
+        const s = $('sc-alerts-s'); if (s) s.textContent = alertsHint();
+        const p = $('sc-alerts-tip'); if (p && PUSH.on) p.remove();
+    }
+    function alertsHint() {
+        if (PUSH.busy) return 'Turning on…';
+        if (PUSH.on) return 'On — friends can call you even when LunaRise is closed';
+        if (!pushSupported()) return isIOS() && !standalone() ? 'iPhone: open in Safari → Share → Add to Home Screen first' : inApp() ? 'Open LunaRise in Chrome to use this' : 'Not available in this browser';
+        if (window.Notification && Notification.permission === 'denied') return 'Blocked — allow notifications for this site';
+        return 'Get a ringing alert when a friend calls';
+    }
+    function alertsRow() {
+        if (PUSH.cfg === false) return '';
+        return `<label class="sc-setrow"><span><b>Call alerts when LunaRise is closed</b><small id="sc-alerts-s">${esc(alertsHint())}</small></span><input type="checkbox" class="sc-sw" id="sc-alerts" ${PUSH.on ? 'checked' : ''} ${PUSH.busy ? 'disabled' : ''} onchange="CLUB.alerts(this.checked)"></label>`;
+    }
+    function alertsTip() {
+        if (PUSH.on || PUSH.cfg === false || !PUSH.cfg || lsGet('lr_club_atip', 0) || !Object.keys(C.fr).length) return '';
+        if (window.Notification && Notification.permission === 'denied') return '';
+        return `<div class="sc-atip" id="sc-alerts-tip">${I('phone')}<span><b>Get calls even when LunaRise is closed</b><small>Your phone rings with an alert when a friend calls you.</small></span><button class="sc-btn sm" onclick="CLUB.alerts(true)">Turn on</button><button class="sc-icb" onclick="CLUB.alertsHide()" aria-label="Not now">${I('x')}</button></div>`;
+    }
+    function alertsHide() { lsSet('lr_club_atip', 1); const t = $('sc-alerts-tip'); if (t) t.remove(); }
+    /* opened from an alert: ?call=<id>&ans=1 (Answer) or ?chat=<friend> */
+    (function () {
+        try {
+            const q = new URLSearchParams(location.search);
+            if (q.get('call')) C.want = { cid: q.get('call'), from: q.get('from') || '', ans: q.get('ans') === '1', t: Date.now() };
+            if (q.get('chat')) C.wantChat = q.get('chat');
+            if (C.want || C.wantChat) history.replaceState(null, '', location.pathname + location.hash);
+        } catch (e) { }
+    })();
+    function wantCheck() {
+        if (C.wantChat) { const u = C.wantChat; C.wantChat = null; setTimeout(() => { if (C.fr[u]) dm(u); else { try { navigateTo('club'); } catch (e) { } } }, 600); }
+        if (C.want) { try { navigateTo('club'); } catch (e) { } setTimeout(() => { if (C.want && !C.inc && !C.vc) { C.want = null; toast('📞 That call already ended'); } }, 7000); }
+    }
+    if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', (e) => {
+        const m = e.data || {};
+        if (m.type === 'lr-call') {
+            try { navigateTo('club'); } catch (x) { }
+            if (C.inc && C.inc.cid === m.cid) { if (m.ans) accept(); }
+            else { C.want = { cid: m.cid, from: m.from, ans: !!m.ans, t: Date.now() }; if (!C.svc) service(); }
+        } else if (m.type === 'lr-open' && m.from) { if (C.fr[m.from]) dm(m.from); }
+    });
+
     /* ================= voice calls (WebRTC; signalling through the database) ================= */
     function callAllowed(u) {
         if (isBlocked(u)) return { ok: false, why: 'Blocked' };
-        if (!isOn(u)) return { ok: false, why: 'Offline' };
+        if (!isOn(u) && !(C.fr[u] && uinfo(u).pa === 1 && PUSH.cfg && PUSH.cfg.server)) return { ok: false, why: 'Offline' };
         if (busy(u)) return { ok: false, why: 'In a call' };
         const p = uinfo(u); if (p.w === 'friends' && !C.fr[u]) return { ok: false, why: 'Friends only' };
         return { ok: true };
@@ -29363,7 +29502,9 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         catch (e) { endCallLocal(denied(e) ? 'busy' : 'failed'); return; }
         if (C.vc !== r) return;
         listenRtc(r); ringBackLoop(r);
-        r.to = setTimeout(() => { if (C.vc === r && r.st === 'ringing') { hangup('noanswer'); } }, 40000);
+        // friends with call alerts get a ringing alert on their phone, even if LunaRise is closed there
+        if (C.fr[u]) pushCall('ring', { to: u, cid }).then(x => { if (x && x.ok && x.sent && C.vc === r) { r.alerted = true; paintCall(); } });
+        r.to = setTimeout(() => { if (C.vc === r && r.st === 'ringing') { hangup('noanswer'); } }, uinfo(u).pa === 1 ? 58000 : 40000);
     }
     async function callPair() {
         if (!C.pair || C.pair.ended) return; if (C.vc) return maxCall();
@@ -29379,7 +29520,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     function rtcOnValue(r, v) {
         if (C.vc !== r) return;
         if (v.hang && v.hang !== C.uid) { endCallLocal(r.st === 'live' ? 'ended' : r.role === 'caller' ? (v.busy ? 'busy' : 'declined') : 'cancelled'); return; }
-        if (r.role === 'caller' && v.acc && !r.pc) { r.st = 'connecting'; if (r.ringing) { C.db.ref('club/ring/' + r.peer.uid).onDisconnect().cancel().catch(() => { }); r.ringing = false; } paintCall(); makeOffer(r); }
+        if (r.role === 'caller' && v.acc && !r.pc) { r.st = 'connecting'; if (r.ringing) { C.db.ref('club/ring/' + r.peer.uid).onDisconnect().cancel().catch(() => { }); r.ringing = false; } if (r.alerted) { r.alerted = false; pushCall('cancel', { to: r.peer.uid, cid: r.cid, why: 'answered' }); } paintCall(); makeOffer(r); }
         if (r.role === 'callee' && v.offer && !r.gotOffer && r.pc) { r.gotOffer = true; takeOffer(r, JSON.parse(v.offer)); }
         if (r.role === 'caller' && v.answer && !r.gotAns && r.pc) { r.gotAns = true; r.pc.setRemoteDescription(JSON.parse(v.answer)).then(() => flush(r)).catch(e => console.warn(e)); }
         const theirs = r.role === 'caller' ? v.cb : v.ca;
@@ -29466,8 +29607,9 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         document.body.appendChild(d); requestAnimationFrame(() => d.classList.add('in'));
         const ring = () => { if (C.inc === inc) { ringIn(); vib([300, 150, 300]); } }; ring(); C.timers.ring = setInterval(ring, 2600);
         if (document.hidden) notifyAway((info.n || 'Someone') + ' is calling you');
+        if (C.want && C.want.cid === inc.cid) { const w = C.want; C.want = null; try { navigateTo('club'); } catch (e) { } if (w.ans) setTimeout(() => { if (C.inc === inc) accept(); }, 500); }
     }
-    function hideIncoming() { clearInterval(C.timers.ring); const inc = C.inc; C.inc = null; if (inc && inc.sub) inc.sub(); const d = $('sc-inc'); if (d) { d.classList.remove('in'); setTimeout(() => d.remove(), 250); } }
+    function hideIncoming() { clearInterval(C.timers.ring); const inc = C.inc; C.inc = null; if (inc) swStop(inc.cid); if (inc && inc.sub) inc.sub(); const d = $('sc-inc'); if (d) { d.classList.remove('in'); setTimeout(() => d.remove(), 250); } }
     async function accept() {
         const inc = C.inc; if (!inc || C.vc) return; inc.answered = true; clearInterval(C.timers.ring); vac();
         let mic; try { mic = await getMic(); } catch (e) { toast('⚠ Allow microphone access to answer'); return decline(); }
@@ -29499,7 +29641,8 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         if (!(r.role === 'callee' && !secs && reason === 'ended')) logCall({ u: p.uid, n: p.n, c: p.c, dir: r.role === 'caller' ? 'out' : 'in', s, d: secs });
         if (secs) { const st = stats(); st.s = (st.s || 0) + secs; lsSet(LSS, st); }
         if (r.kind === 'direct' && r.role === 'caller' && C.fr[p.uid]) callEvent(p.uid, secs ? { k: 'call', d: secs } : { k: 'missed' }, secs ? '📞 Voice call · ' + dur(secs) : '📞 Missed voice call');
-        if (r.kind === 'direct' && r.role === 'caller') setTimeout(() => C.db.ref('club/calls/' + r.cid).remove().catch(() => { }), 6000);
+        if (r.kind === 'direct' && r.role === 'caller' && r.alerted && !secs && reason !== 'declined' && reason !== 'busy') pushCall('cancel', { to: p.uid, cid: r.cid, why: 'missed' });
+        if (r.kind === 'direct' && r.role === 'caller') setTimeout(() => C.db.ref('club/calls/' + r.cid).remove().catch(() => { }), r.alerted ? 25000 : 6000);
         if (r.kind === 'pair' && C.pair && C.v === 'pair') sysMsg(secs ? 'Call ended · ' + dur(secs) : reason === 'declined' ? (p.n || 'Your partner') + ' declined the call.' : reason === 'noanswer' ? 'No answer.' : 'Call ended.');
         const lab = { ended: secs ? 'Call ended · ' + dur(secs) : 'Call ended', busy: (p.n || 'They') + ' is busy', declined: 'Call declined', noanswer: 'No answer', cancelled: 'Call cancelled', failed: 'Voice could not connect on this network', lost: 'Connection lost' }[reason] || 'Call ended';
         endTone(); presence(); closeCallUI(lab);
@@ -29530,7 +29673,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         d.dataset.st = r.st; const st = $('sc-call-st'), m = $('sc-mute');
         if (m) { m.classList.toggle('on', !!r.muted); m.innerHTML = (r.muted ? I('micoff') : I('mic')) + `<span>${r.muted ? 'Unmute' : 'Mute'}</span>`; }
         clearInterval(C.timers.clock);
-        const lab = r.st === 'live' ? null : r.st === 'ringing' ? (r.role === 'caller' ? (isOn(r.peer.uid) || r.kind === 'pair' ? 'Ringing…' : 'Calling…') : 'Connecting…') : 'Connecting…';
+        const lab = r.st === 'live' ? null : r.st === 'ringing' ? (r.role === 'caller' ? (isOn(r.peer.uid) || r.kind === 'pair' ? 'Ringing…' : r.alerted ? 'Ringing on their phone…' : 'Calling…') : 'Connecting…') : 'Connecting…';
         if (st) st.textContent = lab || dur((Date.now() - r.t0) / 1000);
         if (r.st === 'live') C.timers.clock = setInterval(() => { if (C.vc !== r) return clearInterval(C.timers.clock); const t = dur((Date.now() - r.t0) / 1000); const e = $('sc-call-st'); if (e && !/Reconnecting/.test(e.textContent)) e.textContent = t; const pt = $('sc-cp-t'); if (pt) pt.textContent = t; }, 500);
         paintCallPill();
@@ -29581,9 +29724,9 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { if ($('sc-sheet')) closeSheet(); else if (C.vc && $('sc-call') && !$('sc-call').classList.contains('min')) minCall(); } });
     window.addEventListener('pagehide', () => { if (C.vc) hangup('ended'); });
     /* start the background service a moment after the app opens, so friends can reach you anywhere in the app */
-    setTimeout(() => { const m = lsGet(LSK, null); if (m && m.ok && cfg()) service().then(() => { paintBadge(); }); }, 3500);
+    setTimeout(() => { const m = lsGet(LSK, null); if (m && m.ok && cfg()) service().then(() => { paintBadge(); }); }, (C.want || C.wantChat) ? 60 : 3500);
 
-    window.CLUB = { enter, away, tab, home, back, join, cancelEdit, pickLv, edit, setW, setOn, open, fill, key, send, typing, find, cancel, leave, next, ice, ask, addFriend, acceptReq, declineReq, unfriend, dm, filter, who, menu, block, unblock, report, blockedList, rules, closeSheet, photo, photoHub, photoFile, cropSave, photoSet, rec, recCancel, playV, callU, callPair, accept, decline, hang, mute, minCall, maxCall, callChat, liveText, _C: C, _scrub: scrub, _tuneOpus: tuneOpus };
+    window.CLUB = { enter, away, tab, home, back, join, cancelEdit, pickLv, edit, setW, setOn, open, fill, key, send, typing, find, cancel, leave, next, ice, ask, addFriend, acceptReq, declineReq, unfriend, dm, filter, who, menu, block, unblock, report, blockedList, rules, closeSheet, photo, photoHub, photoFile, cropSave, photoSet, rec, recCancel, playV, callU, callPair, accept, decline, hang, mute, minCall, maxCall, callChat, liveText, alerts, alertsHide, _C: C, _push: PUSH, _scrub: scrub, _tuneOpus: tuneOpus };
 })();
 </script><!--/club:js-->
 <!--ux:js--><script id="ux-js">
