@@ -30433,6 +30433,15 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
 .ob-gme i{margin-left:auto;color:#34d399}
 .ob-gbtn:focus-visible{outline:2px solid #a5b4fc!important;outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.ob-gbtn .ob-gsp{animation:none}}
+/* registration: the whole window scrolls (not the card), so the coloured frame always wraps the full card */
+#modal-onboarding{overflow-y:auto!important;overscroll-behavior:contain;align-items:flex-start!important}
+#modal-onboarding>.ob-card{max-height:none!important;overflow:hidden!important;margin-top:auto;flex:none}
+@media (min-width:640px){#modal-onboarding>.ob-card{margin-bottom:auto}}
+/* selected goal, daily goal and avatar keep their size and line up with the others */
+#modal-onboarding .ob-chip.ob-goal.on{transform:none!important;box-shadow:0 0 0 2px rgba(199,210,254,.95),0 12px 28px -12px rgba(99,102,241,.8)!important}
+#modal-onboarding .ob-seg button.on{transform:none!important;box-shadow:0 0 0 2px rgba(199,210,254,.9),0 10px 22px -10px rgba(99,102,241,.75)!important}
+#modal-onboarding .ob-av{opacity:.82}
+#modal-onboarding .ob-av.on{transform:none!important;opacity:1;border-color:#c7d2fe;box-shadow:0 0 0 2px rgba(199,210,254,.55),0 8px 20px -6px rgba(129,140,248,.7)}
 </style>
 <script id="gsi-js">
 /* ===== Sign up with Google (Firebase Authentication, Google provider) =====
