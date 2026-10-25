@@ -7289,6 +7289,9 @@ if (typeof module !== 'undefined') module.exports = LunaChess;
             obJump();
         }
 
+        /* registration: anyone who has not signed up yet sees the sign-up window when they open the site (once per visit) */
+        function lrRegistered(u) { u = u || state.user || {}; if (u.registered) return true; const n = String(u.name || '').trim(); if (n && !/^guest( learner)?$/i.test(n)) { u.registered = true; return true; } return false; }
+        function lrAskReg() { try { if (sessionStorage.getItem('lr_reg_asked')) return; sessionStorage.setItem('lr_reg_asked', '1'); } catch (e) { } setTimeout(() => { try { const m = document.getElementById('modal-onboarding'); if (!lrRegistered() && m && m.classList.contains('hidden')) openProfileModal(); } catch (e) { } }, 500); }
         function saveUserProfile() {
             const name = document.getElementById('reg-name').value.trim();
             const emailEl = document.getElementById('reg-email');
@@ -7303,7 +7306,7 @@ if (typeof module !== 'undefined') module.exports = LunaChess;
             lunaSet({ mood: 'o' }); obSay('Creating your account… ✨');
             setTimeout(() => {
                 // Only name, target and avatar are saved (on this device). Email/password are not stored.
-                state.user.name = name;
+                state.user.name = name; state.user.registered = true; state.user.regAt = Date.now();
                 state.user.target = document.getElementById('reg-target').value;
                 const dg = document.querySelector('#ob-daily .on'); if (dg) { const pr = pfPrefs(); if (pr) pr.dailyGoal = +dg.dataset.n; }
                 pfSave();
@@ -15847,7 +15850,7 @@ Respond ONLY with minified JSON: {"title":string,"topic":string (1-2 English wor
 
         function openProfileModal() {
             initOnboardingUI();
-            if (localStorage.getItem('lunarise_user')) document.getElementById('reg-name').value = state.user.name || '';
+            document.getElementById('reg-name').value = localStorage.getItem('lunarise_user') && lrRegistered() ? (state.user.name || '') : '';
             obMsg('');
             obGo(1);
             document.getElementById('modal-onboarding').classList.remove('hidden');
@@ -20973,9 +20976,11 @@ nextGrammarQuestion=function(){ _oldNextGrammar(); setTimeout(updateGrammarAnaly
                     pfPrefs(); pfApplyFx();
                     if (!String(state.user.avatar || '').startsWith('data:')) { state.user.avatar = makeAvatar('😎', '#6366f1', '#a855f7'); pfSave(); }
                     updateHeaderUI();
+                    try { if (!lrRegistered()) lrAskReg(); } catch (e) { }
                 } catch(e) { console.error('User restore error:', e); }
             } else {
                 try { updateHeaderUI(); } catch (e) { }
+                try { sessionStorage.setItem('lr_reg_asked', '1'); } catch (e) { }
                 try { openProfileModal(); } catch(e) { console.error('Profile modal error:', e); }
                 try { lrRecover(); } catch (e) { }
             }
@@ -28484,9 +28489,9 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
             const c = cfg(); if (!c) throw { code: 'nocfg' };
             if (!window.firebase || !window.firebase.database) {
                 const b = 'https://www.gstatic.com/firebasejs/' + FBV + '/';
-                await load(b + 'firebase-app-compat.js');
-                await load(b + 'firebase-auth-compat.js');
-                await load(b + 'firebase-database-compat.js');
+                if (!window.firebase) await load(b + 'firebase-app-compat.js');
+                if (!window.firebase.auth) await load(b + 'firebase-auth-compat.js');
+                if (!window.firebase.database) await load(b + 'firebase-database-compat.js');
             }
             if (!firebase.apps.length) firebase.initializeApp(c);
             const auth = firebase.auth();
@@ -30406,6 +30411,151 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     });
     const start = () => { pend.push(document.body); check(); mo.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['class'] }); };
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+</script>
+<style id="gsi-css">
+.ob-gwrap{margin-top:14px}
+.ob-or{display:flex;align-items:center;gap:12px;margin:0 0 12px;color:#7c8aa8;font-size:11.5px;font-weight:700}
+.ob-or span{flex:1;height:1px;background:rgba(148,163,184,.22)}
+.ob-gbtn{position:relative;width:100%;height:52px;border-radius:16px;border:1px solid rgba(255,255,255,.85);background:#fff;color:#1f2937;font:700 15px 'Plus Jakarta Sans',system-ui,sans-serif;display:flex;align-items:center;justify-content:center;gap:12px;cursor:pointer;box-shadow:0 10px 26px -14px rgba(0,0,0,.7);transition:transform .15s,box-shadow .2s,opacity .2s}
+.ob-gbtn:hover{box-shadow:0 14px 30px -14px rgba(0,0,0,.8);transform:translateY(-1px)}
+.ob-gbtn:active{transform:scale(.98)}
+.ob-gbtn i{font-size:18px;color:#1f2937}
+.ob-gbtn[disabled]{opacity:.75;cursor:progress}
+.ob-gbtn .ob-gsp{display:none;width:18px;height:18px;border-radius:50%;border:2.5px solid #c7cdd8;border-top-color:#4f46e5;animation:obGsp .7s linear infinite}
+.ob-gbtn.busy i{display:none}.ob-gbtn.busy .ob-gsp{display:block}
+@keyframes obGsp{to{transform:rotate(360deg)}}
+.ob-ghint{margin:10px 2px 0;color:#94a3b8;font-size:11.5px;line-height:1.5;text-align:center}
+.ob-ghint a{color:#a5b4fc;font-weight:700;text-decoration:underline}
+.ob-gme{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(148,163,184,.2)}
+.ob-gme img{width:34px;height:34px;border-radius:50%;object-fit:cover;flex:none}
+.ob-gme b{display:block;color:#fff;font-size:13.5px}.ob-gme small{display:block;color:#94a3b8;font-size:11.5px}
+.ob-gme i{margin-left:auto;color:#34d399}
+.ob-gbtn:focus-visible{outline:2px solid #a5b4fc!important;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.ob-gbtn .ob-gsp{animation:none}}
+</style>
+<script id="gsi-js">
+/* ===== Sign up with Google (Firebase Authentication, Google provider) =====
+   Needs, once, in the Firebase console: Authentication -> Sign-in method -> Google -> Enable,
+   and Authentication -> Settings -> Authorized domains -> lunariseapp.github.io */
+(function () {
+    'use strict';
+    const CFG = {"apiKey":"AIzaSyA4D_KBRFrykfx4qcSn_PODHkM61mdKfPc","authDomain":"lunarise-15899.firebaseapp.com","databaseURL":"https://lunarise-15899-default-rtdb.europe-west1.firebasedatabase.app","projectId":"lunarise-15899","storageBucket":"lunarise-15899.firebasestorage.app","messagingSenderId":"876506615446","appId":"1:876506615446:web:042b38aa5308543d6d3cb7"};
+    const FBV = '10.14.1', BASE = 'https://www.gstatic.com/firebasejs/' + FBV + '/';
+    const $ = (id) => document.getElementById(id);
+    const G = { auth: null, ready: null, busy: false, ok: false, user: null };
+    const load = (src) => new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = () => rej(new Error('load')); document.head.appendChild(s); });
+    function prime() {
+        if (G.ready) return G.ready;
+        G.ready = (async () => {
+            if (!window.firebase) await load(BASE + 'firebase-app-compat.js');
+            if (!window.firebase.auth) await load(BASE + 'firebase-auth-compat.js');
+            if (!firebase.apps.length) firebase.initializeApp(CFG);
+            G.auth = firebase.auth(); return G.auth;
+        })();
+        G.ready.catch(() => { G.ready = null; });
+        return G.ready;
+    }
+    /* Telegram, Instagram and other in-app browsers: Google may refuse sign-in there */
+    const UA = navigator.userAgent || '';
+    const inApp = /Telegram|Instagram|FBAN|FBAV|FB_IAB|Line\/|MicroMessenger|; wv\)/i.test(UA) || (/iP(hone|ad|od)/.test(UA) && !/Safari\//.test(UA) && !/CriOS|FxiOS|EdgiOS/.test(UA));
+    const android = /Android/i.test(UA);
+    function hint(show) {
+        const h = $('ob-ghint'); if (!h) return;
+        if (!show) { h.hidden = true; return; }
+        h.hidden = false;
+        h.innerHTML = android ? 'If Google does not open here, <a href="intent://' + location.host + location.pathname + '#Intent;scheme=https;package=com.android.chrome;end">open the site in Chrome</a> and sign in there.'
+            : 'If Google does not open here, open <b>' + location.host + '</b> in Safari or Chrome and sign in there.';
+    }
+    function busy(on, text) {
+        G.busy = on; const b = $('ob-google'); if (!b) return;
+        b.disabled = on; b.classList.toggle('busy', on);
+        const t = b.querySelector('span'); if (t) t.textContent = on ? (text || 'Connecting…') : 'Continue with Google';
+    }
+    const msg = (t) => { try { obMsg(t); } catch (e) { } };
+    const say = (t) => { try { obSay(t); } catch (e) { } };
+    function fail(e) {
+        busy(false); const c = (e && e.code) || '';
+        if (c === 'auth/popup-closed-by-user' || c === 'auth/cancelled-popup-request' || c === 'auth/user-cancelled') { msg(''); say('No problem — you can also type your name 🙂'); return; }
+        if (c === 'auth/popup-blocked') { msg('Your browser blocked the Google window. Tap “Continue with Google” again.'); return; }
+        if (c === 'auth/unauthorized-domain' || c === 'auth/operation-not-allowed' || c === 'auth/configuration-not-found' || c === 'auth/invalid-api-key') {
+            console.warn('[google sign-in] Turn it on in the Firebase console: Authentication → Sign-in method → Google, and add ' + location.host + ' under Authentication → Settings → Authorized domains. Code:', c);
+            msg('Google sign-in is not switched on for this site yet. Type your name to continue.'); return;
+        }
+        if (c === 'auth/network-request-failed' || !c) { msg('Could not reach Google. Check your internet and try again.'); return; }
+        if (c === 'auth/web-storage-unsupported' || c === 'auth/operation-not-supported-in-this-environment') { hint(true); msg('Google sign-in does not work in this browser.'); return; }
+        msg('Google sign-in did not finish (' + c.replace('auth/', '') + '). Try again or type your name.');
+    }
+    async function photoData(url) {
+        if (!url) return null;
+        try {
+            const big = url.replace(/=s\d+(-c)?$/, '=s192-c');
+            const img = await new Promise((res, rej) => { const i = new Image(); i.crossOrigin = 'anonymous'; i.referrerPolicy = 'no-referrer'; i.onload = () => res(i); i.onerror = rej; i.src = big; });
+            const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d');
+            const s = Math.min(img.naturalWidth, img.naturalHeight); x.drawImage(img, (img.naturalWidth - s) / 2, (img.naturalHeight - s) / 2, s, s, 0, 0, 128, 128);
+            return c.toDataURL('image/jpeg', .86);
+        } catch (e) { return null; }
+    }
+    async function done(res) {
+        const u = (res && res.user) || (G.auth && G.auth.currentUser); if (!u) return fail({ code: 'auth/internal-error' });
+        const pd = (u.providerData || []).find(p => p && p.providerId === 'google.com') || {};
+        const prof = (res && res.additionalUserInfo && res.additionalUserInfo.profile) || {};
+        const name = String(u.displayName || pd.displayName || prof.name || (u.email || pd.email || '').split('@')[0] || '').trim().slice(0, 40);
+        const email = u.email || pd.email || prof.email || '';
+        const photo = u.photoURL || pd.photoURL || prof.picture || '';
+        G.ok = true; G.user = { uid: u.uid, email, name };
+        try { state.user.google = { uid: u.uid, email, at: Date.now() }; } catch (e) { }
+        const nm = $('reg-name'); if (nm && name) nm.value = name;
+        const em = $('reg-email'); if (em && email) em.value = email;
+        busy(false); msg('');
+        const first = (name || 'friend').split(' ')[0];
+        try { lunaSet({ mood: 'happy' }); obJump(); } catch (e) { }
+        say('Hi ' + first + '! 👋 One last step');
+        try { obGo(2); } catch (e) { }
+        const data = await photoData(photo);
+        if (data) {
+            const box = $('ob-avatars');
+            if (box) { const img = new Image(); img.src = data; img.alt = 'Google photo'; img.className = 'ob-av avatar-opt'; img.onclick = () => selectAvatar(img); box.prepend(img); try { selectAvatar(img); } catch (e) { } }
+        }
+        const meBox = $('ob-gme');
+        if (meBox) { meBox.hidden = false; meBox.innerHTML = (data ? '<img alt="" src="' + data + '">' : '') + '<span><b></b><small></small></span><i class="fa-solid fa-circle-check" aria-label="Signed in with Google"></i>'; meBox.querySelector('b').textContent = name; meBox.querySelector('small').textContent = email || 'Google account'; }
+    }
+    function start(auth) {
+        busy(true, 'Choose your Google account…');
+        const p = new firebase.auth.GoogleAuthProvider(); p.setCustomParameters({ prompt: 'select_account' });
+        const cu = auth.currentUser;
+        const run = cu && cu.isAnonymous
+            ? cu.linkWithPopup(p).catch(e => { if (e && (e.code === 'auth/credential-already-in-use' || e.code === 'auth/email-already-in-use') && e.credential) return auth.signInWithCredential(e.credential); throw e; })
+            : auth.signInWithPopup(p);
+        run.then(done).catch(fail);
+    }
+    window.obGoogle = function () {
+        if (G.busy) return;
+        if (!navigator.onLine) return fail({ code: 'auth/network-request-failed' });
+        if (G.auth) return start(G.auth);   // keeps the tap, so the Google window is allowed to open
+        busy(true, 'Connecting to Google…');
+        prime().then(start).catch(() => fail({ code: 'auth/network-request-failed' }));
+    };
+    /* the button lives under “Continue” on the first step; the old placeholder on the last step uses it too */
+    function mount() {
+        const sub = $('ob-submit'); if (!sub || $('ob-gwrap')) return;
+        sub.insertAdjacentHTML('afterend', '<div id="ob-gwrap" class="ob-gwrap"><div class="ob-or"><span></span>or<span></span></div><button type="button" id="ob-google" class="ob-gbtn" onclick="obGoogle()"><i class="fa-brands fa-google" aria-hidden="true"></i><i class="ob-gsp" aria-hidden="true"></i><span>Continue with Google</span></button><p id="ob-ghint" class="ob-ghint" hidden></p></div>');
+        const st2 = document.querySelector('.ob-step[data-s="2"]'); if (st2 && !$('ob-gme')) st2.insertAdjacentHTML('afterbegin', '<div id="ob-gme" class="ob-gme" hidden></div>');
+        document.querySelectorAll('#ob-extras .ob-soc').forEach(b => { if (/google/i.test(b.textContent)) b.setAttribute('onclick', 'obGoogle()'); });
+        hint(inApp);
+    }
+    const _go = window.obGo;
+    if (typeof _go === 'function') window.obGo = function (n) {
+        const r = _go.apply(this, arguments);
+        const w = $('ob-gwrap'); if (w) w.style.display = n === 1 && !G.ok ? '' : 'none';
+        if (G.ok) { const t = $('ob-bt-text'); if (t && n === 2) t.textContent = 'Finish'; const c = $('ob-count'); if (c) c.textContent = Math.min(n, 2) + '/2'; const bars = document.querySelectorAll('.ob-prog i'); if (bars[2]) bars[2].style.display = 'none'; }
+        return r;
+    };
+    const _next = window.obNext;
+    if (typeof _next === 'function') window.obNext = function () { if (G.ok && obStep === 2) return saveUserProfile(); return _next.apply(this, arguments); };
+    const _open = window.openProfileModal;
+    if (typeof _open === 'function') window.openProfileModal = function () { mount(); const r = _open.apply(this, arguments); setTimeout(() => { prime().catch(() => { }); }, 400); return r; };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount); else mount();
 })();
 </script>
 </body>
