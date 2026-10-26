@@ -29349,8 +29349,23 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     /* ================= call alerts: reach friends even when LunaRise is closed =================
        The phone keeps a push token in club/push/{uid}. When you call a friend, the call server (Apps Script)
        checks that the call is real and sends a ringing alert; tapping it opens LunaRise and answers. */
-    const PUSH = { cfg: null, on: false, reg: null, tok: null, busy: false };
-    const LSP = 'lr_club_push';
+    const PUSH = { cfg: null, on: false, reg: null, tok: null, busy: false, native: false };
+    const LSP = 'lr_club_push', LSN = 'lr_club_ntok';
+    /* the LunaRise Android app opens the site with its own push token (?ntok=…): then the app rings like a phone call */
+    const nat = () => { const n = lsGet(LSN, null); return n && n.tok ? n : null; };
+    const natKey = (t) => 'a' + tokKey(t).slice(1);
+    async function natSave(n) {
+        const k = natKey(n.tok), up = {};
+        if (n.k && n.k !== k && n.uid === C.uid) up['push/' + C.uid + '/' + n.k] = null;
+        up['push/' + C.uid + '/' + k] = { t: n.tok, at: C.TS, p: 'android' };
+        await C.db.ref('club').update(up);
+        // on this phone the app rings, so the browser alert is not needed (no double ringing)
+        const s = lsGet(LSP, null);
+        if (s && s.k && s.uid === C.uid) { try { await C.db.ref('club/push/' + C.uid + '/' + s.k).remove(); } catch (e) { } lsSet(LSP, null); }
+        lsSet(LSN, Object.assign({}, n, { uid: C.uid, k, off: false }));
+        PUSH.on = true; PUSH.native = true;
+        try { await C.db.ref('club/users/' + C.uid + '/pa').set(1); } catch (e) { }
+    }
     const pushSupported = () => !!(window.isSecureContext && 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window);
     const isIOS = () => /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     const inApp = () => /Telegram|Instagram|FBAN|FBAV|Line\/|; wv\)/.test(navigator.userAgent);
@@ -29377,6 +29392,11 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     /* turned on with a tap (browsers ask for permission only after a tap) */
     async function alertsOn() {
         if (PUSH.busy) return;
+        if (nat()) {
+            if (!C.db) { await enter(); if (!C.db) return; }
+            try { await natSave(nat()); toast('🔔 Call alerts are on'); } catch (e) { toast(denied(e) ? '⚠ Call alerts need the new database rules' : '⚠ Could not turn on call alerts. Try again.'); }
+            return paintAlerts();
+        }
         if (!pushSupported()) return toast(isIOS() && !standalone() ? 'On iPhone: open LunaRise in Safari, tap Share → Add to Home Screen, open it from there, then turn this on' : inApp() ? 'Open LunaRise in Chrome to turn on call alerts' : '⚠ This browser cannot show call alerts. Try Chrome.');
         if (!C.db) { await enter(); if (!C.db) return; }
         const cfg = await pushCfg(); if (!cfg || !cfg.vapid) return toast('Call alerts are not set up on the server yet');
@@ -29390,6 +29410,11 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         finally { PUSH.busy = false; paintAlerts(); }
     }
     async function alertsOff() {
+        const n = nat();
+        if (n) {
+            try { if (n.k) await C.db.ref('club/push/' + C.uid + '/' + n.k).remove(); await C.db.ref('club/users/' + C.uid + '/pa').set(0); } catch (e) { }
+            lsSet(LSN, Object.assign({}, n, { off: true })); PUSH.on = false; paintAlerts(); return toast('Call alerts are off');
+        }
         const s = lsGet(LSP, null);
         try { if (s && s.k) await C.db.ref('club/push/' + C.uid + '/' + s.k).remove(); await C.db.ref('club/users/' + C.uid + '/pa').set(0); } catch (e) { }
         try { if (firebase.messaging && PUSH.tok) await firebase.messaging().deleteToken(); } catch (e) { }
@@ -29397,10 +29422,12 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     }
     function alerts(on) { if (on) alertsOn(); else alertsOff(); }
     /* alerts were turned on on this device by this learner (the profile keeps "pa" so friends can call while LunaRise is closed) */
-    function pushWanted() { const s = lsGet(LSP, null); return !!(s && s.uid === C.uid && pushSupported() && Notification.permission === 'granted'); }
+    function pushWanted() { const n = nat(); if (n) return !n.off; const s = lsGet(LSP, null); return !!(s && s.uid === C.uid && pushSupported() && Notification.permission === 'granted'); }
     /* every start: keep the token fresh (browsers rotate it now and then) */
     async function pushRefresh() {
         try {
+            const n = nat();
+            if (n) { PUSH.native = true; if (n.off) PUSH.on = false; else { await pushCfg(); await natSave(n); } return; }
             const s = lsGet(LSP, null);
             if (!pushSupported() || Notification.permission !== 'granted' || !s || s.uid !== C.uid) { PUSH.on = false; return; }
             const cfg = await pushCfg(); if (!cfg) return;
@@ -29431,7 +29458,9 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     }
     function alertsHint() {
         if (PUSH.busy) return 'Turning on…';
+        if (PUSH.on && PUSH.native) return 'On — the LunaRise app rings like a phone call';
         if (PUSH.on) return 'On — friends can call you even when LunaRise is closed';
+        if (nat()) return 'Ring like a phone call when a friend calls';
         if (!pushSupported()) return isIOS() && !standalone() ? 'iPhone: open in Safari → Share → Add to Home Screen first' : inApp() ? 'Open LunaRise in Chrome to use this' : 'Not available in this browser';
         if (window.Notification && Notification.permission === 'denied') return 'Blocked — allow notifications for this site';
         return 'Get a ringing alert when a friend calls';
@@ -29452,13 +29481,18 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
             const q = new URLSearchParams(location.search);
             if (q.get('call')) C.want = { cid: q.get('call'), from: q.get('from') || '', ans: q.get('ans') === '1', t: Date.now() };
             if (q.get('chat')) C.wantChat = q.get('chat');
-            if (C.want || C.wantChat) history.replaceState(null, '', location.pathname + location.hash);
+            const nt = q.get('ntok');
+            if (nt && /^[A-Za-z0-9_:\-]{20,400}$/.test(nt)) { const o = lsGet(LSN, null) || {}; lsSet(LSN, Object.assign({}, o, { tok: nt, t: Date.now() })); }
+            const drop = ['call', 'from', 'ans', 'chat', 'ntok'].filter(k => q.has(k));
+            if (drop.length) { drop.forEach(k => q.delete(k)); const rest = q.toString(); history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + location.hash); }
         } catch (e) { }
     })();
     function wantCheck() {
         if (C.wantChat) { const u = C.wantChat; C.wantChat = null; setTimeout(() => { if (C.fr[u]) dm(u); else { try { navigateTo('club'); } catch (e) { } } }, 600); }
         if (C.want) { try { navigateTo('club'); } catch (e) { } setTimeout(() => { if (C.want && !C.inc && !C.vc) { C.want = null; toast('📞 That call already ended'); } }, 7000); }
     }
+    /* the ring is on screen now (tab came back): tell the caller, so the phone alert stops */
+    document.addEventListener('visibilitychange', () => { if (!document.hidden && C.inc && typeof C.inc.saw === 'function') C.inc.saw(); });
     if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', (e) => {
         const m = e.data || {};
         if (m.type === 'lr-call') {
@@ -29503,7 +29537,14 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         if (C.vc !== r) return;
         listenRtc(r); ringBackLoop(r);
         // friends with call alerts get a ringing alert on their phone, even if LunaRise is closed there
-        if (C.fr[u]) pushCall('ring', { to: u, cid }).then(x => { if (x && x.ok && x.sent && C.vc === r) { r.alerted = true; paintCall(); } });
+        if (C.fr[u]) {
+            const alert = () => {
+                if (C.vc !== r || r.st !== 'ringing' || r.saw || r.pushed) return; r.pushed = true;
+                pushCall('ring', { to: u, cid }).then(x => { if (!(x && x.ok && x.sent) || C.vc !== r) return; if (r.saw) pushCall('cancel', { to: u, cid, why: 'answered' }); else { r.alerted = true; paintCall(); } });
+            };
+            // a friend with LunaRise open on screen confirms the ring at once; anyone else gets the alert on their phone
+            if (isOn(u)) setTimeout(alert, 3500); else alert();
+        }
         r.to = setTimeout(() => { if (C.vc === r && r.st === 'ringing') { hangup('noanswer'); } }, uinfo(u).pa === 1 ? 58000 : 40000);
     }
     async function callPair() {
@@ -29520,6 +29561,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     function rtcOnValue(r, v) {
         if (C.vc !== r) return;
         if (v.hang && v.hang !== C.uid) { endCallLocal(r.st === 'live' ? 'ended' : r.role === 'caller' ? (v.busy ? 'busy' : 'declined') : 'cancelled'); return; }
+        if (r.role === 'caller' && v.seen && !r.saw) { r.saw = 1; if (r.alerted) { r.alerted = false; pushCall('cancel', { to: r.peer.uid, cid: r.cid, why: 'answered' }); paintCall(); } }
         if (r.role === 'caller' && v.acc && !r.pc) { r.st = 'connecting'; if (r.ringing) { C.db.ref('club/ring/' + r.peer.uid).onDisconnect().cancel().catch(() => { }); r.ringing = false; } if (r.alerted) { r.alerted = false; pushCall('cancel', { to: r.peer.uid, cid: r.cid, why: 'answered' }); } paintCall(); makeOffer(r); }
         if (r.role === 'callee' && v.offer && !r.gotOffer && r.pc) { r.gotOffer = true; takeOffer(r, JSON.parse(v.offer)); }
         if (r.role === 'caller' && v.answer && !r.gotAns && r.pc) { r.gotAns = true; r.pc.setRemoteDescription(JSON.parse(v.answer)).then(() => flush(r)).catch(e => console.warn(e)); }
@@ -29595,6 +29637,8 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         if (C.vc || C.inc) { refuse(true); logCall({ u: v.f, n: v.n, c: v.c, dir: 'in', s: 'missed' }); toast('📞 ' + (v.n || 'Someone') + ' called while you were busy'); return; }
         ensureUser(v.f);
         showIncoming({ cid: v.cid, kind: 'direct', peer: { uid: v.f, n: v.n, c: v.c } });
+        C.inc.saw = () => { if (C.inc && C.inc.cid === v.cid && !C.inc.sawDone && !document.hidden) { C.inc.sawDone = 1; rtcRef(v.cid).update({ seen: C.uid }).catch(() => { }); } };
+        C.inc.saw();
         C.inc.sub = listen(rtcRef(v.cid), 'value', s => { const x = s.val() || {}; if (C.inc && C.inc.cid === v.cid && x.hang && x.hang !== C.uid && !C.inc.answered) { const p = C.inc.peer; logCall({ u: p.uid, n: p.n, c: p.c, dir: 'in', s: 'missed' }); toast('📞 Missed call from ' + (p.n || 'a learner')); hideIncoming(); ringRef.remove().catch(() => { }); } });
     }
     function showIncoming(inc) {
