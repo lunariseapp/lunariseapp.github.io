@@ -28969,6 +28969,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     function back() { if (C.th) { closeThreadSubs(); C.th = null; } C.v = 'shell'; C.tab = 'chats'; render(); }
     function join(e) {
         e.preventDefault();
+        try { askAlerts(); } catch (x) { }   // the Join tap is the moment the browser may ask "Allow notifications?"
         const n = scrub(($('sc-n').value || '').replace(/\s+/g, ' ').trim()).slice(0, 20);
         const c = $('sc-c').value; const on = document.querySelector('.sc-lv .on'); const l = on ? on.textContent : 'B1';
         const b = scrub(($('sc-b').value || '').replace(/\s+/g, ' ').trim()).slice(0, 120);
@@ -29389,8 +29390,29 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         PUSH.on = true; PUSH.tok = tok; lsSet(LSP, { k, tok, uid: C.uid, t: Date.now() });
         try { await C.db.ref('club/users/' + C.uid + '/pa').set(1); } catch (e) { }
     }
+    /* Call alerts are on by default. The browser itself must ask "Allow notifications?" once (no site can skip that),
+       so we ask on the learner's first tap in the club; once allowed, alerts switch on by themselves. */
+    const LSOFF = 'lr_club_poff', LSASK = 'lr_club_pask';
+    function askAlerts() {
+        try {
+            if (PUSH.on || nat() || lsGet(LSOFF, 0) || !pushSupported() || Notification.permission !== 'default') return;
+            if (Date.now() - (+lsGet(LSASK, 0) || 0) < 20 * 3600e3) return;   // at most once a day: browsers block sites that keep asking
+            lsSet(LSASK, Date.now());
+            const p = Notification.requestPermission();
+            if (p && p.then) p.then(r => { if (r === 'granted') autoAlerts(); else paintAlerts(); }).catch(() => { });
+        } catch (e) { }
+    }
+    async function autoAlerts() {
+        if (PUSH.on || PUSH.busy || nat() || lsGet(LSOFF, 0) || !C.db || !pushSupported() || Notification.permission !== 'granted') return;
+        const cfg = await pushCfg(); if (!cfg || !cfg.vapid) return;
+        PUSH.busy = true; paintAlerts();
+        try { const tok = await fcmToken(cfg); if (tok) await pushSave(tok); } catch (e) { console.warn('[club push] auto', e); }
+        finally { PUSH.busy = false; paintAlerts(); }
+    }
+    document.addEventListener('pointerup', () => { try { if (C.me && C.me.ok && isClubVisible()) askAlerts(); } catch (e) { } }, { capture: true, passive: true });
     /* turned on with a tap (browsers ask for permission only after a tap) */
     async function alertsOn() {
+        lsSet(LSOFF, 0);
         if (PUSH.busy) return;
         if (nat()) {
             if (!C.db) { await enter(); if (!C.db) return; }
@@ -29410,6 +29432,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         finally { PUSH.busy = false; paintAlerts(); }
     }
     async function alertsOff() {
+        lsSet(LSOFF, 1);
         const n = nat();
         if (n) {
             try { if (n.k) await C.db.ref('club/push/' + C.uid + '/' + n.k).remove(); await C.db.ref('club/users/' + C.uid + '/pa').set(0); } catch (e) { }
@@ -29429,6 +29452,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
             const n = nat();
             if (n) { PUSH.native = true; if (n.off) PUSH.on = false; else { await pushCfg(); await natSave(n); } return; }
             const s = lsGet(LSP, null);
+            if (pushSupported() && Notification.permission === 'granted' && (!s || s.uid !== C.uid) && !lsGet(LSOFF, 0)) { PUSH.on = false; return autoAlerts(); }
             if (!pushSupported() || Notification.permission !== 'granted' || !s || s.uid !== C.uid) { PUSH.on = false; return; }
             const cfg = await pushCfg(); if (!cfg) return;
             PUSH.on = true; PUSH.tok = s.tok;
