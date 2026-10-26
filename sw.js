@@ -1,7 +1,9 @@
-/* LunaRise service worker: call alerts when the site is closed.
-   A call alert rings (sound + vibration) every few seconds until the call is answered, ends or times out. */
-const VERSION = 'lr-sw-1';
+/* LunaRise service worker: call alerts and daily study reminders, even when the site is closed.
+   A call alert rings (sound + vibration) every few seconds until the call is answered, ends or times out.
+   A reminder is one friendly notification; it is skipped if LunaRise is already open on screen. */
+const VERSION = 'lr-sw-2';
 const ICON = './icon-192.png';
+const BADGE = './badge-96.png';   // the small white moon in the phone's status bar
 const stop = {};
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 // iPhone/iPad (Safari) turn alerts off for a site whose push messages show nothing, so there every push shows something
@@ -21,7 +23,16 @@ async function visibleClient() {
 async function handle(d) {
     if (d.type === 'call') return ring(d);
     if (d.type === 'cancel') return cancel(d);
+    if (d.type === 'remind') return remind(d);
     return self.registration.showNotification(d.title || 'LunaRise', { body: d.body || '', icon: ICON, badge: ICON, tag: d.tag || 'lr' });
+}
+async function remind(d) {
+    // already studying in LunaRise: no need to nudge (a test from Settings always shows)
+    if (!d.test && !APPLE && await visibleClient()) return;
+    return self.registration.showNotification(d.title || 'LunaRise', {
+        body: d.body || '', icon: ICON, badge: BADGE, tag: 'lr-remind', renotify: true, vibrate: [180, 90, 180],
+        timestamp: Date.now(), data: { type: 'remind', url: d.url || './?remind=1' }
+    });
 }
 async function ring(d) {
     const tag = 'call-' + d.cid, exp = +d.exp || (Date.now() + 50000);
@@ -81,10 +92,11 @@ function onClick(e) {
     const url = new URL('./', self.registration.scope);
     if (d.type === 'call') { url.searchParams.set('call', d.cid); url.searchParams.set('from', d.from || ''); if (e.action === 'answer') url.searchParams.set('ans', '1'); }
     else if (d.type === 'missed' && d.from) url.searchParams.set('chat', d.from);
+    else if (d.type === 'remind') url.searchParams.set('remind', '1');
     e.waitUntil((async () => {
         const all = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
         const w = all.find(c => c.url.startsWith(self.registration.scope));
-        if (w) { w.postMessage({ type: d.type === 'call' ? 'lr-call' : 'lr-open', cid: d.cid, from: d.from, ans: e.action === 'answer' }); try { await w.focus(); } catch (x) { } return; }
+        if (w) { w.postMessage({ type: d.type === 'call' ? 'lr-call' : d.type === 'remind' ? 'lr-remind' : 'lr-open', cid: d.cid, from: d.from, ans: e.action === 'answer' }); try { await w.focus(); } catch (x) { } return; }
         return self.clients.openWindow(url.href);
     })());
 }
