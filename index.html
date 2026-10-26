@@ -29287,7 +29287,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         if (!C.me || !C.me.ok) { C.v = 'join'; return render(); }
         if (!force && (C.v === 'room' || C.v === 'pair' || C.v === 'search' || C.v === 'thread') && C.db) return render();
         if (!C.db || force) { C.v = 'loading'; render(); }
-        try { await fbInit(); await service(); C.v = C.v === 'thread' && C.th ? 'thread' : 'shell'; setRoomPresence('home'); render(); }
+        try { await fbInit(); await service(); C.v = C.v === 'thread' && C.th ? 'thread' : 'shell'; setRoomPresence('home'); render(); setTimeout(() => { try { if (isClubVisible()) askAlerts(); } catch (x) { } }, 1200); }
         catch (e) { C.v = e && e.code === 'nocfg' ? 'nocfg' : 'error'; console.warn('club', e); render(); }
     }
     function away() {
@@ -29306,7 +29306,6 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     function back() { if (C.th) { closeThreadSubs(); C.th = null; } C.v = 'shell'; C.tab = 'chats'; render(); }
     function join(e) {
         e.preventDefault();
-        try { askAlerts(); } catch (x) { }   // the Join tap is the moment the browser may ask "Allow notifications?"
         const n = scrub(($('sc-n').value || '').replace(/\s+/g, ' ').trim()).slice(0, 20);
         const c = $('sc-c').value; const on = document.querySelector('.sc-lv .on'); const l = on ? on.textContent : 'B1';
         const b = scrub(($('sc-b').value || '').replace(/\s+/g, ' ').trim()).slice(0, 120);
@@ -29317,7 +29316,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         C.me = Object.assign({}, prev, { n, c, l, b, a, ok: 1, av: a !== (prev.a || '') ? Date.now() : (prev.av || (a ? 1 : 0)) }); C.draftA = null; lsSet(LSK, C.me);
         const editing = !!prev.ok;
         if (C.db) { publishMe(a !== (prev.a || '')); if (C.roomPres) { const p = C.roomPres; C.roomPres = null; setRoomPresence(p); } }
-        if (editing) { C.v = 'shell'; C.tab = 'me'; toast('✓ Profile saved'); render(); } else { C.v = 'loading'; render(); enter(true).then(() => { if (C.db) publishMe(true); }); }
+        if (editing) { C.v = 'shell'; C.tab = 'me'; toast('✓ Profile saved'); render(); } else { C.v = 'loading'; render(); enter(true).then(() => { if (C.db) publishMe(true); }); }   // enter() offers notifications once the club is open
     }
     function cancelEdit() { C.draftA = null; C.v = 'shell'; C.tab = 'me'; render(); }
     function pickLv(b) { b.parentNode.querySelectorAll('button').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-checked', x === b); }); }
@@ -29727,12 +29726,16 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         PUSH.on = true; PUSH.tok = tok; lsSet(LSP, { k, tok, uid: C.uid, t: Date.now() });
         try { await C.db.ref('club/users/' + C.uid + '/pa').set(1); } catch (e) { }
     }
-    /* Call alerts are on by default. The browser itself must ask "Allow notifications?" once (no site can skip that),
-       so we ask on the learner's first tap in the club; once allowed, alerts switch on by themselves. */
+    /* Call alerts are on by default. The browser itself must ask "Allow notifications?" once (no site can skip that).
+       LunaRise first explains why, in its own sheet; the browser's question comes when the learner taps Allow there.
+       Once allowed (here, in Settings, or later in the phone's settings), alerts switch on by themselves. */
     const LSOFF = 'lr_club_poff', LSASK = 'lr_club_pask';
+    const help = () => { try { if (window.LRNotify) { LRNotify.help(); return true; } } catch (e) { } return false; };
     function askAlerts() {
         try {
-            if (PUSH.on || nat() || lsGet(LSOFF, 0) || !pushSupported() || Notification.permission !== 'default') return;
+            if (PUSH.on || nat() || lsGet(LSOFF, 0)) return;
+            if (window.LRNotify) { LRNotify.prime(); return; }
+            if (!pushSupported() || Notification.permission !== 'default') return;
             if (Date.now() - (+lsGet(LSASK, 0) || 0) < 20 * 3600e3) return;   // at most once a day: browsers block sites that keep asking
             lsSet(LSASK, Date.now());
             const p = Notification.requestPermission();
@@ -29746,7 +29749,6 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         try { const tok = await fcmToken(cfg); if (tok) await pushSave(tok); } catch (e) { console.warn('[club push] auto', e); }
         finally { PUSH.busy = false; paintAlerts(); }
     }
-    document.addEventListener('pointerup', () => { try { if (C.me && C.me.ok && isClubVisible()) askAlerts(); } catch (e) { } }, { capture: true, passive: true });
     /* turned on with a tap (browsers ask for permission only after a tap) */
     async function alertsOn() {
         lsSet(LSOFF, 0);
@@ -29756,13 +29758,15 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
             try { await natSave(nat()); toast('🔔 Call alerts are on'); } catch (e) { toast(denied(e) ? '⚠ Call alerts need the new database rules' : '⚠ Could not turn on call alerts. Try again.'); }
             return paintAlerts();
         }
-        if (!pushSupported()) return toast(isIOS() && !standalone() ? 'On iPhone: open LunaRise in Safari, tap Share → Add to Home Screen, open it from there, then turn this on' : inApp() ? 'Open LunaRise in Chrome to turn on call alerts' : '⚠ This browser cannot show call alerts. Try Chrome.');
+        if (!pushSupported()) { paintAlerts(); return help() || toast(isIOS() && !standalone() ? 'On iPhone: open LunaRise in Safari, tap Share → Add to Home Screen, open it from there, then turn this on' : inApp() ? 'Open LunaRise in Chrome to turn on call alerts' : '⚠ This browser cannot show call alerts. Try Chrome.'); }
+        if (Notification.permission === 'denied') { paintAlerts(); return help() || toast('⚠ Notifications are blocked for this site — allow them in the browser settings'); }
+        let perm = Notification.permission;
+        if (perm === 'default') perm = await Notification.requestPermission();   // first thing, while the tap still counts
+        if (perm !== 'granted') { paintAlerts(); if (perm === 'denied') { if (!help()) toast('⚠ Notifications are blocked for this site — allow them in the browser settings'); } else toast('Call alerts stay off'); return; }
         if (!C.db) { await enter(); if (!C.db) return; }
         const cfg = await pushCfg(); if (!cfg || !cfg.vapid) return toast('Call alerts are not set up on the server yet');
         PUSH.busy = true; paintAlerts();
         try {
-            const perm = await Notification.requestPermission();
-            if (perm !== 'granted') { toast(perm === 'denied' ? '⚠ Notifications are blocked for this site — allow them in the browser settings' : 'Call alerts stay off'); return; }
             const tok = await fcmToken(cfg); if (!tok) throw new Error('no token');
             await pushSave(tok); toast('🔔 Call alerts are on');
         } catch (e) { console.warn('[club push]', e); toast(denied(e) ? '⚠ Call alerts need the new database rules' : '⚠ Could not turn on call alerts. Try again.'); }
@@ -29822,8 +29826,8 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         if (PUSH.on && PUSH.native) return 'On — the LunaRise app rings like a phone call';
         if (PUSH.on) return 'On — friends can call you even when LunaRise is closed';
         if (nat()) return 'Ring like a phone call when a friend calls';
-        if (!pushSupported()) return isIOS() && !standalone() ? 'iPhone: open in Safari → Share → Add to Home Screen first' : inApp() ? 'Open LunaRise in Chrome to use this' : 'Not available in this browser';
-        if (window.Notification && Notification.permission === 'denied') return 'Blocked — allow notifications for this site';
+        if (!pushSupported()) return isIOS() && !standalone() ? 'iPhone: add LunaRise to the Home Screen first — tap the switch to see how' : inApp() ? 'Not in this app’s browser — tap the switch to see how to open it in Chrome' : 'Not available in this browser';
+        if (window.Notification && Notification.permission === 'denied') return 'Blocked by your phone — tap the switch to see how to allow it';
         return 'Get a ringing alert when a friend calls';
     }
     function alertsRow() {
@@ -29885,7 +29889,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         if (C.vc) return maxCall();
         if (C.pair && !C.pair.ended && C.pair.peer.uid === u) return callPair();
         await ensureUser(u, true);
-        const can = callAllowed(u); if (!can.ok) return toast(can.why === 'Offline' ? (uinfo(u).n || 'They') + ' is offline right now' : can.why === 'In a call' ? (uinfo(u).n || 'They') + ' is in another call' : can.why === 'Friends only' ? (uinfo(u).n || 'This learner') + ' only takes calls from friends' : 'You cannot call this learner');
+        const can = callAllowed(u); if (!can.ok) return toast(can.why === 'Offline' ? (uinfo(u).n || 'They') + (C.fr[u] && uinfo(u).pa !== 1 ? ' is offline, and their phone can’t ring yet: they haven’t allowed notifications in LunaRise' : ' is offline right now') : can.why === 'In a call' ? (uinfo(u).n || 'They') + ' is in another call' : can.why === 'Friends only' ? (uinfo(u).n || 'This learner') + ' only takes calls from friends' : 'You cannot call this learner');
         let mic; try { mic = await getMic(); } catch (e) { return toast('⚠ Allow microphone access to make a call'); }
         const p = uinfo(u), cid = C.db.ref('club/calls').push().key;
         const r = newCall({ cid, kind: 'direct', peer: { uid: u, n: p.n, c: p.c }, role: 'caller', mic });
@@ -29901,7 +29905,13 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         if (C.fr[u]) {
             const alert = () => {
                 if (C.vc !== r || r.st !== 'ringing' || r.saw || r.pushed) return; r.pushed = true;
-                pushCall('ring', { to: u, cid }).then(x => { if (!(x && x.ok && x.sent) || C.vc !== r) return; if (r.saw) pushCall('cancel', { to: u, cid, why: 'answered' }); else { r.alerted = true; paintCall(); } });
+                pushCall('ring', { to: u, cid }).then(x => {
+                    if (C.vc !== r) return;
+                    // no phone to ring: tell the caller why, instead of ringing into silence
+                    if (x && x.ok && !x.sent) { if (!r.saw && r.st === 'ringing') toast('📵 ' + (p.n || 'Their') + (p.n ? '’s' : '') + ' phone can’t ring: they haven’t allowed notifications in LunaRise yet'); return; }
+                    if (!(x && x.ok && x.sent)) return;
+                    if (r.saw) pushCall('cancel', { to: u, cid, why: 'answered' }); else { r.alerted = true; paintCall(); }
+                });
             };
             // a friend with LunaRise open on screen confirms the ring at once; anyone else gets the alert on their phone
             if (isOn(u)) setTimeout(alert, 3500); else alert();
@@ -30131,7 +30141,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     /* start the background service a moment after the app opens, so friends can reach you anywhere in the app */
     setTimeout(() => { const m = lsGet(LSK, null); if (m && m.ok && cfg()) service().then(() => { paintBadge(); }); }, (C.want || C.wantChat) ? 60 : 3500);
 
-    window.CLUB = { enter, away, tab, home, back, join, cancelEdit, pickLv, edit, setW, setOn, open, fill, key, send, typing, find, cancel, leave, next, ice, ask, addFriend, acceptReq, declineReq, unfriend, dm, filter, who, menu, block, unblock, report, blockedList, rules, closeSheet, photo, photoHub, photoFile, cropSave, photoSet, rec, recCancel, playV, callU, callPair, accept, decline, hang, mute, minCall, maxCall, callChat, liveText, alerts, alertsHide, _C: C, _push: PUSH, _scrub: scrub, _tuneOpus: tuneOpus };
+    window.CLUB = { enter, away, tab, home, back, join, cancelEdit, pickLv, edit, setW, setOn, open, fill, key, send, typing, find, cancel, leave, next, ice, ask, addFriend, acceptReq, declineReq, unfriend, dm, filter, who, menu, block, unblock, report, blockedList, rules, closeSheet, photo, photoHub, photoFile, cropSave, photoSet, rec, recCancel, playV, callU, callPair, accept, decline, hang, mute, minCall, maxCall, callChat, liveText, alerts, alertsHide, alertsAuto: () => autoAlerts(), _C: C, _push: PUSH, _scrub: scrub, _tuneOpus: tuneOpus };
 })();
 </script><!--/club:js--><!--rm:js--><style id="rm-css">
 /* ===== daily reminders: Settings card and the one-time question on the Hub ===== */
@@ -30152,6 +30162,27 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
 .rm-act button:focus-visible{outline:2px solid #fff;outline-offset:2px}
 @media (min-width:1024px){.rm-ask{left:auto;right:24px;bottom:24px;transform:translateY(28px)}.rm-ask.in{transform:none}}
 @media (prefers-reduced-motion:reduce){.rm-ask{transition:opacity .2s ease}}
+/* notifications: "Allow?" and "how to unblock" sheet */
+.ntf-ov{position:fixed;inset:0;z-index:3000;display:flex;align-items:flex-end;justify-content:center;background:rgba(3,6,15,.62);opacity:0;transition:opacity .25s ease}
+.ntf-ov.in{opacity:1}
+.ntf-sh{width:min(480px,100%);max-height:88vh;overflow:auto;padding:22px 20px calc(20px + env(safe-area-inset-bottom));border-radius:26px 26px 0 0;background:#0e1430;border:1px solid rgba(255,255,255,.12);border-bottom:0;box-shadow:0 -20px 60px -20px rgba(0,0,0,.8);color:#e2e8f0;transform:translateY(40px);transition:transform .4s cubic-bezier(.2,1.15,.4,1)}
+.ntf-ov.in .ntf-sh{transform:none}
+.ntf-ic{display:grid;place-items:center;width:52px;height:52px;border-radius:17px;font-size:26px;background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:inset 0 1px 0 rgba(255,255,255,.3);margin-bottom:12px}
+.ntf-sh h3{margin:0 0 6px;color:#fff;font-size:19px;font-weight:800;letter-spacing:-.01em}
+.ntf-p{margin:0;color:#b4bfd3;font-size:14px;line-height:1.5}
+.ntf-steps{margin:14px 0 0;padding:0;list-style:none;counter-reset:s}
+.ntf-steps li{counter-increment:s;position:relative;padding:10px 0 10px 40px;color:#e2e8f0;font-size:14px;line-height:1.5;border-top:1px solid rgba(148,163,184,.12)}
+.ntf-steps li::before{content:counter(s);position:absolute;left:0;top:9px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;background:rgba(129,140,248,.28)}
+.ntf-steps b{color:#fff}
+.ntf-tip{margin:10px 0 0;padding:10px 12px;border-radius:12px;background:rgba(251,191,36,.08);color:#fcd34d;font-size:12.5px;line-height:1.45}
+.ntf-tip b{color:#fde68a}
+.ntf-act{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.ntf-act button{flex:1;min-width:130px;height:46px;border-radius:14px;font-weight:800;font-size:14px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ntf-go{color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6)}
+.ntf-no{color:#cbd5e1;background:rgba(255,255,255,.08)}
+.ntf-act button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media (min-width:640px){.ntf-ov{align-items:center}.ntf-sh{border-radius:24px;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:22px}}
+@media (prefers-reduced-motion:reduce){.ntf-ov,.ntf-sh{transition:none}}
 </style><script id="rm-js">
 /* ===== LunaRise daily reminders =====
    Once a day, at the time the learner picks, Luna sends a short friendly nudge — only on days they have not studied yet.
@@ -30181,6 +30212,124 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     const hourOf = () => { const h = +st().h; return HOURS.indexOf(h) >= 0 ? h : DEF_H; };
     const fmtH = (h) => pad(h) + ':00';
     function tokKey(t) { let h = 0; for (let i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) | 0; return (h >>> 0).toString(36) + t.length.toString(36); }
+
+    /* ================= notifications: one place to allow them, and clear help when the phone blocks them =================
+       A browser lets a site ask "Allow notifications?" only after a tap, and never again once the person chose Block;
+       after that only they can unblock it in the phone's settings. So: a friendly explanation first (its button asks the
+       real question), step-by-step help when blocked, and calls + reminders switch on by themselves the moment it is allowed. */
+    const NLS = 'lr_ntf', UA = navigator.userAgent;
+    const isAndroid = () => /Android/i.test(UA);
+    const isSamsung = () => /SamsungBrowser/i.test(UA);
+    (function () { try { const q = new URLSearchParams(location.search); if (q.get('source') === 'app' || /^android-app:\/\/io\.github\.lunariseapp/.test(document.referrer)) sessionStorage.setItem('lr_app', '1'); } catch (e) { } })();
+    const appMode = () => { try { return sessionStorage.getItem('lr_app') === '1'; } catch (e) { return false; } };
+    function nState() {
+        if (nat()) return 'on';                                   // the LunaRise app shows them itself
+        if (inApp()) return 'inapp';                              // Telegram, Instagram… built-in browsers have no notifications
+        if (!webOk()) return isIOS() && !standalone() ? 'ios' : 'unsupported';
+        return Notification.permission;                           // 'default' | 'granted' | 'denied'
+    }
+    const SITE = 'lunariseapp.github.io';
+    const SLOW = 'On Xiaomi, Redmi, POCO, Huawei and some other phones, also set <b>Battery</b> to <b>No restrictions</b> and turn on <b>Autostart</b> for ' + (appMode() || standalone() ? 'LunaRise' : 'Chrome') + ', or calls may arrive late.';
+    function unblockSteps() {
+        if (isAndroid() && (appMode() || standalone())) return [
+            'Press and hold the <b>LunaRise</b> icon on your home screen, then tap <b>ⓘ App info</b>.',
+            'Tap <b>Notifications</b> and switch on <b>Allow notifications</b>.',
+            'Come back to LunaRise. Calls and reminders switch on by themselves.'];
+        if (isAndroid() && isSamsung()) return [
+            'Tap <b>☰</b> at the bottom right → <b>Settings</b> → <b>Sites and downloads</b> → <b>Notifications</b>.',
+            'Find <b>' + SITE + '</b> and switch it on.',
+            'Come back to LunaRise. Calls and reminders switch on by themselves.'];
+        if (isAndroid()) return [
+            'In Chrome tap <b>⋮</b> at the top right → <b>Settings</b> → <b>Site settings</b> → <b>Notifications</b>.',
+            'Under <b>Blocked</b> tap <b>' + SITE + '</b> → <b>Allow</b>.',
+            'If notifications are off for the whole of Chrome: phone <b>Settings</b> → <b>Apps</b> → <b>Chrome</b> → <b>Notifications</b> → on.',
+            'Come back to LunaRise. Calls and reminders switch on by themselves.'];
+        if (isIOS()) return [
+            'Open the iPhone <b>Settings</b> app → <b>Notifications</b> → <b>LunaRise</b>.',
+            'Switch on <b>Allow Notifications</b>.',
+            'Come back to LunaRise.'];
+        return [
+            'Click the icon at the left end of the address bar (🔒 or ⚙).',
+            'Set <b>Notifications</b> to <b>Allow</b>.',
+            'Reload the page.'];
+    }
+    function sheetData(kind) {
+        if (kind === 'prime') return { ic: '🔔', t: 'Allow notifications?', p: 'Then your phone can ring when a friend calls you, and Luna can send one short study reminder a day. You can switch either off in Settings.', go: 'Allow notifications', no: 'Not now' };
+        if (kind === 'denied') return { ic: '🔕', t: 'Notifications are blocked', p: 'Your phone is blocking LunaRise, so calls from friends can’t ring and reminders can’t arrive. Only you can unblock it, and it takes a few seconds:', steps: unblockSteps(), tip: isAndroid() ? SLOW : '', go: 'Check again', no: 'Close' };
+        if (kind === 'inapp') return { ic: '🌐', t: 'Open LunaRise in Chrome', p: 'This app’s built-in browser can’t show notifications, so calls and reminders won’t reach you here.',
+            steps: ['Tap <b>⋮</b> (or <b>⋯</b>) at the top right.', 'Choose <b>Open in Chrome</b> or <b>Open in browser</b>.', 'In Chrome, tap <b>Allow</b> when LunaRise asks about notifications.'], go: isAndroid() ? 'Open in Chrome' : 'Copy link', no: 'Close', open: isAndroid() };
+        if (kind === 'ios') return { ic: '📲', t: 'Add LunaRise to your Home Screen', p: 'iPhone shows notifications only for apps on the Home Screen.',
+            steps: ['Open this page in <b>Safari</b>.', 'Tap <b>Share</b> (□↑) → <b>Add to Home Screen</b> → <b>Add</b>.', 'Open LunaRise from the Home Screen and allow notifications.'], go: 'Copy link', no: 'Close' };
+        return { ic: '🌐', t: 'Notifications don’t work in this browser', p: 'Open LunaRise in Chrome to get calls and reminders when the site is closed.', go: 'Copy link', no: 'Close' };
+    }
+    let sheetEl = null, sheetBack = null;
+    function closeSheet() { if (!sheetEl) return; const el = sheetEl; sheetEl = null; el.classList.remove('in'); setTimeout(() => el.remove(), 300); try { sheetBack && sheetBack.focus(); } catch (e) { } }
+    function sheet(kind) {
+        if (kind === 'default') kind = 'prime';
+        if (kind === 'granted' || kind === 'on') { granted(false); return; }
+        const d = sheetData(kind); closeSheet(); sheetBack = document.activeElement;
+        const ov = document.createElement('div'); ov.className = 'ntf-ov'; ov.dataset.kind = kind;
+        ov.innerHTML = '<div class="ntf-sh" role="dialog" aria-modal="true" aria-labelledby="ntf-t"><span class="ntf-ic" aria-hidden="true">' + d.ic + '</span>' +
+            '<h3 id="ntf-t">' + d.t + '</h3><p class="ntf-p">' + d.p + '</p>' +
+            (d.steps ? '<ol class="ntf-steps">' + d.steps.map(s => '<li>' + s + '</li>').join('') + '</ol>' : '') +
+            (d.tip ? '<p class="ntf-tip">' + d.tip + '</p>' : '') +
+            '<div class="ntf-act"><button type="button" class="ntf-go">' + d.go + '</button><button type="button" class="ntf-no">' + d.no + '</button></div></div>';
+        document.body.appendChild(ov); sheetEl = ov;
+        requestAnimationFrame(() => requestAnimationFrame(() => ov.classList.add('in')));
+        const go = ov.querySelector('.ntf-go'); setTimeout(() => { try { go.focus(); } catch (e) { } }, 60);
+        ov.addEventListener('click', (e) => { if (e.target === ov) closeSheet(); });
+        ov.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(); });
+        ov.querySelector('.ntf-no').addEventListener('click', closeSheet);
+        go.addEventListener('click', () => {
+            if (kind === 'prime') { closeSheet(); return reqPerm(); }
+            if (kind === 'denied') { const s = nState(); if (s === 'granted') return granted(true); if (s === 'default') { closeSheet(); return reqPerm(); } return toast('Still blocked. Follow the steps above, then come back.'); }
+            if (d.open) { location.href = 'intent://' + location.host + location.pathname + '#Intent;scheme=https;package=com.android.chrome;end'; return; }
+            copyLink();
+        });
+    }
+    function copyLink() {
+        const u = 'https://' + SITE + '/';
+        try { navigator.clipboard.writeText(u).then(() => toast('🔗 Link copied. Paste it in Chrome or Safari.'), () => toast(u)); } catch (e) { toast(u); }
+    }
+    async function reqPerm() {
+        let p = 'default';
+        try { p = await Notification.requestPermission(); } catch (e) { }   // called straight from a tap, as browsers require
+        lastPerm = p;
+        if (p === 'granted') granted(true); else if (p === 'denied') sheet('denied'); else toast('Notifications stay off for now');
+    }
+    /* allowed: switch on everything the learner has not switched off on purpose */
+    let saidOn = 0;
+    function granted(say) {
+        closeSheet();
+        try { if (st().on !== false) enable(false); } catch (e) { }
+        try { if (window.CLUB && CLUB.alertsAuto) CLUB.alertsAuto(); } catch (e) { }
+        if (say && Date.now() - saidOn > 5000) { saidOn = Date.now(); toast('🔔 Notifications are on'); }
+        paint();
+    }
+    let lastPerm = webOk() ? Notification.permission : '';
+    function permCheck() {
+        if (!webOk() || nat()) return;
+        const p = Notification.permission; if (p === lastPerm) return;
+        const was = lastPerm; lastPerm = p;
+        if (p === 'granted') granted(was !== 'granted'); else paint();
+    }
+    try { if (navigator.permissions) navigator.permissions.query({ name: 'notifications' }).then(s => { s.onchange = permCheck; }).catch(() => { }); } catch (e) { }
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') permCheck(); });
+    window.LRNotify = {
+        state: nState,
+        // from a tap: ask now, or show how to unblock
+        ask() { const s = nState(); if (s === 'default') return reqPerm(); sheet(s); },
+        help() { sheet(nState()); },
+        // a gentle one-time explanation; the browser's own question comes only after the learner taps Allow
+        prime() {
+            const s = nState(), m = lsGet(NLS, {}) || {};
+            if (sheetEl || !(s === 'default' || s === 'inapp' || s === 'ios')) return false;
+            if ((m.n || 0) >= 4 || Date.now() - (m.t || 0) < (s === 'default' ? 20 : 72) * 3600e3) return false;
+            const ob = $('modal-onboarding'); if (ob && !ob.classList.contains('hidden')) return false;
+            lsSet(NLS, { n: (m.n || 0) + 1, t: Date.now() }); sheet(s); return true;
+        },
+        close: closeSheet
+    };
 
     /* ---------- did the learner study today? ---------- */
     let lastInput = 0, sessionSec = 0;
@@ -30232,10 +30381,10 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         try {
             const n = nat();
             if (!n) {
-                if (!webOk()) { if (ask) toast(hint()); return false; }
+                if (!webOk()) { if (ask) sheet(nState()); return false; }
                 let p = Notification.permission;
-                if (p === 'default' && ask) p = await Notification.requestPermission();   // still inside the tap, as browsers require
-                if (p !== 'granted') { if (ask) toast(p === 'denied' ? '⚠ Notifications are blocked for LunaRise. Allow them in your browser settings.' : 'Reminders stay off'); return false; }
+                if (p === 'default' && ask) { p = await Notification.requestPermission(); lastPerm = p; }   // still inside the tap, as browsers require
+                if (p !== 'granted') { if (ask) { if (p === 'denied') sheet('denied'); else toast('Reminders stay off'); } return false; }
             }
             const { uid, db, TS } = await fb();
             const tok = n ? n.tok : await webToken(db);
@@ -30255,7 +30404,13 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         keep({ on: false }); paint(); toast('Reminders are off');
         try { const { uid, db, TS } = await fb(); await db.ref('rm/' + uid).update({ on: 0, at: TS }); } catch (e) { }
     }
-    function toggle() { if (busy) return; if (isOn()) disable(); else enable(true); }
+    function toggle() {
+        if (busy) return;
+        if (isOn()) return disable();
+        const s = nState();
+        if (s === 'denied' || s === 'inapp' || s === 'ios' || s === 'unsupported') { paint(); return sheet(s); }   // the phone blocks it: show how to allow
+        enable(true);
+    }
     function setHour(h) {
         h = +h; if (HOURS.indexOf(h) < 0) return;
         keep({ h }); paint();
@@ -30291,8 +30446,8 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     /* ---------- Settings → Reminders ---------- */
     function hint() {
         if (nat()) return 'One friendly nudge a day, only if you haven’t studied yet';
-        if (!webOk()) return isIOS() && !standalone() ? 'On iPhone: open LunaRise in Safari → Share → Add to Home Screen, then turn this on there' : inApp() ? 'Open LunaRise in Chrome or in the LunaRise app to get reminders' : 'This browser can’t show reminders. Try Chrome.';
-        if (Notification.permission === 'denied') return 'Notifications are blocked for LunaRise. Allow them in your browser settings.';
+        if (!webOk()) return isIOS() && !standalone() ? 'iPhone: add LunaRise to the Home Screen first. Tap the switch to see how.' : inApp() ? 'Not in this app’s browser. Tap the switch to see how to open it in Chrome.' : 'This browser can’t show reminders. Try Chrome.';
+        if (Notification.permission === 'denied') return 'Blocked by your phone. Tap the switch to see how to allow it.';
         return 'One friendly nudge a day, only if you haven’t studied yet';
     }
     function paint() {
