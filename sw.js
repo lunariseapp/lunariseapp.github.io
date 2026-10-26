@@ -60,7 +60,7 @@ async function cancel(d) {
     if (vis) { open.forEach(n => n.close()); vis.postMessage({ type: 'lr-cancel', cid: d.cid, why: d.why }); return; }
     if (d.why === 'answered') {
         open.forEach(n => n.close());
-        if (was !== 'done' || APPLE) await self.registration.showNotification('Call answered on another device', { icon: ICON, badge: ICON, tag: 'info-' + d.cid, silent: true });
+        if (APPLE) await self.registration.showNotification('Call picked up', { icon: ICON, badge: ICON, tag: 'info-' + d.cid, silent: true });
         return;
     }
     if (was === 'done') { if (APPLE) await self.registration.showNotification('Call ended', { icon: ICON, tag: 'info-' + d.cid, silent: true }); return; }   // answered or declined here already
