@@ -1,7 +1,7 @@
 /* LunaRise service worker: call alerts and daily study reminders, even when the site is closed.
    A call alert rings (sound + vibration) every few seconds until the call is answered, ends or times out.
    A reminder is one friendly notification; it is skipped if LunaRise is already open on screen. */
-const VERSION = 'lr-sw-2';
+const VERSION = 'lr-sw-3';
 const ICON = './icon-192.png';
 const BADGE = './badge-96.png';   // the small white moon in the phone's status bar
 const stop = {};
@@ -80,11 +80,17 @@ async function cancel(d) {
 self.addEventListener('message', (e) => {
     const m = e.data || {};
     if (m.type === 'lr-stop' && m.cid) { stop[m.cid] = 'done'; self.registration.getNotifications({ tag: 'call-' + m.cid }).then(ns => ns.forEach(n => n.close())); }
+    // "Send a test call" in the pop-up help: rings once after a few seconds, so the learner can switch to another app and watch
+    if (m.type === 'lr-testcall') e.waitUntil(sleep(Math.min(15000, +m.wait || 6000)).then(() => self.registration.showNotification('📞 Test call from LunaRise', {
+        body: 'If you can see this over other apps, calls will pop up too', icon: ICON, badge: BADGE, tag: 'lr-test', renotify: true, requireInteraction: true,
+        vibrate: [700, 300, 700], timestamp: Date.now(), data: { type: 'test' }, actions: [{ action: 'answer', title: '✅ Answer' }, { action: 'decline', title: '❌ Decline' }]
+    })));
 });
 self.addEventListener('notificationclick', onClick);
 function onClick(e) {
     const n = e.notification, d = n.data || {}; n.close();
     if (d.type === 'call') stop[d.cid] = 'done';
+    if (d.type === 'test' && e.action === 'decline') return;
     if (e.action === 'decline' && d.type === 'call') {
         e.waitUntil(fetch(d.srv, { method: 'POST', body: JSON.stringify({ op: 'decline', cid: d.cid, to: d.to, dk: d.dk }) }).catch(() => { }));
         return;
@@ -93,6 +99,7 @@ function onClick(e) {
     if (d.type === 'call') { url.searchParams.set('call', d.cid); url.searchParams.set('from', d.from || ''); if (e.action === 'answer') url.searchParams.set('ans', '1'); }
     else if (d.type === 'missed' && d.from) url.searchParams.set('chat', d.from);
     else if (d.type === 'remind') url.searchParams.set('remind', '1');
+    else if (d.type === 'test') url.searchParams.set('testcall', '1');
     e.waitUntil((async () => {
         const all = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
         const w = all.find(c => c.url.startsWith(self.registration.scope));

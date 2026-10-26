@@ -3684,8 +3684,8 @@ body.spk-lock{overflow:hidden}
 </style><!--/spk:css-->
 <!--club:css--><style id="club-css">
 /* ===== LunaRise Speaking Club 2 — a calm, glassy messenger for English practice ===== */
-#view-club,.sc-sheet-bg,.sc-call,.sc-inc,.sc-callpill,.sc-float{--sc-ink:#eef2ff;--sc-mute:#9aa6c4;--sc-dim:#6b7796;--sc-line:rgba(255,255,255,.12);--sc-acc:var(--h1,#6366f1);--sc-acc2:var(--h2,#8b5cf6);--sc-acc3:var(--h3,#22d3ee);--sc-green:#22c55e;--sc-red:#f43f5e;--sc-ease:cubic-bezier(.32,1.45,.5,1);color:var(--sc-ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
-#view-club svg,.sc-sheet-bg svg,.sc-call svg,.sc-inc svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+#view-club,.sc-sheet-bg,.sc-call,.sc-inc,.sc-callpill,.sc-float,.sc-msheet,.sc-lb{--sc-ink:#eef2ff;--sc-mute:#9aa6c4;--sc-dim:#6b7796;--sc-line:rgba(255,255,255,.12);--sc-acc:var(--h1,#6366f1);--sc-acc2:var(--h2,#8b5cf6);--sc-acc3:var(--h3,#22d3ee);--sc-green:#22c55e;--sc-red:#f43f5e;--sc-ease:cubic-bezier(.32,1.45,.5,1);color:var(--sc-ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+#view-club svg,.sc-sheet-bg svg,.sc-call svg,.sc-inc svg,.sc-msheet svg,.sc-lb svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .sc-wrap{max-width:1000px;margin:0 auto}
 .sc-h{margin:0;font-family:'Outfit','Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(26px,6vw,34px);letter-spacing:-.02em;line-height:1.05;color:#fff}
 .sc-hero,.sc-sec,.sc-list,.sc-pane,.sc-thread,.sc-prof,.sc-join,.sc-note,.sc-seek,.sc-calls,.sc-empty{background:radial-gradient(130% 80% at 0% 0%,rgba(255,255,255,.07),transparent 50%),linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.015) 55%),rgba(14,18,42,.56);border:1px solid var(--sc-line);border-radius:28px;-webkit-backdrop-filter:blur(22px) saturate(170%)!important;backdrop-filter:blur(22px) saturate(170%)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 24px 50px -30px rgba(0,0,0,.85)}
@@ -3990,6 +3990,87 @@ body.spk-lock{overflow:hidden}
 .sc-atip b{font-size:13.5px;color:#fff}.sc-atip small{font-size:12px;color:var(--sc-mute);line-height:1.4}
 .sc-atip .sc-btn.sm{flex:none;min-height:36px;padding:0 14px}
 .sc-atip .sc-icb{flex:none;width:34px;height:34px}
+
+/* ---------- photos, videos and files ---------- */
+.sc-att{display:grid;place-items:center;flex:none;width:38px;height:38px;margin:0 -8px 0 4px;border:0;border-radius:50%;background:none;color:var(--sc-mute);cursor:pointer;transition:color .2s,transform .35s var(--sc-ease),background .2s}
+.sc-att svg{transform:rotate(-38deg)}.sc-att:active{transform:scale(.86)}@media (hover:hover){.sc-att:hover{color:#fff;background:rgba(255,255,255,.08)}}
+.sc-comp-in{align-items:flex-end}.sc-comp-in .sc-att{margin-bottom:3px}
+.sc-attm{position:absolute;right:62px;bottom:calc(100% - 2px);z-index:6;display:flex;flex-direction:column;gap:2px;min-width:250px;padding:7px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.03)),rgba(14,18,44,.92);border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(24px) saturate(180%)!important;backdrop-filter:blur(24px) saturate(180%)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 24px 50px -16px rgba(0,0,0,.85);transform-origin:85% 100%;animation:scPop .32s var(--sc-ease) both}
+@keyframes scPop{from{opacity:0;transform:translateY(10px) scale(.86)}}
+.sc-attm button{display:flex;align-items:center;gap:12px;padding:9px 12px 9px 9px;border:0;border-radius:17px;background:none;color:#fff;text-align:left;cursor:pointer;transition:background .15s}
+.sc-attm button:hover,.sc-attm button:focus-visible{background:rgba(255,255,255,.08)}
+.sc-attm b{display:block;font-size:14.5px}.sc-attm small{display:block;margin-top:2px;color:var(--sc-mute);font-size:12px;font-weight:600}
+.sc-attic{display:grid;place-items:center;flex:none;width:42px;height:42px;border-radius:14px;color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.sc-attic.g{background:linear-gradient(140deg,#22d3ee,#6366f1)}.sc-attic.b{background:linear-gradient(140deg,#fbbf24,#f43f5e)}
+/* the "send these?" sheet */
+.sc-msheet{position:fixed;inset:0;z-index:5300;display:flex;align-items:flex-end;justify-content:center;background:rgba(2,4,14,0);transition:background .25s}
+.sc-msheet.in{background:rgba(2,4,14,.6)}
+.sc-mbox{width:100%;max-width:560px;max-height:92vh;display:flex;flex-direction:column;padding:8px 14px calc(14px + env(safe-area-inset-bottom));border-radius:30px 30px 0 0;background:radial-gradient(120% 60% at 50% 0%,color-mix(in srgb,var(--sc-acc) 22%,transparent),transparent 60%),rgba(12,15,38,.94);border:1px solid rgba(255,255,255,.14);-webkit-backdrop-filter:blur(30px) saturate(180%)!important;backdrop-filter:blur(30px) saturate(180%)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 -30px 60px -20px rgba(0,0,0,.7);transform:translateY(105%);transition:transform .45s cubic-bezier(.2,1,.3,1)}
+.sc-msheet.in .sc-mbox{transform:none}
+@media (min-width:700px){.sc-msheet{align-items:center}.sc-mbox{border-radius:30px;transform:translateY(24px) scale(.96);opacity:0;transition:transform .4s var(--sc-ease),opacity .2s}.sc-msheet.in .sc-mbox{opacity:1}}
+.sc-mbox header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 0 10px}.sc-mbox header b{font:800 17px 'Outfit',sans-serif}
+.sc-mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;overflow-y:auto;min-height:0;padding-bottom:12px}
+.sc-mgrid.one{grid-template-columns:1fr}
+.sc-mt{position:relative;aspect-ratio:1;overflow:hidden;border-radius:16px;background:rgba(255,255,255,.06)}
+.sc-mgrid.one .sc-mt{aspect-ratio:auto;max-height:52vh;display:grid;place-items:center;background:rgba(0,0,0,.3)}
+.sc-mt img,.sc-mt video{display:block;width:100%;height:100%;object-fit:cover}
+.sc-mgrid.one .sc-mt img,.sc-mgrid.one .sc-mt video{width:auto;max-width:100%;height:auto;max-height:52vh;object-fit:contain}
+.sc-mt.file{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:12px;text-align:center}
+.sc-mgrid.one .sc-mt.file{flex-direction:row;justify-content:flex-start;text-align:left;padding:14px 50px 14px 14px;display:flex}
+.sc-mt.file b{font-size:13px;line-height:1.3;max-width:100%;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere}
+.sc-mt.file small{color:var(--sc-mute);font-size:11.5px;font-weight:700}
+.sc-mtx{position:absolute;top:6px;right:6px;display:grid;place-items:center;width:30px;height:30px;padding:0;border:0;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;cursor:pointer;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.sc-mtx svg{width:16px!important;height:16px!important}
+.sc-mcap{display:flex;align-items:flex-end;gap:8px}
+.sc-mcap textarea{flex:1;min-height:46px;max-height:110px;padding:12px 16px;border-radius:24px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.28);color:#fff;font:500 15px/1.4 'Plus Jakarta Sans',sans-serif;resize:none;outline:0}
+.sc-mcap textarea:focus{border-color:color-mix(in srgb,var(--sc-acc3) 60%,white)}
+/* in the chat */
+.sc-m.media .sc-b{padding:4px;min-width:0}
+.sc-m.media.mk-file .sc-b{padding:6px 6px 6px}
+.sc-m.media .sc-meta{padding:0 8px 3px}
+.sc-m.bare .sc-meta{position:absolute;right:11px;bottom:11px;z-index:3;margin:0;padding:4px 8px;border-radius:999px;background:rgba(6,8,20,.5);color:#fff;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.sc-mimg,.sc-mvid{position:relative;display:block;overflow:hidden;width:min(300px,62vw,calc(380px * var(--ar,1)));aspect-ratio:var(--ar,1);padding:0;border:0;border-radius:16px;background:rgba(255,255,255,.06) center/cover no-repeat;color:#fff;cursor:zoom-in;isolation:isolate}
+.sc-m.cont .sc-mimg,.sc-m.cont .sc-mvid{border-radius:16px}
+.sc-mimg::before{content:'';position:absolute;inset:-14px;z-index:-1;background:inherit;filter:blur(14px) saturate(1.2)}
+.sc-mimg img,.sc-mvid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sc-mimg img{animation:scFade .35s both}@keyframes scFade{from{opacity:0}}
+.sc-mvid{cursor:pointer}
+.sc-mimg.fail{background:rgba(255,255,255,.06)!important}.sc-mimg.fail::before{display:none}.sc-mimg.fail::after{content:'Photo not loaded yet. Tap to open.';position:absolute;inset:0;display:grid;place-items:center;padding:20px;color:var(--sc-mute);font-size:13px;font-weight:700;text-align:center}
+.sc-mplay{position:absolute;left:50%;top:50%;z-index:2;display:grid;place-items:center;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:rgba(6,8,20,.45);border:1px solid rgba(255,255,255,.35);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 30px -8px rgba(0,0,0,.6);transition:transform .35s var(--sc-ease)}
+.sc-mplay svg{margin-left:3px;width:24px!important;height:24px!important}
+.sc-mplay.sm{width:40px;height:40px;margin:-20px 0 0 -20px}.sc-mplay.sm svg{width:18px!important;height:18px!important}
+.sc-mvid:active .sc-mplay{transform:scale(.88)}
+.sc-mdur{position:absolute;left:10px;top:10px;z-index:2;padding:3px 8px;border-radius:999px;background:rgba(6,8,20,.55);font-size:11.5px;font-weight:800;font-variant-numeric:tabular-nums}
+.sc-mcapt{margin:0;padding:7px 8px 2px;font-size:15px;line-height:1.45;color:#fff;overflow-wrap:anywhere;max-width:min(300px,62vw)}
+.sc-mfile{display:flex;align-items:center;gap:11px;min-width:min(250px,60vw);max-width:min(320px,70vw);padding:6px 6px 6px 6px;border-radius:15px;background:rgba(0,0,0,.16);color:#fff;text-decoration:none}
+.sc-mfic{display:grid;place-items:center;flex:none;width:46px;height:46px;border-radius:14px;background:linear-gradient(140deg,#fbbf24,#f43f5e);color:#fff;font:800 11px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.02em;box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.sc-m.me .sc-mfic{background:rgba(255,255,255,.22)}
+.sc-mfn{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}.sc-mfn b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sc-mfn small{color:rgba(255,255,255,.7);font-size:12px;font-weight:700}
+.sc-mdl{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.14)}
+.sc-mdl svg{width:19px!important;height:19px!important}
+/* sending: dimmed preview with a progress ring and a cancel button */
+.sc-m.up .sc-mimg::after,.sc-m.up .sc-mvid::after{content:'';position:absolute;inset:0;z-index:1;background:rgba(6,8,20,.42)}
+.sc-m.up .sc-mimg,.sc-m.up .sc-mvid{cursor:default}
+.sc-upr{--p:.04;position:absolute;left:50%;top:50%;z-index:2;display:grid;place-items:center;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%}
+.sc-upr::after{content:'';position:absolute;inset:0;border-radius:50%;pointer-events:none;background:conic-gradient(#fff calc(var(--p) * 360deg),rgba(255,255,255,.22) 0);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3.5px))}
+.sc-upr button{position:absolute;inset:5px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:rgba(6,8,20,.5);color:#fff;cursor:pointer}
+.sc-upr b{position:absolute;top:calc(100% + 6px);font-size:11px;font-weight:800;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6);white-space:nowrap}
+.sc-mfile .sc-upr{position:relative;left:auto;top:auto;flex:none;width:40px;height:40px;margin:0}.sc-mfile .sc-upr b{display:none}.sc-mfile .sc-upr button{inset:4px}.sc-mfile .sc-upr button svg{width:16px!important;height:16px!important}
+.sc-dm.drop{outline:2px dashed color-mix(in srgb,var(--sc-acc3) 80%,white);outline-offset:-8px}
+.sc-dm.drop .sc-msgs{opacity:.5}
+/* full screen viewer */
+.sc-lb{position:fixed;inset:0;z-index:5400;display:flex;flex-direction:column;background:rgba(3,5,14,0);opacity:0;transition:background .25s,opacity .22s}
+.sc-lb.in{background:rgba(3,5,14,.96);opacity:1}
+.sc-lbtop{display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px}
+.sc-lbtop span{flex:1;min-width:0;color:#e2e8f0;font-size:14px;font-weight:600;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sc-lbbody{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 8px calc(14px + env(safe-area-inset-bottom))}
+.sc-lbbody img,.sc-lbbody video{max-width:100%;max-height:100%;border-radius:10px;transform:scale(.96);transition:transform .35s var(--sc-ease)}
+.sc-lb.in .sc-lbbody img,.sc-lb.in .sc-lbbody video{transform:none}
+.sc-lbbody video{width:min(100%,960px);background:#000}
+.sc-lbfail{text-align:center;color:#e2e8f0}.sc-lbfail p{margin:0 0 14px}.sc-lbfail a{display:inline-flex;align-items:center;min-height:46px;padding:0 22px;border-radius:999px;background:linear-gradient(135deg,var(--sc-acc3),var(--sc-acc));color:#fff;font-weight:800;text-decoration:none}
+@media (prefers-reduced-motion:reduce){.sc-attm,.sc-mimg img{animation:none}}
+.sc-setlink{display:flex;align-items:center;gap:10px;width:100%;margin:-4px 0 6px;padding:10px 12px;border:0;border-radius:14px;background:rgba(34,197,94,.08);color:#bbf7d0;font:600 13px/1.4 'Plus Jakarta Sans',sans-serif;text-align:left;cursor:pointer}
+.sc-setlink svg{width:18px!important;height:18px!important;color:#86efac}.sc-setlink b{color:#fff;text-decoration:underline;text-underline-offset:3px}
 </style><!--/club:css-->
 <!--ux:css--><style id="ux-css">
 /* ===== UX pack ===== */
@@ -21409,6 +21490,7 @@ nextGrammarQuestion=function(){ _oldNextGrammar(); setTimeout(updateGrammarAnaly
                     <div class="pf-row"><div><b>Daily study reminder</b><small id="rm-sub">One friendly nudge a day, only if you haven’t studied yet</small></div><button id="rm-sw" class="pf-switch" role="switch" aria-checked="false" aria-label="Daily study reminder" onclick="LRRemind.toggle()"><i></i></button></div>
                     <div class="pf-row"><div><b>Reminder time</b><small>Your local time</small></div><select id="rm-hour" class="rm-sel" aria-label="Reminder time" onchange="LRRemind.hour(this.value)"></select></div>
                     <div class="pf-row"><div><b>Try it</b><small>Sends one reminder to this device now</small></div><button type="button" class="pf-btn" id="rm-test" onclick="LRRemind.test()"><i class="fa-solid fa-bell"></i> Send a test</button></div>
+                    <div class="pf-row" id="rm-pop" hidden><div><b>Calls over other apps</b><small>Make a friend’s call pop up on top of any app</small></div><button type="button" class="pf-btn" onclick="LRNotify.popup()"><i class="fa-solid fa-phone"></i> Set up</button></div>
                 </div>
                 <!--/rm:card--><div class="pf-card">
                     <div class="pf-sec">Appearance & performance</div>
@@ -28711,6 +28793,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     const CC = ('UZ Uzbekistan|AF Afghanistan|DZ Algeria|AR Argentina|AM Armenia|AU Australia|AT Austria|AZ Azerbaijan|BD Bangladesh|BY Belarus|BE Belgium|BR Brazil|CA Canada|CL Chile|CN China|CO Colombia|CZ Czechia|DK Denmark|EG Egypt|ET Ethiopia|FI Finland|FR France|GE Georgia|DE Germany|GH Ghana|GR Greece|HK Hong Kong|HU Hungary|IN India|ID Indonesia|IR Iran|IQ Iraq|IE Ireland|IL Israel|IT Italy|JP Japan|JO Jordan|KZ Kazakhstan|KE Kenya|KW Kuwait|KG Kyrgyzstan|LB Lebanon|MY Malaysia|MX Mexico|MN Mongolia|MA Morocco|NP Nepal|NL Netherlands|NZ New Zealand|NG Nigeria|NO Norway|PK Pakistan|PE Peru|PH Philippines|PL Poland|PT Portugal|QA Qatar|RO Romania|RU Russia|SA Saudi Arabia|SG Singapore|ZA South Africa|KR South Korea|ES Spain|LK Sri Lanka|SE Sweden|CH Switzerland|SY Syria|TW Taiwan|TJ Tajikistan|TZ Tanzania|TH Thailand|TN Tunisia|TR Türkiye|TM Turkmenistan|AE UAE|UA Ukraine|GB United Kingdom|US United States|VN Vietnam|YE Yemen|ZZ Another country')
         .split('|').map(s => [s.slice(0, 2), s.slice(3)]);
     const ICE = ['Where are you from? What is your city famous for?', 'Do you study or work? What do you do?', 'Why are you learning English?', 'What is a typical breakfast in your country?', 'What is your favourite place in your hometown?', 'What was the last film or series you really enjoyed?', 'If you could live in any country, which would you choose?', 'What is the biggest holiday in your country?', 'What do you usually do at the weekend?', 'Who is a person that inspires you?', 'What is the best advice you have ever received?', 'City or countryside — which do you prefer?', 'What new skill would you like to learn this year?', 'Which food from your country should I try first?', 'How do people celebrate weddings where you live?', 'What is the hardest thing about English for you?', 'Tell me about a trip you will never forget.', 'Is social media good or bad for young people?', 'Should university be free for everyone?', 'Would you rather work from home or in an office?', 'What music do you listen to when you study?', 'What is something tourists always get wrong about your country?'];
+    const LSICE = 'lr_club_ice';
     const ICE_SERVERS = [{ urls: ['stun:stun.l.google.com:19302', 'stun:stun1.l.google.com:19302', 'stun:stun2.l.google.com:19302'] }, { urls: 'stun:global.stun.twilio.com:3478' }];
     const LSK = 'lr_club_me', LSB = 'lr_club_blocked', LSH = 'lr_club_calls', LSU = 'lr_club_users', LSA = 'lr_club_av', LSO = 'lr_club_reqout', LSS = 'lr_club_stats';
     const C = { v: 'off', tab: 'discover', db: null, uid: null, me: null, users: {}, av: {}, pres: {}, online: {}, fr: {}, reqIn: {}, inbox: {}, room: null, pair: null, th: null, vc: null, inc: null, timers: {}, skipped: [], buf: [], conn: null, off: 0, svc: false, perm: {} };
@@ -28770,7 +28853,14 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         edit: '<svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>',
         dice: '<svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0113.7-5.6L20 9M20 4v5h-5M20 12a8 8 0 01-13.7 5.6L4 15M4 20v-5h5"/></svg>',
         sparkle: '<svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>',
-        door: '<svg viewBox="0 0 24 24"><path d="M14 4h5v16h-5M10 8l-4 4 4 4M6 12h10"/></svg>'
+        door: '<svg viewBox="0 0 24 24"><path d="M14 4h5v16h-5M10 8l-4 4 4 4M6 12h10"/></svg>',
+        spk: '<svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4.5 4.5 0 010 6M18 6.5a8 8 0 010 11"/></svg>',
+        spkoff: '<svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4.5 4.5 0 010 6"/></svg>',
+        clip: '<svg viewBox="0 0 24 24"><path d="M20 11.5l-7.8 7.8a5 5 0 01-7.1-7.1l8.5-8.5a3.4 3.4 0 014.8 4.8l-8.4 8.4a1.7 1.7 0 01-2.4-2.4l7.7-7.7"/></svg>',
+        image: '<svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="M4 17l5-4.5 4 3.5 3-2.5 4.5 4"/></svg>',
+        file: '<svg viewBox="0 0 24 24"><path d="M14 3.5H7a2 2 0 00-2 2v13a2 2 0 002 2h10a2 2 0 002-2V8.5z"/><path d="M14 3.5v5h5"/></svg>',
+        down: '<svg viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>',
+        expand: '<svg viewBox="0 0 24 24"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg>'
     };
     const I = (k) => ICONS[k] || '';
     /* every listener returns its own off(), so two features watching one path never cancel each other */
@@ -28878,7 +28968,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         on('club/inbox/' + C.uid, v => onInbox(v), 'chats');
         C.db.ref('club/ring/' + C.uid).on('value', s => onRing(s.val()), e => { if (denied(e)) permWarn('calls'); });
         document.addEventListener('visibilitychange', () => { if (!document.hidden) presence(); });
-        pushCfg().then(() => { pushRefresh(); if (C.v === 'shell' && C.tab === 'me') render(); });
+        pushCfg().then(() => { pushRefresh(); iceRefresh(); if (C.v === 'shell' && C.tab === 'me') render(); });
         wantCheck();
         return true;
     }
@@ -29119,7 +29209,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         o = o || {};
         if (o.off) return `<div class="sc-comp off"><p>${esc(o.off)}</p></div>`;
         return `<form class="sc-comp" id="sc-comp" onsubmit="CLUB.send(event)" autocomplete="off">
-            <div class="sc-comp-in"><textarea id="sc-x" rows="1" maxlength="${o.max || 600}" placeholder="${o.ph || 'Message'}" oninput="CLUB.typing(this)" onkeydown="CLUB.key(event)"></textarea></div>
+            <div class="sc-comp-in"><textarea id="sc-x" rows="1" maxlength="${o.max || 600}" placeholder="${o.ph || 'Message'}" oninput="CLUB.typing(this)" onkeydown="CLUB.key(event)"></textarea>${o.attach ? `<button type="button" class="sc-att" onclick="CLUB.attach()" aria-label="Send a photo, video or file" title="Photo, video or file">${I('clip')}</button>` : ''}</div>
             ${o.voice ? `<button type="button" class="sc-rec" id="sc-recb" onclick="CLUB.rec()" aria-label="Record a voice message">${I('mic')}</button>` : ''}
             <button class="sc-send" id="sc-sendb" aria-label="Send">${I('send')}</button></form>`;
     }
@@ -29162,7 +29252,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
                 <button class="sc-icb" onclick="CLUB.who('${esc(u)}')" aria-label="More">${I('more')}</button></header>
             <div class="sc-msgs" id="sc-msgs" aria-live="polite"></div>
             <div class="sc-typing" id="sc-typing" hidden><span><i></i><i></i><i></i></span></div>
-            ${fr ? composer({ voice: 1 }) : composer({ off: 'You are no longer friends. Add each other again to chat.' })}
+            ${fr ? composer({ voice: 1, attach: 1 }) : composer({ off: 'You are no longer friends. Add each other again to chat.' })}
         </div>`;
     }
     function vThreadPage() { return `<div class="sc-wrap">${C.th ? threadInner(C.th.u) : ''}</div>`; }
@@ -29195,7 +29285,8 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         const name = ctx === 'room' && !me && !cont ? `<button class="sc-nm" style="--hu:${hue(m.u)}" onclick="CLUB.who('${esc(m.u)}')"><span data-nm="${esc(m.u)}">${esc(m.n || uinfo(m.u).n || 'Learner')}</span> <small>${flag(m.c || uinfo(m.u).c)} ${esc(m.l || '')}</small></button>` : '';
         const tick = me && ctx === 'dm' ? `<span class="sc-tk" aria-label="sent">${I('check')}${I('check')}</span>` : '';
         let body;
-        if (m.v) body = `<div class="sc-voice" data-vid="${esc(id)}"><button type="button" class="sc-vplay" onclick="CLUB.playV('${esc(id)}')" aria-label="Play voice message">${I('play')}</button><span class="sc-wave">${bars(m.w, id)}</span><time>${dur(m.d)}</time></div>`;
+        if (m.f && m.f.k && ctx === 'dm') { MEDIA.msgs[id] = m; body = mediaHtml(id, m.f, m.x); d.classList.add('media', 'mk-' + m.f.k); if (!m.x && m.f.k !== 'file') d.classList.add('bare'); }
+        else if (m.v) body = `<div class="sc-voice" data-vid="${esc(id)}"><button type="button" class="sc-vplay" onclick="CLUB.playV('${esc(id)}')" aria-label="Play voice message">${I('play')}</button><span class="sc-wave">${bars(m.w, id)}</span><time>${dur(m.d)}</time></div>`;
         else body = `<p>${esc(scrub(m.x)).replace(/\n/g, '<br>')}</p>`;
         d.innerHTML = (showAv ? `<span class="sc-mav">${cont ? '' : av(m.u, 32, { dot: false })}</span>` : '') + `<div class="sc-b">${name}${body}<span class="sc-meta"><time>${hhmm(m.t)}</time>${tick}</span></div>`;
         if (m.v) { C.vnotes = C.vnotes || {}; C.vnotes[id] = { v: m.v, d: m.d, src: ctx === 'pair' ? 'callv' : 'dmv', cid: ctx === 'pair' ? (C.pair && C.pair.cid) : (C.th && C.th.cid) }; }
@@ -29243,16 +29334,16 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         player.play().catch(() => { toast('⚠ Tap again to play'); });
     }
     const REC = { mr: null, chunks: [], t0: 0, peaks: [], raf: 0, an: null, stream: null, mime: '' };
-    function recMime() { const L = ['audio/mp4;codecs=mp4a.40.2', 'audio/mp4', 'audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus']; try { return L.find(t => window.MediaRecorder && MediaRecorder.isTypeSupported(t)) || ''; } catch (e) { return ''; } }
+    function recMime() { const L = ['audio/webm;codecs=opus', 'audio/ogg;codecs=opus', 'audio/mp4;codecs=opus', 'audio/mp4;codecs=mp4a.40.2', 'audio/mp4', 'audio/webm']; try { return L.find(t => window.MediaRecorder && MediaRecorder.isTypeSupported(t)) || ''; } catch (e) { return ''; } }
     async function rec() {
         if (REC.mr || REC.starting) return; if (!window.MediaRecorder) return toast('⚠ Voice messages are not supported in this browser');
         if (C.vc) return toast('Finish the call first');
         REC.starting = true; const comp0 = $('sc-comp');
         if (comp0) { comp0.classList.add('recording', 'rec-wait'); comp0.insertAdjacentHTML('afterbegin', `<div class="sc-recbar" id="sc-recbar"><button type="button" class="sc-icb" onclick="CLUB.recCancel()" aria-label="Delete">${I('trash')}</button><i class="sc-recdot"></i><time id="sc-rect">0:00</time><span class="sc-recw" id="sc-recw"></span><span class="sc-rechint">Starting…</span></div>`); }
-        let s; try { s = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 } }); } catch (e) { REC.starting = false; recClean(); return toast('⚠ Allow microphone access to record a voice message'); }
+        let s; try { s = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: true, autoGainControl: true, channelCount: 1, sampleRate: { ideal: 48000 } } }).catch(() => navigator.mediaDevices.getUserMedia({ audio: true })); } catch (e) { REC.starting = false; recClean(); return toast('⚠ Allow microphone access to record a voice message'); }
         if (!REC.starting) { s.getTracks().forEach(t => t.stop()); return; }
         REC.starting = false; REC.stream = s; REC.mime = recMime(); REC.chunks = []; REC.peaks = []; REC.t0 = Date.now();
-        try { REC.mr = new MediaRecorder(s, Object.assign(REC.mime ? { mimeType: REC.mime } : {}, { audioBitsPerSecond: 24000 })); } catch (e) { try { REC.mr = new MediaRecorder(s); } catch (x) { s.getTracks().forEach(t => t.stop()); return toast('⚠ Could not start recording'); } }
+        try { REC.mr = new MediaRecorder(s, Object.assign(REC.mime ? { mimeType: REC.mime } : {}, { audioBitsPerSecond: /opus/.test(REC.mime) ? 48000 : 64000 })); } catch (e) { try { REC.mr = new MediaRecorder(s); } catch (x) { s.getTracks().forEach(t => t.stop()); return toast('⚠ Could not start recording'); } }
         REC.mr.ondataavailable = (e) => { if (e.data && e.data.size) REC.chunks.push(e.data); };
         REC.mr.start(1000);
         const comp = $('sc-comp'); if (comp) { comp.classList.remove('rec-wait'); const h = comp.querySelector('.sc-rechint'); if (h) h.textContent = 'Recording'; if (!$('sc-recbar')) comp.insertAdjacentHTML('afterbegin', `<div class="sc-recbar" id="sc-recbar"><button type="button" class="sc-icb" onclick="CLUB.recCancel()" aria-label="Delete">${I('trash')}</button><i class="sc-recdot"></i><time id="sc-rect">0:00</time><span class="sc-recw" id="sc-recw"></span><span class="sc-rechint">Recording</span></div>`); }
@@ -29272,7 +29363,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     async function recSend() {
         if (!REC.mr) return; const secs = (Date.now() - REC.t0) / 1000; const blob = await recStop(); const peaks = REC.peaks.slice(); recClean();
         if (!blob || secs < .7) return toast('Hold on a bit longer to record');
-        if (blob.size > 420000) return toast('⚠ That voice message is too long');
+        if (blob.size > 700000) return toast('⚠ That voice message is too long');
         const url = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.onerror = () => r(null); fr.readAsDataURL(blob); });
         if (!url) return;
         const step = Math.max(1, Math.floor(peaks.length / 28)); const w = Array.from({ length: Math.min(28, Math.max(12, Math.ceil(peaks.length / step))) }, (_, i) => Math.max(1, Math.max(...peaks.slice(i * step, i * step + step).concat([1])))).join('');
@@ -29530,7 +29621,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         setTimeout(() => { first = false; const b = $('sc-msgs'); if (b && !b.querySelector('.sc-m,.sc-ev') && C.th === th) { const p = uinfo(th.u); const d = document.createElement('div'); d.className = 'sc-hello sc-empty-m'; d.innerHTML = `${av(th.u, 72, { dot: false, flag: 1 })}<b>${esc(p.n || 'Your friend')}</b><span>You are friends. Send a message, a voice note, or call.</span>`; pushNode(d); } }, 900);
         const s2 = listen(base.child('r'), 'value', s => { th.read = s.val() || {}; paintTicks(); });
         const s3 = listen(base.child('ty/' + th.u), 'value', s => { const t = s.val(); th.typ = t && now() - t < 6000; C.typingIn = C.typingIn || {}; C.typingIn[th.cid] = th.typ; paintTyping(); clearTimeout(th.tyT); if (th.typ) th.tyT = setTimeout(() => { th.typ = false; paintTyping(); }, 6000); });
-        th.subs = [s1, s2, s3]; markRead();
+        th.subs = [s1, s2, s3]; markRead(); setTimeout(() => { if (C.th === th) upsBack(th); }, 950);
     }
     function closeThreadSubs() { const th = C.th; if (!th) return; (th.subs || []).forEach(f => f()); th.subs = []; th.on = false; clearTimeout(th.tyT); if (C.db) C.db.ref('club/dm/' + th.cid + '/ty/' + C.uid).remove().catch(() => { }); }
     function markRead() { const th = C.th; if (!th || !C.db || !C.fr[th.u]) return; const up = {}; up['dm/' + th.cid + '/r/' + C.uid] = C.TS; if (C.inbox[th.cid]) up['inbox/' + C.uid + '/' + th.cid + '/n'] = 0; C.db.ref('club').update(up).catch(() => { }); }
@@ -29551,16 +29642,16 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         toast('Open a chat to send a voice message');
     }
     function markSent(id, bad) { if (C.pendIds) C.pendIds.delete(id); const n = document.querySelector(`.sc-m[data-id="${CSS.escape(id)}"]`); if (!n) return; n.classList.remove('pend'); n.classList.toggle('fail', !!bad); }
-    async function sendDm(body, pv) {
-        const th = C.th; if (!th || !C.db) return;
+    async function sendDm(body, pv, mid, th0) {
+        const th = th0 || C.th; if (!th || !C.db) return;
         if (!C.fr[th.u]) return toast('You need to be friends to chat');
-        const id = C.db.ref('club/dm/' + th.cid + '/m').push().key, up = {};
+        const id = mid || C.db.ref('club/dm/' + th.cid + '/m').push().key, up = {};
         if (body.vd) { up['dmv/' + th.cid + '/' + id] = body.vd; body = Object.assign({}, body); delete body.vd; (C.pendIds = C.pendIds || new Set()).add(id); }
         up['dm/' + th.cid + '/m/' + id] = Object.assign({ u: C.uid, t: C.TS }, body);
         up['dm/' + th.cid + '/ty/' + C.uid] = null; tyLast = 0;
         up['inbox/' + C.uid + '/' + th.cid] = { x: String(pv).slice(0, 80), t: C.TS, f: C.uid, n: 0 };
         const ib = 'inbox/' + th.u + '/' + th.cid + '/'; up[ib + 'x'] = String(pv).slice(0, 80); up[ib + 't'] = C.TS; up[ib + 'f'] = C.uid; up[ib + 'n'] = firebase.database.ServerValue.increment(1);
-        try { await C.db.ref('club').update(up); sent(); markSent(id); }
+        try { await C.db.ref('club').update(up); if (th === C.th) sent(); markSent(id); }
         catch (e) { markSent(id, true); if (denied(e)) permWarn('chats'); else toast('⚠ Message not sent. Check your connection.'); }
     }
     function filter(q) { C.q = q; paintConvs(); }
@@ -29803,6 +29894,18 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         } catch (e) { console.warn('[club push] refresh', e); }
         finally { paintAlerts(); }
     }
+    /* relay servers for calls on strict networks (two phones on mobile data often cannot reach each other directly).
+       The LunaRise server hands out short-lived ones (from Cloudflare, when that is set up there); kept here up to 12 hours. */
+    let iceP = null;
+    function iceExtra() { const c = lsGet(LSICE, null); return c && c.exp > Date.now() && Array.isArray(c.s) ? c.s : []; }
+    function iceRefresh(force) {
+        const c = lsGet(LSICE, null); if (!force && c && c.exp - Date.now() > 3 * 3600e3) return Promise.resolve();
+        if (iceP) return iceP;
+        iceP = pushCall('ice', {}).then(x => {
+            if (x && x.ok) lsSet(LSICE, { s: Array.isArray(x.iceServers) ? x.iceServers : [], exp: Date.now() + Math.max(3600, Math.min(86400, +x.ttl || 21600)) * 1000 });
+        }).catch(() => { }).finally(() => { iceP = null; });
+        return iceP;
+    }
     async function pushCall(op, body) {
         const cfg = await pushCfg(); if (!cfg || !cfg.server) return null;
         try {
@@ -29820,6 +29923,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         const b = $('sc-alerts'); if (b) { b.checked = PUSH.on; b.disabled = PUSH.busy; }
         const s = $('sc-alerts-s'); if (s) s.textContent = alertsHint();
         const p = $('sc-alerts-tip'); if (p && PUSH.on) p.remove();
+        const row = b && b.closest('.sc-setrow'); if (row) { const nx = row.nextElementSibling, has = !!(nx && nx.classList.contains('sc-setlink')); if (PUSH.on && ANDROID && !has) row.insertAdjacentHTML('afterend', popLink()); else if (!PUSH.on && has) nx.remove(); }
     }
     function alertsHint() {
         if (PUSH.busy) return 'Turning on…';
@@ -29832,9 +29936,16 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     }
     function alertsRow() {
         if (PUSH.cfg === false) return '';
-        return `<label class="sc-setrow"><span><b>Call alerts when LunaRise is closed</b><small id="sc-alerts-s">${esc(alertsHint())}</small></span><input type="checkbox" class="sc-sw" id="sc-alerts" ${PUSH.on ? 'checked' : ''} ${PUSH.busy ? 'disabled' : ''} onchange="CLUB.alerts(this.checked)"></label>`;
+        return `<label class="sc-setrow"><span><b>Call alerts when LunaRise is closed</b><small id="sc-alerts-s">${esc(alertsHint())}</small></span><input type="checkbox" class="sc-sw" id="sc-alerts" ${PUSH.on ? 'checked' : ''} ${PUSH.busy ? 'disabled' : ''} onchange="CLUB.alerts(this.checked)"></label>` +
+            (PUSH.on && ANDROID ? popLink() : '');
     }
+    const popLink = () => `<button type="button" class="sc-setlink" onclick="CLUB.popHelp()">${I('phone')}<span>Calls don’t pop up over other apps? <b>Fix it</b></span></button>`;
+    const ANDROID = /Android/i.test(navigator.userAgent);
+    function popHelp() { lsSet('lr_club_ptip', 1); const t = $('sc-pop-tip'); if (t) t.remove(); try { if (window.LRNotify && LRNotify.popup) return LRNotify.popup(); } catch (e) { } toast('Open your phone Settings → Apps → Chrome → Notifications and turn on “Pop on screen”.'); }
+    function popHide() { lsSet('lr_club_ptip', 1); const t = $('sc-pop-tip'); if (t) t.remove(); }
     function alertsTip() {
+        if (PUSH.on && ANDROID && !lsGet('lr_club_ptip', 0) && Object.keys(C.fr).length)
+            return `<div class="sc-atip" id="sc-pop-tip">${I('phone')}<span><b>Make calls pop up over other apps</b><small>Then a friend’s call shows on top of any app, with Answer and Decline.</small></span><button class="sc-btn sm" onclick="CLUB.popHelp()">Show me</button><button class="sc-icb" onclick="CLUB.popHide()" aria-label="Not now">${I('x')}</button></div>`;
         if (PUSH.on || PUSH.cfg === false || !PUSH.cfg || lsGet('lr_club_atip', 0) || !Object.keys(C.fr).length) return '';
         if (window.Notification && Notification.permission === 'denied') return '';
         return `<div class="sc-atip" id="sc-alerts-tip">${I('phone')}<span><b>Get calls even when LunaRise is closed</b><small>Your phone rings with an alert when a friend calls you.</small></span><button class="sc-btn sm" onclick="CLUB.alerts(true)">Turn on</button><button class="sc-icb" onclick="CLUB.alertsHide()" aria-label="Not now">${I('x')}</button></div>`;
@@ -29866,6 +29977,231 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
             else { C.want = { cid: m.cid, from: m.from, ans: !!m.ans, t: Date.now() }; if (!C.svc) service(); }
         } else if (m.type === 'lr-open' && m.from) { if (C.fr[m.from]) dm(m.from); }
     });
+    /* ================= photos, videos and files in chats =================
+       Picked files are checked; photos are made lighter (longest side 2048 px); then everything goes up in 4 MB pieces to the
+       LunaRise server, which keeps it in Google Drive. The chat message carries a tiny preview, so it shows at once. */
+    const MEDIA_MAX = { img: 15 * 1048576, vid: 95 * 1048576, file: 50 * 1048576 };   // Drive plays videos inline only below 100 MB
+    const kindOf = (f) => (/^image\/(jpeg|png|webp|gif|avif|bmp)$/i.test(f.type) || /\.(jpe?g|png|webp|gif|avif|bmp)$/i.test(f.name)) ? 'img' : (/^video\//i.test(f.type) || /\.(mp4|mov|webm|m4v|3gp|mkv)$/i.test(f.name)) ? 'vid' : 'file';
+    const fmtSize = (n) => n < 1024 ? n + ' B' : n < 1048576 ? Math.round(n / 1024) + ' KB' : (n / 1048576).toFixed(n < 10485760 ? 1 : 0) + ' MB';
+    const dImg = (id, w) => 'https://drive.google.com/thumbnail?id=' + encodeURIComponent(id) + '&sz=w' + (w || 1280);
+    const dImg2 = (id, w) => 'https://lh3.googleusercontent.com/d/' + encodeURIComponent(id) + '=w' + (w || 1280);
+    const dFile = (id) => 'https://drive.google.com/uc?export=download&id=' + encodeURIComponent(id);
+    const dView = (id) => 'https://drive.google.com/file/d/' + encodeURIComponent(id) + '/view';
+    const extOf = (n) => { const m = /\.([a-z0-9]{1,5})$/i.exec(n || ''); return m ? m[1].toUpperCase() : 'FILE'; };
+    const MEDIA = { local: {}, msgs: {}, up: {} };
+    const toB64 = (blob) => new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(',')[1] || ''); fr.onerror = () => rej(fr.error); fr.readAsDataURL(blob); });
+    const canvasBlob = (cv, type, q) => new Promise(res => cv.toBlob(b => res(b), type, q));
+
+    /* ---------- picking ---------- */
+    function attach() {
+        if (!C.th) return toast('Open a chat with a friend to send files');
+        if (!C.fr[C.th.u]) return toast('You need to be friends to send files');
+        const old = $('sc-attm'); if (old) { old.remove(); return; }
+        const comp = $('sc-comp'); if (!comp) return;
+        comp.insertAdjacentHTML('beforeend', `<div class="sc-attm" id="sc-attm" role="menu">
+            <button type="button" role="menuitem" onclick="CLUB.pick('media')"><span class="sc-attic g">${I('image')}</span><span><b>Photo or video</b><small>From your gallery or camera</small></span></button>
+            <button type="button" role="menuitem" onclick="CLUB.pick('file')"><span class="sc-attic b">${I('file')}</span><span><b>File</b><small>PDF, documents, anything up to 50 MB</small></span></button></div>`);
+        setTimeout(() => document.addEventListener('pointerdown', function off(e) { const m = $('sc-attm'); if (m && !m.contains(e.target) && !e.target.closest('.sc-att')) { m.remove(); } if (!$('sc-attm')) document.removeEventListener('pointerdown', off, true); }, true), 0);
+    }
+    function pick(what) {
+        const m = $('sc-attm'); if (m) m.remove();
+        let inp = $('sc-file'); if (inp) inp.remove();
+        inp = document.createElement('input'); inp.type = 'file'; inp.id = 'sc-file'; inp.multiple = true; inp.hidden = true;
+        inp.accept = what === 'media' ? 'image/*,video/*' : '*/*';
+        inp.onchange = () => { const fs = Array.from(inp.files || []); inp.remove(); if (fs.length) mediaSheet(fs); };
+        document.body.appendChild(inp); inp.click();
+    }
+    /* ---------- the "send these?" sheet ---------- */
+    let PICK = [];
+    function mediaSheet(files) {
+        files = files.slice(0, 10);
+        const bad = files.find(f => f.size > MEDIA_MAX[kindOf(f)]);
+        if (bad) { const k = kindOf(bad); toast(`⚠ “${bad.name.slice(0, 40)}” is too big. Max ${MEDIA_MAX[k] / 1048576} MB for ${k === 'vid' ? 'videos' : k === 'img' ? 'photos' : 'files'}.`); files = files.filter(f => f !== bad); if (!files.length) return; }
+        PICK.forEach(p => URL.revokeObjectURL(p.url)); PICK = files.map(f => ({ f, k: kindOf(f), url: URL.createObjectURL(f) }));
+        const again = !!$('sc-msheet'); closeMediaSheet(true);
+        const d = document.createElement('div'); d.className = 'sc-msheet' + (again ? ' in' : ''); d.id = 'sc-msheet'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true'); d.setAttribute('aria-label', 'Send files');
+        const tile = (p, i) => p.k === 'img' ? `<div class="sc-mt"><img src="${p.url}" alt=""><button type="button" class="sc-mtx" onclick="CLUB.unpick(${i})" aria-label="Remove">${I('x')}</button></div>`
+            : p.k === 'vid' ? `<div class="sc-mt"><video src="${p.url}#t=0.3" muted playsinline preload="metadata"></video><span class="sc-mplay sm">${I('play')}</span><button type="button" class="sc-mtx" onclick="CLUB.unpick(${i})" aria-label="Remove">${I('x')}</button></div>`
+            : `<div class="sc-mt file"><span class="sc-mfic">${esc(extOf(p.f.name))}</span><b>${esc(p.f.name)}</b><small>${fmtSize(p.f.size)}</small><button type="button" class="sc-mtx" onclick="CLUB.unpick(${i})" aria-label="Remove">${I('x')}</button></div>`;
+        const n = PICK.length, what = PICK.every(p => p.k === 'img') ? (n > 1 ? n + ' photos' : 'photo') : PICK.every(p => p.k === 'vid') ? (n > 1 ? n + ' videos' : 'video') : PICK.every(p => p.k === 'file') ? (n > 1 ? n + ' files' : 'file') : n + ' items';
+        d.innerHTML = `<div class="sc-mbox"><header><button type="button" class="sc-icb" onclick="CLUB.closeMediaSheet()" aria-label="Cancel">${I('x')}</button><b>Send ${what}</b><span style="width:44px"></span></header>
+            <div class="sc-mgrid${n === 1 ? ' one' : ''}">${PICK.map(tile).join('')}</div>
+            <div class="sc-mcap"><textarea id="sc-mcap" rows="1" maxlength="600" placeholder="Add a caption…" oninput="this.style.height='auto';this.style.height=Math.min(110,this.scrollHeight)+'px'"></textarea><button type="button" class="sc-send" onclick="CLUB.sendPicked()" aria-label="Send">${I('send')}</button></div></div>`;
+        document.body.appendChild(d); requestAnimationFrame(() => d.classList.add('in'));
+        d.addEventListener('click', e => { if (e.target === d) closeMediaSheet(); });
+        d.addEventListener('keydown', e => { if (e.key === 'Escape') closeMediaSheet(); });
+        setTimeout(() => { const c = $('sc-mcap'); if (c && matchMedia('(pointer:fine)').matches) c.focus(); }, 80);
+    }
+    function unpick(i) { if (!PICK[i]) return; const cap = ($('sc-mcap') || {}).value || '', rest = PICK.filter((x, j) => j !== i).map(x => x.f); PICK.forEach(x => URL.revokeObjectURL(x.url)); PICK = []; if (!rest.length) return closeMediaSheet(); mediaSheet(rest); const c = $('sc-mcap'); if (c) c.value = cap; }
+    function closeMediaSheet(now) { const d = $('sc-msheet'); if (!d) return; d.id = ''; if (now === true) return d.remove(); d.classList.remove('in'); setTimeout(() => d.remove(), 250); }
+    function sendPicked() {
+        const cap = scrub((($('sc-mcap') || {}).value || '').trim()).slice(0, 600);
+        const items = PICK.slice(); PICK = []; closeMediaSheet();
+        items.forEach((p, i) => queue(p, i === items.length - 1 ? cap : ''));
+    }
+
+    /* ---------- getting a file ready: lighter photos, a preview frame for videos ---------- */
+    async function loadImg(src) { return new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src; }); }
+    async function prepImg(p) {
+        const im = await loadImg(p.url); const W = im.naturalWidth, H = im.naturalHeight; if (!W || !H) throw new Error('img');
+        const tiny = document.createElement('canvas'), ts = 24 / Math.max(W, H); tiny.width = Math.max(1, Math.round(W * ts)); tiny.height = Math.max(1, Math.round(H * ts));
+        tiny.getContext('2d').drawImage(im, 0, 0, tiny.width, tiny.height);
+        const th = tiny.toDataURL('image/jpeg', .6);
+        let blob = p.f, mt = p.f.type || 'image/jpeg', w = W, h = H, name = p.f.name || 'photo.jpg';
+        if (!/gif$/i.test(mt)) {
+            const sc = Math.min(1, 2048 / Math.max(W, H)); w = Math.round(W * sc); h = Math.round(H * sc);
+            const cv = document.createElement('canvas'); cv.width = w; cv.height = h; const g = cv.getContext('2d');
+            g.fillStyle = '#fff'; g.fillRect(0, 0, w, h); g.drawImage(im, 0, 0, w, h);
+            const out = await canvasBlob(cv, 'image/jpeg', .86);
+            if (out && (out.size < p.f.size || sc < 1 || !/jpe?g$/i.test(mt))) { blob = out; mt = 'image/jpeg'; name = name.replace(/\.[^.]+$/, '') + '.jpg'; }
+        }
+        return { blob, meta: { k: 'img', n: name.slice(0, 120), s: blob.size, mt, w, h, th } };
+    }
+    async function prepVid(p) {
+        const meta = { k: 'vid', n: (p.f.name || 'video.mp4').slice(0, 120), s: p.f.size, mt: p.f.type || 'video/mp4' };
+        try {
+            const v = document.createElement('video'); v.muted = true; v.playsInline = true; v.preload = 'auto'; v.src = p.url;
+            await new Promise((res, rej) => { v.onloadeddata = res; v.onerror = rej; setTimeout(rej, 8000); });
+            meta.d = Math.round(v.duration || 0); meta.w = v.videoWidth; meta.h = v.videoHeight;
+            v.currentTime = Math.min(.5, (v.duration || 1) / 3); await new Promise(res => { v.onseeked = res; setTimeout(res, 2500); });
+            const sc = 320 / Math.max(v.videoWidth || 320, v.videoHeight || 320), cv = document.createElement('canvas');
+            cv.width = Math.max(1, Math.round((v.videoWidth || 320) * sc)); cv.height = Math.max(1, Math.round((v.videoHeight || 180) * sc));
+            cv.getContext('2d').drawImage(v, 0, 0, cv.width, cv.height); meta.th = cv.toDataURL('image/jpeg', .7);
+            if (meta.th.length > 29000) meta.th = cv.toDataURL('image/jpeg', .45);
+            if (meta.th.length > 29000) delete meta.th;
+        } catch (e) { }
+        return { blob: p.f, meta };
+    }
+
+    /* ---------- sending: a bubble with progress right away, the real message when the upload is done ---------- */
+    let upChain = Promise.resolve();
+    function queue(p, cap) {
+        const th = C.th; if (!th || !C.db) return;
+        const mid = C.db.ref('club/dm/' + th.cid + '/m').push().key, job = { mid, p, cap, th, cancel: false, prog: 0 };
+        MEDIA.up[mid] = job; C.lastAuthor = null;
+        const node = document.createElement('div'); node.className = 'sc-m me up media mk-' + p.k + (!cap && p.k !== 'file' ? ' bare' : ''); node.dataset.id = 'up-' + mid; node.dataset.u = C.uid; node.dataset.t = Date.now();
+        node.innerHTML = `<div class="sc-b">${mediaHtml(mid, { k: p.k, id: '', n: p.f.name, s: p.f.size }, cap, p.url)}<span class="sc-meta"><time>${hhmm(Date.now())}</time></span></div>`;
+        job.node = node; pushNode(node);
+        upChain = upChain.then(() => run(job, node)).catch(() => { });
+    }
+    /* coming back to a chat while something is still sending: show its progress bubble again */
+    function upsBack(th) {
+        const b = $('sc-msgs'); if (!b) return;
+        Object.values(MEDIA.up).forEach(j => { if (j.th.cid === th.cid && j.node && !b.contains(j.node)) pushNode(j.node); });
+    }
+    async function run(job, node) {
+        const setP = (x) => { job.prog = x; const r = node.querySelector('.sc-upr'); if (r) { r.style.setProperty('--p', Math.max(.04, x).toFixed(3)); const t = r.querySelector('b'); if (t) t.textContent = Math.round(x * 100) + '%'; } };
+        try {
+            if (job.cancel) throw new Error('cancelled');
+            const { blob, meta } = job.p.k === 'img' ? await prepImg(job.p).catch(() => ({ blob: job.p.f, meta: { k: 'file', n: job.p.f.name, s: job.p.f.size, mt: job.p.f.type || 'application/octet-stream' } }))
+                : job.p.k === 'vid' ? await prepVid(job.p) : { blob: job.p.f, meta: { k: 'file', n: (job.p.f.name || 'file').slice(0, 120), s: job.p.f.size, mt: job.p.f.type || 'application/octet-stream' } };
+            if (blob.size > MEDIA_MAX[meta.k]) throw new Error('file too big');
+            setP(.03);
+            const id = await upload(blob, meta, (x) => setP(.03 + x * .95), () => job.cancel);
+            meta.id = id; meta.s = blob.size; MEDIA.local[id] = job.p.url;
+            if (job.cancel) throw new Error('cancelled');
+            Object.keys(meta).forEach(k => meta[k] == null && delete meta[k]);
+            const pv = meta.k === 'img' ? '📷 Photo' : meta.k === 'vid' ? '🎬 Video' : '📎 ' + meta.n;
+            dropNode(node); delete MEDIA.up[job.mid];
+            await sendDm(Object.assign({ f: meta }, job.cap ? { x: job.cap } : {}), job.cap ? pv + ' · ' + job.cap : pv, job.mid, job.th);
+        } catch (e) {
+            delete MEDIA.up[job.mid]; dropNode(node);
+            const m = String(e && e.message || e);
+            if (m === 'cancelled') return;
+            console.warn('[club media]', m);
+            toast(m === 'nosrv' ? '⚠ Sending files is not set up on the server yet' : /too big/.test(m) ? '⚠ That file is too big' : /too many/.test(m) ? '⚠ Too many files for now. Try again later.' : /join/.test(m) ? '⚠ Join the Speaking Club first' : '⚠ Could not send “' + (job.p.f.name || 'file').slice(0, 30) + '”. Check your internet and try again.');
+        }
+    }
+    function dropNode(node) { if (node && node.parentNode) node.parentNode.removeChild(node); C.buf = (C.buf || []).filter(n => n !== node); }
+    function cancelUp(mid) { const j = MEDIA.up[mid]; if (j) { j.cancel = true; toast('Sending cancelled'); } }
+    async function upload(blob, meta, prog, cancelled) {
+        const cfg = await pushCfg(); if (!cfg || !cfg.server) throw new Error('nosrv');
+        const call = async (body) => {
+            const idToken = await firebase.auth().currentUser.getIdToken();
+            const r = await fetch(cfg.server, { method: 'POST', body: JSON.stringify(Object.assign({ idToken }, body)) });
+            const j = await r.json().catch(() => null); if (!j || !j.ok) throw new Error((j && j.error) || 'upload'); return j;
+        };
+        const init = await call({ op: 'up_init', k: meta.k, name: meta.n, mime: meta.mt, size: blob.size });
+        const CH = init.chunk || 4194304; let at = 0, res = null, fails = 0;
+        while (at < blob.size) {
+            if (cancelled()) throw new Error('cancelled');
+            const d = await toB64(blob.slice(at, Math.min(blob.size, at + CH)));
+            try { res = await call({ op: 'up_part', up: init.up, at, d }); fails = 0; }
+            catch (e) {
+                // a weak connection: wait, ask Drive how much it already has, and carry on from there
+                if (++fails > 4 || /expired|not your|too big/.test(e.message)) throw e;
+                await sleep(1500 * fails);
+                try { const st = await call({ op: 'up_stat', up: init.up }); if (st.done) { res = st; break; } at = st.next; } catch (x) { }
+                continue;
+            }
+            if (res.done) break;
+            at = res.next; prog(Math.min(1, at / blob.size));
+        }
+        if (!res || !res.id) throw new Error('upload');
+        prog(1); return res.id;
+    }
+
+    /* ---------- in the chat ---------- */
+    function mediaHtml(mid, f, x, local) {
+        const id = f.id || '', ar = f.w && f.h ? Math.max(.5, Math.min(2, f.w / f.h)) : 1;
+        const up = !id ? `<span class="sc-upr" style="--p:.04"><button type="button" onclick="CLUB.cancelUp('${esc(mid)}')" aria-label="Cancel sending">${I('x')}</button><b>0%</b></span>` : '';
+        const cap = x ? `<p class="sc-mcapt">${esc(scrub(x)).replace(/\n/g, '<br>')}</p>` : '';
+        const src = local || MEDIA.local[id];
+        if (f.k === 'img') {
+            const th = f.th ? ` style="--ar:${ar.toFixed(3)};background-image:url('${f.th}')"` : ` style="--ar:${ar.toFixed(3)}"`;
+            const img = src ? `<img src="${src}" alt=""${f.w ? '' : ` onload="this.parentNode.style.setProperty('--ar',Math.max(.5,Math.min(2,this.naturalWidth/this.naturalHeight)).toFixed(3))"`}>` : id ? `<img src="${dImg(id, 720)}" alt="" loading="lazy" decoding="async" onerror="CLUB.imgFail(this,'${esc(id)}')">` : '';
+            return id ? `<button type="button" class="sc-mimg"${th} onclick="CLUB.viewMedia('${esc(mid)}')" aria-label="Open photo">${img}</button>${cap}` : `<div class="sc-mimg"${th}>${img}${up}</div>${cap}`;
+        }
+        if (f.k === 'vid') {
+            const poster = f.th || '';
+            const st = ` style="--ar:${ar.toFixed(3)}${poster ? `;background-image:url('${poster}')` : ''}"`, inner = (!poster && src ? `<video src="${src}#t=0.3" muted playsinline preload="metadata"${f.w ? '' : ` onloadedmetadata="this.videoWidth&&this.parentNode.style.setProperty('--ar',Math.max(.5,Math.min(2,this.videoWidth/this.videoHeight)).toFixed(3))"`}></video>` : '') + (f.d ? `<span class="sc-mdur">${dur(f.d)}</span>` : '');
+            return id ? `<button type="button" class="sc-mvid"${st} onclick="CLUB.viewMedia('${esc(mid)}')" aria-label="Play video">${inner}<span class="sc-mplay">${I('play')}</span></button>${cap}` : `<div class="sc-mvid"${st}>${inner}${up}</div>${cap}`;
+        }
+        const name = esc(f.n || 'File');
+        return (id ? `<a class="sc-mfile" href="${dFile(id)}" target="_blank" rel="noopener" download="${name}">` : `<div class="sc-mfile">`) +
+            `<span class="sc-mfic">${esc(extOf(f.n))}</span><span class="sc-mfn"><b>${name}</b><small>${f.s ? fmtSize(f.s) : ''}</small></span>${id ? `<span class="sc-mdl">${I('down')}</span>` : up}` + (id ? '</a>' : '</div>') + cap;
+    }
+    /* ---------- full screen: photo viewer and video player ---------- */
+    function viewMedia(mid) {
+        const m = MEDIA.msgs[mid]; if (!m || !m.f || !m.f.id) return;
+        const f = m.f, id = f.id, local = MEDIA.local[id];
+        closeViewer();
+        const d = document.createElement('div'); d.className = 'sc-lb'; d.id = 'sc-lb'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true'); d.setAttribute('aria-label', f.k === 'vid' ? 'Video' : 'Photo');
+        const body = f.k === 'img'
+            ? `<img src="${local || dImg(id, 2048)}" alt="Photo" onerror="this.onerror=null;this.src='${dImg2(id, 2048)}'">`
+            : `<video src="${local || dFile(id)}" controls autoplay playsinline ${f.th ? `poster="${f.th}"` : ''} onerror="CLUB.vidFail()"></video><div class="sc-lbfail" hidden><p>This video can’t play here.</p><a href="${dView(id)}" target="_blank" rel="noopener">Open video</a></div>`;
+        d.innerHTML = `<div class="sc-lbtop"><button type="button" class="sc-icb" onclick="CLUB.closeViewer()" aria-label="Close">${I('x')}</button><span>${m.x ? esc(scrub(m.x)).slice(0, 80) : ''}</span><a class="sc-icb" href="${dView(id)}" target="_blank" rel="noopener" aria-label="Open original">${I('expand')}</a></div><div class="sc-lbbody">${body}</div>`;
+        document.body.appendChild(d); requestAnimationFrame(() => d.classList.add('in'));
+        d.addEventListener('click', e => { if (e.target.classList.contains('sc-lbbody')) closeViewer(); });
+        document.addEventListener('keydown', lbKey);
+        try { history.pushState({ lb: 1 }, ''); } catch (e) { }
+    }
+    /* Drive sometimes needs a few seconds to make a preview of a new photo: try the other address, then try again a bit later */
+    function imgFail(im, id) {
+        const n = +(im.dataset.n || 0) + 1; im.dataset.n = n;
+        if (n === 1) { im.src = dImg2(id, 720); return; }
+        if (n <= 3) { setTimeout(() => { if (im.isConnected) im.src = dImg(id, 720) + '&r=' + n; }, 4000 * n); return; }
+        const b = im.closest('.sc-mimg'); im.remove(); if (b) b.classList.add('fail');
+    }
+    function lbKey(e) { if (e.key === 'Escape') closeViewer(); }
+    function vidFail() { const f = document.querySelector('#sc-lb .sc-lbfail'); if (f) f.hidden = false; const v = document.querySelector('#sc-lb video'); if (v) v.style.display = 'none'; }
+    function closeViewer(fromPop) {
+        const d = $('sc-lb'); if (!d) return; d.id = ''; document.removeEventListener('keydown', lbKey);
+        const v = d.querySelector('video'); if (v) { try { v.pause(); } catch (e) { } v.removeAttribute('src'); }
+        d.classList.remove('in'); setTimeout(() => d.remove(), 220);
+        if (!fromPop) { try { if (history.state && history.state.lb) history.back(); } catch (e) { } }
+    }
+    addEventListener('popstate', () => { if ($('sc-lb')) closeViewer(true); });
+
+    /* paste a picture into the message box, or drop files on the chat */
+    document.addEventListener('paste', e => {
+        if (!e.target || e.target.id !== 'sc-x' || !C.th || !C.fr[C.th.u] || !$('sc-comp') || !$('sc-comp').querySelector('.sc-att')) return;
+        const fs = Array.from((e.clipboardData && e.clipboardData.files) || []); if (!fs.length) return;
+        e.preventDefault(); mediaSheet(fs);
+    });
+    document.addEventListener('dragover', e => { const t = e.target.closest && e.target.closest('.sc-dm'); if (t && t.querySelector('.sc-att') && Array.from(e.dataTransfer.types || []).includes('Files')) { e.preventDefault(); t.classList.add('drop'); } });
+    document.addEventListener('dragleave', e => { const t = e.target.closest && e.target.closest('.sc-dm'); if (t && !t.contains(e.relatedTarget)) t.classList.remove('drop'); });
+    document.addEventListener('drop', e => { const t = e.target.closest && e.target.closest('.sc-dm'); if (!t || !t.querySelector('.sc-att')) return; t.classList.remove('drop'); const fs = Array.from(e.dataTransfer.files || []); if (!fs.length) return; e.preventDefault(); mediaSheet(fs); });
 
     /* ================= voice calls (WebRTC; signalling through the database) ================= */
     function callAllowed(u) {
@@ -29883,7 +30219,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     let VAC = null;
     function vac() { try { VAC = VAC || new (window.AudioContext || window.webkitAudioContext)(); if (VAC.state === 'suspended') VAC.resume(); } catch (e) { VAC = null; } return VAC; }
     const rtcRef = (cid) => C.db.ref('club/calls/' + cid + '/rtc');
-    function newCall(o) { C.vc = Object.assign({ seen: {}, pend: [], st: 'ringing', muted: false, howlN: 0, howlBin: -1 }, o); presence(); vac(); showCall(); return C.vc; }
+    function newCall(o) { C.vc = Object.assign({ seen: {}, pend: [], st: 'ringing', muted: false, spk: lsGet(LSSPK, 0) === 1, howlN: 0, howlBin: -1 }, o); presence(); vac(); showCall(); return C.vc; }
     async function callU(u) {
         closeSheet(); if (!u) return; if (!C.db) { await enter(); if (!C.db) return; }
         if (C.vc) return maxCall();
@@ -29948,12 +30284,13 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         return sdp.replace(new RegExp('(a=rtpmap:' + pt + ' opus/48000[^\\r\\n]*\\r?\\n)', 'i'), '$1a=fmtp:' + pt + ' ' + Object.entries(want).map(([k, v]) => k + '=' + v).join(';') + '\r\n');
     }
     function makePc(r) {
-        const pc = new RTCPeerConnection({ iceServers: ICE_SERVERS.concat(Array.isArray(LR_TURN) ? LR_TURN : []), bundlePolicy: 'max-bundle' });
+        const pc = new RTCPeerConnection({ iceServers: ICE_SERVERS.concat(Array.isArray(LR_TURN) ? LR_TURN : [], iceExtra()), bundlePolicy: 'max-bundle' });
         r.pc = pc; r.mic.getTracks().forEach(t => pc.addTrack(t, r.mic));
         pc.onicecandidate = (e) => { if (e.candidate && C.vc === r) rtcRef(r.cid).child(r.role === 'caller' ? 'ca' : 'cb').push(JSON.stringify(e.candidate)).catch(() => { }); };
         pc.ontrack = (e) => {
             let a = $('sc-audio'); if (!a) { a = document.createElement('audio'); a.id = 'sc-audio'; a.autoplay = true; a.setAttribute('playsinline', ''); document.body.appendChild(a); }
-            a.srcObject = e.streams[0] || new MediaStream([e.track]); a.volume = .92; a.muted = false; a.play().catch(() => { });
+            a.srcObject = e.streams[0] || new MediaStream([e.track]); a.volume = 1; a.muted = false; a.play().catch(() => { });
+            spkOff(r); if (r.spk) applySpk(r);
             guard(r, a.srcObject);
         };
         pc.onconnectionstatechange = () => {
@@ -29990,7 +30327,8 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     }
     function duck(r) {
         if (Date.now() - (r.duckT || 0) < 1500) return; r.duckT = Date.now();
-        const a = $('sc-audio'); if (a) { a.muted = true; setTimeout(() => { if (C.vc === r) a.muted = false; }, 900); }
+        if (r.spkN) { r.spkN.g.gain.value = 0; setTimeout(() => { if (C.vc === r && r.spkN) r.spkN.g.gain.value = SPK_GAIN; }, 900); return; }
+        const a = $('sc-audio'); if (a) { a.muted = true; setTimeout(() => { if (C.vc === r && !r.spkN) a.muted = false; }, 900); }
         const t = r.mic && r.mic.getAudioTracks()[0]; if (t && !r.muted) { t.enabled = false; setTimeout(() => { if (C.vc === r && !r.muted) t.enabled = true; }, 650); }
         const tip = $('sc-call-tip'); if (tip) { tip.innerHTML = `${I('headset')}<span>Echo stopped. Use headphones, or keep the phones far apart.</span>`; tip.classList.add('warn', 'show'); clearTimeout(r.tipT); r.tipT = setTimeout(() => tip.classList.remove('show'), 5000); }
         r.ducks = (r.ducks || 0) + 1;
@@ -30048,7 +30386,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         clearTimeout(r.to); clearTimeout(r.fail); clearTimeout(r.rb); clearTimeout(r.dc); clearInterval(r.gd); clearInterval(C.timers.clock);
         if (r.sub) r.sub(); try { r.pc && r.pc.close(); } catch (e) { }
         if (r.mic) r.mic.getTracks().forEach(t => t.stop());
-        const a = $('sc-audio'); if (a) { a.srcObject = null; a.remove(); }
+        spkOff(r); const a = $('sc-audio'); if (a) { a.srcObject = null; a.remove(); }
         const secs = r.t0 ? Math.round((Date.now() - r.t0) / 1000) : 0, p = r.peer;
         if (r.ringing) { C.db.ref('club/ring/' + p.uid).remove().catch(() => { }); try { C.db.ref('club/ring/' + p.uid).onDisconnect().cancel(); } catch (e) { } }
         try { C.db.ref('club/calls/' + r.cid + '/rtc/hang').onDisconnect().cancel(); } catch (e) { }
@@ -30071,6 +30409,36 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         try { await C.db.ref('club').update(up); } catch (e) { }
     }
     function mute() { const r = C.vc; if (!r || !r.mic) return; const t = r.mic.getAudioTracks()[0]; if (!t) return; r.muted = !r.muted; t.enabled = !r.muted; paintCall(); }
+    /* speaker: louder sound for a quiet phone. Where the browser lets a page choose the output, it picks the loudspeaker;
+       everywhere the voice also goes through a gentle limiter and is lifted about two times, so it stays clear, not distorted */
+    const LSSPK = 'lr_club_spk', SPK_GAIN = 2.2;
+    function speaker() {
+        const r = C.vc; if (!r) return;
+        r.spk = !r.spk; lsSet(LSSPK, r.spk ? 1 : 0);
+        if (r.spk) applySpk(r); else spkOff(r);
+        paintCall(); vib(10);
+    }
+    function applySpk(r) {
+        const a = $('sc-audio'); if (!a || !a.srcObject) return;
+        try {
+            if (a.setSinkId && navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) navigator.mediaDevices.enumerateDevices().then(ds => {
+                const outs = ds.filter(d => d.kind === 'audiooutput'); if (outs.length < 2 || C.vc !== r) return;
+                const sp = outs.find(d => /speaker|loud|динамик/i.test(d.label) && !/head|ear|bluetooth|наушник/i.test(d.label));
+                if (sp && r.spk) a.setSinkId(sp.deviceId).catch(() => { });
+            }).catch(() => { });
+        } catch (e) { }
+        const ac = vac(); if (!ac || r.spkN) return;
+        try {
+            const src = ac.createMediaStreamSource(a.srcObject), comp = ac.createDynamicsCompressor(), g = ac.createGain();
+            comp.threshold.value = -26; comp.knee.value = 16; comp.ratio.value = 4; comp.attack.value = .004; comp.release.value = .18;
+            g.gain.value = SPK_GAIN; src.connect(comp); comp.connect(g); g.connect(ac.destination);
+            r.spkN = { src, comp, g }; a.muted = true;   // the page plays it through the louder path instead
+        } catch (e) { r.spkN = null; a.muted = false; }
+    }
+    function spkOff(r) {
+        if (r && r.spkN) { try { r.spkN.g.disconnect(); r.spkN.comp.disconnect(); r.spkN.src.disconnect(); } catch (e) { } r.spkN = null; }
+        const a = $('sc-audio'); if (a && C.vc === r) { a.muted = false; if (a.setSinkId && r && !r.spk) a.setSinkId('').catch(() => { }); }
+    }
     /* the call screen */
     function showCall() {
         let d = $('sc-call'); const r = C.vc; if (!r) return; const p = r.peer, u = p.uid, info = Object.assign({}, p, uinfo(u)), src = avSrc(u);
@@ -30080,13 +30448,14 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
             <div class="sc-call-top"><button class="sc-icb" onclick="CLUB.minCall()" aria-label="Minimise">${I('back')}</button><span class="sc-enc">${I('shield')}Encrypted voice call</span><span style="width:44px"></span></div>
             <div class="sc-call-mid"><div class="sc-call-av" id="sc-call-av">${av(u, 148, { dot: false })}<i></i><i></i><i></i></div><h3>${esc(info.n || 'Learner')} <span>${flag(info.c)}</span></h3><p id="sc-call-st">Calling…</p></div>
             <div class="sc-call-tip" id="sc-call-tip">${I('headset')}<span>For the clearest sound, use headphones.</span></div>
-            <div class="sc-call-acts"><button class="sc-cbtn" id="sc-mute" onclick="CLUB.mute()">${I('mic')}<span>Mute</span></button><button class="sc-cbtn" onclick="CLUB.callChat()">${I('chat')}<span>Chat</span></button><button class="sc-cbtn red" onclick="CLUB.hang()">${I('end')}<span>End</span></button></div>`;
+            <div class="sc-call-acts"><button class="sc-cbtn" id="sc-mute" onclick="CLUB.mute()">${I('mic')}<span>Mute</span></button><button class="sc-cbtn" id="sc-spk" onclick="CLUB.speaker()" aria-pressed="false">${I('spk')}<span>Speaker</span></button><button class="sc-cbtn" onclick="CLUB.callChat()">${I('chat')}<span>Chat</span></button><button class="sc-cbtn red" onclick="CLUB.hang()">${I('end')}<span>End</span></button></div>`;
         requestAnimationFrame(() => d.classList.add('in')); paintCall(); paintCallPill();
     }
     function paintCall() {
         const r = C.vc, d = $('sc-call'); if (!r || !d) return paintCallPill();
         d.dataset.st = r.st; const st = $('sc-call-st'), m = $('sc-mute');
         if (m) { m.classList.toggle('on', !!r.muted); m.innerHTML = (r.muted ? I('micoff') : I('mic')) + `<span>${r.muted ? 'Unmute' : 'Mute'}</span>`; }
+        const sk = $('sc-spk'); if (sk) { sk.classList.toggle('on', !!r.spk); sk.setAttribute('aria-pressed', r.spk ? 'true' : 'false'); }
         clearInterval(C.timers.clock);
         const lab = r.st === 'live' ? null : r.st === 'ringing' ? (r.role === 'caller' ? (isOn(r.peer.uid) || r.kind === 'pair' ? 'Ringing…' : r.alerted ? 'Ringing on their phone…' : 'Calling…') : 'Connecting…') : 'Connecting…';
         if (st) st.textContent = lab || dur((Date.now() - r.t0) / 1000);
@@ -30141,7 +30510,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     /* start the background service a moment after the app opens, so friends can reach you anywhere in the app */
     setTimeout(() => { const m = lsGet(LSK, null); if (m && m.ok && cfg()) service().then(() => { paintBadge(); }); }, (C.want || C.wantChat) ? 60 : 3500);
 
-    window.CLUB = { enter, away, tab, home, back, join, cancelEdit, pickLv, edit, setW, setOn, open, fill, key, send, typing, find, cancel, leave, next, ice, ask, addFriend, acceptReq, declineReq, unfriend, dm, filter, who, menu, block, unblock, report, blockedList, rules, closeSheet, photo, photoHub, photoFile, cropSave, photoSet, rec, recCancel, playV, callU, callPair, accept, decline, hang, mute, minCall, maxCall, callChat, liveText, alerts, alertsHide, alertsAuto: () => autoAlerts(), _C: C, _push: PUSH, _scrub: scrub, _tuneOpus: tuneOpus };
+    window.CLUB = { enter, away, tab, home, back, join, cancelEdit, pickLv, edit, setW, setOn, open, fill, key, send, typing, find, cancel, leave, next, ice, ask, addFriend, acceptReq, declineReq, unfriend, dm, filter, who, menu, block, unblock, report, blockedList, rules, closeSheet, photo, photoHub, photoFile, cropSave, photoSet, rec, recCancel, playV, callU, callPair, accept, decline, hang, mute, minCall, maxCall, callChat, speaker, attach, pick, unpick, closeMediaSheet, sendPicked, cancelUp, viewMedia, closeViewer, vidFail, imgFail, liveText, alerts, alertsHide, popHelp, popHide, alertsAuto: () => autoAlerts(), _C: C, _push: PUSH, _scrub: scrub, _tuneOpus: tuneOpus, _media: MEDIA };
 })();
 </script><!--/club:js--><!--rm:js--><style id="rm-css">
 /* ===== daily reminders: Settings card and the one-time question on the Hub ===== */
@@ -30177,6 +30546,8 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
 .ntf-tip{margin:10px 0 0;padding:10px 12px;border-radius:12px;background:rgba(251,191,36,.08);color:#fcd34d;font-size:12.5px;line-height:1.45}
 .ntf-tip b{color:#fde68a}
 .ntf-act{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.ntf-app{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;margin-top:12px;border-radius:14px;color:#052e16;background:linear-gradient(135deg,#86efac,#22c55e);font-weight:800;font-size:14.5px;text-decoration:none;box-shadow:0 10px 24px -12px rgba(34,197,94,.9)}
+.ntf-app:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .ntf-act button{flex:1;min-width:130px;height:46px;border-radius:14px;font-weight:800;font-size:14px;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .ntf-go{color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6)}
 .ntf-no{color:#cbd5e1;background:rgba(255,255,255,.08)}
@@ -30253,7 +30624,36 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
             'Set <b>Notifications</b> to <b>Allow</b>.',
             'Reload the page.'];
     }
+    /* Calls that only appear quietly at the top: Chrome shows website alerts without popping them up until the learner turns that on once.
+       The LunaRise app (if its .apk is on the site) rings full screen like a phone call. */
+    let apkOk = null;
+    function apk() { if (apkOk !== null) return Promise.resolve(apkOk); return fetch('LunaRise.apk', { method: 'HEAD', cache: 'no-store' }).then(r => (apkOk = r.ok && !/text\/html/.test(r.headers.get('content-type') || ''))).catch(() => (apkOk = false)); }
+    function popSteps() {
+        if (appMode() || standalone()) return [
+            'Press and hold the <b>LunaRise</b> icon → <b>ⓘ App info</b> → <b>Notifications</b>.',
+            'Tap <b>Calls</b> (or the notification category) and turn on <b>Pop on screen</b> (Samsung: choose <b>Alert</b>, then <b>Pop-up</b>).',
+            'Android 14 or newer: phone <b>Settings</b> → <b>Apps</b> → <b>Special app access</b> → <b>Full screen notifications</b> → turn on <b>LunaRise</b>. Then a call fills the screen even when the phone is locked.'];
+        if (isSamsung()) return [
+            'Open the phone’s <b>Settings</b> → <b>Apps</b> → <b>Samsung Internet</b> → <b>Notifications</b>.',
+            'Tap <b>' + SITE + '</b> (or <b>Website notifications</b>).',
+            'Choose <b>Alert</b> and turn on <b>Pop-up</b> (or <b>Pop on screen</b>). Allow it on the <b>Lock screen</b> too.'];
+        return [
+            'Open the phone’s <b>Settings</b> → <b>Apps</b> → <b>Chrome</b> → <b>Notifications</b>.',
+            'Scroll to <b>Sites</b> and tap <b>' + SITE + '</b>.',
+            'Turn on <b>Pop on screen</b> (Samsung: choose <b>Alert</b>, then <b>Pop-up</b>). Allow it on the <b>Lock screen</b> too.'];
+    }
+    function testCall() {
+        if (!webOk() || Notification.permission !== 'granted') { sheet(nState()); return; }
+        navigator.serviceWorker.ready.then(r => { (r.active || navigator.serviceWorker.controller).postMessage({ type: 'lr-testcall', wait: 6000 }); }).catch(() => { });
+        closeSheet(); toast('📞 A test call comes in 6 seconds. Go to your home screen or open another app now.');
+    }
     function sheetData(kind) {
+        if (kind === 'popup') {
+            const app = apkOk && isAndroid() && !appMode() && !standalone(), web = !nat() && webOk() && Notification.permission === 'granted';
+            return { ic: '📳', t: 'Make calls pop up on your screen', p: (appMode() || standalone()) ? 'So that a friend’s call appears over any app, with Answer and Decline, check these once:' : 'Chrome shows website alerts quietly at the top of the screen until you allow pop-ups once. After that, a friend’s call appears over any app, with Answer and Decline:',
+                steps: popSteps(), tip: app ? '<b>Best:</b> the LunaRise app for Android rings full screen, like a normal phone call, even when the phone is locked.' : (isAndroid() ? 'Quicker next time: press and hold any LunaRise notification, then tap ⚙.' : ''),
+                go: web ? 'Send a test call' : 'Done', no: 'Close', app };
+        }
         if (kind === 'prime') return { ic: '🔔', t: 'Allow notifications?', p: 'Then your phone can ring when a friend calls you, and Luna can send one short study reminder a day. You can switch either off in Settings.', go: 'Allow notifications', no: 'Not now' };
         if (kind === 'denied') return { ic: '🔕', t: 'Notifications are blocked', p: 'Your phone is blocking LunaRise, so calls from friends can’t ring and reminders can’t arrive. Only you can unblock it, and it takes a few seconds:', steps: unblockSteps(), tip: isAndroid() ? SLOW : '', go: 'Check again', no: 'Close' };
         if (kind === 'inapp') return { ic: '🌐', t: 'Open LunaRise in Chrome', p: 'This app’s built-in browser can’t show notifications, so calls and reminders won’t reach you here.',
@@ -30273,6 +30673,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
             '<h3 id="ntf-t">' + d.t + '</h3><p class="ntf-p">' + d.p + '</p>' +
             (d.steps ? '<ol class="ntf-steps">' + d.steps.map(s => '<li>' + s + '</li>').join('') + '</ol>' : '') +
             (d.tip ? '<p class="ntf-tip">' + d.tip + '</p>' : '') +
+            (d.app ? '<a class="ntf-app" href="LunaRise.apk" download="LunaRise.apk">⬇ Get the LunaRise app</a>' : '') +
             '<div class="ntf-act"><button type="button" class="ntf-go">' + d.go + '</button><button type="button" class="ntf-no">' + d.no + '</button></div></div>';
         document.body.appendChild(ov); sheetEl = ov;
         requestAnimationFrame(() => requestAnimationFrame(() => ov.classList.add('in')));
@@ -30281,6 +30682,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         ov.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSheet(); });
         ov.querySelector('.ntf-no').addEventListener('click', closeSheet);
         go.addEventListener('click', () => {
+            if (kind === 'popup') { if (d.go === 'Send a test call') return testCall(); return closeSheet(); }
             if (kind === 'prime') { closeSheet(); return reqPerm(); }
             if (kind === 'denied') { const s = nState(); if (s === 'granted') return granted(true); if (s === 'default') { closeSheet(); return reqPerm(); } return toast('Still blocked. Follow the steps above, then come back.'); }
             if (d.open) { location.href = 'intent://' + location.host + location.pathname + '#Intent;scheme=https;package=com.android.chrome;end'; return; }
@@ -30320,6 +30722,9 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         // from a tap: ask now, or show how to unblock
         ask() { const s = nState(); if (s === 'default') return reqPerm(); sheet(s); },
         help() { sheet(nState()); },
+        // calls arrive but only show quietly at the top: how to make them pop up (and the app, if it is on the site)
+        popup() { const s = nState(); if (s !== 'granted' && s !== 'on') return sheet(s === 'default' ? 'prime' : s); apk().then(() => sheet('popup')); },
+        apk, testCall,
         // a gentle one-time explanation; the browser's own question comes only after the learner taps Allow
         prime() {
             const s = nState(), m = lsGet(NLS, {}) || {};
@@ -30458,6 +30863,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
         const sel = $('rm-hour');
         if (sel) { if (!sel.options.length) sel.innerHTML = HOURS.map(h => '<option value="' + h + '">' + fmtH(h) + '</option>').join(''); sel.value = String(hourOf()); }
         const tb = $('rm-test'); if (tb) tb.disabled = !on || busy;
+        const pr = $('rm-pop'); if (pr) pr.hidden = !isAndroid();
     }
 
     /* ---------- the one-time question on the Hub ---------- */
