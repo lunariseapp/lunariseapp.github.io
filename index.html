@@ -5555,6 +5555,122 @@ html.bk-lock,html.bk-lock body{overflow:hidden!important}
 /* Light mode: dark writing stays dark on Book Maker's gold buttons */
 html.lm .bk-seg button.on,html.lm .bk-mk-go{color:#24170a!important}
 </style><!--/rs:css-->
+<!--gx:css--><style id="gx-css">
+/* Grammar+ : formula table, 20 examples, 20 mistakes, Practice, Mixed test */
+.gx-hl{background:linear-gradient(transparent 55%,rgba(250,204,21,.38) 55%);color:inherit;padding:0 1px;border-radius:2px;font-weight:800}
+.gx-sk{padding:14px;border-radius:20px;background:linear-gradient(160deg,rgba(30,41,59,.55),rgba(15,23,42,.7));border:1px solid rgba(71,85,105,.4);display:flex;flex-direction:column;gap:9px;margin-top:10px}
+.gx-sk i{display:block;height:11px;border-radius:6px;background:linear-gradient(90deg,rgba(148,163,184,.12),rgba(148,163,184,.26),rgba(148,163,184,.12));background-size:200% 100%;animation:gxSk 1.3s linear infinite}
+.gx-sk i:first-child{width:78%}.gx-sk i:last-child{width:52%}.gx-sk.sm{padding:10px;margin-top:8px}.gx-sk.sm i{width:64%}
+@keyframes gxSk{to{background-position:-200% 0}}
+.gx-note{margin:0 0 12px}
+.gx-off{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:10px 14px;border-radius:14px;margin-bottom:12px;font-size:13px;font-weight:700;color:#cbd5e1;background:rgba(51,65,85,.35);border:1px solid rgba(100,116,139,.4)}
+.gx-off button{margin-left:auto;padding:6px 12px;border-radius:10px;font-size:12px;font-weight:800;color:#e9d5ff;background:rgba(124,58,237,.25);border:1px solid rgba(167,139,250,.4)}
+.gx-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:2px 0 12px}
+.gx-head b{font-size:18px;font-weight:900;color:#fff}
+.gx-head span{font-size:12.5px;color:#94a3b8;font-weight:700}
+/* formula */
+.gx-ft{display:flex;flex-direction:column;gap:10px}
+.gx-fr{padding:12px;border-radius:16px;background:rgba(15,23,42,.75);border:1px solid rgba(71,85,105,.55);border-left:4px solid #8b5cf6}
+.gx-fr.p{border-left-color:#10b981}.gx-fr.n{border-left-color:#f43f5e}.gx-fr.q{border-left-color:#38bdf8}
+.gx-fh{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.gx-fh b{font-size:12.5px;font-weight:900;color:#e2e8f0;letter-spacing:.02em}
+.gx-sg{width:24px;height:24px;border-radius:8px;display:grid;place-items:center;font-size:15px;font-weight:900;color:#fff;background:#8b5cf6}
+.gx-fr.p .gx-sg{background:#10b981}.gx-fr.n .gx-sg{background:#f43f5e}.gx-fr.q .gx-sg{background:#0ea5e9}
+.gx-tks{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.gx-tk{display:inline-flex;align-items:center;min-height:30px;padding:4px 10px;border-radius:10px;font:800 13.5px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;color:#e2e8f0;background:rgba(51,65,85,.7);border:1px solid rgba(100,116,139,.55)}
+.gx-tk.s{color:#bae6fd;background:rgba(14,165,233,.16);border-color:rgba(56,189,248,.4)}
+.gx-tk.a{color:#ddd6fe;background:rgba(139,92,246,.2);border-color:rgba(167,139,250,.45)}
+.gx-tk.v{color:#fde68a;background:rgba(245,158,11,.16);border-color:rgba(251,191,36,.42)}
+.gx-tk.o{color:#bbf7d0;background:rgba(16,185,129,.14);border-color:rgba(52,211,153,.38)}
+.gx-plus{font-style:normal;font-weight:900;color:#64748b}
+.gx-code{display:block;font:700 13.5px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;color:#e9d5ff;white-space:pre-wrap}
+.gx-fx{display:flex;align-items:flex-start;gap:8px;margin-top:10px}
+.gx-fx p{flex:1;font-size:15px;line-height:1.5;color:#f8fafc;font-weight:600}
+.gx-ftr{display:flex;align-items:flex-start;gap:8px;margin-top:6px;font-size:13.5px;line-height:1.5;color:#cbd5e1}
+.gx-qf .gx-fr{padding:10px}.gx-qf .gx-fh{margin-bottom:7px}
+.gx-sec{display:flex;align-items:center;gap:8px}
+.gx-use{display:flex;flex-direction:column;gap:10px}
+.gx-u{display:flex;gap:12px;padding:14px;border-radius:18px;background:linear-gradient(160deg,rgba(30,41,59,.7),rgba(15,23,42,.9));border:1px solid rgba(71,85,105,.5)}
+.gx-un{flex:none;width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:13px;font-weight:900;color:#fff;background:linear-gradient(135deg,#0ea5e9,#6366f1)}
+.gx-u>div{flex:1;min-width:0}
+.gx-u b{display:block;font-size:15px;line-height:1.4;color:#f1f5f9}
+.gx-u small{display:block;margin-top:3px;font-size:13px;line-height:1.5;color:#c4b5fd}
+.gx-ux{display:flex;align-items:flex-start;gap:8px;margin-top:9px;padding:9px 11px;border-radius:12px;background:rgba(2,6,23,.55);border:1px solid rgba(51,65,85,.6)}
+.gx-ux p{flex:1;font-size:14.5px;line-height:1.5;color:#e2e8f0}
+.gx-rem,.gx-vs{margin-top:14px;padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,rgba(250,204,21,.13),rgba(251,146,60,.08));border:1px solid rgba(250,204,21,.32)}
+.gx-vs{background:linear-gradient(135deg,rgba(56,189,248,.12),rgba(99,102,241,.1));border-color:rgba(56,189,248,.32)}
+.gx-rh{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#fde68a;margin-bottom:6px}
+.gx-vs .gx-rh{color:#7dd3fc}.gx-vs .gx-rh b{text-transform:none;letter-spacing:0;font-size:12.5px;color:#e0f2fe}
+.gx-rem p,.gx-vs p{font-size:14.5px;line-height:1.55;color:#f8fafc;font-weight:600}
+.gx-rem p.tr,.gx-vs p.tr{margin-top:6px;font-weight:500;color:#e2e8f0}
+/* examples and mistakes */
+.gx-exc .gl-exb{min-width:0;flex:1}
+.gx-use-t{display:inline-block;margin:6px 0 2px;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:800;color:#c4b5fd;background:rgba(139,92,246,.14);border:1px solid rgba(167,139,250,.28)}
+.gx-bad,.gx-good{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;font-size:14.5px;line-height:1.55;margin-top:8px}
+.gx-bad{background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.3);color:#fecdd3}
+.gx-good{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);color:#d1fae5;font-weight:700}
+.gx-bad>i,.gx-good>i{margin-top:4px}
+.gx-bad>span,.gx-good>span{flex:1;min-width:0}
+.gx-bad small,.gx-good small{display:block;font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:2px}
+.gx-d{text-decoration:line-through;text-decoration-thickness:2px;color:#fff;background:rgba(244,63,94,.45);border-radius:4px;padding:0 3px}
+.gx-i{text-decoration:none;color:#fff;background:rgba(16,185,129,.5);border-radius:4px;padding:0 3px}
+.gx-why{margin-top:8px;padding:10px 12px;border-radius:12px;background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.24)}
+.gx-why b{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#7dd3fc;margin-bottom:4px}
+.gx-why p{font-size:14px;line-height:1.55;color:#e0f2fe}
+.gx-why p.en{margin-top:4px;font-size:13px;color:#94a3b8}
+/* practice */
+.gx-pm{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:640px){.gx-pm{grid-template-columns:1fr 1fr}}
+.gx-pc{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;padding:18px;border-radius:22px;color:#fff;background:linear-gradient(160deg,rgba(30,41,59,.8),rgba(15,23,42,.95));border:1px solid rgba(71,85,105,.6);transition:transform .2s,border-color .2s}
+.gx-pc:not([disabled]):hover{transform:translateY(-2px);border-color:rgba(167,139,250,.6)}
+.gx-pc[disabled]{opacity:.55}
+.gx-pc b{font-size:17px;font-weight:900}
+.gx-pc small{font-size:13px;line-height:1.5;color:#94a3b8}
+.gx-pc em{position:absolute;top:16px;right:16px;font-style:normal;font-size:12px;font-weight:900;color:#c4b5fd}
+.gx-pi{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:18px;color:#fff;background:linear-gradient(135deg,#f43f5e,#8b5cf6);margin-bottom:4px}
+.gx-pc.bd .gx-pi{background:linear-gradient(135deg,#0ea5e9,#6366f1)}
+.gx-rws{margin:16px 0 14px;padding:18px;border-radius:18px;font-size:19px;line-height:1.5;font-weight:700;color:#fff;background:rgba(2,6,23,.6);border:1px solid rgba(71,85,105,.6);text-align:center}
+.gx-rwb{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gx-rwb button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;border-radius:16px;font-size:15px;font-weight:900;border:1.5px solid;transition:transform .15s}
+.gx-rwb button:active{transform:scale(.97)}
+.gx-rwb .ok{color:#d1fae5;background:rgba(16,185,129,.14);border-color:rgba(16,185,129,.45)}
+.gx-rwb .bad{color:#fecdd3;background:rgba(244,63,94,.12);border-color:rgba(244,63,94,.42)}
+.gx-rwb .right{box-shadow:0 0 0 3px rgba(16,185,129,.55)}
+.gx-rwb .wrong{box-shadow:0 0 0 3px rgba(244,63,94,.6)}
+.gx-rwb .dim{opacity:.45}
+.gx-rwb button[disabled]{cursor:default}
+.gx-bh{display:flex;gap:8px;align-items:flex-start;margin:14px 0 10px;padding:10px 12px;border-radius:12px;font-size:14px;line-height:1.5;color:#e2e8f0;background:rgba(124,58,237,.12);border:1px solid rgba(167,139,250,.24)}
+.gx-ans{display:flex;flex-wrap:wrap;gap:8px;min-height:58px;padding:10px;border-radius:16px;background:rgba(2,6,23,.6);border:1.5px dashed rgba(100,116,139,.6)}
+.gx-ans.ok{border:1.5px solid rgba(16,185,129,.6)}.gx-ans.bad{border:1.5px solid rgba(244,63,94,.6)}
+.gx-ph{align-self:center;font-size:13px;color:#64748b;padding:0 4px}
+.gx-pool{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.gx-tile{display:inline-flex;align-items:center;min-height:40px;padding:6px 13px;border-radius:12px;font-size:15px;font-weight:700;color:#f1f5f9;background:rgba(51,65,85,.75);border:1px solid rgba(100,116,139,.6);transition:transform .12s}
+.gx-tile:not([disabled]):active{transform:scale(.95)}
+.gx-tile.on{background:rgba(124,58,237,.3);border-color:rgba(167,139,250,.6)}
+.gx-tile.gone{opacity:.18}
+.gx-bb{display:flex;gap:10px;justify-content:flex-end;margin-top:14px}
+.gx-bb button{min-height:44px;padding:0 18px;border-radius:14px;font-size:14px;font-weight:800;color:#e2e8f0;background:rgba(51,65,85,.7);border:1px solid rgba(100,116,139,.6)}
+.gx-bb button.p{color:#fff;background:linear-gradient(135deg,#7c3aed,#4f46e5);border-color:transparent}
+.gx-bb button[disabled]{opacity:.45}
+.gx-px .gl-fb{margin-top:14px}
+/* mixed test */
+.gx-mx{text-align:center;padding:26px 18px;border-radius:26px;background:linear-gradient(160deg,rgba(15,23,42,.95),rgba(2,6,23,.98));border:1px solid rgba(71,85,105,.6)}
+.gx-mxi{width:64px;height:64px;margin:0 auto 12px;border-radius:20px;display:grid;place-items:center;font-size:26px;color:#fff;background:linear-gradient(135deg,#06b6d4,#6366f1)}
+.gx-mx h3{font-size:22px;font-weight:900;color:#fff}
+.gx-mx p{max-width:440px;margin:6px auto 0;font-size:14px;line-height:1.55;color:#94a3b8}
+.gx-lv{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.gx-lv button{padding:8px 14px;border-radius:12px;font-size:13px;font-weight:800;color:#cbd5e1;background:rgba(51,65,85,.6);border:1px solid rgba(100,116,139,.55)}
+.gx-lv button.on{color:#fff;background:linear-gradient(135deg,#06b6d4,#6366f1);border-color:transparent}
+.gx-go{display:inline-flex;align-items:center;gap:10px;margin-top:20px;min-height:50px;padding:0 28px;border-radius:16px;font-size:15px;font-weight:900;color:#fff;background:linear-gradient(135deg,#7c3aed,#4f46e5);box-shadow:0 14px 30px -12px rgba(99,102,241,.8)}
+.gx-mt{display:inline-flex;align-items:center;gap:7px;margin:12px 0 2px;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:700;color:#bae6fd;background:rgba(14,165,233,.12);border:1px solid rgba(56,189,248,.3)}
+.gx-mt b{color:#fff}
+.gx-lnk{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:7px 12px;border-radius:11px;font-size:12.5px;font-weight:800;color:#e9d5ff;background:rgba(124,58,237,.2);border:1px solid rgba(167,139,250,.35)}
+.gx-rev{display:flex;flex-direction:column;gap:8px;max-width:460px;margin:0 auto}
+.gx-rev button{display:grid;grid-template-columns:1fr auto;align-items:center;text-align:left;gap:2px 10px;padding:12px 14px;border-radius:14px;color:#f1f5f9;background:rgba(30,41,59,.75);border:1px solid rgba(71,85,105,.6)}
+.gx-rev button span{font-weight:800;font-size:14px}.gx-rev button small{grid-column:1;font-size:11.5px;color:#94a3b8}.gx-rev button i{grid-row:1/3;grid-column:2;color:#94a3b8}
+@media (prefers-reduced-motion:reduce){.gx-sk i{animation:none}.gx-pc,.gx-tile,.gx-rwb button{transition:none}}
+.gl-bad.gx-bad>span,.gx-bad>span{text-decoration:none!important}
+</style><!--/gx:css-->
 </head>
 <body class="min-h-screen text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white" data-view="dashboard">
 <script id="lr-tw-pos">(function () { try { var st = document.getElementById('lr-tw'), p = localStorage.getItem('lr_tw_pos'); if (!st || !p) return; var h = document.head, kids = h.children;
@@ -6328,7 +6444,7 @@ void main(){
                         Master English Grammar <span class="grammar-gold-text">Like a Pro.</span>
                     </h2>
                     <p class="mt-3 text-sm sm:text-base text-slate-400 leading-7">
-                        A polished A1–C2 learning system: every rule, example and tip in English plus your own language — Uzbek, Russian, Hindi, Spanish, French, Arabic, Bengali, Portuguese, Urdu or Chinese — with smart practice, IELTS guidance and mastery tracking.
+                        A polished A1–C2 learning system: every rule, example and tip in English plus your own language — Uzbek, Russian, Hindi, Spanish, French, Arabic, Bengali, Portuguese, Urdu or Chinese — with smart practice, IELTS guidance and mastery tracking. Every rule has 20 examples, 20 common mistakes, a Practice tab and 20-question tests that never repeat a question.
                     </p>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-2 gap-2 min-w-0 xl:min-w-[310px]">
@@ -20669,7 +20785,7 @@ function filterGrammarModules() {
     let list = grammarModules.filter(m => {
         const hay = `${m.title} ${m.category} ${m.level} ${m.keys} ${m.definition} ${m.uz} ${m.ielts}`.toLowerCase();
         const matchesQ = !q || hay.includes(q);
-        const matchesLevel = level === 'all' || m.level === level;
+        const matchesLevel = level === 'all' || (window.gxLvMatch ? gxLvMatch(m.level, level) : m.level === level);
         const matchesCat = activeGrammarCategory === 'All' || m.category === activeGrammarCategory;
         return matchesQ && matchesLevel && matchesCat;
     });
@@ -20792,7 +20908,7 @@ function renderGrammarGrid(list = grammarModules) {
 
                 <div class="mt-4 flex items-center justify-between text-[9px] text-slate-600">
                     <span>${index + 1} of ${list.length} shown</span>
-                    <span>${m.quiz?.length || 0} quiz questions</span>
+                    <span>20 examples · 20-question tests</span>
                 </div>
 
                 <button onclick="openGrammarLesson(${m.id})"
@@ -22083,7 +22199,7 @@ function filterGrammarModules(){
     const level=document.getElementById('grammar-level-filter')?.value||'all';
     let list=grammarModules.filter(m=>{
         const hay=`${m.title} ${m.category} ${m.level} ${m.keys} ${m.definition} ${m.uz} ${m.ru||''} ${m.ielts}`.toLowerCase();
-        return (!q||hay.includes(q))&&(level==='all'||m.level===level)&&(activeGrammarCategory==='All'||m.category===activeGrammarCategory);
+        return (!q||hay.includes(q))&&(level==='all'||(window.gxLvMatch?gxLvMatch(m.level,level):m.level===level))&&(activeGrammarCategory==='All'||m.category===activeGrammarCategory);
     });
     list=sortGrammarUltra(applyGrammarUltraFilters(list));
     renderGrammarGrid(list);
@@ -32204,7 +32320,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     }
     setGrammarCategory = function (cat) {
         activeGrammarCategory = cat; renderGrammarCategories(); filterGrammarModules();
-        const n = (() => { try { const q = ($('grammar-search') || {}).value || '', lv = ($('grammar-level-filter') || {}).value || 'all'; return grammarModules.filter(m => (cat === 'All' || m.category === cat) && (lv === 'all' || m.level === lv) && (!q || (m.title + ' ' + m.category + ' ' + m.keys).toLowerCase().includes(q.toLowerCase()))).length; } catch (e) { return 0; } })();
+        const n = (() => { try { const q = ($('grammar-search') || {}).value || '', lv = ($('grammar-level-filter') || {}).value || 'all'; return grammarModules.filter(m => (cat === 'All' || m.category === cat) && (lv === 'all' || (window.gxLvMatch ? gxLvMatch(m.level, lv) : m.level === lv)) && (!q || (m.title + ' ' + m.category + ' ' + m.keys).toLowerCase().includes(q.toLowerCase()))).length; } catch (e) { return 0; } })();
         focusResults((cat === 'All' ? 'All topics' : cat) + ' · ' + n + ' topic' + (n === 1 ? '' : 's'));
     };
     const _fav = showGrammarFavorites; showGrammarFavorites = function () { _fav(); const n = getGrammarFavorites().length; focusResults('⭐ Favorites · ' + n); };
@@ -34994,5 +35110,451 @@ Reply ONLY with JSON: {"paras": [${L.p} paragraph strings]}`;
     loadAll().then(() => { paintShelf(); });
 })();
 </script><!--/bk:js-->
+<!--gx:js--><script id="gx-js">
+/* ===== Grammar+ : every rule gets 20 examples, 20 common mistakes, a clear formula table, "when to use it",
+   a Practice tab (Right or wrong? · Build the sentence), 20-question tests that never repeat a question, and a
+   Mixed test across topics. The built-in lesson shows at once; the extra examples, mistakes and formula notes are
+   written once by AI for each rule and kept on the device (English once, translations per language). ===== */
+(function () {
+    'use strict';
+    if (typeof renderGrammarLesson !== 'function' || typeof grammarModules === 'undefined' || typeof gqUnseen !== 'function') return;
+    const N_EX = 20, N_MK = 20, N_Q = 20, N_PX = 10;
+    /* labels for the new parts, in the 10 lesson languages + English */
+    const GX_KEYS = ['practice', 'exN', 'mkN', 'more', 'offline', 'when', 'remember', 'signal', 'compare', 'pos', 'neg', 'qst', 'form', 'why', 'wrong', 'right', 'rw', 'rwD', 'build', 'buildD', 'ok', 'bad', 'check', 'clear', 'great', 'score', 'more10', 'mixed', 'mixedD', 'topic', 'open', 'toStudy', 'noMore', 'retry', 'start', 'lv', 'allLv', 'isOk', 'hint'];
+    const GX_RAW = {
+        en: ['Practice', '{n} examples', '{n} common mistakes', 'Writing {n} more for you…', 'Connect to the internet to see all 20.', 'When to use it', 'Remember', 'Signal words', 'Don’t mix it up', 'Positive', 'Negative', 'Question', 'Form', 'Why?', 'Wrong', 'Right', 'Right or wrong?', 'Read the sentence. Is it correct, or does it have a mistake?', 'Build the sentence', 'Tap the words in the right order.', 'Correct', 'Has a mistake', 'Check', 'Clear', 'Great!', 'Your score', 'New round', 'Mixed test', '20 new questions from different topics. Questions you have seen don’t come back.', 'Topic', 'Open lesson', 'Topics to review', 'You have seen every question here. Connect to the internet for new ones.', 'Try again', 'Start', 'Level', 'All levels', 'This sentence is correct.', 'Meaning'],
+        uz: ['Mashq', '{n} ta misol', '{n} ta koʻp uchraydigan xato', 'Yana {n} tasi yozilmoqda…', 'Hammasi (20 ta) chiqishi uchun internetga ulaning.', 'Qachon ishlatiladi', 'Esda tuting', 'Signal soʻzlar', 'Adashtirmang', 'Darak gap', 'Inkor gap', 'Soʻroq gap', 'Shakl', 'Nega?', 'Notoʻgʻri', 'Toʻgʻri', 'Toʻgʻrimi yoki xatomi?', 'Gapni oʻqing. U toʻgʻrimi yoki xatosi bormi?', 'Gap tuzing', 'Soʻzlarni toʻgʻri tartibda bosing.', 'Toʻgʻri', 'Xatosi bor', 'Tekshirish', 'Tozalash', 'Zoʻr!', 'Natijangiz', 'Yangi raund', 'Aralash test', 'Turli mavzulardan 20 ta yangi savol. Koʻrgan savollaringiz qaytib chiqmaydi.', 'Mavzu', 'Darsni ochish', 'Takrorlash kerak boʻlgan mavzular', 'Bu yerdagi barcha savollarni koʻrdingiz. Yangilari uchun internetga ulaning.', 'Qayta urinish', 'Boshlash', 'Daraja', 'Barcha darajalar', 'Bu gap toʻgʻri.', 'Maʼnosi'],
+        ru: ['Практика', '{n} примеров', '{n} частых ошибок', 'Пишем ещё {n}…', 'Подключитесь к интернету, чтобы увидеть все 20.', 'Когда использовать', 'Запомните', 'Слова-маркеры', 'Не путайте', 'Утверждение', 'Отрицание', 'Вопрос', 'Форма', 'Почему?', 'Неправильно', 'Правильно', 'Верно или нет?', 'Прочитайте предложение. Оно верное или в нём есть ошибка?', 'Соберите предложение', 'Нажимайте слова в правильном порядке.', 'Верно', 'Есть ошибка', 'Проверить', 'Очистить', 'Отлично!', 'Ваш результат', 'Новый раунд', 'Смешанный тест', '20 новых вопросов по разным темам. Вопросы, которые вы уже видели, не повторяются.', 'Тема', 'Открыть урок', 'Темы для повторения', 'Вы видели все вопросы здесь. Подключитесь к интернету, чтобы получить новые.', 'Ещё раз', 'Начать', 'Уровень', 'Все уровни', 'Это предложение верное.', 'Значение'],
+        hi: ['अभ्यास', '{n} उदाहरण', '{n} आम गलतियाँ', '{n} और लिखे जा रहे हैं…', 'सभी 20 देखने के लिए इंटरनेट से जुड़ें।', 'कब इस्तेमाल करें', 'याद रखें', 'संकेत शब्द', 'भ्रमित न हों', 'सकारात्मक', 'नकारात्मक', 'प्रश्न', 'रूप', 'क्यों?', 'गलत', 'सही', 'सही या गलत?', 'वाक्य पढ़ें। क्या यह सही है या इसमें गलती है?', 'वाक्य बनाएँ', 'शब्दों को सही क्रम में दबाएँ।', 'सही', 'गलती है', 'जाँचें', 'साफ़ करें', 'बहुत बढ़िया!', 'आपका स्कोर', 'नया राउंड', 'मिश्रित टेस्ट', 'अलग-अलग विषयों से 20 नए प्रश्न। देखे हुए प्रश्न दोबारा नहीं आते।', 'विषय', 'पाठ खोलें', 'दोहराने वाले विषय', 'आपने यहाँ के सभी प्रश्न देख लिए हैं। नए प्रश्नों के लिए इंटरनेट से जुड़ें।', 'फिर से करें', 'शुरू करें', 'स्तर', 'सभी स्तर', 'यह वाक्य सही है।', 'अर्थ'],
+        es: ['Práctica', '{n} ejemplos', '{n} errores comunes', 'Escribiendo {n} más…', 'Conéctate a internet para ver los 20.', 'Cuándo se usa', 'Recuerda', 'Palabras clave', 'No lo confundas', 'Afirmativa', 'Negativa', 'Pregunta', 'Forma', '¿Por qué?', 'Incorrecto', 'Correcto', '¿Correcta o incorrecta?', 'Lee la oración. ¿Es correcta o tiene un error?', 'Ordena la oración', 'Toca las palabras en el orden correcto.', 'Correcta', 'Tiene un error', 'Comprobar', 'Borrar', '¡Genial!', 'Tu puntuación', 'Nueva ronda', 'Test mixto', '20 preguntas nuevas de distintos temas. Las preguntas que ya viste no vuelven.', 'Tema', 'Abrir lección', 'Temas para repasar', 'Ya viste todas las preguntas de aquí. Conéctate a internet para obtener nuevas.', 'Reintentar', 'Empezar', 'Nivel', 'Todos los niveles', 'Esta oración es correcta.', 'Significado'],
+        fr: ['Entraînement', '{n} exemples', '{n} erreurs fréquentes', 'Rédaction de {n} autres…', 'Connectez-vous à internet pour voir les 20.', 'Quand l’utiliser', 'À retenir', 'Mots indicateurs', 'Ne pas confondre', 'Affirmative', 'Négative', 'Question', 'Forme', 'Pourquoi ?', 'Faux', 'Juste', 'Juste ou faux ?', 'Lisez la phrase. Est-elle correcte ou contient-elle une erreur ?', 'Construisez la phrase', 'Touchez les mots dans le bon ordre.', 'Correcte', 'Contient une erreur', 'Vérifier', 'Effacer', 'Bravo !', 'Votre score', 'Nouvelle série', 'Test mixte', '20 nouvelles questions sur différents thèmes. Les questions déjà vues ne reviennent pas.', 'Thème', 'Ouvrir la leçon', 'Thèmes à revoir', 'Vous avez vu toutes les questions ici. Connectez-vous à internet pour en avoir de nouvelles.', 'Réessayer', 'Commencer', 'Niveau', 'Tous les niveaux', 'Cette phrase est correcte.', 'Sens'],
+        ar: ['تدريب', '{n} مثالًا', '{n} خطأً شائعًا', 'جارٍ كتابة {n} أخرى…', 'اتصل بالإنترنت لرؤية الـ 20 كلها.', 'متى نستخدمه', 'تذكّر', 'كلمات دالة', 'لا تخلط بينهما', 'مثبت', 'منفي', 'سؤال', 'صيغة', 'لماذا؟', 'خطأ', 'صحيح', 'صحيحة أم خاطئة؟', 'اقرأ الجملة. هل هي صحيحة أم فيها خطأ؟', 'رتّب الجملة', 'اضغط الكلمات بالترتيب الصحيح.', 'صحيحة', 'فيها خطأ', 'تحقّق', 'مسح', 'رائع!', 'نتيجتك', 'جولة جديدة', 'اختبار مختلط', '20 سؤالًا جديدًا من مواضيع مختلفة. الأسئلة التي رأيتها لا تتكرر.', 'الموضوع', 'افتح الدرس', 'مواضيع للمراجعة', 'رأيت كل الأسئلة هنا. اتصل بالإنترنت للحصول على أسئلة جديدة.', 'حاول مجددًا', 'ابدأ', 'المستوى', 'كل المستويات', 'هذه الجملة صحيحة.', 'المعنى'],
+        bn: ['অনুশীলন', '{n}টি উদাহরণ', '{n}টি সাধারণ ভুল', 'আরও {n}টি লেখা হচ্ছে…', 'সব ২০টি দেখতে ইন্টারনেটে যুক্ত হন।', 'কখন ব্যবহার করবেন', 'মনে রাখুন', 'সংকেত শব্দ', 'গুলিয়ে ফেলবেন না', 'হ্যাঁ-বাচক', 'না-বাচক', 'প্রশ্ন', 'রূপ', 'কেন?', 'ভুল', 'সঠিক', 'সঠিক না ভুল?', 'বাক্যটি পড়ুন। এটি কি সঠিক, নাকি এতে ভুল আছে?', 'বাক্য সাজান', 'শব্দগুলো সঠিক ক্রমে চাপুন।', 'সঠিক', 'ভুল আছে', 'যাচাই করুন', 'মুছুন', 'দারুণ!', 'আপনার স্কোর', 'নতুন রাউন্ড', 'মিশ্র টেস্ট', 'বিভিন্ন বিষয় থেকে ২০টি নতুন প্রশ্ন। দেখা প্রশ্ন আর ফিরে আসে না।', 'বিষয়', 'পাঠ খুলুন', 'যে বিষয়গুলো আবার দেখবেন', 'এখানের সব প্রশ্ন দেখা হয়ে গেছে। নতুন প্রশ্নের জন্য ইন্টারনেটে যুক্ত হন।', 'আবার চেষ্টা করুন', 'শুরু করুন', 'স্তর', 'সব স্তর', 'এই বাক্যটি সঠিক।', 'অর্থ'],
+        pt: ['Prática', '{n} exemplos', '{n} erros comuns', 'Escrevendo mais {n}…', 'Conecte-se à internet para ver os 20.', 'Quando usar', 'Lembre-se', 'Palavras-sinal', 'Não confunda', 'Afirmativa', 'Negativa', 'Pergunta', 'Forma', 'Por quê?', 'Errado', 'Certo', 'Certa ou errada?', 'Leia a frase. Ela está correta ou tem um erro?', 'Monte a frase', 'Toque nas palavras na ordem certa.', 'Correta', 'Tem um erro', 'Verificar', 'Limpar', 'Ótimo!', 'Sua pontuação', 'Nova rodada', 'Teste misto', '20 perguntas novas de temas diferentes. As perguntas que você já viu não voltam.', 'Tema', 'Abrir lição', 'Temas para revisar', 'Você já viu todas as perguntas daqui. Conecte-se à internet para receber novas.', 'Tentar de novo', 'Começar', 'Nível', 'Todos os níveis', 'Esta frase está correta.', 'Significado'],
+        ur: ['مشق', '{n} مثالیں', '{n} عام غلطیاں', 'مزید {n} لکھی جا رہی ہیں…', 'تمام 20 دیکھنے کے لیے انٹرنیٹ سے جڑیں۔', 'کب استعمال کریں', 'یاد رکھیں', 'اشاراتی الفاظ', 'الجھن سے بچیں', 'مثبت', 'منفی', 'سوالیہ', 'شکل', 'کیوں؟', 'غلط', 'درست', 'درست یا غلط؟', 'جملہ پڑھیں۔ کیا یہ درست ہے یا اس میں غلطی ہے؟', 'جملہ بنائیں', 'الفاظ کو درست ترتیب میں دبائیں۔', 'درست', 'غلطی ہے', 'جانچیں', 'صاف کریں', 'زبردست!', 'آپ کا اسکور', 'نیا راؤنڈ', 'مخلوط ٹیسٹ', 'مختلف موضوعات سے 20 نئے سوال۔ دیکھے ہوئے سوال دوبارہ نہیں آتے۔', 'موضوع', 'سبق کھولیں', 'دہرانے کے موضوعات', 'آپ یہاں کے تمام سوال دیکھ چکے ہیں۔ نئے سوالوں کے لیے انٹرنیٹ سے جڑیں۔', 'دوبارہ کوشش کریں', 'شروع کریں', 'سطح', 'تمام سطحیں', 'یہ جملہ درست ہے۔', 'مطلب'],
+        'zh-CN': ['练习', '{n} 个例句', '{n} 个常见错误', '正在再写 {n} 个…', '连接网络即可查看全部 20 个。', '何时使用', '记住', '标志词', '别混淆', '肯定句', '否定句', '疑问句', '形式', '为什么？', '错误', '正确', '对还是错？', '读这个句子。它是正确的，还是有错误？', '组句', '按正确顺序点击单词。', '正确', '有错误', '检查', '清除', '太棒了！', '你的得分', '新一轮', '综合测试', '来自不同主题的 20 道新题。看过的题目不会再出现。', '主题', '打开课程', '需要复习的主题', '这里的题目你都看过了。连接网络获取新题。', '再试一次', '开始', '级别', '全部级别', '这个句子是正确的。', '意思']
+    };
+    const GXT = {}; Object.keys(GX_RAW).forEach((l) => { const o = {}; GX_KEYS.forEach((k, i) => { o[k] = GX_RAW[l][i] || GX_RAW.en[i]; }); GXT[l] = o; });
+
+    const X = () => GXT[gLang()] || GXT.en;
+    const F = (s, n) => String(s).replace('{n}', n);
+    const E = (s) => escapeHTML(s == null ? '' : s);
+    const $ = (id) => document.getElementById(id);
+    const hl = (s) => E(s).replace(/\[\[([\s\S]+?)\]\]/g, '<mark class="gx-hl">$1</mark>');
+    const plain = (s) => String(s || '').replace(/\[\[|\]\]/g, '').replace(/\s+/g, ' ').trim();
+    const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+    const nk = (s) => plain(s).toLowerCase().replace(/[^a-z0-9' ]/g, '').replace(/\s+/g, ' ').trim();
+    const str = (v, n) => String(v == null ? '' : v).replace(/\s+/g, ' ').trim().slice(0, n || 400);
+
+    /* ---------- storage: IndexedDB, one record per rule and kind ---------- */
+    let dbp = null;
+    function db() {
+        if (dbp) return dbp;
+        dbp = new Promise((res, rej) => { try { const r = indexedDB.open('lr-gx', 1); r.onupgradeneeded = () => r.result.createObjectStore('p'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); } catch (e) { rej(e); } });
+        dbp.catch(() => { dbp = null; }); return dbp;
+    }
+    async function dget(k) { try { const d = await db(); return await new Promise((res) => { const q = d.transaction('p').objectStore('p').get(k); q.onsuccess = () => res(q.result || null); q.onerror = () => res(null); }); } catch (e) { return null; } }
+    async function dput(k, v) { try { const d = await db(); await new Promise((res) => { const t = d.transaction('p', 'readwrite'); t.objectStore('p').put(v, k); t.oncomplete = res; t.onerror = res; t.onabort = res; }); } catch (e) { } }
+    const mem = new Map(), busy = new Map(), failed = new Map();
+    const pkey = (m, kind) => m.id + '|' + kind + '|v1';
+
+    /* ---------- AI ---------- */
+    async function ai(sys, user, maxTok, temp) {
+        const key = aiKey(); if (!key) throw { code: 'noai' };
+        const c = new AbortController(), to = setTimeout(() => c.abort(), 70000);
+        try {
+            const r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify({ model: LR_AI_MODEL, temperature: temp == null ? .8 : temp, max_tokens: maxTok, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: sys }, { role: 'user', content: user }] }) });
+            if (!r.ok) throw { code: r.status }; const j = await r.json(); return JSON.parse(j.choices[0].message.content);
+        } finally { clearTimeout(to); }
+    }
+    const about = (m) => `Topic: "${m.title}" (${m.level}, ${m.category}). Rule: ${str(m.definition, 320)} Formula: ${str(m.formula, 200)}.`;
+    const langN = (lang) => gMeta(lang).n;
+
+    function cleanEx(o, lang) {
+        return (Array.isArray(o) ? o : []).map((x) => x && typeof x.en === 'string' ? { en: str(x.en, 220), use: str(x.use, 40), tr: x.tr ? { [lang]: str(x.tr, 300) } : {} } : null).filter((x) => x && /\w/.test(x.en));
+    }
+    async function genEx(m, lang) {
+        const base = (m.examples || []).map((e) => e[0]), need = Math.max(0, N_EX - base.length), a = Math.ceil(need / 2), b = need - a;
+        const sys = (n, focus) => `You are an expert English grammar teacher writing example sentences for learners. ${about(m)}
+Write exactly ${n} NEW, natural example sentences that clearly show this exact grammar point (${focus}). Cover all its forms (positive, negative, question — where the topic has them) and each typical use. Vary subjects, names, places, vocabulary and length; keep them at level ${m.level}. Never reuse these sentences: ${base.join(' | ')}.
+In every sentence wrap the words that show the grammar point in [[ ]], e.g. "She [[has lived]] here since 2019."
+For each item give: "en" (the sentence with [[ ]]), "tr" (a natural translation into ${langN(lang)}, no brackets), "use" (2-4 English words naming the form or use, e.g. "habit", "negative", "question", "finished action").
+Reply ONLY with JSON {"ex":[{"en":"","tr":"","use":""}]}`;
+        const baseSys = `For each English sentence below, wrap the words that show this grammar point in [[ ]] and name its form or use in 2-4 English words. ${about(m)} Reply ONLY with JSON {"b":[{"en":"sentence with [[ ]]","use":""}]} in the same order.`;
+        const [r1, r2, r3] = await Promise.all([
+            a ? ai(sys(a, 'everyday life: home, family, food, friends, travel, hobbies'), 'Seed ' + Math.random().toString(36).slice(2, 7), 2600) : { ex: [] },
+            b ? ai(sys(b, 'work, school, science, nature, technology, news and IELTS-style topics'), 'Seed ' + Math.random().toString(36).slice(2, 7), 2600) : { ex: [] },
+            base.length ? ai(baseSys, JSON.stringify(base), 900, .2).catch(() => ({ b: [] })) : { b: [] }
+        ].map((p) => p.catch ? p.catch(() => ({ ex: [] })) : p));
+        const seen = new Set(base.map(nk)), items = [];
+        cleanEx((r1.ex || []).concat(r2.ex || []), lang).forEach((x) => { const k = nk(x.en); if (!seen.has(k)) { seen.add(k); items.push(x); } });
+        if (items.length < Math.min(6, need)) throw { code: 'thin' };
+        const bb = (Array.isArray(r3.b) ? r3.b : []).map((x, i) => x && typeof x.en === 'string' && nk(x.en) === nk(base[i]) ? { en: str(x.en, 220), use: str(x.use, 40) } : { en: base[i], use: '' });
+        return { items: items.slice(0, need), base: base.map((s, i) => bb[i] || { en: s, use: '' }) };
+    }
+    function cleanMk(o, lang) {
+        return (Array.isArray(o) ? o : []).map((x) => x && typeof x.bad === 'string' && typeof x.good === 'string' && nk(x.bad) !== nk(x.good) ? { bad: str(x.bad, 220), good: str(x.good, 220), why_en: str(x.why_en, 200), why: x.why ? { [lang]: str(x.why, 320) } : {}, tr: x.tr ? { [lang]: str(x.tr, 300) } : {} } : null).filter(Boolean);
+    }
+    function baseMk(m) { return (m.mistakes || []).map((x) => { const p = String(x).split('→'), bad = (p[0] || '').trim(); let good = (p[1] || '').trim(), note = ''; const k = good.indexOf('('); if (k > 0) { note = good.slice(k).replace(/[()]/g, '').trim(); good = good.slice(0, k).trim(); } return { bad, good, note }; }); }
+    async function genMk(m, lang) {
+        const base = baseMk(m), need = Math.max(0, N_MK - base.length), a = Math.ceil(need / 2), b = need - a;
+        const sys = (n, focus) => `You are an expert English grammar teacher. ${about(m)}
+Write exactly ${n} typical mistakes that learners (especially speakers of ${langN(lang)}) make with this exact grammar point — ${focus}. Never repeat these: ${base.map((x) => x.bad).join(' | ')}.
+Each item: "bad" (a natural sentence with ONE realistic mistake on this topic), "good" (the same sentence corrected — change only what is needed), "why" (one short, clear sentence in ${langN(lang)} that explains the rule behind the correction), "why_en" (the same in simple English, max 16 words), "tr" (translation of the corrected sentence into ${langN(lang)}). Vary the situations and the kind of mistake.
+Reply ONLY with JSON {"mk":[{"bad":"","good":"","why":"","why_en":"","tr":""}]}`;
+        const baseSys = `These are common learner mistakes (wrong → right). ${about(m)} For each, explain the rule behind the correction: "why" in ${langN(lang)} (one short clear sentence) and "why_en" in simple English (max 16 words). Reply ONLY with JSON {"b":[{"why":"","why_en":""}]} in the same order.`;
+        const [r1, r2, r3] = await Promise.all([
+            a ? ai(sys(a, 'wrong forms: wrong verb form or ending, missing or extra word, wrong auxiliary, spelling of the form'), 'Seed ' + Math.random().toString(36).slice(2, 7), 3600) : { mk: [] },
+            b ? ai(sys(b, 'wrong use: using a similar structure or tense instead, wrong word order, wrong time words, mixing it up with a related rule'), 'Seed ' + Math.random().toString(36).slice(2, 7), 3600) : { mk: [] },
+            base.length ? ai(baseSys, JSON.stringify(base.map((x) => x.bad + ' → ' + x.good)), 1200, .2).catch(() => ({ b: [] })) : { b: [] }
+        ].map((p) => p.catch ? p.catch(() => ({ mk: [] })) : p));
+        const seen = new Set(base.map((x) => nk(x.bad))), items = [];
+        cleanMk((r1.mk || []).concat(r2.mk || []), lang).forEach((x) => { const k = nk(x.bad); if (!seen.has(k)) { seen.add(k); items.push(x); } });
+        if (items.length < Math.min(6, need)) throw { code: 'thin' };
+        const bb = base.map((x, i) => { const o = (Array.isArray(r3.b) ? r3.b : [])[i] || {}; return { why_en: str(o.why_en, 200), why: o.why ? { [lang]: str(o.why, 320) } : {} }; });
+        return { items: items.slice(0, need), base: bb };
+    }
+    function fParse(f) {
+        return String(f || '').split('|').map((s) => s.trim()).filter(Boolean).map((s) => { let t = ''; const c = s.charAt(0); if (c === '+') { t = '+'; s = s.slice(1).trim(); } else if (c === '-' || c === '−') { t = '-'; s = s.slice(1).trim(); } else if (c === '?') { t = '?'; s = s.slice(1).trim(); } return { t, p: s }; });
+    }
+    async function genFm(m, lang) {
+        const rows = fParse(m.formula);
+        const sys = `You are an expert English grammar teacher who makes rules crystal clear for a learner who speaks ${langN(lang)}. ${about(m)} Signal words: ${str(m.keys, 200)}.
+Return ONLY JSON with:
+"rows": for each formula row in the user message, in the same order: {"ex": one short example sentence for exactly that row, with the words that match the pattern wrapped in [[ ]], "tr": its translation into ${langN(lang)}};
+"use": 4-7 items, every typical use of this grammar point: {"r": the use in simple English (max 12 words), "r_tr": the same in ${langN(lang)}, "ex": an example with [[ ]], "tr": its translation};
+"sig": up to 10 typical signal words or phrases (English), [] if none;
+"note_en": the single most important thing to remember (simple English, max 20 words), "note": the same in ${langN(lang)};
+"vs": the grammar point learners most often confuse it with: {"with": its English name, "diff_en": the difference in simple English (max 25 words), "diff": the same in ${langN(lang)}} or null.`;
+        const o = await ai(sys, JSON.stringify({ rows }), 2400, .4);
+        const R = (Array.isArray(o.rows) ? o.rows : []).slice(0, rows.length).map((x) => x && typeof x.ex === 'string' ? { ex: str(x.ex, 200), tr: x.tr ? { [lang]: str(x.tr, 260) } : {} } : { ex: '', tr: {} });
+        const U = (Array.isArray(o.use) ? o.use : []).map((x) => x && typeof x.r === 'string' ? { r: str(x.r, 120), r_tr: x.r_tr ? { [lang]: str(x.r_tr, 220) } : {}, ex: str(x.ex, 200), tr: x.tr ? { [lang]: str(x.tr, 260) } : {} } : null).filter(Boolean).slice(0, 7);
+        if (!U.length && !R.some((x) => x.ex)) throw { code: 'thin' };
+        const vs = o.vs && typeof o.vs.with === 'string' ? { with: str(o.vs.with, 60), diff_en: str(o.vs.diff_en, 240), diff: o.vs.diff ? { [lang]: str(o.vs.diff, 360) } : {} } : null;
+        return { rows: R, use: U, sig: (Array.isArray(o.sig) ? o.sig : []).map((s) => str(s, 40)).filter(Boolean).slice(0, 10), note_en: str(o.note_en, 200), note: o.note ? { [lang]: str(o.note, 320) } : {}, vs };
+    }
+    /* translations for a pack written in another language */
+    function holes(kind, p, lang) {
+        const L = [];   // [getterText, setter]
+        const want = (o, f, text) => { if (!text) return; o[f] = o[f] || {}; if (!o[f][lang]) L.push([text, (v) => { o[f][lang] = v; }]); };
+        if (kind === 'ex') p.items.forEach((x) => want(x, 'tr', plain(x.en)));
+        if (kind === 'mk') { p.items.forEach((x) => { want(x, 'why', x.why_en); want(x, 'tr', x.good); }); p.base.forEach((x) => want(x, 'why', x.why_en)); }
+        if (kind === 'fm') { p.rows.forEach((x) => want(x, 'tr', plain(x.ex))); p.use.forEach((x) => { want(x, 'r_tr', x.r); want(x, 'tr', plain(x.ex)); }); want(p, 'note', p.note_en); if (p.vs) want(p.vs, 'diff', p.vs.diff_en); }
+        return L;
+    }
+    async function fill(m, kind, p, lang) {
+        const L = holes(kind, p, lang); if (!L.length) return p;
+        let out = null;
+        try { const o = await ai(`Translate each English string into natural, accurate ${langN(lang)} (use that language's grammar terms; keep the English words being taught unchanged where needed). Reply ONLY with JSON {"a":[...]} — same length and order.`, JSON.stringify({ a: L.map((x) => x[0]) }), 3800, .2); if (Array.isArray(o.a) && o.a.length === L.length) out = o.a; } catch (e) { }
+        if (!out) out = await Promise.all(L.map((x) => gGtx(x[0], lang).catch(() => '')));
+        L.forEach((x, i) => { if (out[i]) x[1](str(out[i], 360)); });
+        await dput(pkey(m, kind), p); return p;
+    }
+    const GEN = { ex: genEx, mk: genMk, fm: genFm };
+    function cached(m, kind) { return mem.get(pkey(m, kind)) || null; }
+    function load(m, kind, lang) {
+        const k = pkey(m, kind) + '|' + lang; if (busy.has(k)) return busy.get(k);
+        const p = (async () => {
+            let pk = mem.get(pkey(m, kind)) || await dget(pkey(m, kind));
+            if (pk) { mem.set(pkey(m, kind), pk); if (holes(kind, pk, lang).length) { if (!aiReady()) return pk; pk = await fill(m, kind, pk, lang); } return pk; }
+            if (!aiReady()) throw { code: 'noai' };
+            pk = await GEN[kind](m, lang); mem.set(pkey(m, kind), pk); await dput(pkey(m, kind), pk); return pk;
+        })();
+        busy.set(k, p); p.then(() => { busy.delete(k); failed.delete(k); }, () => { busy.delete(k); failed.set(k, Date.now()); });
+        return p;
+    }
+    async function warm(m) { for (const kind of ['ex', 'mk', 'fm']) if (!mem.has(pkey(m, kind))) { const v = await dget(pkey(m, kind)); if (v) mem.set(pkey(m, kind), v); } }
+    const T = (o, lang) => (o && o[lang]) || '';
+
+    /* ---------- pieces ---------- */
+    const skel = (n) => Array.from({ length: n }, () => '<div class="gx-sk"><i></i><i></i></div>').join('');
+    function note(m, kind, lang, missing) {
+        if (!missing) return '';
+        const k = pkey(m, kind) + '|' + lang;
+        if (busy.has(k)) return `<div class="gl-wait gx-note"><i class="fa-solid fa-circle-notch fa-spin"></i> ${E(F(X().more, missing))}</div>`;
+        if (!aiReady() || failed.has(k)) return `<div class="gx-off"><i class="fa-solid fa-wifi"></i> ${E(X().offline)} <button type="button" onclick="GX.retry('${kind}')">${E(X().retry)}</button></div>`;
+        return '';
+    }
+    function tokCls(x) {
+        const l = x.toLowerCase().replace(/[?.!]+$/, '').trim();
+        if (/^(s|subject|i\/you\/we\/they|he\/she\/it|it|there)$/.test(l)) return 's';
+        if (/\bv\s*(1|2|3|-?ing|-?s|-?ed|-?es)?\b|\bverb|\bbase\b|past participle|-ing\b/.test(l)) return 'v';
+        if (/^(do|does|did|don't|doesn't|didn't|have|has|had|am|is|are|was|were|be|been|being|will|won't|would|shall|should|can|could|may|might|must|not|never|going to|used to|had better|let's|let)\b/.test(l)) return 'a';
+        if (/\b(o|object|noun|adj|adjective|adverb|adv|complement|place|time)\b/.test(l)) return 'o';
+        return 'x';
+    }
+    function fChips(p) {
+        const parts = p.split(/\s\+\s/).map((x) => x.trim()).filter(Boolean);
+        if (parts.length < 2) return `<code class="gx-code">${E(p)}</code>`;
+        return `<div class="gx-tks">${parts.map((x, i) => (i ? '<i class="gx-plus">+</i>' : '') + `<span class="gx-tk ${tokCls(x)}">${E(x)}</span>`).join('')}</div>`;
+    }
+    function fRowName(t, i) { const x = X(); return t === '+' ? x.pos : t === '-' ? x.neg : t === '?' ? x.qst : x.form + ' ' + (i + 1); }
+    function fSign(t) { return t === '+' ? '+' : t === '-' ? '−' : t === '?' ? '?' : '•'; }
+    function formulaTable(m, fm, lang, withEx) {
+        const rows = fParse(m.formula), meta = gMeta();
+        if (!rows.length) return '';
+        return `<div class="gx-ft">${rows.map((r, i) => { const ex = fm && fm.rows[i] && fm.rows[i].ex; const tr = ex ? T(fm.rows[i].tr, lang) : '';
+            return `<div class="gx-fr ${r.t === '+' ? 'p' : r.t === '-' ? 'n' : r.t === '?' ? 'q' : 'o'}"><div class="gx-fh"><span class="gx-sg">${fSign(r.t)}</span><b>${E(fRowName(r.t, i))}</b></div>${fChips(r.p)}
+                ${withEx ? (ex ? `<div class="gx-fx"><p>${hl(ex)}</p>${gSp(plain(ex), true)}</div>${tr ? `<div class="gx-ftr" dir="${gDir()}"><span class="gl-b">${meta.f}</span>${E(tr)}</div>` : ''}` : (fm ? '' : '<div class="gx-sk sm"><i></i></div>')) : ''}</div>`; }).join('')}</div>`;
+    }
+    function useList(fm, lang) {
+        if (!fm || !fm.use.length) return '';
+        const meta = gMeta();
+        return `<div class="gl-sec gx-sec"><i class="fa-solid fa-route"></i> ${E(X().when)}</div><div class="gx-use">${fm.use.map((u, i) => `<div class="gx-u"><span class="gx-un">${i + 1}</span><div><b>${E(u.r)}</b>${T(u.r_tr, lang) ? `<small dir="${gDir()}">${E(T(u.r_tr, lang))}</small>` : ''}
+            ${u.ex ? `<div class="gx-ux"><p>${hl(u.ex)}</p>${gSp(plain(u.ex), true)}</div>${T(u.tr, lang) ? `<div class="gx-ftr" dir="${gDir()}"><span class="gl-b">${meta.f}</span>${E(T(u.tr, lang))}</div>` : ''}` : ''}</div></div>`).join('')}</div>`;
+    }
+    function remember(fm, lang) {
+        if (!fm || !fm.note_en) return '';
+        return `<div class="gx-rem"><div class="gx-rh"><i class="fa-solid fa-thumbtack"></i> ${E(X().remember)}</div><p>${E(fm.note_en)}</p>${T(fm.note, lang) ? `<p class="tr" dir="${gDir()}">${E(T(fm.note, lang))}</p>` : ''}</div>`;
+    }
+    function compare(fm, lang) {
+        if (!fm || !fm.vs || !fm.vs.diff_en) return '';
+        return `<div class="gx-vs"><div class="gx-rh"><i class="fa-solid fa-code-compare"></i> ${E(X().compare)}: <b>${E(fm.vs.with)}</b></div><p>${E(fm.vs.diff_en)}</p>${T(fm.vs.diff, lang) ? `<p class="tr" dir="${gDir()}">${E(T(fm.vs.diff, lang))}</p>` : ''}</div>`;
+    }
+    function diff(a, b) {
+        const A = String(a).trim().split(/\s+/), B = String(b).trim().split(/\s+/), n = A.length, m = B.length;
+        const w = (x) => x.toLowerCase().replace(/[^\p{L}\p{N}']/gu, '');
+        const run = (eq) => {
+            const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+            for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i][j] = eq(A[i], B[j]) ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+            const ka = new Array(n).fill(false), kb = new Array(m).fill(false); let i = 0, j = 0;
+            while (i < n && j < m) { if (eq(A[i], B[j])) { ka[i] = kb[j] = true; i++; j++; } else if (dp[i + 1][j] >= dp[i][j + 1]) i++; else j++; }
+            return [ka, kb];
+        };
+        let [ka, kb] = run((x, y) => w(x) === w(y));
+        if (ka.every(Boolean) && kb.every(Boolean) && a.trim() !== b.trim()) [ka, kb] = run((x, y) => x === y);
+        return [A.map((x, k) => ka[k] ? E(x) : `<del class="gx-d">${E(x)}</del>`).join(' '), B.map((x, k) => kb[k] ? E(x) : `<ins class="gx-i">${E(x)}</ins>`).join(' ')];
+    }
+
+    /* ---------- the lesson ---------- */
+    let RT = 0;
+    window.renderGrammarLesson = function () {
+        const m = currentGrammarModule; if (!m) return;
+        if (m.__gxMix) { mixRender(); return; }
+        const lang = gLang(), L = gT(), x = X(), meta = gMeta(), tab = currentGrammarTab;
+        const R = gCached(m, lang), V = gView(m, lang, R), need = !R, myTok = ++RT;
+        gSayStore = [];
+        $('grammar-modal-title').innerHTML = E(m.title) + `<span class="gl-mt" dir="${gDir()}" id="gl-mt"></span>`;
+        $('grammar-modal-level').textContent = `${m.level} • ${m.category}`;
+        gTitles(lang).then((map) => { const e = $('gl-mt'); if (e && map[m.id]) e.textContent = meta.f + ' ' + map[m.id]; }).catch(() => { });
+        const tabs = [['lesson', L.lesson, 'fa-book-open'], ['formula', L.formula, 'fa-table-list'], ['examples', L.examples + ' · 20', 'fa-comments'], ['mistakes', L.mistakes + ' · 20', 'fa-triangle-exclamation'], ['practice', x.practice, 'fa-dumbbell'], ['quiz', L.quiz + ' · 20', 'fa-bolt']];
+        $('grammar-modal-tabs').innerHTML = tabs.map(([id, label, icon]) => `<button onclick="setGrammarTab('${id}')" class="gl-tab ${tab === id ? 'on' : ''}"><i class="fa-solid ${icon}"></i><span>${E(label)}</span></button>`).join('');
+        const c = $('grammar-modal-content');
+        if (tab === 'quiz') { gqEnter(); return; }
+        if (tab === 'practice') { pxEnter(); return; }
+        const kind = tab === 'examples' ? 'ex' : tab === 'mistakes' ? 'mk' : 'fm';
+        const pk = cached(m, kind);
+        let h = gLessonLangRow();
+        if (need) h += `<div class="gl-wait"><i class="fa-solid fa-circle-notch fa-spin"></i> ${E(L.wait)}</div>`;
+        if (tab === 'lesson') {
+            h += `<div class="gl-grid">${gBi('<i class="fa-solid fa-lightbulb"></i> ' + E(L.what), m.definition, V.expl)}${gBi('<i class="fa-solid fa-star"></i> ' + E(L.why), m.importance, V.imp)}</div>
+                <div class="gl-formula gx-qf"><div class="gl-lbl">${E(L.quick)}</div>${formulaTable(m, null, lang, false) || `<code>${E(m.formula)}</code>`}</div>
+                ${pk ? useList(pk, lang) + remember(pk, lang) : (aiReady() ? `<div class="gl-sec gx-sec"><i class="fa-solid fa-route"></i> ${E(x.when)}</div>${skel(3)}` : '')}`;
+        } else if (tab === 'formula') {
+            const sig = [...new Set(String(m.keys || '').split(',').map((s) => s.trim()).filter(Boolean).concat(pk ? pk.sig : []).map((s) => s.toLowerCase()))];
+            h += `<div class="gl-formula big gx-fb"><div class="gl-lbl">${E(L.formula)}</div>${formulaTable(m, pk, lang, true) || `<code>${E(m.formula)}</code>`}
+                ${sig.length ? `<div class="gl-lbl mt">${E(x.signal)}</div><div class="gl-kw">${sig.map((k) => `<span>${E(k)}</span>`).join('')}</div>` : ''}</div>
+                ${pk ? remember(pk, lang) + compare(pk, lang) + useList(pk, lang) : (aiReady() ? skel(2) : '')}
+                <div class="gl-sec">${E(L.tips)}</div><div class="gl-grid">${(m.tips || []).map((t, i) => gBi('<i class="fa-solid fa-wand-magic-sparkles"></i> ' + E(L.tip), V.tipsEn[i] || '', V.tips[i] || '')).join('')}</div>`;
+        } else if (tab === 'examples') {
+            const base = m.examples || [], bx = pk ? pk.base : [], items = pk ? pk.items : [], total = base.length + items.length, miss = Math.max(0, N_EX - total);
+            const card = (i, en, use, tr, trl) => `<div class="gl-exc gx-exc"><span class="gl-n">${i + 1}</span><div class="gl-exb"><div class="gl-en-l"><p>${hl(en)}</p>${gSp(plain(en), true)}</div>${use ? `<span class="gx-use-t">${E(use)}</span>` : ''}<div class="gl-tr-l" dir="${gDir()}">${tr ? `<span class="gl-b">${meta.f}</span><p>${E(tr)}</p>${gSp(tr, false)}` : (trl ? '<p class="gl-load"><i></i><i></i><i></i></p>' : '')}</div></div></div>`;
+            h += `<div class="gx-head"><b>${E(F(x.exN, Math.max(total, N_EX)))}</b><span>${E(m.title)}</span></div>${note(m, 'ex', lang, miss)}
+                <div class="gl-ex">${base.map((e, i) => card(i, (bx[i] && bx[i].en) || e[0], bx[i] && bx[i].use, V.ex[i], true)).join('')}${items.map((it, k) => card(base.length + k, it.en, it.use, T(it.tr, lang), busy.has(pkey(m, 'ex') + '|' + lang))).join('')}${miss && aiReady() && !failed.has(pkey(m, 'ex') + '|' + lang) ? skel(Math.min(miss, 4)) : ''}</div>
+                <div class="gl-grid" style="margin-top:16px">${gBi('<i class="fa-solid fa-pen-nib"></i> ' + E(L.ielts), m.ielts, V.ielts)}</div>`;
+        } else if (tab === 'mistakes') {
+            const base = baseMk(m), bx = pk ? pk.base : [], items = pk ? pk.items : [], total = base.length + items.length, miss = Math.max(0, N_MK - total);
+            const card = (i, bad, good, why, whyEn, tr, nt) => { const [d1, d2] = diff(bad, good); return `<div class="gl-mkc gx-mkc"><div class="gl-mkh">${E(L.cm)} ${i + 1}</div>
+                <div class="gl-bad gx-bad"><i class="fa-solid fa-circle-xmark"></i><span><small>${E(x.wrong)}</small>${d1}</span></div>
+                <div class="gl-good gx-good"><i class="fa-solid fa-circle-check"></i><span><small>${E(x.right)}</small>${d2}</span>${gSp(good, true)}</div>
+                ${why || whyEn || nt ? `<div class="gx-why"><b><i class="fa-solid fa-circle-info"></i> ${E(x.why)}</b>${why ? `<p dir="${gDir()}">${E(why)}</p>` : ''}${whyEn ? `<p class="en">${E(whyEn)}</p>` : ''}${nt && !whyEn ? `<p class="en">${E(nt)}</p>` : ''}</div>` : ''}
+                ${tr ? `<div class="gl-mkt" dir="${gDir()}"><span class="gl-b">${meta.f}</span>${E(tr)}</div>` : ''}</div>`; };
+            h += `<div class="gx-head"><b>${E(F(x.mkN, Math.max(total, N_MK)))}</b><span>${E(m.title)}</span></div>${note(m, 'mk', lang, miss)}
+                <div class="gl-mk">${base.map((b, i) => card(i, b.bad, b.good, T(bx[i] && bx[i].why, lang), bx[i] && bx[i].why_en, V.mk[i], b.note)).join('')}${items.map((it, k) => card(base.length + k, it.bad, it.good, T(it.why, lang), it.why_en, T(it.tr, lang), '')).join('')}${miss && aiReady() && !failed.has(pkey(m, 'mk') + '|' + lang) ? skel(Math.min(miss, 3)) : ''}</div>
+                <div class="gl-sec">${E(L.tips)}</div><div class="gl-grid">${(m.tips || []).map((t, i) => gBi('<i class="fa-solid fa-check"></i> ' + E(L.tip), V.tipsEn[i] || '', V.tips[i] || '')).join('')}</div>`;
+        }
+        if (R && R.src === 'mt' && lang !== 'uz') h += `<button class="gl-imp" onclick="gImprove()"><i class="fa-solid fa-wand-magic-sparkles"></i> ${E(L.improve)}</button>`;
+        c.innerHTML = h;
+        const same = () => currentGrammarModule === m && gLang() === lang && currentGrammarTab === tab;
+        const again = () => { if (same()) renderGrammarLesson(); };
+        if (need) gLoad(m, lang).then(again).catch(() => { if (RT !== myTok) return; const w = c.querySelector('.gl-wait'); if (w) w.innerHTML = '<i class="fa-solid fa-wifi"></i> Connect to the internet once to load this translation.'; c.querySelectorAll('.gl-load').forEach((e) => e.remove()); });
+        const k = pkey(m, kind) + '|' + lang;
+        const start = () => { if (busy.has(k) || failed.has(k) || (!aiReady() && !mem.has(pkey(m, kind)))) return; const p = load(m, kind, lang); again(); p.then(again, again); };
+        if (!pk) { if (!busy.has(k) && !failed.has(k)) dget(pkey(m, kind)).then((v) => { if (v) { if (!mem.has(pkey(m, kind))) { mem.set(pkey(m, kind), v); again(); } if (holes(kind, v, lang).length && aiReady()) start(); } else start(); }); }
+        else if (holes(kind, pk, lang).length && aiReady()) start();
+        // the examples are the next thing most people open: get them ready while the lesson is read
+        if (tab === 'lesson' && aiReady()) setTimeout(() => { if (!same()) return; const kk = pkey(m, 'ex') + '|' + lang; if (busy.has(kk) || failed.has(kk) || mem.has(pkey(m, 'ex'))) return; dget(pkey(m, 'ex')).then((v) => { if (v) mem.set(pkey(m, 'ex'), v); if ((!v || holes('ex', v, lang).length) && same()) load(m, 'ex', lang).catch(() => { }); }); }, 4000);
+    };
+
+    /* ---------- tests: 20 questions, never the same question twice ---------- */
+    let QT = 0;
+    window.gqGenerate = async function (m, need) {
+        const key = (typeof aiKey === 'function') ? aiKey() : ''; if (!key) return 0;
+        const seenKeys = new Set(gqAll(m).map(gqKey)), avoid = gqAll(m).slice(-60).map((q) => q[0].replace(/_{2,}/, '___')).join(' | ').slice(0, 3600);
+        const one = async (n, focus) => {
+            const sys = `You write grammar practice for English learners. Topic: "${m.title}" (${m.level}, ${m.category}). Rule summary: ${str(m.definition, 300)} Formula: ${str(m.formula, 160)}.
+Write exactly ${n} NEW multiple-choice fill-in-the-blank questions that test this exact topic (${focus}). Each question: one natural sentence containing ___ for the missing word(s), 3 distinct options of which exactly one is correct, with plausible wrong options (typical learner mistakes). Vary the vocabulary, subjects, names, situations and sentence structures; mix easy, medium and hard; never reuse a sentence from this list: ${avoid || '(none)'}. Reply ONLY with JSON {"qs":[{"q":"sentence with ___","o":["opt","opt","opt"],"a":0}]} where a is the index 0-2 of the correct option.`;
+            try { const o = await ai(sys, 'Seed ' + Math.random().toString(36).slice(2, 8), Math.min(4000, 260 + n * 110), 1); return o.qs || []; } catch (e) { return []; }
+        };
+        const parts = need > 12 ? [Math.ceil(need / 2), Math.floor(need / 2)] : [need];
+        const res = await Promise.all(parts.map((n, i) => one(n, i ? 'work, study, science and IELTS-style situations' : 'everyday life situations')));
+        const add = [];
+        [].concat(...res).forEach((x) => { if (!x || typeof x.q !== 'string' || !/_{2,}/.test(x.q) || !Array.isArray(x.o) || x.o.length !== 3 || new Set(x.o.map((t) => String(t).trim().toLowerCase())).size !== 3 || !(+x.a >= 0 && +x.a < 3)) return; const q = [x.q.trim(), String(x.o[0]), String(x.o[1]), String(x.o[2]), 'ABC'.charAt(+x.a)], k = gqKey(q); if (seenKeys.has(k)) return; seenKeys.add(k); add.push(q); });
+        if (add.length) { const bank = gqLoad('lunarise_gq_bank_v1'); bank[m.id] = (bank[m.id] || []).concat(add).slice(-400); gqSave('lunarise_gq_bank_v1', bank); }
+        return add.length;
+    };
+    window.gqStart = async function () {
+        const m = currentGrammarModule, N = N_Q, tok = ++QT; currentGrammarSet = null; gqNote = '';
+        let pool = gqUnseen(m);
+        if (pool.length < N && aiReady()) {
+            $('grammar-modal-content').innerHTML = `<div class="gl-wait"><i class="fa-solid fa-circle-notch fa-spin"></i> Creating ${N} brand-new questions for you…</div>`;
+            await gqGenerate(m, N + 4 - Math.min(pool.length, N)); if (tok !== QT || currentGrammarModule !== m) return; pool = gqUnseen(m);
+            if (pool.length < N) { await gqGenerate(m, N + 2 - pool.length); if (tok !== QT || currentGrammarModule !== m) return; pool = gqUnseen(m); }
+        }
+        if (!pool.length) { const all = gqLoad('lunarise_gq_seen_v1'); delete all[m.id]; gqSave('lunarise_gq_seen_v1', all); pool = gqAll(m); gqNote = 'You have seen every question for this topic — starting a new round. Connect to the internet to get brand-new ones.'; }
+        else if (pool.length < N) gqNote = 'Only ' + pool.length + ' unseen questions left offline. Connect to the internet for more.';
+        currentGrammarSet = gqShuffle(pool).slice(0, N).map(gqMix); currentGrammarSet._m = m.id; currentGrammarQuizIndex = 0; currentGrammarScore = 0; currentGrammarAnswered = false;
+        if (currentGrammarTab === 'quiz') renderGrammarQuiz();
+    };
+
+    /* ---------- Practice: Right or wrong? · Build the sentence ---------- */
+    let PX = null;
+    function pxData(m, lang) {
+        const ex = cached(m, 'ex'), mk = cached(m, 'mk'), R = gCached(m, lang), V = gView(m, lang, R);
+        const exs = (m.examples || []).map((e, i) => ({ en: plain(e[0]), tr: V.ex[i] || '' })).concat(ex ? ex.items.map((x) => ({ en: plain(x.en), tr: T(x.tr, lang) })) : []);
+        const mks = baseMk(m).map((b, i) => ({ bad: b.bad, good: b.good, why: (mk && T(mk.base[i] && mk.base[i].why, lang)) || '', why_en: (mk && mk.base[i] && mk.base[i].why_en) || b.note })).concat(mk ? mk.items.map((x) => ({ bad: x.bad, good: x.good, why: T(x.why, lang), why_en: x.why_en })) : []);
+        return { exs, mks, ready: !!(ex && mk) };
+    }
+    function pxEnter() {
+        const m = currentGrammarModule, lang = gLang(), x = X(), c = $('grammar-modal-content');
+        if (PX && PX.m === m.id && !PX.end && PX.items) { pxRender(); return; }
+        const d = pxData(m, lang), kk = (kd) => pkey(m, kd) + '|' + lang, rer = () => { if (currentGrammarModule === m && currentGrammarTab === 'practice' && !PX) pxEnter(); };
+        ['ex', 'mk'].forEach((kd) => { if (!cached(m, kd) && !busy.has(kk(kd)) && !failed.has(kk(kd))) { dget(pkey(m, kd)).then((r) => { if (r) { mem.set(pkey(m, kd), r); rer(); } else if (aiReady()) { load(m, kd, lang).then(rer, rer); rer(); } }); } });
+        const wait = !d.ready && ['ex', 'mk'].some((kd) => busy.has(kk(kd)));
+        const canRw = d.mks.length >= 3, canB = d.exs.filter((e) => e.en.split(' ').length >= 3).length >= 3;
+        c.innerHTML = `<div class="gx-pm">
+            <button type="button" class="gx-pc rw" ${canRw ? '' : 'disabled'} onclick="GX.px('rw')"><span class="gx-pi"><i class="fa-solid fa-scale-balanced"></i></span><b>${E(x.rw)}</b><small>${E(x.rwD)}</small><em>${Math.min(N_PX, d.mks.length)} × </em></button>
+            <button type="button" class="gx-pc bd" ${canB ? '' : 'disabled'} onclick="GX.px('build')"><span class="gx-pi"><i class="fa-solid fa-puzzle-piece"></i></span><b>${E(x.build)}</b><small>${E(x.buildD)}</small><em>${Math.min(N_PX, d.exs.length)} × </em></button></div>
+            ${wait ? `<div class="gl-wait" style="margin-top:14px"><i class="fa-solid fa-circle-notch fa-spin"></i> ${E(F(x.more, Math.max(0, N_EX - d.exs.length) + Math.max(0, N_MK - d.mks.length)))}</div>` : (!d.ready ? `<div class="gx-off" style="margin-top:14px"><i class="fa-solid fa-wifi"></i> ${E(x.offline)}</div>` : '')}`;
+    }
+    function pxStart(mode) {
+        const m = currentGrammarModule, d = pxData(m, gLang());
+        let items;
+        if (mode === 'rw') { items = shuffle(d.mks).slice(0, N_PX).map((it, i) => Object.assign({}, it, { isBad: i % 2 === 0 })); items = shuffle(items); }
+        else items = shuffle(d.exs.filter((e) => { const n = e.en.split(' ').length; return n >= 3 && n <= 16; })).slice(0, N_PX).map((e) => { const w = e.en.split(' '); let s = shuffle(w.map((t, i) => ({ t, i }))); if (w.length > 1 && s.every((o, k) => o.i === k)) s = s.slice(1).concat(s[0]); return Object.assign({}, e, { tiles: s, pick: [] }); });
+        PX = { m: m.id, mode, items, i: 0, score: 0, ans: null, end: false };
+        pxRender();
+    }
+    function pxRender() {
+        const m = currentGrammarModule, x = X(), L = gT(), meta = gMeta(), c = $('grammar-modal-content'); if (!PX || PX.m !== m.id) { pxEnter(); return; }
+        gSayStore = [];
+        if (PX.end) {
+            const pct = Math.round(PX.score / PX.items.length * 100);
+            c.innerHTML = `<div class="gl-done"><div class="gl-trophy"><i class="fa-solid ${pct >= 80 ? 'fa-trophy' : 'fa-dumbbell'}"></i></div><h3>${E(pct >= 80 ? x.great : L.practice)}</h3><p>${E(x.score)}: <b>${PX.score}/${PX.items.length}</b></p>
+                <div class="gl-dbtn"><button onclick="GX.px('${PX.mode}')">${E(x.more10)}</button><button onclick="GX.px('${PX.mode === 'rw' ? 'build' : 'rw'}')">${E(PX.mode === 'rw' ? x.build : x.rw)}</button><button class="p" onclick="GX.pxMenu()">${E(x.practice)}</button></div></div>`;
+            if (pct >= 80) try { triggerConfetti(); } catch (e) { }
+            return;
+        }
+        const it = PX.items[PX.i], pct = Math.round(PX.i / PX.items.length * 100), last = PX.i === PX.items.length - 1;
+        let body = '';
+        if (PX.mode === 'rw') {
+            const s = it.isBad ? it.bad : it.good, a = PX.ans;
+            body = `<div class="gx-rws">${E(s)}</div>
+                <div class="gx-rwb"><button type="button" class="ok ${a ? (!it.isBad ? 'right' : a === 'ok' ? 'wrong' : 'dim') : ''}" ${a ? 'disabled' : ''} onclick="GX.rw('ok')"><i class="fa-solid fa-check"></i> ${E(x.ok)}</button><button type="button" class="bad ${a ? (it.isBad ? 'right' : a === 'bad' ? 'wrong' : 'dim') : ''}" ${a ? 'disabled' : ''} onclick="GX.rw('bad')"><i class="fa-solid fa-xmark"></i> ${E(x.bad)}</button></div>`;
+            if (a) { const good = (a === 'ok') === !it.isBad;
+                if (it.isBad) { const [d1, d2] = diff(it.bad, it.good); body += `<div class="gl-fb ${good ? 'ok' : 'bad'}"><div class="gl-fbh"><i class="fa-solid ${good ? 'fa-circle-check' : 'fa-circle-xmark'}"></i><b>${E(good ? x.great : L.notq)}</b></div><div class="gl-bad gx-bad"><i class="fa-solid fa-circle-xmark"></i><span>${d1}</span></div><div class="gl-good gx-good"><i class="fa-solid fa-circle-check"></i><span>${d2}</span>${gSp(it.good, true)}</div>${it.why || it.why_en ? `<div class="gx-why"><b><i class="fa-solid fa-circle-info"></i> ${E(x.why)}</b>${it.why ? `<p dir="${gDir()}">${E(it.why)}</p>` : ''}${it.why_en ? `<p class="en">${E(it.why_en)}</p>` : ''}</div>` : ''}</div>`; }
+                else body += `<div class="gl-fb ${good ? 'ok' : 'bad'}"><div class="gl-fbh"><i class="fa-solid ${good ? 'fa-circle-check' : 'fa-circle-xmark'}"></i><b>${E(good ? x.great : L.notq)}</b> ${E(x.isOk)}</div><div class="gl-good gx-good"><i class="fa-solid fa-circle-check"></i><span>${E(it.good)}</span>${gSp(it.good, true)}</div></div>`; }
+        } else {
+            const a = PX.ans, used = new Set(it.pick);
+            body = `${it.tr ? `<div class="gx-bh" dir="${gDir()}"><span class="gl-b">${meta.f}</span>${E(it.tr)}</div>` : ''}
+                <div class="gx-ans ${a ? (a === 'ok' ? 'ok' : 'bad') : ''}" aria-live="polite">${it.pick.length ? it.pick.map((ti, k) => `<button type="button" class="gx-tile on" ${a ? 'disabled' : ''} onclick="GX.unpick(${k})">${E(it.tiles[ti].t)}</button>`).join('') : `<span class="gx-ph">${E(x.buildD)}</span>`}</div>
+                <div class="gx-pool">${it.tiles.map((o, k) => used.has(k) ? `<span class="gx-tile gone">${E(o.t)}</span>` : `<button type="button" class="gx-tile" ${a ? 'disabled' : ''} onclick="GX.pick(${k})">${E(o.t)}</button>`).join('')}</div>
+                ${a ? `<div class="gl-fb ${a === 'ok' ? 'ok' : 'bad'}"><div class="gl-fbh"><i class="fa-solid ${a === 'ok' ? 'fa-circle-check' : 'fa-circle-xmark'}"></i><b>${E(a === 'ok' ? x.great : L.notq)}</b></div><div class="gl-good gx-good"><i class="fa-solid fa-circle-check"></i><span>${E(it.en)}</span>${gSp(it.en, true)}</div></div>`
+                    : `<div class="gx-bb"><button type="button" onclick="GX.bclear()">${E(x.clear)}</button><button type="button" class="p" ${it.pick.length === it.tiles.length ? '' : 'disabled'} onclick="GX.bcheck()">${E(x.check)}</button></div>`}`;
+        }
+        c.innerHTML = `<div class="gl-qz gx-px"><div class="gl-qh"><span>${E(PX.mode === 'rw' ? x.rw : x.build)} · ${PX.i + 1} / ${PX.items.length}</span><span>${PX.score}/${PX.i + (PX.ans ? 1 : 0)}</span></div><div class="gl-qbar"><i style="width:${pct}%"></i></div>${body}
+            ${PX.ans ? `<div class="gl-next"><button onclick="GX.pnext()">${E(last ? L.finish : L.next)} <i class="fa-solid fa-arrow-right"></i></button></div>` : ''}</div>`;
+    }
+
+    /* levels: a rule for "B1-B2" belongs to both B1 and B2 (the page filter uses this too) */
+    const LV = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+    const lvSet = (v) => { const p = String(v || '').toUpperCase().split('-').map((x) => x.trim()); const a = LV.indexOf(p[0]), b = LV.indexOf(p[p.length - 1]); return a < 0 || b < 0 ? [String(v)] : LV.slice(Math.min(a, b), Math.max(a, b) + 1); };
+    window.gxLvMatch = (mod, f) => { if (!f || f === 'all') return true; const A = lvSet(mod), B = lvSet(f); return A.some((x) => B.includes(x)); };
+    /* ---------- Mixed test across topics ---------- */
+    let MX = null;
+    const MIX = { id: 'mix', __gxMix: true, title: 'Mixed test', level: '', category: '' };
+    function mixOpen() {
+        currentGrammarModule = MIX; currentGrammarTab = 'mix'; MX = { lv: (document.getElementById('grammar-level-filter') || {}).value || 'all', set: null };
+        $('grammar-lesson-modal').classList.remove('hidden'); document.body.classList.add('overflow-hidden');
+        mixRender();
+    }
+    function mixPool(lv) {
+        const mods = grammarModules.filter((m) => gxLvMatch(m.level, lv)), byTopic = shuffle(mods).map((m) => ({ m, q: shuffle(gqUnseen(m)) })).filter((o) => o.q.length);
+        const out = []; let round = 0;
+        while (out.length < N_Q && byTopic.some((o) => o.q.length > round)) { for (const o of byTopic) { if (out.length >= N_Q) break; if (o.q[round]) out.push({ m: o.m, q: gqMix(o.q[round]) }); } round++; }
+        return out;
+    }
+    function mixRender() {
+        const x = X(), L = gT(), meta = gMeta(), c = $('grammar-modal-content'); if (!MX) return;
+        gSayStore = [];
+        $('grammar-modal-title').textContent = x.mixed; $('grammar-modal-level').textContent = '20 · ' + (MX.lv === 'all' ? x.allLv : MX.lv);
+        $('grammar-modal-tabs').innerHTML = '';
+        if (!MX.set) {
+            const lvls = ['all', 'A1-A2', 'B1', 'B2', 'C1-C2'];
+            c.innerHTML = `<div class="gx-mx"><div class="gx-mxi"><i class="fa-solid fa-shuffle"></i></div><h3>${E(x.mixed)}</h3><p>${E(x.mixedD)}</p>
+                <div class="gl-lbl" style="margin-top:16px">${E(x.lv)}</div><div class="gx-lv">${lvls.map((l) => `<button type="button" class="${MX.lv === l ? 'on' : ''}" onclick="GX.mixLv('${l}')">${E(l === 'all' ? x.allLv : l)}</button>`).join('')}</div>
+                <button type="button" class="gx-go" onclick="GX.mixStart()"><i class="fa-solid fa-play"></i> ${E(x.start)}</button></div>`;
+            return;
+        }
+        if (MX.end) {
+            const pct = Math.round(MX.score / MX.set.length * 100), bad = [...new Map(MX.wrong.map((m) => [m.id, m])).values()];
+            c.innerHTML = `<div class="gl-done"><div class="gl-trophy"><i class="fa-solid ${pct >= 80 ? 'fa-trophy' : 'fa-rotate-right'}"></i></div><h3>${E(pct >= 80 ? x.great : L.practice)}</h3><p>${E(L.scored)}: <b>${pct}%</b> (${MX.score}/${MX.set.length})</p>
+                ${bad.length ? `<div class="gl-lbl" style="margin-top:18px">${E(x.toStudy)}</div><div class="gx-rev">${bad.map((m) => `<button type="button" onclick="openGrammarLesson(${m.id})"><span>${E(m.title)}</span><small>${E(m.level)} · ${E(m.category)}</small><i class="fa-solid fa-chevron-right"></i></button>`).join('')}</div>` : ''}
+                <div class="gl-dbtn"><button class="p" onclick="GX.mixStart()">${E(x.more10)}</button></div></div>`;
+            if (pct >= 80) try { triggerConfetti(); } catch (e) { }
+            return;
+        }
+        const it = MX.set[MX.i], q = it.q, pct = Math.round(MX.i / MX.set.length * 100), a = MX.ans, cor = 'ABC'.indexOf(q[4]);
+        gqMark(it.m, q);
+        const full = q[0].replace(/_{2,}/, q[cor + 1]);
+        c.innerHTML = `<div class="gl-qz"><div class="gl-qh"><span>${E(L.q)} ${MX.i + 1} / ${MX.set.length}</span><span>${MX.score}/${MX.i + (a != null ? 1 : 0)}</span></div>${MX.note && MX.i === 0 ? `<div class="gl-wait" style="margin-bottom:8px">${E(MX.note)}</div>` : ''}<div class="gl-qbar"><i style="width:${pct}%"></i></div>
+            <div class="gx-mt"><i class="fa-solid fa-layer-group"></i> ${E(x.topic)}: <b>${E(it.m.title)}</b> · ${E(it.m.level)}</div>
+            <h3 class="gl-qq">${E(q[0])}</h3>
+            <div class="gl-opts">${q.slice(1, 4).map((o, i) => `<button onclick="GX.mixAns(${i})" class="gl-opt ${a != null ? (i === cor ? 'right' : i === a ? 'wrong' : '') : ''}" ${a != null ? 'disabled' : ''}><b>${'ABC'.charAt(i)}</b><span>${E(o)}</span></button>`).join('')}</div>
+            ${a != null ? `<div class="gl-fb ${a === cor ? 'ok' : 'bad'}"><div class="gl-fbh"><i class="fa-solid ${a === cor ? 'fa-circle-check' : 'fa-circle-xmark'}"></i><b>${E(a === cor ? L.correct : L.notq)}</b>${a === cor ? '' : ` ${E(L.ans)}: <b>${E(q[cor + 1])}</b>`}</div>
+                <div class="gl-fs"><span class="gl-lbl">${E(L.full)}</span><p class="en">${E(full)} ${gSp(full, true)}</p><p class="tr" dir="${gDir()}" id="gx-mx-tr"><span class="gl-b">${meta.f}</span><i class="gl-load"><i></i><i></i><i></i></i></p></div>
+                <button type="button" class="gx-lnk" onclick="openGrammarLesson(${it.m.id})"><i class="fa-solid fa-book-open"></i> ${E(x.open)}</button></div>
+                <div class="gl-next"><button onclick="GX.mixNext()">${E(MX.i === MX.set.length - 1 ? L.finish : L.next)} <i class="fa-solid fa-arrow-right"></i></button></div>` : ''}</div>`;
+        if (a != null) { const lang = gLang(); gGtx(full, lang).then((t) => { const e = $('gx-mx-tr'); if (e && lang === gLang()) e.innerHTML = '<span class="gl-b">' + meta.f + '</span>' + E(t); }).catch(() => { const e = $('gx-mx-tr'); if (e) e.remove(); }); }
+    }
+
+    /* ---------- the Grammar page: a Mixed test button, and the words that describe it ---------- */
+    function pageExtras() {
+        const b = document.querySelector('#view-grammar button[onclick="studyNextGrammar()"]');
+        if (b && !$('gx-mixbtn')) b.insertAdjacentHTML('afterend', `<button id="gx-mixbtn" onclick="GX.mix()" class="grammar-tool-btn px-4 py-2.5 rounded-xl text-xs font-extrabold text-cyan-200"><i class="fa-solid fa-shuffle mr-2"></i>Mixed test · 20</button>`);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', pageExtras); else pageExtras();
+    // switching the rule or closing keeps the practice round of that rule only
+    const O0 = window.openGrammarLesson;
+    if (typeof O0 === 'function') window.openGrammarLesson = function (id) { PX = null; MX = null; const r = O0.apply(this, arguments); try { const m = currentGrammarModule; if (m && !m.__gxMix) warm(m).then(() => { if (currentGrammarModule === m && currentGrammarTab === 'lesson') renderGrammarLesson(); }); } catch (e) { } return r; };
+
+    window.GX = {
+        retry(kind) { const m = currentGrammarModule, lang = gLang(); failed.delete(pkey(m, kind) + '|' + lang); renderGrammarLesson(); },
+        px(mode) { pxStart(mode); }, pxMenu() { PX = null; pxEnter(); },
+        rw(a) { if (!PX || PX.ans) return; const it = PX.items[PX.i]; PX.ans = a; if ((a === 'ok') === !it.isBad) PX.score++; pxRender(); },
+        pick(k) { const it = PX && PX.items[PX.i]; if (!it || PX.ans || it.pick.includes(k)) return; it.pick.push(k); pxRender(); },
+        unpick(k) { const it = PX && PX.items[PX.i]; if (!it || PX.ans) return; it.pick.splice(k, 1); pxRender(); },
+        bclear() { const it = PX && PX.items[PX.i]; if (!it || PX.ans) return; it.pick = []; pxRender(); },
+        bcheck() { const it = PX && PX.items[PX.i]; if (!it || PX.ans || it.pick.length !== it.tiles.length) return; const s = it.pick.map((k) => it.tiles[k].t).join(' '); PX.ans = nk(s) === nk(it.en) ? 'ok' : 'bad'; if (PX.ans === 'ok') PX.score++; pxRender(); },
+        pnext() { if (!PX || !PX.ans) return; if (PX.i < PX.items.length - 1) { PX.i++; PX.ans = null; } else PX.end = true; pxRender(); const c = $('grammar-lesson-modal'); if (c) c.scrollTop = 0; },
+        mix: mixOpen,
+        mixLv(l) { if (MX) { MX.lv = l; mixRender(); } },
+        mixStart() { if (!MX) MX = { lv: 'all' }; const set = mixPool(MX.lv); MX.note = set.length < N_Q ? X().noMore : ''; if (!set.length) { const all = gqLoad('lunarise_gq_seen_v1'); grammarModules.filter((m) => gxLvMatch(m.level, MX.lv)).forEach((m) => delete all[m.id]); gqSave('lunarise_gq_seen_v1', all); } MX.set = set.length ? set : mixPool(MX.lv); MX.i = 0; MX.score = 0; MX.ans = null; MX.end = false; MX.wrong = []; mixRender(); },
+        mixAns(i) { if (!MX || MX.ans != null) return; const it = MX.set[MX.i], cor = 'ABC'.indexOf(it.q[4]); MX.ans = i; if (i === cor) { MX.score++; try { triggerConfetti(); } catch (e) { } } else MX.wrong.push(it.m); mixRender(); },
+        mixNext() { if (!MX || MX.ans == null) return; if (MX.i < MX.set.length - 1) { MX.i++; MX.ans = null; } else MX.end = true; mixRender(); const c = $('grammar-lesson-modal'); if (c) c.scrollTop = 0; },
+        _load: load, _cached: cached, _diff: diff, _parse: fParse
+    };
+})();
+</script><!--/gx:js-->
 </body>
 </html>
