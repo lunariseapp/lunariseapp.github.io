@@ -32658,7 +32658,7 @@ in vec2 aP;void main(){gl_Position=vec4(aP,0.,1.);}`;
         return (it._w = out);
     }
 
-    const S = { v: 'home', topic: null, id: null, speed: 1, sent: false, stopAt: null, raf: 0, res: null, follow: false, au: null, wordStop: null, lastErr: '' };
+    const S = { loading: false, wantPlay: false, v: 'home', topic: null, id: null, speed: 1, sent: false, stopAt: null, raf: 0, res: null, follow: false, au: null, wordStop: null, lastErr: '' };
     (function () { const p = ls('lr_nt_prefs', {}); if (SPEEDS.includes(p.speed)) S.speed = p.speed; S.sent = !!p.sent; })();
     const prefs = () => lsSet('lr_nt_prefs', { speed: S.speed, sent: S.sent });
     function lang() { const u = U(); const c = u.ntLang || ls('lr_nt_lang', null) || (() => { try { return gLang(); } catch (e) { return 'uz'; } })(); return LANGS.find((l) => l.c === c) ? c : 'uz'; }
@@ -32674,24 +32674,111 @@ in vec2 aP;void main(){gl_Position=vec4(aP,0.,1.);}`;
         a.addEventListener('ended', () => { paintPP(); paintNow(); S.follow = false; });
         a.addEventListener('waiting', () => paintPP(true));
         a.addEventListener('playing', () => paintPP());
-        a.addEventListener('loadedmetadata', () => paintNow());
-        a.addEventListener('error', () => { S.lastErr = 'Could not load this recording. Check your internet, or the audio file is not on the site yet.'; paintPP(); const n = $('ntk-aerr'); if (n) { n.textContent = S.lastErr; n.hidden = false; } });
+        a.addEventListener('loadedmetadata', () => { const c = S.tries && S.tries[S.ti]; if (c && c.d >= 0 && c.d !== dirFirst) { dirFirst = c.d; lsSet('lr_nt_dir', c.d); } paintNow(); });
+        a.addEventListener('error', () => { if (a.getAttribute('src')) nextSrc(); });
+        a.addEventListener('playing', () => { S.wantPlay = false; });
         return (S.au = a);
     }
-    function loadItem(id) {
-        const a = audio(), src = aurl(id);
-        if (a.dataset.id !== id) { a.pause(); a.dataset.id = id; S.lastErr = ''; a.src = src; a.load(); }
-        a.playbackRate = S.speed;
+    /* ---------- where the recordings live ----------
+       The 50 MP3s can be on the site one by one (nt01.mp3 …) or still packed in LunaRise_notes_audio.zip.
+       From the zip, each recording is read straight out with one small range request (no unpacking needed),
+       and kept on the phone after the first listen. */
+    const ZIPS = ['LunaRise_notes_audio.zip'];
+    const SRC = {}; let zidx = null, zfull = null;
+    const u16 = (v, o) => v.getUint16(o, true), u32 = (v, o) => v.getUint32(o, true);
+    async function zipIndex() {
+        if (zidx !== null) return zidx;
+        let netErr = false;
+        for (const name of ZIPS) {
+            const url = BASE + name;
+            try {
+                const h = await fetch(url, { method: 'HEAD', cache: 'no-cache' });
+                if (!h.ok) continue;
+                const total = +(h.headers.get('Content-Length') || 0);
+                let r = total > 65536 ? await fetch(url, { headers: { Range: 'bytes=' + (total - 65536) + '-' + (total - 1) } }) : await fetch(url);
+                if (!r.ok) continue;
+                const buf = await r.arrayBuffer(); let base = 0;
+                if (r.status === 206) base = total - buf.byteLength; else zfull = new Blob([buf]);   // the server sent the whole file
+                const v = new DataView(buf); let e = -1;
+                for (let i = buf.byteLength - 22; i >= Math.max(0, buf.byteLength - 65557); i--) if (u32(v, i) === 0x06054b50) { e = i; break; }
+                if (e < 0) continue;
+                const n = u16(v, e + 10), files = {}; let p = u32(v, e + 16) - base;
+                for (let k = 0; k < n && p >= 0 && p + 46 <= buf.byteLength; k++) {
+                    if (u32(v, p) !== 0x02014b50) break;
+                    const nl = u16(v, p + 28), nm = new TextDecoder().decode(new Uint8Array(buf, p + 46, nl)), m = /nt(\d\d)\.mp3$/i.exec(nm);
+                    if (m) files['n' + m[1]] = { loc: u32(v, p + 42), csz: u32(v, p + 20), meth: u16(v, p + 10), nl };
+                    p += 46 + nl + u16(v, p + 30) + u16(v, p + 32);
+                }
+                if (Object.keys(files).length) return (zidx = { url, files });
+            } catch (er) { netErr = true; }
+        }
+        zidx = netErr ? null : false;   // a network hiccup: try again next time
+        return zidx || false;
+    }
+    async function fromZip(id) {
+        const z = await zipIndex(), f = z && z.files[id]; if (!f) return null;
+        const span = 30 + f.nl + 512 + f.csz; let part;
+        if (zfull) part = await zfull.slice(f.loc, f.loc + span).arrayBuffer();
+        else {
+            const r = await fetch(z.url, { headers: { Range: 'bytes=' + f.loc + '-' + (f.loc + span - 1) } });
+            if (!r.ok) return null;
+            if (r.status === 206) part = await r.arrayBuffer(); else { zfull = await r.blob(); part = await zfull.slice(f.loc, f.loc + span).arrayBuffer(); }
+        }
+        const v = new DataView(part); if (part.byteLength < 30 || u32(v, 0) !== 0x04034b50) return null;
+        const d0 = 30 + u16(v, 26) + u16(v, 28), raw = new Blob([part.slice(d0, d0 + f.csz)]);
+        if (f.meth === 0) return new Blob([raw], { type: 'audio/mpeg' });
+        if (f.meth === 8 && typeof DecompressionStream === 'function') return new Blob([await new Response(raw.stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer()], { type: 'audio/mpeg' });
+        return null;
+    }
+    /* The MP3s may sit in a folder (LunaRise_notes_audio/), next to the page, or packed in the zip:
+       look in each place in turn and remember the one that worked, so the next recording starts there. */
+    const DIRS = ['LunaRise_notes_audio/', '', 'audio/', 'notes/'];
+    let dirFirst = (() => { const d = ls('lr_nt_dir', 0); return d >= 0 && d < DIRS.length ? d : 0; })();
+    const fileOf = (id) => 'nt' + id.slice(1) + '.mp3';
+    function places(id) {
+        const o = [dirFirst].concat(DIRS.map((_, i) => i).filter((i) => i !== dirFirst)).map((i) => ({ u: BASE + DIRS[i] + fileOf(id), d: i }));
+        return SRC[id] ? [{ u: SRC[id], d: -1 }].concat(o) : o;
+    }
+    function hideErr() { const n = $('ntk-aerr'); if (n) n.hidden = true; }
+    function setSrc() {
+        const a = S.au, c = S.tries[S.ti]; a.src = c.u; a.load(); a.playbackRate = S.speed;
+        if (S.wantPlay) { const p = a.play(); if (p && p.catch) p.catch(() => { }); }
+        paintPP();
+    }
+    async function nextSrc() {
+        const a = S.au, id = a.dataset.id; if (!S.tries || S.loading) return;
+        if (S.ti < S.tries.length - 1) { S.ti++; setSrc(); return; }
+        if (!S.zipTried) {   // last chance: read it out of LunaRise_notes_audio.zip, if that is on the site
+            S.zipTried = true; S.loading = true; paintPP(); let b = null;
+            if (zidx === false) zidx = null;
+            try { b = await fromZip(id); } catch (e) { }
+            S.loading = false;
+            if (a.dataset.id !== id) return;
+            if (b && b.size > 2000) { SRC[id] = URL.createObjectURL(b); S.tries.push({ u: SRC[id], d: -1 }); S.ti = S.tries.length - 1; setSrc(); return; }
+        }
+        S.wantPlay = false;
+        S.lastErr = 'Could not load ' + fileOf(id) + '. Check your internet and tap ▶ to try again. If it keeps happening, this file is not on the site yet: upload it to the LunaRise_notes_audio folder.';
+        paintPP(); const n = $('ntk-aerr'); if (n) { n.textContent = S.lastErr; n.hidden = false; }
+    }
+    function loadItem(id, force) {
+        const a = audio(); a.playbackRate = S.speed;
+        if (a.dataset.id === id && !force && !S.lastErr) return;
+        a.pause(); a.dataset.id = id; S.lastErr = ''; S.loading = false; S.zipTried = false; hideErr();
+        S.tries = places(id); S.ti = 0; setSrc();
     }
     function segAt(t) { const it = IT[S.id]; if (!it) return -1; const sg = it.seg; for (let i = 0; i < sg.length; i++) { if (t < sg[i][2] + 0.05) return i; } return sg.length - 1; }
     function play() {
-        const a = audio(); if (!S.id) return; a.playbackRate = S.speed;
+        const a = audio(); if (!S.id) return;
+        if (S.loading) { S.wantPlay = true; return; }
+        if (S.lastErr || a.error || a.dataset.id !== S.id) { S.wantPlay = true; loadItem(S.id, true); return; }
+        S.wantPlay = true;
+        a.playbackRate = S.speed;
         if (a.ended || (a.duration && a.currentTime >= a.duration - 0.05)) a.currentTime = 0;
         if (S.sent && !S.wordStop) { const i = segAt(a.currentTime); const sg = IT[S.id].seg[i]; S.stopAt = sg ? sg[2] + 0.05 : null; }
         const p = a.play(); if (p && p.catch) p.catch(() => { paintPP(); });
     }
-    function pause() { const a = S.au; if (a && !a.paused) a.pause(); S.stopAt = null; }
-    function toggle() { const a = audio(); if (a.paused) { S.wordStop = null; S.follow = S.v === 'result'; play(); } else pause(); }
+    function pause() { const a = S.au; S.wantPlay = false; if (a && !a.paused) a.pause(); S.stopAt = null; }
+    function toggle() { const a = audio(); if (a.paused || S.lastErr || a.error || S.loading) { S.wordStop = null; S.follow = S.v === 'result'; play(); } else pause(); }
     function restop() { const a = S.au; if (!a || a.paused || S.wordStop) return; if (!S.sent) { S.stopAt = null; return; } const sg = IT[S.id] && IT[S.id].seg[segAt(a.currentTime)]; S.stopAt = sg ? sg[2] + 0.05 : null; }
     function seekBy(d) { const a = audio(); a.currentTime = Math.max(0, Math.min((a.duration || 1e6) - 0.1, a.currentTime + d)); restop(); paintNow(); }
     function again() {
@@ -32712,8 +32799,8 @@ in vec2 aP;void main(){gl_Position=vec4(aP,0.,1.);}`;
         S.raf = requestAnimationFrame(tick);
     }
     function paintPP(wait) {
-        const b = $('ntk-pp'); if (!b) return; const a = S.au, on = a && !a.paused;
-        b.innerHTML = S.lastErr ? '<svg class="ntk-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.5"/></svg>' : wait && on ? '<svg class="ntk-ic ntk-spin" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>' : on ? '<svg class="ntk-ic" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="6.5" y="4.5" width="4" height="15" rx="1.4"/><rect x="13.5" y="4.5" width="4" height="15" rx="1.4"/></svg>' : '<svg class="ntk-ic" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.3v13.4a1 1 0 0 0 1.53.85l10.4-6.7a1 1 0 0 0 0-1.7L9.53 4.45A1 1 0 0 0 8 5.3z"/></svg>';
+        const b = $('ntk-pp'); if (!b) return; const a = S.au, on = a && !a.paused && !a.error && !S.lastErr;
+        b.innerHTML = S.loading ? '<svg class="ntk-ic ntk-spin" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>' : S.lastErr ? '<svg class="ntk-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.5"/></svg>' : wait && on ? '<svg class="ntk-ic ntk-spin" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>' : on ? '<svg class="ntk-ic" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="6.5" y="4.5" width="4" height="15" rx="1.4"/><rect x="13.5" y="4.5" width="4" height="15" rx="1.4"/></svg>' : '<svg class="ntk-ic" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M8 5.3v13.4a1 1 0 0 0 1.53.85l10.4-6.7a1 1 0 0 0 0-1.7L9.53 4.45A1 1 0 0 0 8 5.3z"/></svg>';
         b.setAttribute('aria-label', on ? 'Pause' : 'Play'); b.classList.toggle('on', !!on);
         const fb = $('ntk-fpp'); if (fb) fb.innerHTML = on && S.follow ? '<svg class="ntk-ic" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><rect x="6.5" y="4.5" width="4" height="15" rx="1.4"/><rect x="13.5" y="4.5" width="4" height="15" rx="1.4"/></svg> Pause' : '<svg class="ntk-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/></svg> Listen and follow';
     }
@@ -33093,7 +33180,7 @@ in vec2 aP;void main(){gl_Position=vec4(aP,0.,1.);}`;
         const it = IT[S.id], w = words(it)[r]; if (!w) return;
         const a = audio(); loadItem(S.id); S.follow = false;
         const go = () => { a.playbackRate = Math.min(1, S.speed); a.currentTime = Math.max(0, w.a - 0.06); S.stopAt = w.b + 0.1; S.wordStop = true; const p = a.play(); if (p && p.catch) p.catch(() => { }); };
-        if (a.readyState >= 1) go(); else a.addEventListener('loadedmetadata', go, { once: true });
+        if (a.readyState >= 1 && !S.loading) go(); else a.addEventListener('loadedmetadata', go, { once: true });
     }
 
     /* ---------- navigation ---------- */
@@ -33125,7 +33212,7 @@ in vec2 aP;void main(){gl_Position=vec4(aP,0.,1.);}`;
     document.addEventListener('click', (e) => { const w = e.target.closest && e.target.closest('#cert-root .ntk-w'); if (w) wordTap(w); });
 
     function doneText() { const L = LOG(), n = D.items.filter((i) => L[i.id]).length; return n ? n + ' of ' + D.items.length + ' recordings done' : D.items.length + ' recordings · 10 topics'; }
-    window.NT = { _merge: merge, doneText, open, html, after, back, stop, topic, item, toggle, play, pause, seekBy, again, speed, sentMode, check, retry, follow, typed, keys, clear, coach: () => coach(), word: wordTap, setLang, say, hear, closeSheet: () => closeSheet(), waveKey, _S: S, _D: D, _canon: canon, _align: align };
+    window.NT = { _zip: () => zipIndex(), _merge: merge, doneText, open, html, after, back, stop, topic, item, toggle, play, pause, seekBy, again, speed, sentMode, check, retry, follow, typed, keys, clear, coach: () => coach(), word: wordTap, setLang, say, hear, closeSheet: () => closeSheet(), waveKey, _S: S, _D: D, _canon: canon, _align: align };
 })();
 </script><!--/nt:js-->
 </body>
