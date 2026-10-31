@@ -5671,6 +5671,160 @@ html.lm .bk-seg button.on,html.lm .bk-mk-go{color:#24170a!important}
 @media (prefers-reduced-motion:reduce){.gx-sk i{animation:none}.gx-pc,.gx-tile,.gx-rwb button{transition:none}}
 .gl-bad.gx-bad>span,.gx-bad>span{text-decoration:none!important}
 </style><!--/gx:css-->
+<!--ax:css--><style id="ax-css">
+/* LunaRise AI+ : answers, pictures, attachments, side panel */
+#view-ai-chat .ai-m.ax-a{align-items:flex-start}
+.ax-col{min-width:0;flex:1;max-width:calc(100% - 46px);display:flex;flex-direction:column;gap:6px}
+.ax-col .ai-b{max-width:100%}
+.ax-ans{font-size:15px;line-height:1.7}
+.ax-ans p{margin:0 0 8px}.ax-ans p:last-child{margin-bottom:0}
+.ax-ans ul,.ax-ans ol{margin:4px 0 10px;padding-left:22px}.ax-ans ul{list-style:disc}.ax-ans ol{list-style:decimal}
+.ax-ans li{margin:3px 0;padding-left:2px}.ax-ans li::marker{color:#a5b4fc;font-weight:800}
+.ax-ans a{color:#7dd3fc;text-decoration:underline;text-underline-offset:2px;word-break:break-all}
+.ax-ans code{padding:1px 6px;border-radius:6px;background:rgba(2,6,23,.55);border:1px solid rgba(148,163,184,.2);font-size:.92em}
+.ax-h{margin:14px 0 6px;font-size:15.5px;font-weight:900;color:#fff;letter-spacing:-.005em}
+.ax-h.big{font-size:17px;padding-bottom:5px;border-bottom:1px solid rgba(165,180,252,.2)}
+.ax-ans>.ax-h:first-child{margin-top:0}
+.ax-hr{border:0;border-top:1px solid rgba(255,255,255,.12);margin:12px 0}
+.ax-q{margin:8px 0;padding:8px 12px;border-left:3px solid #818cf8;border-radius:0 10px 10px 0;background:rgba(99,102,241,.1);color:#e0e7ff}
+.ax-code{margin:8px 0;border-radius:14px;overflow:hidden;border:1px solid rgba(148,163,184,.22);background:rgba(2,6,23,.75)}
+.ax-ch{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;font-size:11.5px;font-weight:800;color:#94a3b8;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(148,163,184,.15)}
+.ax-ch button{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:8px;color:#c7d2fe;background:rgba(99,102,241,.18)}
+.ax-code .ai-pre{margin:0;border:0;border-radius:0;background:transparent;padding:10px 12px;overflow-x:auto;font-size:13px;line-height:1.55}
+.ax-tw{margin:8px 0;overflow-x:auto;border-radius:12px;border:1px solid rgba(148,163,184,.22)}
+.ax-t{width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.45}
+.ax-t th{text-align:left;padding:8px 10px;font-weight:900;color:#e0e7ff;background:rgba(99,102,241,.2);white-space:nowrap}
+.ax-t td{padding:8px 10px;border-top:1px solid rgba(148,163,184,.15);color:#e5e7eb;vertical-align:top}
+.ax-t tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+.ax-acts{display:flex;flex-wrap:wrap;gap:4px;padding-left:4px}
+.ax-acts button{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 10px;border-radius:10px;font-size:12px;font-weight:800;color:#a5b4fc;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:background .2s}
+.ax-acts button:hover{background:rgba(255,255,255,.09)}
+.ax-acts button.on{color:#fcd34d;border-color:rgba(252,211,77,.35);background:rgba(252,211,77,.1)}
+@media (max-width:420px){.ax-acts button span{display:none}.ax-acts button{width:36px;justify-content:center;padding:0}}
+.ax-nx{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:4px}
+.ax-nx button{display:inline-flex;align-items:flex-start;gap:8px;max-width:100%;text-align:left;padding:8px 12px;border-radius:14px;font-size:13.5px;font-weight:700;line-height:1.4;color:#e0e7ff;background:rgba(99,102,241,.14);border:1px solid rgba(129,140,248,.35);transition:transform .15s,background .2s}
+.ax-nx button i{margin-top:3px;font-size:11px;color:#818cf8}
+.ax-nx button:hover{background:rgba(99,102,241,.24)}.ax-nx button:active{transform:scale(.98)}
+.ax-think{margin-left:10px;font-size:12.5px;font-weight:700;color:#94a3b8}
+.ai-b .ai-typing+.ax-think{vertical-align:middle}
+.ax-retry{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:7px 12px;border-radius:10px;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6)}
+.ai-m.ax-flash .ai-b{box-shadow:0 0 0 3px rgba(252,211,77,.7)}
+/* pictures */
+.ax-gal{margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1)}
+.ax-gh{display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#7dd3fc;margin-bottom:8px}
+.ax-gg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (min-width:640px){.ax-gg{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.ax-gi{position:relative;display:block;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:rgba(2,6,23,.6);border:1px solid rgba(255,255,255,.12);padding:0}
+.ax-gi img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.ax-gi:hover img{transform:scale(1.05)}
+.ax-gi span{position:absolute;left:0;right:0;bottom:0;padding:16px 8px 6px;font-size:11px;font-weight:700;line-height:1.3;color:#fff;text-align:left;background:linear-gradient(transparent,rgba(0,0,0,.78));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ax-gs{display:block;aspect-ratio:4/3;border-radius:14px;background:linear-gradient(90deg,rgba(148,163,184,.08),rgba(148,163,184,.2),rgba(148,163,184,.08));background-size:200% 100%;animation:axSk 1.2s linear infinite}
+@keyframes axSk{to{background-position:-200% 0}}
+.ax-gsrc{margin-top:7px;font-size:11px;color:#94a3b8}
+.ax-gal.none{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#94a3b8}
+.ax-lb{position:fixed;inset:0;z-index:4000;display:grid;place-items:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .2s}
+.ax-lb.open{opacity:1;pointer-events:auto}
+.ax-lbg{position:absolute;inset:0;background:rgba(2,4,14,.9);backdrop-filter:blur(6px)}
+.ax-lb figure{position:relative;margin:0;max-width:min(960px,100%);width:100%;display:flex;flex-direction:column;gap:10px}
+.ax-lb img{width:100%;max-height:70vh;object-fit:contain;border-radius:16px;background:#000}
+.ax-lb figcaption{display:flex;flex-direction:column;gap:3px;color:#e5e7eb;font-size:13px}
+.ax-lb figcaption b{font-size:15px;color:#fff}.ax-lb figcaption span{color:#94a3b8;font-size:12px}
+.ax-lb figcaption a{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin-top:4px;padding:7px 12px;border-radius:10px;font-weight:800;color:#c7d2fe;background:rgba(99,102,241,.2);border:1px solid rgba(129,140,248,.35)}
+.ax-lbx{position:absolute;top:-8px;right:-4px;z-index:2;width:40px;height:40px;border-radius:50%;color:#fff;background:rgba(15,23,42,.9);border:1px solid rgba(255,255,255,.2)}
+.ax-lbn{position:absolute;top:calc(35vh - 22px);width:44px;height:44px;border-radius:50%;color:#fff;background:rgba(15,23,42,.75);border:1px solid rgba(255,255,255,.2)}
+.ax-lbn.p{left:6px}.ax-lbn.n{right:6px}
+/* the user's own photos and files */
+.ax-ups{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.ax-ups .ax-up{margin:0;max-width:calc(50% - 3px);max-height:180px;object-fit:cover}
+.ax-ups .ax-up:only-child{max-width:100%;max-height:260px}
+.ax-fcs{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.ax-fc{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);font-size:13px}
+.ax-fc i{font-size:18px}.ax-fc b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ax-fc small{opacity:.8;font-size:11px;white-space:nowrap}
+/* title bar */
+#ai-ttl{display:flex;flex-direction:column;align-items:center;min-width:0;gap:1px}
+.ax-tt{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ax-pmc{font-size:10.5px;font-weight:800;color:#a5b4fc;white-space:nowrap}
+/* composer */
+.ax-plus{position:relative;flex:none}
+.ax-pb{display:grid;place-items:center}
+.ax-pb[aria-expanded="true"] i{transform:rotate(45deg)}
+.ax-pb i{transition:transform .2s}
+.ax-pm{position:absolute;left:0;bottom:calc(100% + 10px);z-index:30;min-width:236px;padding:6px;border-radius:18px;background:#161a36;border:1px solid rgba(165,180,252,.25);box-shadow:0 22px 50px -16px rgba(0,0,0,.85);display:flex;flex-direction:column;gap:2px}
+.ax-pm[hidden]{display:none}
+.ax-pm button{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;text-align:left;color:#e5e7eb}
+.ax-pm button:hover{background:rgba(255,255,255,.07)}
+.ax-pm button>i{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#22d3ee,#6366f1)}
+.ax-pm button:nth-child(2)>i{background:linear-gradient(135deg,#f472b6,#8b5cf6)}.ax-pm button:nth-child(3)>i{background:linear-gradient(135deg,#f59e0b,#ef4444)}
+.ax-pm b{display:block;font-size:14px}.ax-pm small{display:block;font-size:11.5px;color:#94a3b8}
+.ai-prev{flex-wrap:wrap}
+.ax-pv{position:relative}
+.ax-pv.img img{width:62px;height:62px;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.2)}
+.ax-pv.file{display:flex;align-items:center;gap:9px;max-width:240px;padding:8px 32px 8px 10px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#e5e7eb}
+.ax-pv.file>i{font-size:20px;color:#a5b4fc}
+.ax-pv.file span{min-width:0}.ax-pv.file b{display:block;font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ax-pv.file small{display:block;font-size:11px;color:#94a3b8}
+.ax-pv button{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;font-size:11px;color:#fff;background:#ef4444;border:2px solid #0f1229}
+/* the side panel */
+html.ax-lock,html.ax-lock body{overflow:hidden}
+.ax-dr{position:fixed;inset:0;z-index:3200;pointer-events:none}
+.ax-dbg{position:absolute;inset:0;background:rgba(2,4,14,.6);opacity:0;transition:opacity .25s}
+.ax-dp{position:absolute;top:0;bottom:0;left:0;width:min(88vw,380px);display:flex;flex-direction:column;background:linear-gradient(180deg,#151935,#0e1126);border-right:1px solid rgba(165,180,252,.18);box-shadow:24px 0 60px -20px rgba(0,0,0,.8);transform:translateX(-102%);transition:transform .3s cubic-bezier(.2,.9,.3,1);padding-top:env(safe-area-inset-top,0px)}
+.ax-dr.open{pointer-events:auto}.ax-dr.open .ax-dbg{opacity:1}.ax-dr.open .ax-dp{transform:none}
+.ax-dh{display:flex;align-items:center;gap:10px;padding:14px 14px 10px}
+.ax-dh>b{flex:1;font-size:17px;font-weight:900;color:#fff}
+.ax-brand{flex:1;display:flex;align-items:center;gap:10px;min-width:0}
+.ax-brand .ax-core{width:38px;height:38px;flex:none}
+.ax-brand b{display:block;font-size:16px;font-weight:900;color:#fff}.ax-brand small{display:block;font-size:11.5px;color:#94a3b8}
+.ax-db{flex:none;width:38px;height:38px;border-radius:12px;color:#cbd5e1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)}
+.ax-dbody{flex:1;overflow-y:auto;padding:4px 12px calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px;overscroll-behavior:contain}
+.ax-new{display:flex;align-items:center;justify-content:center;gap:9px;min-height:46px;border-radius:14px;font-size:14.5px;font-weight:900;color:#fff;background:linear-gradient(135deg,#22d3ee,#6366f1 60%,#8b5cf6);box-shadow:0 12px 26px -12px rgba(99,102,241,.9)}
+.ax-ds{display:flex;align-items:center;gap:8px;padding:0 12px;min-height:42px;border-radius:13px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#94a3b8}
+.ax-ds input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#fff;font-size:14px}
+.ax-g{margin:8px 4px 0;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#64748b}
+.ax-dl{display:flex;flex-direction:column;gap:2px}
+.ax-ci{position:relative;display:flex;flex-wrap:wrap;align-items:center;border-radius:13px}
+.ax-ci.on{background:rgba(99,102,241,.16)}
+.ax-cm{flex:1;min-width:0;display:flex;align-items:center;gap:10px;padding:9px 8px;text-align:left;border-radius:13px}
+.ax-cm:hover{background:rgba(255,255,255,.05)}
+.ax-cic{flex:none;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:16px;background:rgba(255,255,255,.06)}
+.ax-ctx{min-width:0;flex:1}.ax-ctx b{display:block;font-size:14px;font-weight:800;color:#f1f5f9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ax-ctx small{display:block;font-size:11.5px;color:#94a3b8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ax-pin{font-size:11px;color:#fcd34d}
+.ax-cmore{flex:none;width:34px;height:34px;border-radius:10px;color:#94a3b8}
+.ax-cmore:hover{background:rgba(255,255,255,.07);color:#fff}
+.ax-cmn{flex-basis:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:2px 6px 8px}
+.ax-cmn button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 2px;border-radius:10px;font-size:11px;font-weight:800;color:#cbd5e1;background:rgba(255,255,255,.06)}
+.ax-cmn button.del{color:#fda4af}
+.ax-tool{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:14px;text-align:left;color:#e5e7eb;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.ax-tool>span:not(.ax-ti){flex:1}.ax-tool b{display:block;font-size:14px}.ax-tool small{display:block;font-size:11.5px;color:#94a3b8}.ax-tool>i:last-child{color:#64748b;font-size:12px}
+.ax-ti{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#fff;background:var(--c)}
+.ax-tool.sm{justify-content:center;gap:8px;padding:10px 8px;font-size:12.5px;font-weight:800}
+.ax-two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ax-box{padding:12px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.ax-bh{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:900;color:#c7d2fe;margin-bottom:10px}
+.ax-modes{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ax-modes button{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:9px 10px;border-radius:12px;text-align:left;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#e5e7eb}
+.ax-modes button span{font-size:18px}.ax-modes button b{font-size:12.5px}.ax-modes button small{font-size:10.5px;color:#94a3b8;line-height:1.3}
+.ax-modes button.on{background:rgba(99,102,241,.22);border-color:rgba(129,140,248,.6)}
+.ax-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+.ax-row>span{font-size:13px;font-weight:700;color:#cbd5e1}
+.ax-seg{display:flex;padding:3px;border-radius:12px;background:rgba(2,6,23,.55);border:1px solid rgba(255,255,255,.08)}
+.ax-seg button{padding:6px 10px;border-radius:9px;font-size:12px;font-weight:800;color:#94a3b8;white-space:nowrap}
+.ax-seg button.on{color:#fff;background:linear-gradient(135deg,#6366f1,#8b5cf6)}
+.ax-delall{margin-top:4px;padding:10px;border-radius:12px;font-size:12.5px;font-weight:800;color:#fda4af}
+.ax-empty{display:flex;flex-direction:column;align-items:center;gap:8px;padding:22px 10px;text-align:center;color:#94a3b8;font-size:13px}
+.ax-empty i{font-size:26px;color:#64748b}
+.ax-sv{display:flex;flex-direction:column;gap:4px;padding:11px 12px;border-radius:14px;text-align:left;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.ax-sv small{font-size:11.5px;font-weight:800;color:#a5b4fc}.ax-sv span{font-size:13px;line-height:1.5;color:#e5e7eb}
+@media (prefers-reduced-motion:reduce){.ax-dp,.ax-dbg,.ax-lb,.ax-gi img{transition:none}.ax-gs{animation:none}}
+/* previews: undo the old photo-only box sizes for file chips */
+#ai-prev .ax-pv{width:auto;height:auto;border:0;box-shadow:none;overflow:visible;border-radius:0}
+#ai-prev .ax-pv.img img{width:66px;height:66px;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.25);box-shadow:0 10px 24px -8px rgba(0,0,0,.8)}
+#ai-prev .ax-pv.file{display:flex;align-items:center;gap:9px;width:auto;max-width:min(260px,100%);height:auto;padding:9px 34px 9px 11px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16)}
+#ai-prev .ax-pv.file span{display:block}
+#ai-prev .ax-pv button{top:-6px;right:-6px;background:#ef4444;border:2px solid #0f1229}
+#ai-prev .ax-pv.file button{top:50%;right:6px;transform:translateY(-50%);background:rgba(255,255,255,.12);border:0}
+#view-ai-chat .ai-chat{overflow:clip}
+.ax-gal{max-width:620px}
+</style><!--/ax:css-->
 </head>
 <body class="min-h-screen text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white" data-view="dashboard">
 <script id="lr-tw-pos">(function () { try { var st = document.getElementById('lr-tw'), p = localStorage.getItem('lr_tw_pos'); if (!st || !p) return; var h = document.head, kids = h.children;
@@ -35556,5 +35710,464 @@ Write exactly ${n} NEW multiple-choice fill-in-the-blank questions that test thi
     };
 })();
 </script><!--/gx:js-->
+<!--ax:js--><script id="ax-js">
+/* ===== LunaRise AI+ : a smarter, more modern AI Tutor =====
+   - answers every question in depth (Smart = GPT-4o, or Fast), modes (tutor, homework, deep explainer, IELTS speaking,
+     word coach, translator), richer formatting (headings, tables, numbered steps, code);
+   - real photos from the internet (Wikipedia / Wikimedia Commons) under an answer when they help or when asked;
+   - attach photos, take a photo with the camera, attach files (PDF, Word, PowerPoint, text and code);
+   - a side panel ("backside"): chats saved under a name that says what they are about, grouped by day, pinned chats,
+     search, saved answers, modes, settings, share/copy a chat, delete;
+   - under every answer: listen, copy, save, pictures, try again; follow-up question chips. */
+(function () {
+    'use strict';
+    if (typeof sendChatMessage !== 'function' || typeof aiChats !== 'function') return;
+    const $ = (id) => document.getElementById(id);
+    const E = (s) => escHtml(s == null ? '' : String(s));
+    const MAX_IMG = 4, MAX_FILE = 3, FILE_CHARS = 40000, KEEP_CHARS = 8000;
+    const LIVE = new WeakMap();   // pictures attached in this session (not saved: too big for the device storage)
+    const CDN_PDF = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+
+    /* ---------- settings and modes ---------- */
+    const SET = () => Object.assign({ q: 'smart', len: 'long', pics: 'auto', pm: 'tutor' }, (state.user && state.user.axSet) || {});
+    function setSet(k, v) { state.user.axSet = Object.assign(SET(), { [k]: v }); pfSave(); }
+    const PERS = {
+        tutor: { ic: '💬', n: 'All-round tutor', d: 'Any question, any subject', p: '' },
+        homework: { ic: '📝', n: 'Homework helper', d: 'Step-by-step solutions', p: 'MODE — Homework helper: solve the task step by step and number the steps; explain WHY each step works; check the final answer; then give one similar practice task and put its answer at the very end under "Answer:".' },
+        teacher: { ic: '🎓', n: 'Deep explainer', d: 'Full lessons with examples', p: 'MODE — Deep explainer: teach the topic like the best teacher. Start with a one-sentence simple definition, then explain step by step under ### headings with real-life examples, one analogy, a small table when it helps, common mistakes or misconceptions, a short summary, and a 3-question mini quiz with the answers at the end.' },
+        speaking: { ic: '🎤', n: 'IELTS Speaking', d: 'Examiner + band score', p: 'MODE — IELTS Speaking examiner: ask ONE question or cue card at a time. After each answer give "🎯 Estimated band" (Fluency, Lexical Resource, Grammar, Pronunciation hints), "✅ Corrections", "🚀 Band-8 version", then ask the next question. Stay in examiner mode until the learner stops.' },
+        vocab: { ic: '📚', n: 'Word coach', d: 'Meaning, examples, level', p: 'MODE — Word coach: for any word, phrase or topic give the simple meaning, translation, CEFR level, pronunciation tip, 3 natural example sentences, collocations, synonyms and antonyms, and one common mistake.' },
+        translate: { ic: '🌐', n: 'Translator', d: 'Natural translations + notes', p: 'MODE — Translator: translate the user\'s text between English and the learner\'s language (detect the direction). Give the best natural translation first, then 1-2 alternatives with nuance notes, and explain tricky words or grammar briefly.' }
+    };
+    const persOf = (c) => PERS[c && c.pm] ? c.pm : 'tutor';
+
+    /* ---------- the brain ---------- */
+    function sysPrompt(chat, first) {
+        const s = SET(), L = trL(aiLang()).n, p = PERS[persOf(chat)];
+        const d = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+        return AI_PROMPTS.tutor + `
+Today is ${d}. If a fact may have changed recently, say so briefly.
+QUALITY: think carefully before you answer; be accurate, complete and genuinely helpful. ${s.len === 'long'
+                ? 'Explain everything clearly and in depth: the key idea first, then the details, steps, reasons and examples, so a learner fully understands. Short questions still get a short answer.'
+                : 'Keep answers short and clear (about 120 words) unless the user asks for more detail.'}
+FORMAT (Markdown): use ### headings for sections in longer answers, short paragraphs, bullet and numbered lists, **bold** key words, Markdown tables for comparisons, and \`\`\` code blocks for code. Write maths with plain symbols (×, ÷, ², ³, √, ½, π, →, ≤, ≥) — never LaTeX.
+FILES: when the user attaches a file, its text is between <<<FILE and FILE>>>. Read all of it carefully and use it in your answer.
+PICTURES: the app shows real photos from the internet (Wikipedia and Wikimedia Commons) under your answer. ${s.pics === 'auto' ? 'When pictures would really help (animals, plants, places, buildings, people, objects, food, art, inventions, science phenomena, historical things) or' : 'Only'} when the user asks to see pictures, photos or images (e.g. "rasm", "rasmlar bilan", "surat", "ko'rsat", "фото", "картинки", "покажи", "show me", "picture"), add ONE line at the very end exactly like: [[IMG: query one | query two]] with 1-3 short English search queries that name concrete things (e.g. "snow leopard", "Registan Samarkand", "plant cell diagram"). Never say that you cannot show images, and never mention this line.
+${first ? `TITLE: this is the first message of a new chat. Add a line [[TITLE: one emoji + a 2-5 word title in ${L} that names the topic of the question]], e.g. [[TITLE: 🧪 Photosynthesis basics]].\n` : ''}FOLLOW-UPS: add a line [[NEXT: question | question | question]] with 2-3 short follow-up questions the learner may want to ask next, written in ${L}.
+${p.p}`;
+    }
+    function parse(t) {
+        const o = { imgs: [], title: '', next: [] };
+        let s = String(t || '').replace(/\[\[\s*(IMG|IMAGES?|TITLE|NEXT)\s*:\s*([\s\S]*?)\]\]/gi, (m, k, v) => {
+            k = k.toUpperCase();
+            if (k === 'TITLE') o.title = v.trim().replace(/^["“]|["”]$/g, '').slice(0, 60);
+            else if (k === 'NEXT') o.next = v.split('|').map((x) => x.trim()).filter((x) => x.length > 2).slice(0, 3);
+            else o.imgs = v.split('|').map((x) => x.trim().replace(/^["“]|["”]$/g, '')).filter(Boolean).slice(0, 3);
+            return '';
+        });
+        s = s.replace(/\[\[\s*(IMG|IMAGES?|TITLE|NEXT)\s*:[^\n]*$/gim, '');   // a line cut off at the end
+        o.text = s.replace(/\n{3,}/g, '\n\n').trim();
+        return o;
+    }
+    const PIC_ASK = /(rasm|surat|tasvir|ko['ʻ’`‘]?rsat|foto|photo|picture|\bpics?\b|image|show me|покажи|фото|картин|изображ|تصویر|صورة|छवि|तस्वीर|图片|照片|imagen)/iu;
+    function msgText(m) {
+        let t = String(m.t || '');
+        const ft = LIVE.get(m) && LIVE.get(m).ft || m.ft;
+        if (ft) t = ft + '\n\n' + t;
+        return t;
+    }
+    async function ask(chat) {
+        const s = SET(), ctx = aiCtx(), userN = chat.msgs.filter((m) => m.r === 'u').length, first = userN === 1;
+        const last = chat.msgs[chat.msgs.length - 1], imgs = (LIVE.get(last) || {}).imgs || [];
+        let msgs = chat.msgs.slice(-18).map((m) => ({ role: m.r === 'u' ? 'user' : 'assistant', content: msgText(m) }));
+        const sys = sysPrompt(chat, first) + aiLangRule('tutor', ctx) + '\nLearner: ' + ctx.name + '; goal: ' + ctx.target + '.';
+        const budget = 54000 - sys.length;
+        while (msgs.length > 1 && JSON.stringify(msgs).length > budget) msgs.shift();
+        if (JSON.stringify(msgs).length > budget) msgs[msgs.length - 1].content = String(msgs[msgs.length - 1].content).slice(0, budget - 2000);
+        if (imgs.length) msgs[msgs.length - 1].content = [{ type: 'text', text: String(msgs[msgs.length - 1].content) }].concat(imgs.map((u) => ({ type: 'image_url', image_url: { url: u } })));
+        msgs = aiTail('tutor', msgs, ctx);
+        { const L = msgs[msgs.length - 1], note = '\n[Write any [[IMG: …]] search words in English.]'; if (L && typeof L.content === 'string') L.content += note; else if (L && Array.isArray(L.content)) L.content = L.content.concat([{ type: 'text', text: note.trim() }]); }
+        const key = aiKey(); if (!key) throw { code: 'noai' };
+        if (imgs.length && !aiOwnKey() && LR_AI_PROXY) {
+            // pictures go through the server's tutor route (it accepts big images); the extra rules ride along as a system message
+            const extra = (sysPrompt(chat, first).replace(AI_PROMPTS.tutor, '') + aiLangRule('tutor', ctx)).slice(0, 6800);
+            const r = await fetch(LR_AI_PROXY, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ mode: 'tutor', messages: [{ role: 'system', content: extra }].concat(msgs.slice(-11)), ctx, device: promoDevice() }) });
+            const j = await r.json(); if (!j.ok) throw { code: j.error || 'upstream' }; return j.text || '';
+        }
+        const body = { model: s.q === 'fast' ? 'gpt-4o-mini' : 'gpt-4o', temperature: .6, max_tokens: s.len === 'long' ? 3500 : 1200, messages: [{ role: 'system', content: sys }].concat(msgs) };
+        const c = new AbortController(), to = setTimeout(() => c.abort(), 90000); let r;
+        try { r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', signal: c.signal, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key }, body: JSON.stringify(body) }); } finally { clearTimeout(to); }
+        if (!r.ok) { if (r.status === 404 && body.model === 'gpt-4o') { setSet('q', 'fast'); return ask(chat); } throw { code: r.status === 401 ? 'key' : r.status === 429 ? 'quota' : 'upstream' }; }
+        const j = await r.json(); return (j.choices && j.choices[0] && j.choices[0].message.content) || '';
+    }
+    async function askQueries(q, a) {
+        try {
+            const r = await lrAIFetch('https://api.openai.com/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + aiKey() }, body: JSON.stringify({ model: 'gpt-4o-mini', temperature: .2, max_tokens: 120, response_format: { type: 'json_object' }, messages: [{ role: 'system', content: 'Give 1-3 short English image-search queries (concrete things that can be photographed or drawn) that illustrate this question and answer. Reply ONLY with JSON {"q":["..."]}.' }, { role: 'user', content: ('Question: ' + q + '\nAnswer: ' + a).slice(0, 3000) }] }) });
+            if (!r.ok) return []; const j = await r.json(), o = JSON.parse(j.choices[0].message.content); return (o.q || []).map((x) => String(x).slice(0, 60)).filter(Boolean).slice(0, 3);
+        } catch (e) { return []; }
+    }
+
+    /* ---------- pictures from the internet ---------- */
+    const strip = (h) => String(h || '').replace(/<[^>]*>/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ').replace(/\s+/g, ' ').trim();
+    const BAD = /\b(logo|flag|coat of arms|emblem|seal|icon|symbol|signature|scan|page \d|pdf|djvu|stamp|coin|banner|screenshot|ticket|certificate|font)\b/i;
+    async function getJ(u, ms) { const c = new AbortController(), t = setTimeout(() => c.abort(), ms || 9000); try { const r = await fetch(u, { signal: c.signal }); if (!r.ok) throw 0; return await r.json(); } finally { clearTimeout(t); } }
+    const big = (u) => /\/thumb\//.test(u) ? u.replace(/\/\d+px-/, '/1280px-') : u;
+    async function wikiPics(q) {
+        const p = new URLSearchParams({ action: 'query', format: 'json', formatversion: '2', origin: '*', generator: 'search', gsrsearch: q, gsrlimit: '4', prop: 'pageimages', piprop: 'thumbnail', pithumbsize: '640', pilicense: 'free' });
+        const j = await getJ('https://en.wikipedia.org/w/api.php?' + p);
+        return ((j && j.query && j.query.pages) || []).slice().sort((a, b) => (a.index || 0) - (b.index || 0)).filter((pg) => pg.thumbnail && pg.thumbnail.width >= 220 && !BAD.test(pg.thumbnail.source))
+            .map((pg) => ({ th: pg.thumbnail.source, t: pg.title, src: 'Wikipedia', href: 'https://en.wikipedia.org/wiki/' + encodeURIComponent(String(pg.title).replace(/ /g, '_')) }));
+    }
+    async function commonsPics(q) {
+        const p = new URLSearchParams({ action: 'query', format: 'json', formatversion: '2', origin: '*', generator: 'search', gsrnamespace: '6', gsrlimit: '14', gsrsearch: q + ' filetype:bitmap', prop: 'imageinfo', iiprop: 'url|size|mime|extmetadata', iiurlwidth: '640', iiextmetadatafilter: 'Artist|LicenseShortName' });
+        const j = await getJ('https://commons.wikimedia.org/w/api.php?' + p);
+        const out = [], want = /map|diagram|chart/i.test(q);
+        ((j && j.query && j.query.pages) || []).slice().sort((a, b) => (a.index || 0) - (b.index || 0)).forEach((pg) => {
+            const ii = (pg.imageinfo || [])[0]; if (!ii || !/jpe?g|webp|png/i.test(ii.mime || '')) return;
+            if ((ii.width || 0) < 400) return; const r = (ii.width || 1) / (ii.height || 1); if (r < .45 || r > 3) return;
+            const title = String(pg.title || '').replace(/^File:/, '').replace(/\.[a-z0-9]+$/i, '').replace(/[_]+/g, ' ');
+            if (BAD.test(title) || (!want && /\b(map|diagram|chart|graph|plan)\b/i.test(title))) return;
+            const m = ii.extmetadata || {}, by = [strip(m.Artist && m.Artist.value).slice(0, 40), strip(m.LicenseShortName && m.LicenseShortName.value).slice(0, 20)].filter(Boolean).join(' · ');
+            const u = ii.thumburl || ii.url; if (!u) return;
+            out.push({ th: u, t: title.slice(0, 80), src: 'Wikimedia Commons', by, href: ii.descriptionurl || '' });
+        });
+        return out;
+    }
+    async function findPics(qs) {
+        const all = [], seen = new Set();
+        const per = await Promise.all(qs.map(async (q) => { let a = [], b = []; try { a = await wikiPics(q); } catch (e) { } try { b = await commonsPics(q); } catch (e) { } return { q, items: a.slice(0, 2).concat(b) }; }));
+        const take = qs.length === 1 ? 6 : qs.length === 2 ? 4 : 3;
+        per.forEach((o) => { let n = 0; o.items.forEach((x) => { if (n >= take || seen.has(x.th)) return; seen.add(x.th); all.push(Object.assign({ q: o.q }, x)); n++; }); });
+        return all.slice(0, 8);
+    }
+    function galHtml(m, idx) {
+        if (m.galq && !m.gal) return `<div class="ax-gal load"><div class="ax-gh"><i class="fa-solid fa-circle-notch fa-spin"></i> Finding pictures: ${E(m.galq.join(', '))}</div><div class="ax-gg">${'<i class="ax-gs"></i>'.repeat(4)}</div></div>`;
+        if (!m.gal) return '';
+        if (!m.gal.length) return `<div class="ax-gal none"><i class="fa-regular fa-image"></i> No free pictures found for “${E((m.galq || []).join(', '))}”.</div>`;
+        return `<div class="ax-gal"><div class="ax-gh"><i class="fa-regular fa-images"></i> Pictures from the internet</div><div class="ax-gg">${m.gal.map((x, k) => `<button type="button" class="ax-gi" onclick="AX.lb(${idx},${k})" aria-label="${E(x.t)}"><img src="${E(x.th)}" alt="${E(x.t)}" loading="lazy" decoding="async" onerror="this.parentNode.remove()"><span>${E(x.t)}</span></button>`).join('')}</div><div class="ax-gsrc">Wikipedia · Wikimedia Commons — tap a picture to see it big and its source</div></div>`;
+    }
+    async function picsFor(chat, m, qs) {
+        m.galq = qs; m.gal = null; paintMsg(chat, m);
+        let r = []; try { r = await findPics(qs); } catch (e) { }
+        m.gal = r; delete m._busy; pfSave(); paintMsg(chat, m);
+    }
+    function lightbox(i, k) {
+        const chat = aiChatObj(), m = chat.msgs[i], x = m && m.gal && m.gal[k]; if (!x) return;
+        let el = $('ax-lb'); if (!el) { el = document.createElement('div'); el.id = 'ax-lb'; el.className = 'ax-lb'; document.body.appendChild(el); }
+        const n = m.gal.length;
+        el.innerHTML = `<div class="ax-lbg" onclick="AX.lbClose()"></div><figure><button class="ax-lbx" onclick="AX.lbClose()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+            <img src="${E(big(x.th))}" alt="${E(x.t)}" onerror="this.onerror=null;this.src='${E(x.th)}'">
+            <figcaption><b>${E(x.t)}</b><span>${E([x.by, x.src].filter(Boolean).join(' · '))}</span>${x.href ? `<a href="${E(x.href)}" target="_blank" rel="noopener">Open source page <i class="fa-solid fa-arrow-up-right-from-square"></i></a>` : ''}</figcaption>
+            ${n > 1 ? `<button class="ax-lbn p" onclick="AX.lb(${i},${(k + n - 1) % n})" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button><button class="ax-lbn n" onclick="AX.lb(${i},${(k + 1) % n})" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>` : ''}</figure>`;
+        if (!el.classList.contains('open')) { try { history.pushState({ axlb: 1 }, ''); } catch (e) { } }
+        requestAnimationFrame(() => el.classList.add('open'));
+    }
+
+    /* ---------- richer Markdown ---------- */
+    function inline(h) {
+        return h.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/(^|[\s(])\*([^*\n]+?)\*(?=[\s.,!?:;)]|$)/gm, '$1<i>$2</i>').replace(/`([^`]+)`/g, '<code>$1</code>')
+            .replace(/\[([^\]\n]{1,80})\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+            .replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g, '$1<a href="$2" target="_blank" rel="noopener">$2</a>');
+    }
+    function md(t) {
+        const code = [];
+        t = String(t).replace(/```([\w+#.-]*)\n?([\s\S]*?)```/g, (m, lang, c) => { code.push([lang, c.replace(/\n$/, '')]); return '\n\u0000' + (code.length - 1) + '\u0000\n'; });
+        const lines = escHtml(t).split('\n'), out = []; let list = null, tbl = null;
+        const close = () => { if (list) { out.push('</' + list + '>'); list = null; } if (tbl) { out.push(tableHtml(tbl)); tbl = null; } };
+        for (let i = 0; i < lines.length; i++) {
+            const l = lines[i], tl = l.trim();
+            if (/^\|.*\|$/.test(tl)) { if (list) { out.push('</' + list + '>'); list = null; } (tbl = tbl || []).push(tl); continue; } else if (tbl) { out.push(tableHtml(tbl)); tbl = null; }
+            let m;
+            if ((m = /^\u0000(\d+)\u0000$/.exec(tl))) { close(); const c = code[+m[1]]; out.push(`<div class="ax-code"><div class="ax-ch"><span>${escHtml(c[0] || 'code')}</span><button type="button" onclick="AX.copyCode(this)"><i class="fa-regular fa-copy"></i> Copy</button></div><pre class="ai-pre"><code>${escHtml(c[1])}</code></pre></div>`); continue; }
+            if ((m = /^(#{1,6})\s+(.+)$/.exec(tl))) { close(); out.push(`<h4 class="ax-h${m[1].length <= 2 ? ' big' : ''}">${inline(m[2])}</h4>`); continue; }
+            if (/^(-{3,}|\*{3,}|_{3,})$/.test(tl)) { close(); out.push('<hr class="ax-hr">'); continue; }
+            if ((m = /^&gt;\s?(.*)$/.exec(tl))) { close(); out.push(`<blockquote class="ax-q">${inline(m[1])}</blockquote>`); continue; }
+            if ((m = /^\s*(\d+)[.)]\s+(.*)$/.exec(l))) { if (list !== 'ol') { close(); out.push(`<ol start="${+m[1]}">`); list = 'ol'; } out.push('<li>' + inline(m[2]) + '</li>'); continue; }
+            if ((m = /^\s*[-•*]\s+(.*)$/.exec(l))) { if (list !== 'ul') { close(); out.push('<ul>'); list = 'ul'; } out.push('<li>' + inline(m[1]) + '</li>'); continue; }
+            if (!tl) { if (list) { const nx = (lines[i + 1] || '').trim(); if (!/^(\d+[.)]|[-•*])\s/.test(nx)) close(); } continue; }
+            close(); out.push('<p>' + inline(l) + '</p>');
+        }
+        close();
+        return out.join('');
+    }
+    function tableHtml(rows) {
+        const cells = (r) => r.replace(/^\||\|$/g, '').split('|').map((c) => c.trim());
+        const sep = rows.length > 1 && /^\|?\s*:?-{2,}/.test(rows[1]);
+        const head = sep ? cells(rows[0]) : null, body = rows.slice(sep ? 2 : 0).map(cells);
+        return `<div class="ax-tw"><table class="ax-t">${head ? '<thead><tr>' + head.map((c) => '<th>' + inline(c) + '</th>').join('') + '</tr></thead>' : ''}<tbody>${body.map((r) => '<tr>' + r.map((c) => '<td>' + inline(c) + '</td>').join('') + '</tr>').join('')}</tbody></table></div>`;
+    }
+    window.aiMdHtml = md;
+
+    /* ---------- messages ---------- */
+    const FICON = (n) => /\.pdf$/i.test(n) ? 'fa-file-pdf' : /\.docx?$/i.test(n) ? 'fa-file-word' : /\.pptx?$/i.test(n) ? 'fa-file-powerpoint' : /\.(csv|xlsx?)$/i.test(n) ? 'fa-file-csv' : /\.(js|py|java|c|cpp|cs|html?|css|json|ts|php|rb|go|rs|sql|kt|swift)$/i.test(n) ? 'fa-file-code' : 'fa-file-lines';
+    function msgHtml(chat, m, i) {
+        const u = m.r === 'u', live = LIVE.get(m) || {};
+        if (u) {
+            const att = (m.att || []).map((a) => a.k === 'img' ? '' : `<span class="ax-fc"><i class="fa-solid ${FICON(a.n)}"></i><b>${E(a.n)}</b>${a.info ? `<small>${E(a.info)}</small>` : ''}</span>`).join('');
+            const pics = (live.imgs || []).map((s) => `<img class="ai-pic ax-up" src="${s}" alt="photo">`).join('') || ((m.att || []).some((a) => a.k === 'img') ? `<span class="ax-fc img"><i class="fa-solid fa-image"></i><b>${(m.att || []).filter((a) => a.k === 'img').length} photo${(m.att || []).filter((a) => a.k === 'img').length > 1 ? 's' : ''}</b></span>` : '');
+            return `<div dir="auto" class="ai-b">${pics ? `<div class="ax-ups">${pics}</div>` : ''}${att ? `<div class="ax-fcs">${att}</div>` : ''}${E(String(m.t || '').replace(/^📷\s*/, '')).replace(/\n/g, '<br>')}</div>`;
+        }
+        const lastA = i === chat.msgs.length - 1;
+        return `<div class="ai-av">🤖</div><div class="ax-col"><div dir="auto" class="ai-b ax-ans">${md(m.t)}${galHtml(m, i)}</div>
+            <div class="ax-acts"><button type="button" onclick="AX.say(${i})" aria-label="Listen"><i class="fa-solid fa-volume-high"></i><span>Listen</span></button><button type="button" onclick="AX.copy(${i})" aria-label="Copy"><i class="fa-regular fa-copy"></i><span>Copy</span></button><button type="button" class="${m.bm ? 'on' : ''}" onclick="AX.save(${i})" aria-label="Save answer"><i class="fa-${m.bm ? 'solid' : 'regular'} fa-bookmark"></i><span>${m.bm ? 'Saved' : 'Save'}</span></button>${!m.gal && !m.galq ? `<button type="button" onclick="AX.pics(${i})" aria-label="Show pictures"><i class="fa-regular fa-image"></i><span>Pictures</span></button>` : ''}${lastA ? `<button type="button" onclick="AX.again()" aria-label="Try again"><i class="fa-solid fa-rotate-right"></i><span>Again</span></button>` : ''}</div>
+            ${lastA && m.nx && m.nx.length ? `<div class="ax-nx">${m.nx.map((q, k) => `<button type="button" dir="auto" onclick="AX.next(${k})"><i class="fa-solid fa-arrow-turn-down-right"></i>${E(q)}</button>`).join('')}</div>` : ''}</div>`;
+    }
+    function paint(chat, m, i) {
+        const st = $('ai-chat-stream'); if (!st) return null;
+        let d = st.querySelector(`.ai-m[data-i="${i}"]`);
+        const html = msgHtml(chat, m, i), cls = 'ai-m ' + (m.r === 'u' ? 'u' : 'ax-a');
+        if (!d) { d = document.createElement('div'); d.dataset.i = i; st.appendChild(d); }
+        d.className = cls; d.innerHTML = html; d.dataset.raw = m.t;
+        return d;
+    }
+    function paintMsg(chat, m) { if (aiChatObj() !== chat) return; const i = chat.msgs.indexOf(m); if (i >= 0) paint(chat, m, i); }
+    function render() {
+        const st = $('ai-chat-stream'); if (!st) return; st.innerHTML = ''; st.dataset.ready = 1; const c = aiChatObj();
+        c.msgs.forEach((m, i) => paint(c, m, i)); if (!c.msgs.length) aiWelcome(); titleBar(); st.scrollTop = st.scrollHeight;
+    }
+    window.aiRender = render;
+    // the old single-message painter (used for errors and the typing dots)
+    const add0 = window.aiAdd;
+    window.aiAdd = function (role, text, err, img) { const d = add0.apply(this, arguments); if (d && role !== 'user') d.classList.add('ax-tmp'); return d; };
+    function titleBar() {
+        const e = $('ai-ttl'), c = aiChatObj(); if (!e) return; const p = PERS[persOf(c)];
+        e.innerHTML = `<span class="ax-tt">${E(c.title || 'New chat')}</span><span class="ax-pmc">${p.ic} ${E(p.n)}</span>`;
+    }
+    window.aiTitleBar = titleBar;
+
+    /* ---------- attachments ---------- */
+    let ATT = [];   // {k:'img'|'file', n, url?, ft?, info?, busy?}
+    function prev() {
+        const pv = $('ai-prev'); if (!pv) return;
+        if (!ATT.length) { pv.innerHTML = ''; pv.classList.add('hidden'); return; }
+        pv.classList.remove('hidden');
+        pv.innerHTML = ATT.map((a, k) => a.k === 'img' ? `<div class="ax-pv img"><img src="${a.url}" alt=""><button onclick="AX.rm(${k})" aria-label="Remove">✕</button></div>`
+            : `<div class="ax-pv file ${a.busy ? 'busy' : ''}"><i class="fa-solid ${a.busy ? 'fa-circle-notch fa-spin' : FICON(a.n)}"></i><span><b>${E(a.n)}</b><small>${E(a.busy ? 'Reading…' : a.info || '')}</small></span><button onclick="AX.rm(${k})" aria-label="Remove">✕</button></div>`).join('');
+    }
+    window.aiImgClear = function () { ATT = []; aiImg = null; prev(); };
+    async function addImage(f) {
+        if (ATT.filter((a) => a.k === 'img').length >= MAX_IMG) { showToast('Up to ' + MAX_IMG + ' photos in one message'); return; }
+        let url; try { url = await aiResize(f, 1280, 0.82); } catch (e) { showToast('Could not read that image'); return; }
+        ATT.push({ k: 'img', n: f.name || 'photo.jpg', url }); prev();
+    }
+    async function addFile(f) {
+        if (ATT.filter((a) => a.k === 'file').length >= MAX_FILE) { showToast('Up to ' + MAX_FILE + ' files in one message'); return; }
+        if (f.size > 25 * 1024 * 1024) { showToast('That file is too big (max 25 MB)'); return; }
+        const a = { k: 'file', n: f.name || 'file', busy: true }; ATT.push(a); prev();
+        try { const r = await readFile(f); a.ft = r.text; a.info = r.info; if (r.pics) for (const u of r.pics) if (ATT.filter((x) => x.k === 'img').length < MAX_IMG) ATT.push({ k: 'img', n: a.n + ' page', url: u }); }
+        catch (e) { ATT.splice(ATT.indexOf(a), 1); showToast(e && e.msg ? e.msg : 'Could not read “' + a.n + '”'); }
+        a.busy = false; prev();
+    }
+    window.aiPickImage = function (f) { if (!f) return; if (/^image\//.test(f.type)) return addImage(f); return addFile(f); };
+    function pickFiles(list) { Array.from(list || []).forEach((f) => window.aiPickImage(f)); }
+    /* file reading: text and code, PDF (pdf.js; scanned pages become pictures), Word .docx, PowerPoint .pptx */
+    const TEXTY = /\.(txt|md|markdown|csv|tsv|json|xml|html?|css|js|mjs|ts|tsx|jsx|py|java|c|cc|cpp|h|hpp|cs|php|rb|go|rs|sql|kt|swift|sh|yml|yaml|ini|log|srt|vtt|tex)$/i;
+    async function readFile(f) {
+        const n = f.name || '';
+        if (TEXTY.test(n) || /^text\//.test(f.type) || f.type === 'application/json') { const t = await f.text(); return { text: t.slice(0, FILE_CHARS), info: kb(f) + (t.length > FILE_CHARS ? ' · first part' : '') }; }
+        if (/\.pdf$/i.test(n) || f.type === 'application/pdf') return readPdf(f);
+        if (/\.docx$/i.test(n)) { const x = await unzip(await f.arrayBuffer(), (p) => p === 'word/document.xml'); const t = xmlText(x[0] || '', 'w'); if (!t.trim()) throw { msg: 'This Word file has no text' }; return { text: t.slice(0, FILE_CHARS), info: kb(f) + ' · Word' }; }
+        if (/\.pptx$/i.test(n)) { const x = await unzip(await f.arrayBuffer(), (p) => /^ppt\/slides\/slide\d+\.xml$/.test(p), true); const t = x.map((s, i) => '— Slide ' + (i + 1) + ' —\n' + xmlText(s, 'a')).join('\n\n'); return { text: t.slice(0, FILE_CHARS), info: x.length + ' slides' }; }
+        if (/\.(doc|ppt|xls|xlsx)$/i.test(n)) throw { msg: 'Save it as PDF or .docx first — this old format cannot be read here' };
+        throw { msg: 'This file type is not supported. Try PDF, Word (.docx), PowerPoint (.pptx) or a text file.' };
+    }
+    const kb = (f) => f.size > 1048576 ? (f.size / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(f.size / 1024)) + ' KB';
+    function xmlText(xml, ns) {
+        const p = ns === 'w' ? xml.replace(/<w:tab\/>/g, '\t').replace(/<\/w:p>/g, '\n').replace(/<w:br\/>/g, '\n') : xml.replace(/<\/a:p>/g, '\n');
+        return p.replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, '&').replace(/\n{3,}/g, '\n\n').trim();
+    }
+    async function unzip(buf, want, many) {
+        const dv = new DataView(buf), dec = new TextDecoder(); let e = buf.byteLength - 22;
+        while (e >= 0 && dv.getUint32(e, true) !== 0x06054b50) e--; if (e < 0) throw { msg: 'This file looks damaged' };
+        const n = dv.getUint16(e + 10, true); let p = dv.getUint32(e + 16, true); const hits = [];
+        for (let i = 0; i < n; i++) {
+            if (dv.getUint32(p, true) !== 0x02014b50) break;
+            const method = dv.getUint16(p + 10, true), cs = dv.getUint32(p + 20, true), nl = dv.getUint16(p + 28, true), el = dv.getUint16(p + 30, true), cl = dv.getUint16(p + 32, true), lo = dv.getUint32(p + 42, true);
+            const name = dec.decode(new Uint8Array(buf, p + 46, nl)); p += 46 + nl + el + cl;
+            if (!want(name)) continue;
+            const ln = dv.getUint16(lo + 26, true), le = dv.getUint16(lo + 28, true), data = new Uint8Array(buf, lo + 30 + ln + le, cs);
+            let out; if (method === 0) out = data; else if (method === 8 && typeof DecompressionStream === 'function') out = new Uint8Array(await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer()); else throw { msg: 'This file cannot be opened on this device' };
+            hits.push([name, dec.decode(out)]); if (!many) break;
+        }
+        hits.sort((a, b) => (parseInt(a[0].replace(/\D+/g, ''), 10) || 0) - (parseInt(b[0].replace(/\D+/g, ''), 10) || 0));
+        return hits.map((h) => h[1]);
+    }
+    let pdfP = null;
+    function pdfLib() {
+        if (window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
+        if (!pdfP) pdfP = new Promise((res, rej) => { const s = document.createElement('script'); s.src = CDN_PDF + 'pdf.min.js'; s.onload = () => { try { pdfjsLib.GlobalWorkerOptions.workerSrc = CDN_PDF + 'pdf.worker.min.js'; res(pdfjsLib); } catch (e) { rej(e); } }; s.onerror = () => { pdfP = null; rej({ msg: 'Connect to the internet once to read PDF files' }); }; document.head.appendChild(s); });
+        return pdfP;
+    }
+    async function readPdf(f) {
+        const lib = await pdfLib(), doc = await lib.getDocument({ data: await f.arrayBuffer() }).promise, N = doc.numPages, parts = []; let len = 0;
+        for (let i = 1; i <= Math.min(N, 60) && len < FILE_CHARS; i++) { const pg = await doc.getPage(i), tc = await pg.getTextContent(); const t = tc.items.map((x) => x.str + (x.hasEOL ? '\n' : ' ')).join('').replace(/[ \t]+\n/g, '\n').trim(); parts.push('— Page ' + i + ' —\n' + t); len += t.length; }
+        const text = parts.join('\n\n');
+        if (text.replace(/— Page \d+ —/g, '').trim().length > 40) return { text: text.slice(0, FILE_CHARS), info: N + ' page' + (N > 1 ? 's' : '') + (len >= FILE_CHARS || N > 60 ? ' · first part' : '') };
+        // a scanned PDF: send the first pages as pictures
+        const pics = [];
+        for (let i = 1; i <= Math.min(N, 3); i++) { const pg = await doc.getPage(i), vp0 = pg.getViewport({ scale: 1 }), k = Math.min(2, 1280 / Math.max(vp0.width, vp0.height)), vp = pg.getViewport({ scale: k }), cv = document.createElement('canvas'); cv.width = vp.width; cv.height = vp.height; await pg.render({ canvasContext: cv.getContext('2d'), viewport: vp }).promise; pics.push(cv.toDataURL('image/jpeg', .8)); }
+        return { text: '', info: N + ' scanned page' + (N > 1 ? 's' : '') + ' (sent as pictures)', pics };
+    }
+
+    /* ---------- sending ---------- */
+    window.sendChatMessage = async function (textOverride) {
+        if (aiBusy) return; const inp = $('ai-chat-input');
+        let msg = String(typeof textOverride === 'string' ? textOverride : inp.value).trim();
+        if (ATT.some((a) => a.busy)) { showToast('Wait a moment — the file is still being read'); return; }
+        const att = ATT.slice(); if (!msg && !att.length) return;
+        const imgs = att.filter((a) => a.k === 'img').map((a) => a.url), files = att.filter((a) => a.k === 'file');
+        if (!msg) msg = imgs.length && !files.length ? 'Please look at this picture carefully and help me with it: read any text, explain what it shows, solve any task step by step and correct any English.' : 'Please read the attached file carefully, summarise it and explain the most important points.';
+        aiInit(); inp.value = ''; aiGrow(inp); ATT = []; prev();
+        const chat = aiChatObj(); if (!chat.pm) chat.pm = SET().pm;
+        const m = { r: 'u', t: msg };
+        if (att.length) m.att = att.map((a) => ({ k: a.k, n: a.n, info: a.info || '' }));
+        if (files.length) { const ft = files.map((a) => `<<<FILE ${a.n}${a.info ? ' (' + a.info + ')' : ''}\n${a.ft}\nFILE>>>`).join('\n\n'); m.ft = ft.slice(0, KEEP_CHARS); LIVE.set(m, Object.assign(LIVE.get(m) || {}, { ft: ft.slice(0, FILE_CHARS + 2000) })); }
+        if (imgs.length) LIVE.set(m, Object.assign(LIVE.get(m) || {}, { imgs }));
+        const st = $('ai-chat-stream'); const w = st && st.querySelector('.ai-welcome'); if (w) w.remove();
+        chat.msgs.push(m); chat.ts = Date.now(); paint(chat, m, chat.msgs.length - 1);
+        if (!chat.saved) { chat.saved = 1; chat.title = aiTitleOf(msg); chat.mode = 'tutor'; aiChats().unshift(chat); aiDraft = null; trim(); titleBar(); }
+        pfSave();
+        if (!aiReady()) { aiAdd('assistant', aiErrText({ code: 'noai' }), true); aiSetupOpen(); return; }
+        await answer(chat, PIC_ASK.test(msg));
+    };
+    async function answer(chat, wantPics) {
+        const st = $('ai-chat-stream');
+        // the follow-up chips belong to the newest answer only
+        chat.msgs.forEach((x, i) => { if (x.nx && x.r === 'a') { const d = st && st.querySelector(`.ai-m[data-i="${i}"] .ax-nx`); if (d) d.remove(); } });
+        const typing = aiAdd('assistant', '…', true); typing.querySelector('.ai-b').className = 'ai-b'; typing.querySelector('.ai-b').innerHTML = `<div class="ai-typing"><i></i><i></i><i></i></div><span class="ax-think">${SET().q === 'fast' ? 'Thinking…' : 'Thinking carefully…'}</span>`;
+        st.scrollTop = st.scrollHeight;
+        aiBusy = true; const sb = $('ai-send'); if (sb) sb.disabled = true;
+        try {
+            const out = await ask(chat), o = parse(out);
+            typing.remove();
+            const a = { r: 'a', t: o.text || '…' }; if (o.next.length) a.nx = o.next;
+            chat.msgs.push(a); chat.msgs = chat.msgs.slice(-80); chat.ts = Date.now();
+            if (o.title && chat.msgs.filter((x) => x.r === 'u').length === 1 && !chat.named) { const em = /^\p{Extended_Pictographic}️?/u.exec(o.title); chat.ic = em ? em[0] : ''; chat.title = o.title.replace(/^\p{Extended_Pictographic}️?\s*/u, '').slice(0, 48) || chat.title; titleBar(); }
+            pfSave(); const i = chat.msgs.indexOf(a); const d = paint(chat, a, i);
+            if (d && st) { const top = d.getBoundingClientRect().top - st.getBoundingClientRect().top + st.scrollTop - 12; st.scrollTop = Math.min(top, st.scrollHeight); }
+            try { pfFeed('ai', 'Practised with AI Tutor'); } catch (e) { }
+            let qs = o.imgs; if (!qs.length && wantPics) { const q = (chat.msgs[i - 1] || {}).t || ''; qs = await askQueries(q, a.t.slice(0, 1500)); }
+            if (qs.length) picsFor(chat, a, qs);
+            if (drawerOpen()) drawRender();
+        } catch (e) {
+            typing.remove(); const eb = aiAdd('assistant', aiErrText(e), true); if (eb) eb.querySelector('.ai-b').insertAdjacentHTML('beforeend', '<button type="button" class="ax-retry" onclick="AX.retry(this)"><i class="fa-solid fa-rotate-right"></i> Try again</button>'); pfSave(); if (e && (e.code === 'key' || e.code === 'noai')) aiSetupOpen();
+        }
+        aiBusy = false; if (sb) sb.disabled = false; const inp = $('ai-chat-input'); if (inp && matchMedia('(pointer:fine)').matches) inp.focus();
+    }
+    function trim() { const L = aiChats(); if (L.length <= 80) return; const keep = L.filter((c) => c.pin), rest = L.filter((c) => !c.pin).sort((a, b) => b.ts - a.ts).slice(0, Math.max(0, 80 - keep.length)); state.user.aiChats = keep.concat(rest); }
+
+    /* ---------- the side panel ---------- */
+    let DV = 'main', menuFor = null;
+    const drawerOpen = () => { const d = $('ax-dr'); return !!(d && d.classList.contains('open')); };
+    function drOpen() {
+        let d = $('ax-dr');
+        if (!d) { d = document.createElement('div'); d.id = 'ax-dr'; d.className = 'ax-dr'; d.innerHTML = '<div class="ax-dbg" onclick="AX.close()"></div><aside class="ax-dp" role="dialog" aria-modal="true" aria-label="AI menu"></aside>'; document.body.appendChild(d); }
+        DV = 'main'; menuFor = null; drawRender(); requestAnimationFrame(() => d.classList.add('open')); document.documentElement.classList.add('ax-lock');
+        try { history.pushState({ axdr: 1 }, ''); } catch (e) { }
+    }
+    function drClose(fromPop) { const d = $('ax-dr'); if (!d || !d.classList.contains('open')) return; d.classList.remove('open'); document.documentElement.classList.remove('ax-lock'); if (!fromPop) { try { if (history.state && history.state.axdr) history.back(); } catch (e) { } } }
+    addEventListener('popstate', () => { const lb = $('ax-lb'); if (lb && lb.classList.contains('open') && !(history.state && history.state.axlb)) { lb.classList.remove('open'); return; } if (drawerOpen() && !(history.state && history.state.axdr)) drClose(true); });
+    window.aiHistOpen = drOpen; window.aiHistClose = () => drClose(false); window.aiHistRender = () => { if (drawerOpen()) drawRender(); };
+    function groupOf(ts) { const d = new Date(ts), t = new Date(); t.setHours(0, 0, 0, 0); const day = 864e5; if (d >= t) return 'Today'; if (d >= t - day) return 'Yesterday'; if (d >= t - 7 * day) return 'Previous 7 days'; if (d >= t - 30 * day) return 'Previous 30 days'; return 'Earlier'; }
+    function chatRow(c) {
+        const last = c.msgs[c.msgs.length - 1], sn = last ? String(last.t).replace(/[*#`>|_]/g, '').replace(/\s+/g, ' ').slice(0, 64) : '';
+        const p = PERS[persOf(c)], on = c.id === aiCurId;
+        return `<div class="ax-ci ${on ? 'on' : ''}"><button type="button" class="ax-cm" onclick="AX.open('${c.id}')"><span class="ax-cic">${E(c.ic || p.ic)}</span><span class="ax-ctx"><b>${E(c.title)}</b><small>${E(sn)}</small></span>${c.pin ? '<i class="fa-solid fa-thumbtack ax-pin"></i>' : ''}</button>
+            <button type="button" class="ax-cmore" onclick="AX.menu('${c.id}')" aria-label="More"><i class="fa-solid fa-ellipsis"></i></button>
+            ${menuFor === c.id ? `<div class="ax-cmn"><button type="button" onclick="AX.pin('${c.id}')"><i class="fa-solid fa-thumbtack"></i> ${c.pin ? 'Unpin' : 'Pin'}</button><button type="button" onclick="AX.rename('${c.id}')"><i class="fa-solid fa-pen"></i> Rename</button><button type="button" onclick="AX.share('${c.id}')"><i class="fa-solid fa-share-nodes"></i> Share</button><button type="button" class="del" onclick="AX.del('${c.id}')"><i class="fa-regular fa-trash-can"></i> Delete</button></div>` : ''}</div>`;
+    }
+    function drawRender() {
+        const P = document.querySelector('#ax-dr .ax-dp'); if (!P) return;
+        const L = aiChats(), s = SET(), q = ((($('ax-dq') || {}).value) || '').trim().toLowerCase();
+        if (DV === 'saved') {
+            const saved = []; L.forEach((c) => c.msgs.forEach((m, i) => { if (m.bm && m.r === 'a') saved.push({ c, m, i }); }));
+            P.innerHTML = `<div class="ax-dh"><button type="button" class="ax-db" onclick="AX.view('main')" aria-label="Back"><i class="fa-solid fa-arrow-left"></i></button><b>Saved answers</b><button type="button" class="ax-db" onclick="AX.close()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></div>
+                <div class="ax-dbody">${saved.length ? saved.map((x) => `<button type="button" class="ax-sv" onclick="AX.open('${x.c.id}',${x.i})"><small>${E(x.c.ic || PERS[persOf(x.c)].ic)} ${E(x.c.title)}</small><span>${E(String(x.m.t).replace(/[*#`>|]/g, '').replace(/\s+/g, ' ').slice(0, 180))}</span></button>`).join('') : '<div class="ax-empty"><i class="fa-regular fa-bookmark"></i><p>Tap “Save” under any answer to keep it here.</p></div>'}</div>`;
+            return;
+        }
+        const list = L.slice().sort((a, b) => b.ts - a.ts).filter((c) => !q || (c.title + ' ' + c.msgs.map((m) => m.t).join(' ')).toLowerCase().includes(q));
+        const groups = {}; const order = ['Pinned', 'Today', 'Yesterday', 'Previous 7 days', 'Previous 30 days', 'Earlier'];
+        list.forEach((c) => { const g = c.pin ? 'Pinned' : groupOf(c.ts); (groups[g] = groups[g] || []).push(c); });
+        const nSaved = L.reduce((n, c) => n + c.msgs.filter((m) => m.bm).length, 0), nMsg = L.reduce((n, c) => n + c.msgs.length, 0);
+        const seg = (k, opts) => `<div class="ax-seg">${opts.map(([v, t]) => `<button type="button" class="${s[k] === v ? 'on' : ''}" onclick="AX.set('${k}','${v}')">${t}</button>`).join('')}</div>`;
+        const cur = aiChatObj();
+        const hadFocus = document.activeElement && document.activeElement.id === 'ax-dq', qv = (($('ax-dq') || {}).value) || '';
+        P.innerHTML = `<div class="ax-dh"><div class="ax-brand">${aiCoreHtml(false)}<span><b>LunaRise AI</b><small>${L.length} chat${L.length === 1 ? '' : 's'} · ${nMsg} messages</small></span></div><button type="button" class="ax-db" onclick="AX.close()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></div>
+            <div class="ax-dbody">
+            <button type="button" class="ax-new" onclick="AX.newChat()"><i class="fa-solid fa-pen-to-square"></i> New chat</button>
+            <label class="ax-ds"><i class="fa-solid fa-magnifying-glass"></i><input id="ax-dq" placeholder="Search chats" value="${E(qv)}" oninput="AX.find()"></label>
+            <div class="ax-dl">${list.length ? order.filter((g) => groups[g]).map((g) => `<div class="ax-g">${g === 'Pinned' ? '<i class="fa-solid fa-thumbtack"></i> ' : ''}${g}</div>` + groups[g].map(chatRow).join('')).join('') : `<div class="ax-empty"><i class="fa-regular fa-comments"></i><p>${q ? 'No chats match.' : 'Your chats will be saved here, named by their topic.'}</p></div>`}</div>
+            <div class="ax-g">Tools</div>
+            <button type="button" class="ax-tool" onclick="AX.view('saved')"><span class="ax-ti" style="--c:#f59e0b"><i class="fa-solid fa-bookmark"></i></span><span><b>Saved answers</b><small>${nSaved} saved</small></span><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="ax-box"><div class="ax-bh"><i class="fa-solid fa-wand-magic-sparkles"></i> Mode for this chat</div><div class="ax-modes">${Object.keys(PERS).map((k) => `<button type="button" class="${persOf(cur) === k ? 'on' : ''}" onclick="AX.mode('${k}')"><span>${PERS[k].ic}</span><b>${PERS[k].n}</b><small>${PERS[k].d}</small></button>`).join('')}</div></div>
+            <div class="ax-box"><div class="ax-bh"><i class="fa-solid fa-sliders"></i> Answers</div>
+              <div class="ax-row"><span>Brain</span>${seg('q', [['smart', '🧠 Smart'], ['fast', '⚡ Fast']])}</div>
+              <div class="ax-row"><span>Length</span>${seg('len', [['long', 'Detailed'], ['short', 'Short']])}</div>
+              <div class="ax-row"><span>Pictures</span>${seg('pics', [['auto', 'When useful'], ['ask', 'When I ask']])}</div></div>
+            <div class="ax-two"><button type="button" class="ax-tool sm" onclick="AX.share()"><i class="fa-solid fa-share-nodes"></i> Share this chat</button><button type="button" class="ax-tool sm" onclick="AX.copyChat()"><i class="fa-regular fa-copy"></i> Copy this chat</button></div>
+            <button type="button" class="ax-delall" onclick="AX.delAll()"><i class="fa-regular fa-trash-can"></i> Delete all chats</button>
+            </div>`;
+        if (hadFocus) { const i = $('ax-dq'); if (i) { i.focus(); try { i.setSelectionRange(i.value.length, i.value.length); } catch (e) { } } }
+    }
+    function chatText(c) { return (c.ic ? c.ic + ' ' : '') + c.title + '\n' + new Date(c.ts).toLocaleString() + '\n\n' + c.msgs.map((m) => (m.r === 'u' ? 'You: ' : 'LunaRise AI: ') + String(m.t).replace(/\*\*/g, '')).join('\n\n'); }
+    async function copyText(t, okMsg) { try { await navigator.clipboard.writeText(t); showToast(okMsg || 'Copied'); } catch (e) { const a = document.createElement('textarea'); a.value = t; document.body.appendChild(a); a.select(); try { document.execCommand('copy'); showToast(okMsg || 'Copied'); } catch (er) { showToast('Could not copy'); } a.remove(); } }
+
+    /* ---------- composer: + (camera, photos, files) ---------- */
+    function composer() {
+        const row = document.querySelector('#view-ai-chat .ai-inrow'); if (!row || row.dataset.ax) return; row.dataset.ax = 1;
+        const old = row.querySelector('button[onclick*="ai-file"]');
+        const fi = $('ai-file'); if (fi) { fi.multiple = true; fi.setAttribute('onchange', ''); fi.onchange = function () { pickFiles(this.files); this.value = ''; }; }
+        const html = `<div class="ax-plus"><button type="button" class="ai-ib ax-pb" onclick="AX.plus()" aria-label="Add photo or file" aria-expanded="false"><i class="fa-solid fa-plus"></i></button>
+            <div class="ax-pm" id="ax-pm" hidden><button type="button" onclick="AX.pick('cam')"><i class="fa-solid fa-camera"></i><span><b>Take a photo</b><small>Use the camera</small></span></button><button type="button" onclick="AX.pick('img')"><i class="fa-solid fa-image"></i><span><b>Photos</b><small>Up to ${MAX_IMG} pictures</small></span></button><button type="button" onclick="AX.pick('doc')"><i class="fa-solid fa-paperclip"></i><span><b>File</b><small>PDF, Word, PowerPoint, text</small></span></button></div>
+            <input id="ax-cam" type="file" accept="image/*" capture="environment" hidden><input id="ax-doc" type="file" accept=".pdf,.docx,.pptx,.txt,.md,.csv,.json,.html,.htm,.xml,.js,.ts,.py,.java,.c,.cpp,.cs,.php,.sql,.srt,application/pdf,text/*" multiple hidden></div>`;
+        if (old) old.outerHTML = html; else row.insertAdjacentHTML('afterbegin', html);
+        $('ax-cam').onchange = function () { pickFiles(this.files); this.value = ''; };
+        $('ax-doc').onchange = function () { pickFiles(this.files); this.value = ''; };
+        const z = $('ai-dropzone'); if (z && !z.dataset.ax) { z.dataset.ax = 1; z.addEventListener('drop', (e) => { const fs = e.dataTransfer && e.dataTransfer.files; if (fs && fs.length > 1) { e.preventDefault(); e.stopImmediatePropagation(); z.classList.remove('drag'); pickFiles(fs); } }, true); }
+        const top = document.querySelector('#view-ai-chat .ai-top button[onclick="aiHistOpen()"]'); if (top) { top.innerHTML = '<i class="fa-solid fa-bars-staggered"></i>'; top.setAttribute('aria-label', 'Menu and chat history'); top.classList.add('ax-menu'); }
+        const inp = $('ai-chat-input'); if (inp && !inp.placeholder) inp.placeholder = 'Ask anything…';
+        if (z) z.addEventListener('scroll', () => { if (z.scrollLeft) z.scrollLeft = 0; }, { passive: true });   // its glow is wider than the card: never let it slide sideways
+        document.addEventListener('click', (e) => { const pm = $('ax-pm'); if (pm && !pm.hidden && !e.target.closest('.ax-plus')) plusMenu(false); });
+    }
+    function plusMenu(on) { const pm = $('ax-pm'), b = document.querySelector('.ax-pb'); if (!pm) return; pm.hidden = on == null ? !pm.hidden : !on; if (b) b.setAttribute('aria-expanded', String(!pm.hidden)); }
+    window.aiPaste = function (e) { const fs = Array.from((e.clipboardData || {}).items || []).filter((x) => x.kind === 'file').map((x) => x.getAsFile()).filter(Boolean); if (fs.length) { e.preventDefault(); pickFiles(fs); } };
+    const enter0 = window.aiEnter, init0 = window.aiInit;
+    if (typeof enter0 === 'function') window.aiEnter = function () { const r = enter0.apply(this, arguments); composer(); titleBar(); return r; };
+    if (typeof init0 === 'function') window.aiInit = function () { const r = init0.apply(this, arguments); composer(); return r; };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', composer); else composer();
+
+    /* ---------- public actions ---------- */
+    const at = (i) => { const c = aiChatObj(); return [c, c.msgs[i]]; };
+    window.AX = {
+        lb: lightbox, lbClose() { const el = $('ax-lb'); if (el && el.classList.contains('open')) { el.classList.remove('open'); try { if (history.state && history.state.axlb) history.back(); } catch (e) { } } },
+        retry(b) { if (aiBusy) return; const m = b && b.closest('.ai-m'); if (m) m.remove(); const c = aiChatObj(), last = c.msgs[c.msgs.length - 1]; if (last && last.r === 'u') answer(c, PIC_ASK.test(last.t)); },
+        say(i) { const [, m] = at(i); if (!m || !('speechSynthesis' in window)) return; speechSynthesis.cancel(); const t = String(m.t).replace(/```[\s\S]*?```/g, ' ').replace(/[*`#>|_]/g, '').replace(/\p{Extended_Pictographic}/gu, ''); const u = new SpeechSynthesisUtterance(t.slice(0, 1600)); u.lang = aiLang() === 'en' ? 'en-US' : (trL(aiLang()).sp || 'en-US'); u.rate = .97; speechSynthesis.speak(u); },
+        copy(i) { const [, m] = at(i); if (m) copyText(String(m.t), 'Answer copied'); },
+        save(i) { const [c, m] = at(i); if (!m) return; m.bm = m.bm ? 0 : 1; pfSave(); paint(c, m, i); showToast(m.bm ? '🔖 Saved — find it in the menu' : 'Removed from saved'); },
+        pics(i) { const [c, m] = at(i); if (!m || m.galq) return; const q = (c.msgs[i - 1] || {}).t || ''; m.galq = ['…']; paint(c, m, i); askQueries(q, String(m.t).slice(0, 1500)).then((qs) => { if (!qs.length) qs = [String(q).replace(/[^\p{L}\p{N} ]/gu, ' ').trim().split(/\s+/).slice(0, 4).join(' ')].filter(Boolean); if (!qs.length) { m.galq = null; m.gal = []; paint(c, m, i); return; } picsFor(c, m, qs); }); },
+        again() { if (aiBusy) return; const c = aiChatObj(); const last = c.msgs[c.msgs.length - 1]; if (!last || last.r !== 'a') return; c.msgs.pop(); const st = $('ai-chat-stream'), d = st && st.querySelector(`.ai-m[data-i="${c.msgs.length}"]`); if (d) d.remove(); answer(c, false); },
+        next(k) { const c = aiChatObj(), last = c.msgs[c.msgs.length - 1]; const q = last && last.nx && last.nx[k]; if (q) sendChatMessage(q); },
+        rm(k) { ATT.splice(k, 1); prev(); },
+        plus() { plusMenu(); },
+        pick(w) { plusMenu(false); const el = $(w === 'cam' ? 'ax-cam' : w === 'doc' ? 'ax-doc' : 'ai-file'); if (el) el.click(); },
+        close() { drClose(false); },
+        view(v) { DV = v; drawRender(); },
+        find() { drawRender(); },
+        newChat() { drClose(false); if (aiBusy) return; const c = aiChatObj(); if (!c.msgs.length) { const i = $('ai-chat-input'); if (i) i.focus(); return; } aiCurId = null; aiDraft = null; render(); },
+        open(id, i) { if (aiBusy) return; const c = aiChats().find((x) => x.id === id); if (!c) return; aiCurId = id; aiDraft = null; render(); drClose(false); if (i != null) setTimeout(() => { const d = document.querySelector(`#ai-chat-stream .ai-m[data-i="${i}"]`); if (d) { d.scrollIntoView({ block: 'start' }); d.classList.add('ax-flash'); setTimeout(() => d.classList.remove('ax-flash'), 1600); } }, 60); },
+        menu(id) { menuFor = menuFor === id ? null : id; drawRender(); },
+        pin(id) { const c = aiChats().find((x) => x.id === id); if (!c) return; c.pin = c.pin ? 0 : 1; menuFor = null; pfSave(); drawRender(); },
+        rename(id) { const c = aiChats().find((x) => x.id === id); if (!c) return; const n = prompt('Chat name', c.title); if (n == null) return; c.title = aiTitleOf(n) || c.title; c.named = 1; menuFor = null; pfSave(); titleBar(); drawRender(); },
+        del(id) { const L = aiChats(), i = L.findIndex((x) => x.id === id); if (i < 0) return; if (!confirm('Delete “' + L[i].title + '”?')) return; L.splice(i, 1); pfSave(); if (aiCurId === id) { aiCurId = null; aiDraft = null; render(); } menuFor = null; drawRender(); },
+        delAll() { if (!confirm('Delete all saved chats? This cannot be undone.')) return; state.user.aiChats = []; pfSave(); aiCurId = null; aiDraft = null; render(); drawRender(); },
+        share(id) { const c = id ? aiChats().find((x) => x.id === id) : aiChatObj(); if (!c || !c.msgs.length) { showToast('This chat is empty'); return; } const t = chatText(c); menuFor = null; if (navigator.share) navigator.share({ title: c.title, text: t }).catch(() => { }); else copyText(t, 'Chat copied — paste it anywhere'); },
+        copyChat() { const c = aiChatObj(); if (!c.msgs.length) { showToast('This chat is empty'); return; } copyText(chatText(c), 'Chat copied'); },
+        copyCode(b) { const c = b.closest('.ax-code'); if (c) copyText(c.querySelector('code').textContent, 'Code copied'); },
+        set(k, v) { setSet(k, v); drawRender(); },
+        mode(k) { if (!PERS[k]) return; const c = aiChatObj(); c.pm = k; setSet('pm', k); pfSave(); titleBar(); drawRender(); showToast(PERS[k].ic + ' ' + PERS[k].n + ' mode'); },
+        _parse: parse, _md: md, _find: findPics, _read: readFile
+    };
+})();
+</script><!--/ax:js-->
 </body>
 </html>
