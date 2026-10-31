@@ -5825,6 +5825,141 @@ html.ax-lock,html.ax-lock body{overflow:hidden}
 #view-ai-chat .ai-chat{overflow:clip}
 .ax-gal{max-width:620px}
 </style><!--/ax:css-->
+<!--mv:css--><style id="mv-css">
+/* Movies */
+.mv-root{display:flex;flex-direction:column;gap:22px;padding-bottom:10px}
+.mv-top{display:flex;flex-direction:column;gap:12px}
+@media (min-width:900px){.mv-top{flex-direction:row;align-items:flex-end;justify-content:space-between}.mv-search{width:420px}}
+.mv-ttl h2{font-size:32px;font-weight:900;letter-spacing:-.02em;color:#fff;line-height:1.05}
+.mv-ttl p{margin-top:6px;font-size:14px;color:#94a3b8}
+.mv-search{display:flex;align-items:center;gap:10px;min-height:50px;padding:0 8px 0 16px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#94a3b8;transition:border-color .2s,background .2s}
+.mv-search:focus-within{border-color:rgba(167,139,250,.7);background:rgba(255,255,255,.1)}
+.mv-search input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#fff;font-size:15.5px}
+.mv-search input::-webkit-search-cancel-button{display:none}
+.mv-search button{width:36px;height:36px;border-radius:11px;color:#cbd5e1}.mv-search button.hide{visibility:hidden}
+.mv-err{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:12px 14px;border-radius:14px;font-size:13.5px;font-weight:700;color:#fecdd3;background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.3)}
+.mv-err button{margin-left:auto;padding:7px 12px;border-radius:10px;font-weight:800;color:#fff;background:rgba(244,63,94,.35)}
+.mv-row{display:flex;flex-direction:column;gap:10px;min-width:0}
+.mv-rh{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;padding:0 2px}
+.mv-rh h3{font-size:19px;font-weight:900;color:#fff;letter-spacing:-.01em}
+.mv-rh h3 i{color:#f9a8d4;font-size:15px}
+.mv-rh small{font-size:12.5px;color:#94a3b8;font-weight:600}
+.mv-sc{display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;padding:2px 2px 10px;margin:0 -2px;scrollbar-width:thin}
+.mv-sc::-webkit-scrollbar{height:6px}.mv-sc::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:6px}
+.mv-c{flex:none;width:132px;display:flex;flex-direction:column;gap:7px;text-align:left;scroll-snap-align:start;color:#fff;-webkit-tap-highlight-color:transparent}
+@media (min-width:900px){.mv-c{width:150px}}
+.mv-pf{position:relative;display:block;aspect-ratio:2/3;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.06);box-shadow:0 14px 26px -16px rgba(0,0,0,.9);border:1px solid rgba(255,255,255,.08)}
+.mv-pf img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.mv-c:hover .mv-pf img{transform:scale(1.05)}
+.mv-c:focus-visible .mv-pf{outline:3px solid #a5b4fc;outline-offset:2px}
+.mv-ct{display:flex;flex-direction:column;gap:2px;padding:0 2px;min-width:0}
+.mv-ct b{font-size:13.5px;font-weight:800;line-height:1.3;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.mv-ct small{font-size:11.5px;color:#94a3b8;font-weight:600}
+.mv-ov{margin-top:3px;font-size:12px;line-height:1.45;color:#cbd5e1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.mv-sk{flex:none;display:block;width:132px;aspect-ratio:2/3;border-radius:14px;background:linear-gradient(90deg,rgba(148,163,184,.08),rgba(148,163,184,.18),rgba(148,163,184,.08));background-size:200% 100%;animation:mvSk 1.2s linear infinite}
+.mv-sk.big{width:auto}
+@keyframes mvSk{to{background-position:-200% 0}}
+.mv-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}
+@media (min-width:640px){.mv-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:900px){.mv-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.mv-grid .mv-c{width:auto}
+.mv-cat{display:flex;flex-direction:column;gap:12px}
+.mv-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.mv-chips::-webkit-scrollbar{display:none}
+.mv-chips button{flex:none;padding:8px 14px;border-radius:999px;font-size:13px;font-weight:800;color:#cbd5e1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);transition:background .2s}
+.mv-chips button.on{color:#fff;background:linear-gradient(135deg,#ec4899,#7c3aed);border-color:transparent}
+.mv-chips.sm button{padding:6px 12px;font-size:12px}
+.mv-more{min-height:30px;text-align:center;font-size:12.5px;color:#64748b}
+.mv-empty{display:flex;flex-direction:column;align-items:center;gap:10px;padding:40px 16px;text-align:center;color:#94a3b8}
+.mv-empty i{font-size:34px;color:#64748b}
+.mv-attr{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:6px;font-size:11.5px;line-height:1.5;color:#64748b}
+@media (prefers-reduced-motion:reduce){.mv-sheet,.mv-play,.mv-pf img{transition:none}.mv-sk{animation:none}}
+.mv-rh h3,.mv-ttl h2{text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.mv-ttl p,.mv-rh small{text-shadow:0 1px 8px rgba(0,0,0,.4)}
+</style><style id="mv-art-css" data-th-skip>
+/* Movies: the big pictures stay cinematic (dark shade, white writing) in every theme and in Light mode */
+.mv-hero{position:relative;min-height:420px;border-radius:26px;overflow:hidden;display:flex;align-items:flex-end;background:#0b0d1a var(--bd) center 20%/cover no-repeat;box-shadow:0 30px 60px -30px rgba(0,0,0,.9);isolation:isolate}
+.mv-hero.sk{background:linear-gradient(90deg,#141729,#1e2340,#141729);background-size:200% 100%;animation:mvSk 1.4s linear infinite}
+@media (min-width:900px){.mv-hero{min-height:480px}}
+.mv-hbg{position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#0b0d1a 2%,rgba(11,13,26,.82) 32%,rgba(11,13,26,.25) 62%,rgba(11,13,26,.1)),linear-gradient(90deg,rgba(11,13,26,.75),rgba(11,13,26,0) 70%)}
+.mv-hc{position:relative;padding:22px 20px 44px;max-width:620px;display:flex;flex-direction:column;gap:8px}
+.mv-hc h2{font-size:32px;font-weight:900;line-height:1.05;color:#fff;letter-spacing:-.02em;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+@media (min-width:900px){.mv-hc h2{font-size:46px}.mv-hc{padding:32px 34px 50px}}
+.mv-tag{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:11.5px;font-weight:900;letter-spacing:.04em;color:#fff;background:rgba(236,72,153,.85)}
+.mv-hc .mv-meta{color:#e2e8f0;font-size:13px;font-weight:700}.mv-hc .mv-meta i{color:#facc15}
+.mv-hov{font-size:14px;line-height:1.55;color:#e2e8f0;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.mv-hb{display:flex;gap:10px;margin-top:6px}
+.mv-hb .mv-btn{min-height:46px;padding:0 18px;border-radius:14px;font-size:14.5px;font-weight:800;color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);display:inline-flex;align-items:center;gap:8px}
+.mv-hb .mv-btn.p{color:#111;background:#fff;border-color:#fff}
+.mv-dots{position:absolute;left:20px;bottom:16px;display:flex;gap:6px}
+@media (min-width:900px){.mv-dots{left:34px}}
+.mv-dots button{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.4);transition:width .25s,background .25s}
+.mv-dots button.on{width:22px;background:#fff}
+.mv-dhero{position:relative;height:300px;background:#0b0d1a var(--bd) center 25%/cover no-repeat}
+@media (min-width:700px){.mv-dhero{height:420px}}
+.mv-dhero .mv-hbg{z-index:0;background:linear-gradient(0deg,#0b0d1a 0%,rgba(11,13,26,.55) 45%,rgba(11,13,26,.15) 80%,rgba(11,13,26,.45))}
+.mv-x{position:absolute;z-index:2;top:calc(12px + env(safe-area-inset-top,0px));left:12px;width:44px;height:44px;border-radius:50%;color:#fff;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(8px)}
+.mv-sheet .mv-dti h2,.mv-sheet .mv-dti .mv-tl,.mv-sheet .mv-dti .mv-meta{text-shadow:0 2px 14px rgba(0,0,0,.7)}
+/* film page */
+html.mv-lock,html.mv-lock body{overflow:hidden}
+.mv-sheet{position:fixed;inset:0;z-index:3300;overflow-y:auto;overscroll-behavior:contain;background:#0b0d1a;transform:translateY(24px);opacity:0;transition:transform .28s cubic-bezier(.2,.9,.3,1),opacity .2s}
+.mv-sheet.open{transform:none;opacity:1}
+.mv-dbody{position:relative;max-width:980px;margin:-120px auto 0;padding:0 16px calc(28px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:18px}
+.mv-dtop{display:flex;gap:16px;align-items:flex-end}
+.mv-dp{flex:none;width:118px;aspect-ratio:2/3;object-fit:cover;border-radius:16px;box-shadow:0 22px 40px -18px rgba(0,0,0,.95);border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06)}
+@media (min-width:700px){.mv-dp{width:190px}.mv-dbody{margin-top:-170px}}
+.mv-dti{min-width:0;display:flex;flex-direction:column;gap:6px}
+.mv-dti h2{font-size:26px;font-weight:900;line-height:1.1;color:#fff;letter-spacing:-.01em}
+@media (min-width:700px){.mv-dti h2{font-size:36px}}
+.mv-tl{font-size:13.5px;font-style:italic;color:#cbd5e1}
+.mv-meta{font-size:13px;font-weight:700;color:#cbd5e1}.mv-meta i{color:#facc15;font-size:11px}.mv-meta small{opacity:.7}
+.mv-gs{display:flex;flex-wrap:wrap;gap:6px}
+.mv-gs span{padding:4px 10px;border-radius:999px;font-size:11.5px;font-weight:800;color:#e9d5ff;background:rgba(139,92,246,.2);border:1px solid rgba(167,139,250,.35)}
+.mv-acts{display:flex;flex-wrap:wrap;gap:8px}
+.mv-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 16px;border-radius:14px;font-size:14px;font-weight:800;color:#f1f5f9;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);transition:transform .15s,background .2s}
+.mv-btn:active{transform:scale(.97)}
+.mv-btn.p{color:#fff;background:linear-gradient(135deg,#ec4899,#7c3aed);border-color:transparent;box-shadow:0 14px 30px -14px rgba(236,72,153,.9)}
+.mv-btn.free{color:#fff;background:linear-gradient(135deg,#10b981,#0ea5e9);border-color:transparent;box-shadow:0 14px 30px -14px rgba(16,185,129,.9)}
+.mv-btn.on{color:#fde68a;border-color:rgba(253,230,138,.45);background:rgba(250,204,21,.12)}
+.mv-btn.sk{width:180px;background:rgba(255,255,255,.06);border:0}
+@media (max-width:520px){.mv-acts .mv-btn{flex:1 1 calc(50% - 4px)}.mv-acts .mv-btn.p,.mv-acts .mv-btn.free{flex-basis:100%}}
+.mv-sec{display:flex;flex-direction:column;gap:10px}
+.mv-sec h4{font-size:16px;font-weight:900;color:#fff}
+.mv-story{font-size:15px;line-height:1.7;color:#e2e8f0}
+.mv-dir{font-size:13px;color:#94a3b8}.mv-dir b{color:#e2e8f0}
+.mv-reg{font-size:12.5px;font-weight:800;color:#94a3b8}
+.mv-pg{display:flex;align-items:center;gap:12px}
+.mv-pg>span{flex:none;width:96px;font-size:12px;font-weight:800;color:#cbd5e1}
+.mv-pg>div{display:flex;flex-wrap:wrap;gap:8px}
+.mv-pg img{width:44px;height:44px;border-radius:12px;box-shadow:0 6px 14px -8px rgba(0,0,0,.8)}
+.mv-link{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:11px;font-size:12.5px;font-weight:800;color:#c7d2fe;background:rgba(99,102,241,.16);border:1px solid rgba(129,140,248,.35)}
+.mv-np{font-size:13px;color:#94a3b8}
+.mv-cast{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px}
+.mv-ca{flex:none;width:86px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.mv-ca img,.mv-cai{width:72px;height:72px;border-radius:50%;object-fit:cover;background:rgba(255,255,255,.08);display:grid;place-items:center;color:#64748b;border:2px solid rgba(255,255,255,.12)}
+.mv-ca b{font-size:12px;line-height:1.25;color:#f1f5f9}.mv-ca small{font-size:11px;line-height:1.25;color:#94a3b8;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.mv-tmdb{display:inline-flex;align-items:center;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:900;letter-spacing:.04em;color:#0d253f;background:linear-gradient(90deg,#90cea1,#01b4e4)}
+/* player */
+.mv-play{position:fixed;inset:0;z-index:3400;display:grid;place-items:center;padding:14px;opacity:0;transition:opacity .2s}
+.mv-play.open{opacity:1}
+.mv-pbg{position:absolute;inset:0;background:rgba(0,0,0,.97)}
+.mv-pbox{position:relative;width:min(1100px,100%);display:flex;flex-direction:column;gap:10px}
+.mv-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 30px 70px -20px rgba(0,0,0,1)}
+.mv-frame iframe,.mv-frame video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+.mv-load{position:absolute;inset:0;display:grid;place-items:center;color:#cbd5e1;font-weight:700}
+.mv-px{position:absolute;top:-52px;right:0;width:42px;height:42px;border-radius:50%;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25)}
+.mv-pn{font-size:12.5px;color:#94a3b8;text-align:center}
+/* cards and notes inside the dark film page keep light writing in every mode */
+.mv-sheet .mv-ct b{color:#fff!important}.mv-sheet .mv-ct small{color:#94a3b8!important}
+.mv-sheet .mv-pf{background:rgba(255,255,255,.06)!important;border-color:rgba(255,255,255,.1)!important}
+.mv-sheet .mv-attr{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:11.5px;color:#64748b!important}
+.mv-sheet .mv-err{color:#fecdd3}
+/* poster badges */
+.mv-r{position:absolute;top:7px;left:7px;display:inline-flex;align-items:center;gap:4px;padding:3px 7px;border-radius:9px;font-style:normal;font-size:11px;font-weight:900;color:#fde68a;background:rgba(0,0,0,.66)}
+.mv-r i{font-size:9px}
+.mv-free{position:absolute;top:7px;right:7px;padding:3px 7px;border-radius:9px;font-style:normal;font-size:10px;font-weight:900;letter-spacing:.06em;color:#fff;background:#10b981}
+@media (prefers-reduced-motion:reduce){.mv-hero.sk{animation:none}}
+</style><!--/mv:css-->
 </head>
 <body class="min-h-screen text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white" data-view="dashboard">
 <script id="lr-tw-pos">(function () { try { var st = document.getElementById('lr-tw'), p = localStorage.getItem('lr_tw_pos'); if (!st || !p) return; var h = document.head, kids = h.children;
@@ -6977,6 +7112,7 @@ void main(){
                         <!--club:view--><section id="view-club" class="view-panel hidden"><div id="club-root"></div></section><!--/club:view-->
         <section id="view-certificates" class="view-panel hidden"><div id="cert-root" class="space-y-5"></div></section>
         <section id="view-reading" class="view-panel hidden"><div id="rl-root" class="space-y-5"></div></section>
+<section id="view-movies" class="view-panel hidden"><div id="mv-root" class="mv-root"></div></section>
         <section id="view-profile" class="view-panel hidden space-y-5">
             <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
                 <linearGradient id="pfGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#818cf8"/><stop offset=".5" stop-color="#a78bfa"/><stop offset="1" stop-color="#fbbf24"/></linearGradient>
@@ -16665,7 +16801,7 @@ Respond ONLY with minified JSON: {"title":string,"topic":string (1-2 English wor
             { id: 'mentors', icon: 'fa-graduation-cap', g: 'linear-gradient(135deg,#6366f1,#4338ca)', c: 'rgba(99,102,241,.28)', title: 'Top Mentors', desc: 'English teachers on YouTube & Telegram.', go: "navigateTo('mentors')" },
             { id: 'ai', icon: 'fa-robot', g: 'linear-gradient(135deg,#22d3ee,#6366f1)', c: 'rgba(34,211,238,.28)', title: 'AI Tutor', desc: 'Chat, speaking practice and homework help in 12 languages.', w2: 1, live: () => 'Ask anything', go: "navigateTo('ai-chat')" },
             { id: 'games', icon: 'fa-gamepad', g: 'linear-gradient(135deg,#7c3aed,#ec4899)', c: 'rgba(167,139,250,.3)', title: 'Game Zone', desc: 'Galaxy Rush class quiz + Chess Arena.', isNew: 1, live: () => ((state.user.gamePts || 0) + ' pts'), go: "navigateTo('games')" },
-            /*club*/{ id: 'club', icon: 'fa-earth-asia', g: 'linear-gradient(135deg,#2c5cc5,#d9465a)', c: 'rgba(96,165,250,.3)', title: 'Speaking Club', desc: 'Make friends worldwide: chat, send voice messages and call.', w2: 1, isNew: 1, live: () => (window.CLUB && CLUB.liveText ? CLUB.liveText() : 'Chats, friends and calls'), go: "navigateTo('club')" },/*/club*/
+            { id: 'movies', icon: 'fa-film', g: 'linear-gradient(135deg,#ec4899,#7c3aed)', c: 'rgba(236,72,153,.28)', title: 'Movies', desc: 'English films with posters and the story, HD trailers with subtitles, free classics.', w2: 1, isNew: 1, live: () => { const n = (state.user.mvList || []).length; return n ? n + ' in my list' : 'Trending now'; }, go: "navigateTo('movies')" }, /*club*/{ id: 'club', icon: 'fa-earth-asia', g: 'linear-gradient(135deg,#2c5cc5,#d9465a)', c: 'rgba(96,165,250,.3)', title: 'Speaking Club', desc: 'Make friends worldwide: chat, send voice messages and call.', w2: 1, isNew: 1, live: () => (window.CLUB && CLUB.liveText ? CLUB.liveText() : 'Chats, friends and calls'), go: "navigateTo('club')" },/*/club*/
                         { id: 'profile', icon: 'fa-user-astronaut', g: 'linear-gradient(135deg,#6366f1,#a855f7)', c: 'rgba(129,140,248,.3)', title: 'My Profile', desc: 'XP, badges, settings.', live: () => 'Level ' + pfStats().lvl, go: "navigateTo('profile')" },
             { id: 'reading', icon: 'fa-book-open-reader', g: 'linear-gradient(135deg,#f43f5e,#be123c)', c: 'rgba(244,63,94,.25)', title: 'Reading Lab', desc: 'Two parts: passages with exam questions, and Book Maker for whole illustrated books.', w2: 1, isNew: 1, live: () => { const s = rlStats(); return s.n ? s.n + ' read · ' + s.acc + '%' : rlAll().length + ' passages'; }, go: "navigateTo('reading')" }
         ];
@@ -32248,7 +32384,7 @@ var LR_TURN = null;    // optional TURN servers for voice on strict networks, e.
     });
 
     /* ================= Hub: clear groups ================= */
-    const GROUPS = [['Learn', 'Lessons and full exam practice', ['exams', 'grammar', 'reading']], ['Words', 'Look up, save and remember', ['dictionary', 'mywords']], ['Practise speaking', 'With AI and with real people', ['ai', 'club']], ['Play', 'Learn with games', ['games']], ['More', '', ['mentors', 'profile']]];
+    const GROUPS = [['Learn', 'Lessons and full exam practice', ['exams', 'grammar', 'reading']], ['Words', 'Look up, save and remember', ['dictionary', 'mywords']], ['Practise speaking', 'With AI and with real people', ['ai', 'club']], ['Play', 'Learn with games', ['games']], ['Watch', 'English movies — learn while you watch', ['movies']], ['More', '', ['mentors', 'profile']]];
     function tileList() {
         let T = []; try { T = HB_TILES.slice(); } catch (e) { }
         const sv = saved().length, kn = known().filter(w => isSaved(w)).length;
@@ -36095,7 +36231,7 @@ ${p.p}`;
         P.innerHTML = `<div class="ax-dh"><div class="ax-brand">${aiCoreHtml(false)}<span><b>LunaRise AI</b><small>${L.length} chat${L.length === 1 ? '' : 's'} · ${nMsg} messages</small></span></div><button type="button" class="ax-db" onclick="AX.close()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button></div>
             <div class="ax-dbody">
             <button type="button" class="ax-new" onclick="AX.newChat()"><i class="fa-solid fa-pen-to-square"></i> New chat</button>
-            <label class="ax-ds"><i class="fa-solid fa-magnifying-glass"></i><input id="ax-dq" placeholder="Search chats" value="${E(qv)}" oninput="AX.find()"></label>
+            <label class="ax-ds"><i class="fa-solid fa-magnifying-glass"></i><input id="ax-dq" class="lq-raw" placeholder="Search chats" value="${E(qv)}" oninput="AX.find()"></label>
             <div class="ax-dl">${list.length ? order.filter((g) => groups[g]).map((g) => `<div class="ax-g">${g === 'Pinned' ? '<i class="fa-solid fa-thumbtack"></i> ' : ''}${g}</div>` + groups[g].map(chatRow).join('')).join('') : `<div class="ax-empty"><i class="fa-regular fa-comments"></i><p>${q ? 'No chats match.' : 'Your chats will be saved here, named by their topic.'}</p></div>`}</div>
             <div class="ax-g">Tools</div>
             <button type="button" class="ax-tool" onclick="AX.view('saved')"><span class="ax-ti" style="--c:#f59e0b"><i class="fa-solid fa-bookmark"></i></span><span><b>Saved answers</b><small>${nSaved} saved</small></span><i class="fa-solid fa-chevron-right"></i></button>
@@ -36169,5 +36305,294 @@ ${p.p}`;
     };
 })();
 </script><!--/ax:js-->
+<!--mv:js--><script id="mv-js">
+/* ===== Movies: English films to learn from =====
+   A catalogue of English-language films from TMDB (posters, short story, rating, cast, similar films), search for any
+   English film, trailers in HD with English subtitles, where to watch it legally (streaming services, data by JustWatch),
+   full free films that are in the public domain (Internet Archive), My list, and "learn words from this film" with AI.
+   This product uses the TMDB API but is not endorsed or certified by TMDB. */
+(function () {
+    'use strict';
+    const KEY = 'a7e5ae5f86f0335b59d70e33af2e1c4e', API = 'https://api.themoviedb.org/3', IMG = 'https://image.tmdb.org/t/p/';
+    const $ = (id) => document.getElementById(id);
+    const E = (s) => escHtml(s == null ? '' : String(s));
+    const GEN = { 28: 'Action', 12: 'Adventure', 16: 'Animation', 35: 'Comedy', 80: 'Crime', 99: 'Documentary', 18: 'Drama', 10751: 'Family', 14: 'Fantasy', 36: 'History', 27: 'Horror', 10402: 'Music', 9648: 'Mystery', 10749: 'Romance', 878: 'Science fiction', 53: 'Thriller', 10752: 'War', 37: 'Western' };
+    const day = (n) => { const d = new Date(Date.now() - n * 864e5); return d.toISOString().slice(0, 10); };
+    const year = (m) => String(m.release_date || m.first_air_date || '').slice(0, 4);
+    const P = (p, w) => p ? IMG + (w || 'w342') + p : '';
+
+    /* ---------- data ---------- */
+    const MEM = new Map();
+    async function api(path, params, cacheMin) {
+        const qp = new URLSearchParams(Object.assign({ language: 'en-US', include_adult: 'false' }, params || {}));
+        const ck = 'mv:' + path + '?' + qp;
+        if (MEM.has(ck)) return MEM.get(ck);
+        if (cacheMin) { try { const c = JSON.parse(sessionStorage.getItem(ck) || 'null'); if (c && Date.now() - c.t < cacheMin * 6e4) { MEM.set(ck, c.d); return c.d; } } catch (e) { } }
+        qp.set('api_key', KEY);
+        const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 12000);
+        try {
+            const r = await fetch(API + path + '?' + qp, { signal: ctl.signal }); if (!r.ok) throw { code: r.status };
+            const d = await r.json(); MEM.set(ck, d); if (cacheMin) { try { sessionStorage.setItem(ck, JSON.stringify({ t: Date.now(), d })); } catch (e) { } } return d;
+        } finally { clearTimeout(to); }
+    }
+    const ok = (m) => m && !m.adult && m.poster_path && (m.original_language === 'en' || m.original_language == null);
+    const ROWS = [
+        { id: 'trend', t: 'Trending this week', p: '/trending/movie/week', q: {} },
+        { id: 'free', t: 'Free full movies', s: 'Public-domain classics — watch the whole film here', free: 1 },
+        { id: 'new', t: 'New releases', p: '/discover/movie', q: { with_original_language: 'en', sort_by: 'popularity.desc', 'primary_release_date.gte': day(150), 'primary_release_date.lte': day(0), 'vote_count.gte': 30 } },
+        { id: 'pop', t: 'Popular', p: '/discover/movie', q: { with_original_language: 'en', sort_by: 'popularity.desc', 'vote_count.gte': 300 } },
+        { id: 'fam', t: 'Easy English: animation & family', s: 'Clear speech, everyday words', p: '/discover/movie', q: { with_original_language: 'en', with_genres: '16|10751', sort_by: 'popularity.desc', 'vote_count.gte': 400 } },
+        { id: 'top', t: 'Top rated of all time', p: '/discover/movie', q: { with_original_language: 'en', sort_by: 'vote_average.desc', 'vote_count.gte': 6000 } },
+        { id: 'com', t: 'Comedy', p: '/discover/movie', q: { with_original_language: 'en', with_genres: '35', sort_by: 'popularity.desc', 'vote_count.gte': 300 } },
+        { id: 'adv', t: 'Adventure', p: '/discover/movie', q: { with_original_language: 'en', with_genres: '12', sort_by: 'popularity.desc', 'vote_count.gte': 300 } },
+        { id: 'sci', t: 'Science fiction', p: '/discover/movie', q: { with_original_language: 'en', with_genres: '878', sort_by: 'popularity.desc', 'vote_count.gte': 300 } },
+        { id: 'doc', t: 'Documentaries', s: 'Real English about the real world', p: '/discover/movie', q: { with_original_language: 'en', with_genres: '99', sort_by: 'popularity.desc', 'vote_count.gte': 80 } },
+        { id: 'dra', t: 'Drama', p: '/discover/movie', q: { with_original_language: 'en', with_genres: '18', sort_by: 'popularity.desc', 'vote_count.gte': 300 } }
+    ];
+    const S = { rows: {}, hero: [], hi: 0, cat: { g: 0, sort: 'popularity.desc', page: 0, items: [], done: false, busy: false }, q: '', res: null, err: false, free: null, cur: null };
+
+    /* free films: the public-domain "feature_films" collection of the Internet Archive, matched to TMDB for the poster */
+    async function freeList() {
+        if (S.free) return S.free;
+        try { const c = JSON.parse(sessionStorage.getItem('mv:free') || 'null'); if (c && Date.now() - c.t < 6 * 36e5) return (S.free = c.d); } catch (e) { }
+        const q = 'collection:(feature_films) AND mediatype:(movies) AND (language:(English) OR language:(eng))';
+        const u = 'https://archive.org/advancedsearch.php?q=' + encodeURIComponent(q) + '&fl%5B%5D=identifier&fl%5B%5D=title&fl%5B%5D=year&sort%5B%5D=downloads+desc&rows=40&page=1&output=json';
+        const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 12000); let docs = [];
+        try { const r = await fetch(u, { signal: ctl.signal }); if (r.ok) docs = ((await r.json()).response || {}).docs || []; } catch (e) { } finally { clearTimeout(to); }
+        const out = [], seen = new Set(); let k = 0;
+        const work = async () => {
+            while (k < docs.length && out.length < 20) {
+                const d = docs[k++], t = String(d.title || '').replace(/\s*\((19|20)\d\d\)\s*$/, '').trim(), y = parseInt(d.year, 10) || 0; if (!t) continue;
+                try {
+                    const r = await api('/search/movie', y ? { query: t, primary_release_year: y } : { query: t }, 720);
+                    const m = (r.results || []).find((x) => ok(x) && (!y || Math.abs((parseInt(year(x), 10) || 0) - y) <= 1));
+                    if (m && !seen.has(m.id)) { seen.add(m.id); out.push(Object.assign({}, m, { ia: d.identifier })); }
+                } catch (e) { }
+            }
+        };
+        await Promise.all([work(), work(), work(), work()]);
+        S.free = out; try { sessionStorage.setItem('mv:free', JSON.stringify({ t: Date.now(), d: out })); } catch (e) { }
+        return out;
+    }
+    async function freeFor(m) {
+        if (m.ia) return m.ia;
+        const y = parseInt(year(m), 10) || 0; if (!y || y > 1980) return '';   // films from before about 1928-1980 are the ones that can be public domain
+        try {
+            const q = 'title:("' + String(m.title).replace(/"/g, '') + '") AND collection:(feature_films)';
+            const r = await fetch('https://archive.org/advancedsearch.php?q=' + encodeURIComponent(q) + '&fl%5B%5D=identifier&fl%5B%5D=year&rows=5&output=json');
+            const docs = r.ok ? (((await r.json()).response || {}).docs || []) : [];
+            const d = docs.find((x) => Math.abs((parseInt(x.year, 10) || y) - y) <= 1); return d ? d.identifier : '';
+        } catch (e) { return ''; }
+    }
+
+    /* ---------- pieces ---------- */
+    const myList = () => { const u = state.user; if (!Array.isArray(u.mvList)) u.mvList = []; return u.mvList; };
+    const inList = (id) => myList().some((x) => x.id === id);
+    function card(m, big) {
+        const y = year(m), r = m.vote_average ? m.vote_average.toFixed(1) : '';
+        return `<button type="button" class="mv-c${big ? ' big' : ''}" onclick="MV.open(${m.id}${m.ia ? `,'${E(m.ia)}'` : ''})" aria-label="${E(m.title)}${y ? ' (' + y + ')' : ''}">
+            <span class="mv-pf"><img src="${P(m.poster_path, big ? 'w342' : 'w185')}" srcset="${P(m.poster_path, 'w185')} 185w, ${P(m.poster_path, 'w342')} 342w, ${P(m.poster_path, 'w500')} 500w" sizes="${big ? '(min-width:900px) 200px, 45vw' : '140px'}" alt="" loading="lazy" decoding="async">${r ? `<em class="mv-r"><i class="fa-solid fa-star"></i>${r}</em>` : ''}${m.ia ? '<em class="mv-free">FREE</em>' : ''}</span>
+            <span class="mv-ct"><b>${E(m.title)}</b><small>${E(y)}${m.genre_ids && m.genre_ids[0] && GEN[m.genre_ids[0]] ? ' · ' + E(GEN[m.genre_ids[0]]) : ''}</small>${big && m.overview ? `<span class="mv-ov">${E(m.overview)}</span>` : ''}</span></button>`;
+    }
+    function rowHtml(R) {
+        const L = S.rows[R.id];
+        if (L && !L.length) return '';
+        return `<section class="mv-row" id="mv-row-${R.id}"><div class="mv-rh"><h3>${E(R.t)}</h3>${R.s ? `<small>${E(R.s)}</small>` : ''}</div>
+            <div class="mv-sc" role="list">${L ? L.map((m) => card(m)).join('') : '<span class="mv-sk"></span>'.repeat(7)}</div></section>`;
+    }
+    function heroHtml() {
+        const m = S.hero[S.hi]; if (!m) return '<div class="mv-hero sk"></div>';
+        const g = (m.genre_ids || []).slice(0, 3).map((x) => GEN[x]).filter(Boolean).join(' · ');
+        return `<div class="mv-hero" style="--bd:url('${P(m.backdrop_path, 'w1280')}')"><div class="mv-hbg"></div>
+            <div class="mv-hc"><span class="mv-tag"><i class="fa-solid fa-fire"></i> Trending #${S.hi + 1}</span><h2>${E(m.title)}</h2>
+            <p class="mv-meta">${E(year(m))}${m.vote_average ? ` · <i class="fa-solid fa-star"></i> ${m.vote_average.toFixed(1)}` : ''}${g ? ' · ' + E(g) : ''}</p>
+            <p class="mv-hov">${E(m.overview)}</p>
+            <div class="mv-hb"><button type="button" class="mv-btn p" onclick="MV.trailer(${m.id})"><i class="fa-solid fa-play"></i> Trailer</button><button type="button" class="mv-btn" onclick="MV.open(${m.id})"><i class="fa-solid fa-circle-info"></i> Details</button></div></div>
+            <div class="mv-dots">${S.hero.map((x, i) => `<button type="button" class="${i === S.hi ? 'on' : ''}" onclick="MV.hero(${i})" aria-label="Film ${i + 1}"></button>`).join('')}</div></div>`;
+    }
+    function catHtml() {
+        const C = S.cat, genres = [[0, 'All']].concat([16, 10751, 35, 12, 28, 878, 14, 18, 10749, 9648, 53, 80, 99, 36, 10402, 10752, 37, 27].map((k) => [k, GEN[k]]));
+        return `<section class="mv-cat" id="mv-cat"><div class="mv-rh"><h3>All English movies</h3><small>Browse the whole catalogue</small></div>
+            <div class="mv-chips">${genres.map(([k, v]) => `<button type="button" class="${C.g === k ? 'on' : ''}" onclick="MV.genre(${k})">${E(v)}</button>`).join('')}</div>
+            <div class="mv-chips sm">${[['popularity.desc', 'Most popular'], ['vote_average.desc', 'Best rated'], ['primary_release_date.desc', 'Newest'], ['revenue.desc', 'Biggest hits']].map(([k, v]) => `<button type="button" class="${C.sort === k ? 'on' : ''}" onclick="MV.sort('${k}')">${v}</button>`).join('')}</div>
+            <div class="mv-grid" id="mv-grid">${C.items.map((m) => card(m, true)).join('')}${C.busy || !C.items.length ? '<span class="mv-sk big"></span>'.repeat(6) : ''}</div>
+            <div id="mv-more" class="mv-more">${C.done ? 'That is the whole list.' : ''}</div></section>`;
+    }
+    function root() { return $('mv-root'); }
+    function render() {
+        const r = root(); if (!r) return;
+        const list = myList();
+        let h = `<div class="mv-top"><div class="mv-ttl"><h2>Movies</h2><p>English films with posters, trailers and the story — learn while you watch.</p></div>
+            <label class="mv-search"><i class="fa-solid fa-magnifying-glass"></i><input id="mv-q" class="lq-raw" type="search" placeholder="Search any English movie…" value="${E(S.q)}" oninput="MV.find(this.value)" enterkeyhint="search" autocomplete="off"><button type="button" class="${S.q ? '' : 'hide'}" onclick="MV.find('');document.getElementById('mv-q').value=''" aria-label="Clear"><i class="fa-solid fa-xmark"></i></button></label></div>`;
+        if (S.err) h += `<div class="mv-err"><i class="fa-solid fa-wifi"></i> Could not load movies. Check your internet connection. <button type="button" onclick="MV.reload()">Try again</button></div>`;
+        if (S.q) h += `<div id="mv-res">${resHtml()}</div>`;
+        else {
+            h += heroHtml();
+            if (list.length) h += `<section class="mv-row"><div class="mv-rh"><h3><i class="fa-solid fa-bookmark"></i> My list</h3><small>${list.length} saved</small></div><div class="mv-sc">${list.map((x) => card({ id: x.id, title: x.t, poster_path: x.p, release_date: x.y, vote_average: x.v, ia: x.ia })).join('')}</div></section>`;
+            h += ROWS.map(rowHtml).join('') + catHtml();
+        }
+        h += `<p class="mv-attr"><span class="mv-tmdb">TMDB</span> This product uses the TMDB API but is not endorsed or certified by TMDB. Where-to-watch data by JustWatch. Free films from the Internet Archive (public domain).</p>`;
+        const y = scrollY, hadQ = document.activeElement && document.activeElement.id === 'mv-q';
+        r.innerHTML = h; if (hadQ) { const i = $('mv-q'); i.focus(); try { i.setSelectionRange(i.value.length, i.value.length); } catch (e) { } }
+        window.scrollTo(0, y); watchMore();
+    }
+    function resHtml() {
+        if (!S.res) return `<div class="mv-grid">${'<span class="mv-sk big"></span>'.repeat(6)}</div>`;
+        if (!S.res.length) return `<div class="mv-empty"><i class="fa-solid fa-film"></i><p>No English movies found for “${E(S.q)}”. Try the original English title.</p></div>`;
+        return `<div class="mv-rh"><h3>Results for “${E(S.q)}”</h3><small>${S.res.length} English movie${S.res.length === 1 ? '' : 's'}</small></div><div class="mv-grid">${S.res.map((m) => card(m, true)).join('')}</div>`;
+    }
+    function paintRow(id) { const R = ROWS.find((x) => x.id === id), el = $('mv-row-' + id); if (!R || !el || S.q) return; const h = rowHtml(R); if (h) el.outerHTML = h; else el.remove(); }
+    function paintHero() { const el = document.querySelector('#mv-root .mv-hero'); if (el && !S.q) el.outerHTML = heroHtml(); }
+    function paintGrid() { const g = $('mv-grid'), C = S.cat; if (!g) return; g.innerHTML = C.items.map((m) => card(m, true)).join('') + (C.busy ? '<span class="mv-sk big"></span>'.repeat(6) : ''); const mo = $('mv-more'); if (mo) mo.textContent = C.done ? 'That is the whole list.' : ''; }
+
+    /* ---------- loading ---------- */
+    let started = false, heroT = 0;
+    async function start() {
+        if (started) { render(); return; } started = true; S.err = false; render();
+        let fails = 0;
+        await Promise.all(ROWS.map(async (R) => {
+            try {
+                let L;
+                if (R.free) L = await freeList();
+                else { const d = await api(R.p, R.q, 180); L = (d.results || []).filter(ok); if (R.id === 'trend' && L.length < 12) { const d2 = await api(R.p, { page: 2 }, 180); L = L.concat((d2.results || []).filter(ok)); } }
+                S.rows[R.id] = L.slice(0, 20);
+                if (R.id === 'trend') { S.hero = L.filter((m) => m.backdrop_path).slice(0, 6); S.hi = 0; paintHero(); heroLoop(); }
+            } catch (e) { if (!R.free) fails++; S.rows[R.id] = []; }
+            paintRow(R.id);
+        }));
+        if (fails >= ROWS.length - 1) { S.err = true; started = false; render(); }
+        else if (!S.cat.items.length) more();
+    }
+    function heroLoop() { clearInterval(heroT); if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; heroT = setInterval(() => { const v = $('view-movies'); if (!v || v.classList.contains('hidden') || document.hidden || S.q || $('mv-sheet')) return; if (S.hero.length > 1) { S.hi = (S.hi + 1) % S.hero.length; paintHero(); } }, 9000); }
+    async function more() {
+        const C = S.cat; if (C.busy || C.done) return; C.busy = true; paintGrid(); const tok = C.tok = (C.tok || 0) + 1;
+        try {
+            const q = { with_original_language: 'en', sort_by: C.sort, page: C.page + 1, 'vote_count.gte': C.sort === 'vote_average.desc' ? 1500 : C.sort === 'primary_release_date.desc' ? 20 : 150 };
+            if (C.sort === 'primary_release_date.desc') q['primary_release_date.lte'] = day(0);
+            if (C.g) q.with_genres = String(C.g);
+            const d = await api('/discover/movie', q, 180); if (tok !== C.tok) return;
+            const have = new Set(C.items.map((m) => m.id)); C.items = C.items.concat((d.results || []).filter((m) => ok(m) && !have.has(m.id)));
+            C.page = d.page || C.page + 1; if (C.page >= Math.min(d.total_pages || 1, 200)) C.done = true;
+        } catch (e) { C.done = false; } finally { if (tok === C.tok) { C.busy = false; paintGrid(); } }
+    }
+    let io = null;
+    function watchMore() { if (io) io.disconnect(); const el = $('mv-more'); if (!el || !('IntersectionObserver' in window)) return; io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) more(); }, { rootMargin: '900px 0px' }); io.observe(el); }
+    let findT = 0, findTok = 0;
+    function find(v) {
+        S.q = String(v || '').trim(); clearTimeout(findT);
+        if (!S.q) { S.res = null; render(); return; }
+        S.res = null; if (!$('mv-res')) render(); else $('mv-res').innerHTML = resHtml();
+        const b = document.querySelector('.mv-search button'); if (b) b.classList.remove('hide');
+        const tok = ++findTok;
+        findT = setTimeout(async () => {
+            try {
+                const [a, b2] = await Promise.all([api('/search/movie', { query: S.q, page: 1 }, 30), api('/search/movie', { query: S.q, page: 2 }, 30).catch(() => ({ results: [] }))]);
+                if (tok !== findTok) return;
+                const seen = new Set(); S.res = (a.results || []).concat(b2.results || []).filter((m) => ok(m) && !seen.has(m.id) && seen.add(m.id));
+            } catch (e) { if (tok !== findTok) return; S.res = []; }
+            const el = $('mv-res'); if (el) el.innerHTML = resHtml();
+        }, 380);
+    }
+
+    /* ---------- the film page ---------- */
+    let stack = 0;
+    function push(tag) { try { history.pushState({ mv: tag }, ''); stack++; } catch (e) { } }
+    function sheet(html) {
+        let s = $('mv-sheet'); if (!s) { s = document.createElement('div'); s.id = 'mv-sheet'; s.className = 'mv-sheet'; s.setAttribute('role', 'dialog'); s.setAttribute('aria-modal', 'true'); document.body.appendChild(s); push('d'); document.documentElement.classList.add('mv-lock'); requestAnimationFrame(() => s.classList.add('open')); }
+        s.innerHTML = html; s.scrollTop = 0; return s;
+    }
+    function closeSheet(fromPop) { const s = $('mv-sheet'); if (!s) return; s.id = ''; s.classList.remove('open'); document.documentElement.classList.remove('mv-lock'); setTimeout(() => s.remove(), 260); S.cur = null; if (!fromPop && history.state && history.state.mv === 'd') { stack--; history.back(); } }
+    async function open(id, ia) {
+        const base = findLocal(id);
+        sheet(detailHtml(base ? Object.assign({ _base: 1 }, base, ia ? { ia } : {}) : { id, title: '', _base: 1 }));
+        try {
+            const d = await api('/movie/' + id, { append_to_response: 'videos,credits,similar,recommendations,watch/providers,release_dates', include_video_language: 'en,null' }, 120);
+            if (ia) d.ia = ia; else if (base && base.ia) d.ia = base.ia;
+            S.cur = d; if (!$('mv-sheet')) return; sheet(detailHtml(d));
+            if (!d.ia) freeFor(d).then((x) => { if (x && S.cur && S.cur.id === d.id) { d.ia = x; const s = $('mv-sheet'); if (s) { const y = s.scrollTop; sheet(detailHtml(d)); s.scrollTop = y; } } });
+        } catch (e) { const s = $('mv-sheet'); if (s) s.querySelector('.mv-dbody').insertAdjacentHTML('afterbegin', '<div class="mv-err"><i class="fa-solid fa-wifi"></i> Could not load this movie. Check your internet.</div>'); }
+    }
+    function findLocal(id) { const all = [].concat(...Object.values(S.rows), S.cat.items, S.res || [], S.hero); return all.find((m) => m && m.id === id) || null; }
+    function trailerOf(d) { const v = ((d.videos || {}).results || []).filter((x) => x.site === 'YouTube'); return v.find((x) => x.type === 'Trailer' && x.official) || v.find((x) => x.type === 'Trailer') || v.find((x) => x.type === 'Teaser') || v[0] || null; }
+    function region() { const r = (navigator.language || '').split('-')[1]; return (r || 'US').toUpperCase(); }
+    function providersHtml(d) {
+        const all = (d['watch/providers'] || {}).results || {}; let reg = region(), w = all[reg];
+        if (!w) { reg = all.UZ ? 'UZ' : all.US ? 'US' : all.GB ? 'GB' : Object.keys(all)[0]; w = all[reg]; }
+        if (!w) return `<p class="mv-np">No streaming information for this film yet.</p>`;
+        const grp = [['flatrate', 'Stream'], ['free', 'Free'], ['ads', 'Free with ads'], ['rent', 'Rent'], ['buy', 'Buy']].filter(([k]) => (w[k] || []).length);
+        let name = reg; try { name = new Intl.DisplayNames(['en'], { type: 'region' }).of(reg) || reg; } catch (e) { }
+        return `<p class="mv-reg">Where to watch in ${E(name)}</p>${grp.map(([k, t]) => `<div class="mv-pg"><span>${t}</span><div>${w[k].slice(0, 8).map((p) => `<a href="${E(w.link || '#')}" target="_blank" rel="noopener" title="${E(p.provider_name)}"><img src="${P(p.logo_path, 'w92')}" alt="${E(p.provider_name)}" loading="lazy"></a>`).join('')}</div></div>`).join('')}<a class="mv-link" href="${E(w.link || '#')}" target="_blank" rel="noopener">All options <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
+    }
+    function detailHtml(d) {
+        const y = year(d), rt = d.runtime ? Math.floor(d.runtime / 60) + 'h ' + (d.runtime % 60) + 'm' : '', tr = d._base ? null : trailerOf(d);
+        const genres = (d.genres || (d.genre_ids || []).map((x) => ({ name: GEN[x] }))).map((g) => g.name).filter(Boolean);
+        const cast = ((d.credits || {}).cast || []).slice(0, 12), dir = ((d.credits || {}).crew || []).filter((c) => c.job === 'Director').map((c) => c.name).slice(0, 2);
+        const cert = (() => { try { const us = (d.release_dates.results || []).find((x) => x.iso_3166_1 === 'US'); return ((us && us.release_dates.find((r) => r.certification)) || {}).certification || ''; } catch (e) { return ''; } })();
+        const sim = ((d.recommendations || {}).results || []).concat((d.similar || {}).results || []).filter(ok), seen = new Set(), simU = sim.filter((m) => !seen.has(m.id) && seen.add(m.id)).slice(0, 16);
+        const saved = inList(d.id);
+        return `<div class="mv-dhero" style="--bd:url('${P(d.backdrop_path, 'w1280')}')"><div class="mv-hbg"></div><button type="button" class="mv-x" onclick="MV.close()" aria-label="Close"><i class="fa-solid fa-arrow-left"></i></button></div>
+            <div class="mv-dbody"><div class="mv-dtop">${d.poster_path ? `<img class="mv-dp" src="${P(d.poster_path, 'w500')}" alt="">` : '<span class="mv-dp sk"></span>'}
+              <div class="mv-dti"><h2>${E(d.title || '…')}</h2>${d.tagline ? `<p class="mv-tl">“${E(d.tagline)}”</p>` : ''}
+                <p class="mv-meta">${[y, rt, cert].filter(Boolean).map(E).join(' · ')}${d.vote_average ? ` · <i class="fa-solid fa-star"></i> ${d.vote_average.toFixed(1)}<small>/10</small>` : ''}</p>
+                <div class="mv-gs">${genres.map((g) => `<span>${E(g)}</span>`).join('')}</div></div></div>
+              <div class="mv-acts">
+                ${d.ia ? `<button type="button" class="mv-btn free" onclick="MV.full()"><i class="fa-solid fa-circle-play"></i> Watch full movie · free</button>` : ''}
+                ${tr ? `<button type="button" class="mv-btn p" onclick="MV.play('${E(tr.key)}')"><i class="fa-solid fa-play"></i> Trailer · HD · English subtitles</button>` : (d._base ? '<span class="mv-btn ghost sk"></span>' : '')}
+                <button type="button" class="mv-btn ${saved ? 'on' : ''}" onclick="MV.save()"><i class="fa-${saved ? 'solid' : 'regular'} fa-bookmark"></i> ${saved ? 'In my list' : 'My list'}</button>
+                <button type="button" class="mv-btn" onclick="MV.learn()"><i class="fa-solid fa-graduation-cap"></i> Learn words from it</button></div>
+              <div class="mv-sec"><h4>The story</h4><p class="mv-story">${E(d.overview || (d._base ? '' : 'No description yet.'))}</p>${dir.length ? `<p class="mv-dir">Directed by <b>${E(dir.join(', '))}</b></p>` : ''}</div>
+              ${d._base ? '' : `<div class="mv-sec"><h4>Watch it</h4>${providersHtml(d)}${d.ia ? '<p class="mv-np">This film is in the public domain — you can watch the whole film free with the button above.</p>' : ''}</div>`}
+              ${cast.length ? `<div class="mv-sec"><h4>Cast</h4><div class="mv-cast">${cast.map((c) => `<div class="mv-ca">${c.profile_path ? `<img src="${P(c.profile_path, 'w185')}" alt="" loading="lazy">` : '<span class="mv-cai"><i class="fa-solid fa-user"></i></span>'}<b>${E(c.name)}</b><small>${E(c.character || '')}</small></div>`).join('')}</div></div>` : ''}
+              ${simU.length ? `<div class="mv-sec"><h4>More like this</h4><div class="mv-sc">${simU.map((m) => card(m)).join('')}</div></div>` : ''}
+              <p class="mv-attr"><span class="mv-tmdb">TMDB</span> Movie data from TMDB. Where-to-watch data by JustWatch.</p></div>`;
+    }
+    /* the player: YouTube trailers (best quality the phone can take, English subtitles on); full free films from the Internet Archive in their best file */
+    function player(html) {
+        let p = $('mv-play'); if (!p) { p = document.createElement('div'); p.id = 'mv-play'; p.className = 'mv-play'; document.body.appendChild(p); push('p'); }
+        p.innerHTML = `<div class="mv-pbg" onclick="MV.stop()"></div><div class="mv-pbox"><button type="button" class="mv-px" onclick="MV.stop()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>${html}</div>`;
+        requestAnimationFrame(() => p.classList.add('open'));
+        return p;
+    }
+    function stop(fromPop) { const p = $('mv-play'); if (!p) return; p.id = ''; p.classList.remove('open'); p.querySelectorAll('video').forEach((v) => { try { v.pause(); } catch (e) { } }); setTimeout(() => p.remove(), 220); if (!fromPop && history.state && history.state.mv === 'p') { stack--; history.back(); } }
+    function playYT(key) {
+        player(`<div class="mv-frame"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(key)}?autoplay=1&rel=0&modestbranding=1&playsinline=1&cc_load_policy=1&cc_lang_pref=en&hl=en&vq=hd1080" title="Trailer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div><p class="mv-pn">English subtitles are on. For the sharpest picture choose ⚙ → Quality → 1080p.</p>`);
+    }
+    async function playFull() {
+        const d = S.cur; if (!d || !d.ia) return;
+        const p = player(`<div class="mv-frame"><div class="mv-load"><i class="fa-solid fa-circle-notch fa-spin"></i> Opening the film…</div></div>`);
+        let src = '';
+        try {
+            const r = await fetch('https://archive.org/metadata/' + encodeURIComponent(d.ia)); const j = await r.json();
+            const vids = (j.files || []).filter((f) => /\.mp4$/i.test(f.name) || /mpeg4|h\.264/i.test(f.format || ''));
+            vids.sort((a, b) => (+b.size || 0) - (+a.size || 0)); const best = vids.find((f) => (+f.size || 0) < 3.5e9) || vids[0];
+            if (best) src = 'https://archive.org/download/' + encodeURIComponent(d.ia) + '/' + best.name.split('/').map(encodeURIComponent).join('/');
+        } catch (e) { }
+        const fr = p.querySelector('.mv-frame'); if (!fr) return;
+        fr.innerHTML = src ? `<video controls autoplay playsinline preload="metadata" poster="${P(d.backdrop_path, 'w1280')}" src="${E(src)}"></video>` : `<iframe src="https://archive.org/embed/${encodeURIComponent(d.ia)}" title="${E(d.title)}" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+        const v = fr.querySelector('video'); if (v) v.addEventListener('error', () => { fr.innerHTML = `<iframe src="https://archive.org/embed/${encodeURIComponent(d.ia)}" title="${E(d.title)}" allow="autoplay; fullscreen" allowfullscreen></iframe>`; }, { once: true });
+        p.querySelector('.mv-pbox').insertAdjacentHTML('beforeend', `<p class="mv-pn">${E(d.title)} (${E(year(d))}) · public domain · Internet Archive</p>`);
+    }
+    addEventListener('popstate', () => { const st = history.state && history.state.mv; if ($('mv-play') && st !== 'p') { stop(true); stack = Math.max(0, stack - 1); return; } if ($('mv-sheet') && st !== 'd' && st !== 'p') { closeSheet(true); stack = Math.max(0, stack - 1); } });
+    document.addEventListener('keydown', (e) => { if (e.key !== 'Escape') return; if ($('mv-play')) stop(false); else if ($('mv-sheet')) closeSheet(false); });
+
+    /* ---------- the page ---------- */
+    function enter() { if (!root()) return; start(); }
+    function leave() { if ($('mv-play')) stop(false); if ($('mv-sheet')) closeSheet(false); }
+    const N0 = window.navigateTo;
+    if (typeof N0 === 'function') window.navigateTo = function (v) { const r = N0.apply(this, arguments); try { if (v === 'movies') enter(); else leave(); } catch (e) { console.error(e); } return r; };
+    window.MV = {
+        open, close: () => closeSheet(false), stop: () => stop(false), find,
+        reload() { started = false; S.err = false; start(); },
+        hero(i) { S.hi = i; paintHero(); heroLoop(); },
+        async trailer(id) { try { const d = await api('/movie/' + id, { append_to_response: 'videos', include_video_language: 'en,null' }, 120); const t = trailerOf(d); if (t) playYT(t.key); else { showToast('No trailer for this film yet'); open(id); } } catch (e) { showToast('Could not load the trailer'); } },
+        play: playYT, full: playFull,
+        genre(g) { const C = S.cat; if (C.g === g) return; Object.assign(C, { g, page: 0, items: [], done: false, busy: false }); const el = $('mv-cat'); if (el) { el.outerHTML = catHtml(); watchMore(); } more(); },
+        sort(k) { const C = S.cat; if (C.sort === k) return; Object.assign(C, { sort: k, page: 0, items: [], done: false, busy: false }); const el = $('mv-cat'); if (el) { el.outerHTML = catHtml(); watchMore(); } more(); },
+        save() { const d = S.cur; if (!d) return; const L = myList(), i = L.findIndex((x) => x.id === d.id); if (i >= 0) { L.splice(i, 1); showToast('Removed from My list'); } else { L.unshift({ id: d.id, t: d.title, p: d.poster_path, y: d.release_date, v: d.vote_average, ia: d.ia || '' }); if (L.length > 100) L.length = 100; showToast('🔖 Added to My list'); } pfSave(); const s = $('mv-sheet'); if (s) { const y = s.scrollTop; sheet(detailHtml(d)); s.scrollTop = y; } if (!S.q && root() && !$('view-movies').classList.contains('hidden')) render(); },
+        learn() { const d = S.cur; if (!d) return; const lv = (state.user && state.user.target) || 'IELTS'; const msg = `Teach me 12 useful English words and phrases from the movie "${d.title}" (${year(d)}). For each: meaning in simple English, translation, and a short example line like the characters might say. Then give 3 questions about the story to practise speaking. My goal: ${lv}.`; closeSheet(false); navigateTo('ai-chat'); setTimeout(() => { try { sendChatMessage(msg); } catch (e) { } }, 450); },
+        _api: api, _free: freeList
+    };
+})();
+</script><!--/mv:js-->
 </body>
 </html>
